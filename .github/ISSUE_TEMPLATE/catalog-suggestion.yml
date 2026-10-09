@@ -1,0 +1,41 @@
+name: Catalog Suggestion
+description: Tell us about an already existing project that belongs in Remade.
+title: "[Catalog Suggestion] "
+labels:
+  - catalog-suggestion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found an existing reimplementation we missed? Submit its repository here. For complete entries, a pull request is preferred.
+        Please read POLICY.md for the eligibility rules.
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+      description: Link directly to the project's source repository.
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+  - type: input
+    id: original
+    attributes:
+      label: Original software
+      description: Which software is this project independently reimplementing?
+    validations:
+      required: true
+  - type: input
+    id: original-url
+    attributes:
+      label: Official software URL
+      description: Official source for the original software, if known.
+      placeholder: https://example.org/
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Explain the compatibility goal and any useful context.
+    validations:
+      required: false

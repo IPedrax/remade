@@ -1,0 +1,36 @@
+name: Project Request
+description: Propose software that does not yet have a known qualifying reimplementation.
+title: "[Project Request] "
+labels:
+  - project-request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Project Requests are ideas for software to reimplement, not existing project listings.
+        Please search existing listings and requests before submitting, and read POLICY.md.
+        No links are required for this issue form. A maintainer may request references before publishing a catalog entry.
+  - type: input
+    id: original
+    attributes:
+      label: Original software
+      description: What software would you like independently reimplemented?
+      placeholder: Name of the software
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason
+      description: What behavior or compatibility would you like a reimplementation to reproduce?
+      placeholder: Explain what makes a faithful reimplementation useful.
+    validations:
+      required: true
+  - type: input
+    id: original-url
+    attributes:
+      label: Official software URL
+      description: Optional reference link, if known.
+      placeholder: https://example.org/
+    validations:
+      required: false
