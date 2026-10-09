@@ -1,4 +1,8 @@
 # Maintainer-curated featured projects, ordered from most prominent to least.
-# Use project slugs already defined in src/content/catalog/projects/<slug>.yaml.
+# Use project or tool slugs already defined in their respective catalog directories.
 # Contributors should not add themselves here; entries are selected by maintainers.
-[]
+- photocraft
+- vectorcraft
+- solvecraft
+- openplayground
+- flare-animate

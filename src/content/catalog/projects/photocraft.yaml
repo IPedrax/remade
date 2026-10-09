@@ -1,0 +1,12 @@
+# Scope, status and limitations are maintainer-reported in the repository README.
+slug: photocraft
+name: PhotoCraft
+repository: https://github.com/storytold/photocraft
+original: adobe-photoshop
+category: applications
+languages: [Rust]
+status: alpha
+compatibility: partial
+description: PhotoCraft by ArtCraft independently implements Photoshop-style image editing, including layers, adjustments, selections and layered PSD documents.
+license: MIT OR Apache-2.0
+limitations: Early alpha. The maintainers report gaps in AI and generative features, typography, professional workflows and Photoshop plug-in compatibility.

@@ -1,1 +1,54 @@
-[]
+- slug: adobe-photoshop
+  name: Adobe Photoshop
+  url: https://www.adobe.com/products/photoshop.html
+  category: applications
+  aliases: [Photoshop]
+- slug: adobe-illustrator
+  name: Adobe Illustrator
+  url: https://www.adobe.com/products/illustrator.html
+  category: applications
+  aliases: [Illustrator]
+- slug: autodesk-fusion
+  name: Autodesk Fusion
+  url: https://www.autodesk.com/products/fusion-360/overview
+  category: applications
+  aliases: [Fusion 360, Autodesk Fusion 360]
+- slug: adobe-animate
+  name: Adobe Animate
+  url: https://www.adobe.com/products/animate.html
+  category: applications
+  aliases: [Adobe Flash Professional, Flash Professional]
+- slug: fl-studio
+  name: FL Studio
+  url: https://www.image-line.com/fl-studio
+  category: applications
+  aliases: [FruityLoops]
+- slug: voicemod
+  name: Voicemod
+  url: https://www.voicemod.net/
+  category: applications
+- slug: arcgis
+  name: ArcGIS
+  url: https://www.esri.com/en-us/arcgis/geospatial-platform/overview
+  category: applications
+- slug: wilcom-embroiderystudio
+  name: Wilcom EmbroideryStudio
+  url: https://wilcom.com/embroiderystudio/designing
+  category: applications
+  aliases: [EmbroideryStudio, Wilcom Embroidery Studio]
+- slug: resolume-arena
+  name: Resolume Arena
+  url: https://resolume.com/software
+  category: applications
+- slug: clip-studio-paint
+  name: Clip Studio Paint
+  url: https://www.clipstudio.net/en/
+  category: applications
+- slug: procreate
+  name: Procreate
+  url: https://procreate.com/procreate
+  category: applications
+- slug: traktor-pro
+  name: Traktor Pro
+  url: https://www.native-instruments.com/products/traktor-pro
+  category: applications

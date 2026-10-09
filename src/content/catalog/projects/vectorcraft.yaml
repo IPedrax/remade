@@ -1,0 +1,12 @@
+# Scope and limitations are maintainer-reported in the repository README.
+slug: vectorcraft
+name: VectorCraft
+repository: https://github.com/storytold/vectorcraft
+original: adobe-illustrator
+category: applications
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: VectorCraft by ArtCraft independently implements Illustrator-style vector illustration, including paths, artboards, typography, SVG, PDF and PDF-compatible AI files.
+license: MIT OR Apache-2.0
+limitations: Under active development with incomplete Illustrator parity. AI support targets PDF-compatible files; full compatibility is not claimed.

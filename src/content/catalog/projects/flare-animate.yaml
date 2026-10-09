@@ -1,0 +1,12 @@
+# Scope, status and limitations are maintainer-reported in the repository README.
+slug: flare-animate
+name: Flare
+repository: https://github.com/Flare-Animate/Flare
+original: adobe-animate
+category: applications
+languages: [C++]
+status: alpha
+compatibility: partial
+description: Flare by charlieduzstuf and contributors builds on OpenToonz with an Animate-style workspace and native import for Flash and Animate project formats.
+license: BSD-3-Clause
+limitations: Very early alpha. FLA and XFL import is incomplete; SWF support includes headers and embedded bitmaps. Complex documents do not round-trip cleanly. OpenToonz-derived, not a from-scratch rewrite.
