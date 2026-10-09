@@ -1,0 +1,89 @@
+# Remade: UI and Brand Specification
+
+## Tone
+
+A modern reference library for developers: precise, understated, inviting. Inspired by the clarity and category-led discovery of privacytools.io, but **not** a visual copy. Avoid SaaS dashboard chrome, heavy gradients, artificial popularity claims, and over-designed cards.
+
+## Identity
+
+- Wordmark text: `remade.wiki` (prominent *remade*, lime `.wiki` accent permitted).
+- Hero: **Everything can be remade.**
+- Supporting copy: *Discover independently developed software reimplementations.*
+- Icon: two overlapping squares; outline = first implementation, solid = second; small charcoal void at intersection.
+- Favicons: `public/favicon.svg`, `public/favicon-16.png`, `public/favicon-32.png`, `public/apple-touch-icon.png`; a 512px visual reference at `assets/branding/favicon-preview.png`.
+
+## Colors
+
+| Role | Hex | Usage |
+|---|---|---|
+| Canvas charcoal | `#15191F` | Main page and favicon background |
+| Deeper background | `#111419` | Section contrast |
+| Elevated surface | `#232B34` | Cards and menus |
+| Panel border | `#3A444F` | Hairlines and cards |
+| Lime | `#C4F477` | Accent, active controls, highlighted links |
+| Main text | `#F7F9FA` | Headings and body |
+| Muted text | `#B2BEC9` | Secondary descriptions |
+
+Implement focus and hover states, ensure accessible contrast, and make the interface usable without relying on color alone. Reserve lime for interactive emphasis and the icon.
+
+## Typography and layout
+
+- Use a clean modern sans-serif, preferably system font initially; if a webfont is added, self-host and subset it.
+- Clear hierarchy, generous vertical whitespace, modest rounded corners (8–16px), subtle shadows.
+- Max content width approximately 1100–1200px; reading sections narrower.
+- Responsive project cards: 1 column small screens, 2 on tablets, 3 on desktop.
+- Usable down to 320px width; cards should not truncate vital project names.
+
+## Home page sections (ordered)
+
+1. Header: logo, Explore, GitHub, Submit.
+2. Hero: `Everything can be remade.` and one supporting sentence.
+3. Prominent search with keyboard shortcut.
+4. **Featured**: one large editorial highlight plus smaller selected cards; if fewer entries exist, adapt gracefully instead of duplicating content.
+5. Browse by category: clear icon labels, counts when known.
+6. Recently added: reviewed latest additions; no invented dates.
+7. **Project Requests**: unfulfilled targets, concise contextual descriptions, link to requests index and PR contribution instructions. Show an intentional empty state when no requests exist.
+8. Footer: brand/tagline + GitHub, Submit, and **Disclaimer** links. **Do not display `admin@remade.wiki` in footer.**
+
+## Project Requests page
+
+- Heading: **Project Requests**
+- Explain that these are community wishes, *not active or approved implementation projects*.
+- Cards show target, category, description of what should be reproduced, and reference link.
+- Primary CTAs: **Submit a request** (PR instructions) and **Know a project? Add it** (PR instructions).
+- No fake contributor counts, fake votes, claimed assignments, or implied permission from original owners.
+- When a qualifying implementation is merged, remove the associated request entry (validated in CI).
+
+## Explore page
+
+- Search across original software name, project name, description, languages.
+- Category and language filters, compatibility target, development status, platform if known.
+- Sorting: recent, alphabetical, stars. `stars: null` sorts after known counts.
+- Cards expose original → implementation relationship at a glance.
+- Empty state proposes clearing filters or contributing a new project.
+- Use local data and Pagefind index (no hosted query endpoint).
+
+## Project detail page
+
+- Project title and original-software link.
+- Neutral statement of compatibility aims; clearly mark *maintainer-reported* information.
+- Primary repository CTA and optional docs link, language/license/category/status tags.
+- GitHub stats (stars, forks, last push and archive status when available).
+- Small note: **GitHub statistics are refreshed approximately every 24 hours.**
+- Focus/hover timestamp from `fetchedAt` when present; if absent, state `Statistics currently unavailable` instead of implying freshness.
+- Known limitations; related implementations of the same original.
+
+## Original-software page
+
+- Original name and official/reliable reference URL.
+- Brief factual synopsis, original software category.
+- All approved reimplementations targeting that original.
+- Never display a logo or mark in a way that implies an official partnership.
+
+## Accessibility
+
+- Skip-to-content link; proper h1–h3 outline; semantic card links.
+- Visible keyboard focus in lime with sufficient contrast.
+- Accessible search input labels and live region for filter result counts.
+- Reduced-motion support; meaningful icon labels or `aria-hidden` for decoration.
+- Decorative branding icon may be empty-alt alongside explicit wordmark.

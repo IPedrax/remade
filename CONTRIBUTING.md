@@ -1,0 +1,47 @@
+# Contributing to Remade
+
+Remade is a community-curated directory. You can contribute by proposing a new listing, correcting an existing listing, or improving the website itself.
+
+## Add a project
+
+1. Read [POLICY.md](POLICY.md) to confirm the project is eligible.
+2. Search `src/content/catalog/projects/` to make sure it has not already been listed.
+3. Reuse the original record in `src/content/catalog/originals.yaml` (or add it if missing), then fork the repository and add one YAML file at `src/content/catalog/projects/<project-slug>.yaml`. Use `examples/project.yaml` as a template, but replace all placeholder values.
+4. Open a pull request. Complete the description and check the policy acknowledgment in the PR template.
+5. Automated validation and link checks will run. A maintainer can merge, request changes, or close the pull request.
+
+Please keep submissions factual and concise. Only the project's external links and basic metadata are needed; do not add original executable files or assets.
+
+## Suggest an existing project via an issue
+
+If you know of an eligible reimplementation but do not want to prepare a YAML entry, [open a Catalog Suggestion issue](../../issues/new?template=catalog-suggestion.yml) with the repository URL and the software it reimplements. The form automatically triggers link validation and available repository metadata checks. The bot posts or updates one CI-style findings comment with any warnings at the top, including a caution for unrecognized Git hosts. A Catalog Suggestion is not a published listing and must still be reviewed and added through a pull request.
+
+## Project Requests
+
+If you cannot find an eligible reimplementation of a specific software product, you may [open a Project Request issue](../../issues/new?template=project-request.yml) without providing any links. The automated reviewer checks the required fields and any optional URLs. This is a request for maintainer review, not an automatically published request.
+
+You can also submit an approved, published Project Request through a pull request:
+
+1. Read `POLICY.md` and search both `src/content/catalog/projects/` and `src/content/catalog/requests/`.
+2. Ensure the target has an entry in `src/content/catalog/originals.yaml` (add one in the PR if necessary).
+3. Add `src/content/catalog/requests/<original-slug>.yaml` using `examples/request.yaml`. Explain the desired behavior or interface without copying protected code/assets.
+4. Open a PR and check the `POLICY.md` acknowledgment. Maintainers can merge, request edits, or close it.
+5. When a matching project gets indexed, the request should be deleted in the same PR.
+
+Requests have no votes, bounty promises, or claim/assignment system. They are distinct from approved reimplementation listings.
+
+## Correct an entry
+
+Open a pull request modifying the existing YAML. Explain the correction and link to supporting documentation if possible.
+
+## Featured listings
+
+Featured listings are an editorial selection curated by maintainers, not a field contributors need to set in their own submissions. To feature a project, a maintainer adds its `slug` to the ordered list in `src/content/catalog/featured.yaml` (the first slug is the primary Featured card). The catalog validator requires each slug to reference an existing project.
+
+## Reporting legal concerns
+
+See [Remade's disclaimer page](https://remade.wiki/disclaimer) for the legal contact and reporting process. Please do not post sensitive personal information in a public pull request.
+
+## Automated checks
+
+GitHub automatically validates submissions, verifies policy acknowledgment, and checks links when a pull request is opened or updated. No manual setup is required.

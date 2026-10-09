@@ -1,0 +1,76 @@
+# Remade Submission Policy
+
+> Everything can be remade.
+
+Remade is a community-curated directory of independently developed software reimplementations. The directory links to third-party projects; it does not host or certify them.
+
+This document describes **which projects qualify for listing**, **what submitters must provide**, and **how maintainers review submissions**. For general legal information and the reporting contact, see [the disclaimer](https://remade.wiki/disclaimer).
+
+## 1. Eligible projects
+
+A submission must meet **all** of these conditions:
+
+1. **Identifiable original.** It targets a specific, existing software product or a well-defined software interface, protocol, or subsystem. The original must be identifiable by name and a credible reference URL.
+2. **Independent implementation.** Its implementation is independently authored and must not incorporate leaked, stolen, or otherwise unauthorized source code, binaries, or copyrighted assets from the original.
+3. **Faithful reimplementation goal.** It aims to reproduce the original's observable behavior, compatibility, interface, file formats, or other specified functionality:not merely build a loosely inspired alternative. Exact compatibility is a **goal**, not a requirement that every feature already be finished.
+4. **Open-source implementation.** The submitted source is publicly accessible, under an identifiable open-source license, and has enough substance to demonstrate an actual implementation rather than an announcement or empty scaffold.
+5. **Current catalog scope.** For now, Remade focuses on reimplementations of software whose original implementation is **not released as open-source software**. A separate rewrite of an already-open-source application does not currently qualify.
+6. **Honest documentation.** The repository must describe its scope and limitations accurately. Projects must not claim complete compatibility or a verified clean-room process without adequate support.
+
+Work-in-progress projects are welcome if they have meaningful code and a specific compatibility target. The directory may display self-reported project status and compatibility claims as such; publication is not an independent verification.
+
+## 2. Projects not accepted
+
+Remade does not list:
+
+- Forks, ports, or direct modifications of the original software's source code.
+- Wrappers, launchers, skins, mods, or patches that depend on the original implementation as their core engine.
+- General alternatives, lookalike interfaces, or products only inspired by the original, without a meaningful behavioral or compatibility objective.
+- Repositories primarily redistributing unauthorized original source code, binaries, firmware, game assets, or other copyrighted material.
+- Projects whose main purpose is distributing cracks, pirated copies, or tools for unauthorized access.
+- Empty repositories, ideas without working source, deceptive listings, or duplicates of an existing listing.
+
+**Emulators, compatibility layers, and protocol implementations** are reviewed case by case. They qualify only when they genuinely implement a defined target and meet the independent-development requirements above.
+
+## 3. Clean-room and legal claims
+
+Clean-room development is a methodology, not a legal certification automatically granted by inclusion in Remade. A project may describe itself as clean-room only where the claim is supportable. At minimum, submitted projects must represent that they were independently developed without unauthorized copying of protected source code or assets.
+
+Reverse engineering and compatibility can raise different legal issues depending on jurisdiction and circumstances. Remade does not independently audit code provenance or determine whether any listed project is lawful. Contributors remain responsible for the accuracy of their submissions, and rights holders may report concerns through [the disclaimer page](https://remade.wiki/disclaimer).
+
+## 4. Project Requests
+
+Remade also accepts **requests for software that people would like to see independently reimplemented**. These appear under **Project Requests** and must not imply that a project already exists.
+
+You may suggest a request through the Project Request GitHub Issue Form without providing links. To add an approved request to the public catalog, submit a pull request adding `src/content/catalog/requests/<original-slug>.yaml` and, if needed, a canonical original entry in `src/content/catalog/originals.yaml`. Requests must identify a specific existing software target, cite a reliable reference, and explain which behavior or interface a faithful implementation should reproduce. Search existing directory entries first; **requests are only for originals with no currently indexed qualifying project**.
+
+Requests are not assignments, endorsements, authorizations from rights holders, solicitations to copy protected code, or promises that Remade will build the software. The independent-development and no-unauthorized-assets standards still apply to any eventual implementation. Maintainers may decline vague, redundant, misleading, or unsuitable requests. When a matching implementation is accepted, the request entry is removed.
+
+## 5. Submission requirements
+
+Contributions should be made by pull request, adding **one project file per project** under `src/content/catalog/projects/`.
+
+Each submission must include:
+
+- Project name and publicly accessible source repository URL.
+- Original software name and an official or otherwise reliable reference URL.
+- A neutral, concise description of what functionality is being reimplemented.
+- Category, primary programming language(s), and development status.
+- Stated compatibility scope and known limitations, where documented.
+- Open-source license identifier or a link to the project's license file.
+
+The project URL must link to the actual implementation, not merely a marketing page. Links must be relevant and functional. Avoid unsubstantiated superlatives and promotional claims.
+
+**Do not add `featured` to your own project entry.** Featured selections are maintained separately by Remade's maintainers.
+
+## 6. Review and moderation
+
+Submitting a pull request does not guarantee publication. Maintainers may request corrections, reject, close, hide, or remove entries at their discretion, including for eligibility concerns, misleading information, legal complaints, or directory quality. Decisions are editorial and do not represent legal findings.
+
+If an entry becomes inaccurate, its source repository disappears, or a rights concern arises, maintainers may update or delist it. Historical and archived projects may remain listed when their records are useful and accurate.
+
+## 7. Contributor acknowledgment
+
+By submitting a pull request, you affirm **to the best of your knowledge** that the information supplied is accurate, the project meets the eligibility criteria above, and you will comply with this policy. The pull request template includes a corresponding acknowledgment checkbox.
+
+This policy may change as the directory evolves. Material scope changes should be documented in the repository history.
