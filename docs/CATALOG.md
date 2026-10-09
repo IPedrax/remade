@@ -6,8 +6,8 @@
 src/content/catalog/
   originals.yaml           Canonical original programs/interfaces
   featured.yaml            Maintainer-selected project slugs in display order
-  projects/<slug>.yaml     One community-submitted reimplementation each
-  tools/<slug>.yaml        One supporting tool each; separate from reimplementations
+  projects/<github-user>/<slug>.yaml     One community-submitted reimplementation each
+  tools/<github-user>/<slug>.yaml        One supporting tool each; separate from reimplementations
   requests/<original-slug>.yaml  One unfulfilled community request for the original
 examples/project.yaml      Example only: never indexed
 
@@ -18,7 +18,7 @@ Use **stable, URL-friendly slugs**; names may change, but slugs should remain st
 
 ## Astro content integration
 
-The source files live under `src/content/catalog/`, matching the Astro app's content layout. In Astro 5+, define collection loaders in `src/content.config.ts` that match `projects/*.yaml` and `requests/*.yaml` separately. Keep `originals.yaml` and `featured.yaml` as their existing shared reference/curation files rather than treating them as individual project entries. Use typed Zod schemas matching these files, and let Python CI enforce cross-file relationships and duplicate rules. Example YAML in `examples/` must never be indexed.
+The source files live under `src/content/catalog/`, matching the Astro app's content layout. In Astro 5+, define collection loaders in `src/content.config.ts` that match `projects/**/*.yaml` and `tools/**/*.yaml` and `requests/*.yaml` separately. Keep `originals.yaml` and `featured.yaml` as their existing shared reference/curation files rather than treating them as individual project entries. Use typed Zod schemas matching these files, and let Python CI enforce cross-file relationships and duplicate rules. Example YAML in `examples/` must never be indexed.
 
 ## Canonical original record
 
@@ -35,9 +35,21 @@ The source files live under `src/content/catalog/`, matching the Astro app's con
 
 An original record identifies the **target**, not a hosting or endorsement relationship.
 
+## Author grouping by GitHub user
+
+Projects and tools accept optional `authors: [storytold]`: a nonempty, duplicate-free list of lowercase GitHub user or organization handles. Handles are 1–39 characters using letters, digits and single internal hyphens. Use handles directly; there is no authors registry or separate display-name mapping. Multiple credited authors are supported. Omit the field when attribution is unknown. Requests do not have authors.
+
+Credit authors explicitly rather than inferring authorship from repository ownership, contributors or dependencies. The GitHub handle can differ from the repository owner, and non-GitHub repositories remain eligible. Validation checks syntax, not ownership or profile existence.
+
+Organize attributed files as `projects/<github-user>/<slug>.yaml` and `tools/<github-user>/<slug>.yaml`, using the first credited author for the folder. For example, PhotoCraft lives at `projects/storytold/photocraft.yaml`. Keep one file per entry even with multiple authors. The `authors` field remains authoritative for attribution and grouping; folders are organizational. Entries without established attribution may remain at the collection root. Load both collections recursively, enforcing slug and repository uniqueness across all author folders. Original and request records remain shared and keyed by original slug; featured selections and public project URLs continue to use global entry slugs.
+
+`entries_by_author` derives groups directly from validated project and tool YAML, sorts them deterministically, and keeps separate project/tool lists. Grouping includes every attributed indexed entry independently of Featured. The planned `/authors/[github-user]` route uses the handle directly: ArtCraft entries with `authors: [storytold]` appear at `/authors/storytold`. This does not automatically import or publish other repositories.
+
+Entry cards, detail pages and featured tabs will show **View More by Author**, labeled with the GitHub handle and linked to that route. Multiple authors get separately labeled links. Omit links when no author is recorded. Author pages and links remain planned for website implementation; this change adds data and grouping support.
+
 ## Project record
 
-`src/content/catalog/projects/<slug>.yaml` has the fields below:
+`src/content/catalog/projects/<github-user>/<slug>.yaml` has the fields below:
 
 ```yaml
 slug: example-implementation
@@ -72,6 +84,7 @@ license: MIT
 | `license` | Yes | SPDX-style identifier or e.g. `LicenseRef-custom` for review |
 | `docs` | No | HTTPS URL |
 | `limitations` | No | Short plain text |
+| `authors` | No | Nonempty, duplicate-free list of lowercase GitHub handles |
 
 Compatibility is not scored by Remade. `claimed-complete` is **not** a certification.
 
@@ -104,7 +117,7 @@ suggested_names: [ExampleCraft] # optional
 
 ## Supporting tool record
 
-`src/content/catalog/tools/<slug>.yaml` describes an add-on to existing indexed projects:
+`src/content/catalog/tools/<github-user>/<slug>.yaml` describes an add-on to existing indexed projects:
 
 ```yaml
 slug: example-tool
@@ -117,7 +130,7 @@ projects: [example-implementation]
 
 All six fields are required; unknown fields are rejected. `slug` must match the filename and share a unique namespace with project slugs. `name` is 2–100 plain-text characters and `description` is 20–400. `repository` follows the project repository URL rules and must be unique across projects and tools; `url` must be public HTTPS. `projects` is a nonempty, duplicate-free list of existing project slugs. This relationship identifies what a tool extends, without inventing an original or compatibility claim. A repository link does not imply an open-source license; tool licensing must be reviewed from its sources.
 
-Load tools separately using `collect_tools`; `collect` validates their references alongside projects while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
+Tools also accept optional `authors` under the same GitHub-handle rules as projects. Load tools separately using `collect_tools`; `collect` validates their project references and author handles while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
 
 ## Featured manifest
 

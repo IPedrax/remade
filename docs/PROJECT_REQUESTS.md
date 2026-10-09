@@ -11,7 +11,7 @@ Show software and interfaces that community members want faithfully reimplemente
 - Navigate to `/requests` from the homepage section.
 - Browse requested originals, their reference links, the reason for a remake and any suggested names.
 - Select **Submit a request** to open `.github/ISSUE_TEMPLATE/project-request.yml` for a link-free suggestion; maintainers review it and accepted catalog entries still require a PR adding `src/content/catalog/requests/<original-slug>.yaml`; create an original in `src/content/catalog/originals.yaml` if needed.
-- Select **Know an implementation?** to submit `src/content/catalog/projects/<slug>.yaml` by PR instead.
+- Select **Know an implementation?** to submit `src/content/catalog/projects/<github-user>/<slug>.yaml` by PR instead.
 - No login on Remade, runtime comments, upvotes, or status claims. GitHub account required to open an Issue or PR.
 
 ## Rules and publication

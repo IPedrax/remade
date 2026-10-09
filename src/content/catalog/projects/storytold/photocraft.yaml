@@ -1,6 +1,7 @@
 # Scope, status and limitations are maintainer-reported in the repository README.
 slug: photocraft
 name: PhotoCraft
+authors: [storytold]
 repository: https://github.com/storytold/photocraft
 original: adobe-photoshop
 category: applications

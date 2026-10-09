@@ -1,6 +1,7 @@
 # Scope and limitations are maintainer-reported in the repository README.
 slug: solvecraft
 name: SolveCraft
+authors: [bherbruck]
 repository: https://github.com/bherbruck/solvecraft
 original: autodesk-fusion
 category: applications

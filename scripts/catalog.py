@@ -20,6 +20,7 @@ STATUSES = {"experimental", "alpha", "beta", "stable", "archived"}
 COMPATIBILITY = {"targeting", "partial", "high", "claimed-complete"}
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 GH_REPO = re.compile(r"https://github\.com/([A-Za-z0-9-]+)/([A-Za-z0-9_.-]+)\Z")
+AUTHOR_SLUG = re.compile(r"[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}\Z")
 
 
 class DuplicateKeySafeLoader(yaml.SafeLoader):
@@ -136,11 +137,11 @@ def collect(root=ROOT):
     project_by_slug = {}
     seen_repos = set()
     project_originals = set()
-    for path in sorted((root / "src/content/catalog/projects").glob("*.yaml")):
+    for path in sorted((root / "src/content/catalog/projects").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         project = checked_load(path, errors)
         required = {"slug", "name", "repository", "original", "category", "languages", "status", "compatibility", "description", "license"}
-        optional = {"platforms", "docs", "limitations"}
+        optional = {"platforms", "docs", "limitations", "authors"}
         if not fields(project, required, optional, loc, errors):
             continue
         slug = project["slug"]
@@ -192,6 +193,7 @@ def collect(root=ROOT):
             errors.append(f"{loc}: invalid limitations text")
         if "docs" in project and not is_https(project["docs"]):
             errors.append(f"{loc}: docs must be a public HTTPS URL")
+        validate_authors(project, loc, errors)
 
     request_by_original = {}
     for path in sorted((root / "src/content/catalog/requests").glob("*.yaml")):
@@ -252,12 +254,13 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     tools: list[dict] = []
     errors: list[str] = []
     seen_repositories: set[str] = set()
-    for path in sorted((root / "src/content/catalog/tools").glob("*.yaml")):
+    for path in sorted((root / "src/content/catalog/tools").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         tool = checked_load(path, errors)
-        if not fields(tool, {"slug", "name", "repository", "url", "description", "projects"}, set(), loc, errors):
+        if not fields(tool, {"slug", "name", "repository", "url", "description", "projects"}, {"authors"}, loc, errors):
             continue
         before = len(errors)
+        validate_authors(tool, loc, errors)
         if not is_slug(tool["slug"]) or tool["slug"] != path.stem:
             errors.append(f"{loc}: slug must match filename and be lowercase-kebab-case")
         if not is_text(tool["name"], 2, 100):
@@ -287,3 +290,27 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
         if len(errors) == before:
             tools.append(tool)
     return tools, errors
+
+
+def validate_authors(entry: dict, loc: str, errors: list[str]) -> None:
+    if "authors" not in entry:
+        return
+    authors = entry["authors"]
+    if (not isinstance(authors, list) or not authors
+            or any(not isinstance(slug, str) or not AUTHOR_SLUG.fullmatch(slug) for slug in authors)):
+        errors.append(f"{loc}: authors must be a nonempty list of lowercase GitHub handles")
+        return
+    if len(set(authors)) != len(authors):
+        errors.append(f"{loc}: duplicate author reference")
+
+
+def entries_by_author(projects: list[dict], tools: list[dict]) -> dict[str, dict]:
+    """Group validated indexed entries, independently of featured selections."""
+    groups: dict[str, dict] = {}
+    for kind, entries in (("projects", projects), ("tools", tools)):
+        for entry in sorted(entries, key=lambda item: (item["name"].casefold(), item["slug"])):
+            for slug in entry.get("authors", []):
+                if slug not in groups:
+                    groups[slug] = {"github_user": slug, "url": f"https://github.com/{slug}", "projects": [], "tools": []}
+                groups[slug][kind].append(entry)
+    return dict(sorted(groups.items()))

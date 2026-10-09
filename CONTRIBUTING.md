@@ -6,7 +6,7 @@ Remade is a community-curated directory. You can contribute by proposing a new l
 
 1. Read [POLICY.md](POLICY.md) to confirm the project is eligible.
 2. Search `src/content/catalog/projects/` to make sure it has not already been listed.
-3. Reuse the original record in `src/content/catalog/originals.yaml` (or add it if missing), then fork the repository and add one YAML file at `src/content/catalog/projects/<project-slug>.yaml`. Use `examples/project.yaml` as a template, but replace all placeholder values.
+3. Reuse the original record in `src/content/catalog/originals.yaml` (or add it if missing), then fork the repository and add one YAML file at `src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Use `examples/project.yaml` as a template, but replace all placeholder values.
 4. Open a pull request. Complete the description and check the policy acknowledgment in the PR template.
 5. Automated validation and link checks will run. A maintainer can merge, request changes, or close the pull request.
 
@@ -32,9 +32,13 @@ Requests have no votes, bounty promises, or claim/assignment system. They are di
 
 ## Add a supporting tool
 
-Tools that add on to indexed projects are welcome under `src/content/catalog/tools/<slug>.yaml`. Read the supporting-tools section of `POLICY.md` and copy `docs/examples/catalog/tools/tool.yaml`. Link the source repository and tool, describe the added functionality, and reference at least one existing project slug in `projects`. Disclose dependencies and licensing accurately. Tools are reviewed through the same PR flow and may be featured with a Tool label; they do not fulfill Project Requests.
+Tools that add on to indexed projects are welcome under `src/content/catalog/tools/<github-user>/<slug>.yaml`. Read the supporting-tools section of `POLICY.md` and copy `docs/examples/catalog/tools/tool.yaml`. Link the source repository and tool, describe the added functionality, and reference at least one existing project slug in `projects`. Disclose dependencies and licensing accurately. Tools are reviewed through the same PR flow and may be featured with a Tool label; they do not fulfill Project Requests.
 
 Requests may also include optional `suggested_names`, such as `[MusicCraft]`. These are naming ideas, not existing implementations or reserved names.
+
+## Credit authors
+
+Projects and tools may include `authors: [github-handle]` directly in their YAML. Use lowercase GitHub user or organization handles; no separate author file is needed. Credit documented authors explicitly; repository ownership or dependency relationships do not establish authorship. Multiple authors are supported. These handles drive the planned `/authors/<github-handle>` pages and **View More by Author** links without changing featured selections.
 
 ## Correct an entry
 

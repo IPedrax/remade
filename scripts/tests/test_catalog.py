@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from catalog import collect, collect_tools
+from catalog import collect, collect_tools, entries_by_author
 
 
 class CatalogValidationTest(unittest.TestCase):
@@ -41,6 +41,75 @@ license: MIT
 
     def test_empty_catalog_valid(self):
         self.assertFalse(collect(self.root)[-1])
+
+    def test_author_folders_load_projects_tools_and_featured(self):
+        self.add_original()
+        self.add_project()
+        project = self.root / 'src/content/catalog/projects/impl-a.yaml'
+        project.parent.joinpath('storytold').mkdir()
+        project.rename(project.parent / 'storytold' / project.name)
+        tool = self.add_tool()
+        tool.parent.joinpath('daijro').mkdir()
+        tool.rename(tool.parent / 'daijro' / tool.name)
+        (self.root / 'src/content/catalog/featured.yaml').write_text('- impl-a\n- example-tool\n')
+        _, projects, _, featured, errors = collect(self.root)
+        self.assertFalse(errors)
+        self.assertEqual([entry['slug'] for entry in projects], ['impl-a'])
+        self.assertEqual(featured, ['impl-a', 'example-tool'])
+        self.assertEqual(collect_tools(self.root)[0][0]['slug'], 'example-tool')
+
+    def test_duplicate_projects_across_author_folders_rejected(self):
+        self.add_original()
+        self.add_project()
+        project = self.root / 'src/content/catalog/projects/impl-a.yaml'
+        other = project.parent / 'another-user'
+        other.mkdir()
+        (other / project.name).write_text(project.read_text())
+        errors = collect(self.root)[-1]
+        self.assertTrue(any('duplicate project slug' in error for error in errors))
+        self.assertTrue(any('duplicate repository' in error for error in errors))
+
+    def test_project_github_authors_validation(self):
+        self.add_original()
+        self.add_project()
+        path = self.root / 'src/content/catalog/projects/impl-a.yaml'
+        content = path.read_text()
+        for value, valid in [
+            ('[storytold, another-user]', True), ('[a]', True),
+            ('[]', False), ('storytold', False), ('[null]', False),
+            ('[StoryTold]', False), ('[storytold, storytold]', False),
+            ('["../user"]', False), ('["@user"]', False),
+            ('[a--b]', False), ('["-user"]', False), ('["user-"]', False),
+            ('["' + 'a' * 40 + '"]', False),
+        ]:
+            with self.subTest(value=value):
+                path.write_text(content + 'authors: ' + value + '\n')
+                self.assertEqual(not collect(self.root)[-1], valid)
+
+    def test_tool_github_authors_validation(self):
+        self.add_original()
+        self.add_project()
+        path = self.add_tool()
+        content = path.read_text()
+        path.write_text(content + 'authors: [daijro]\n')
+        self.assertFalse(collect(self.root)[-1])
+        path.write_text(content + 'authors: ["https://github.com/daijro"]\n')
+        self.assertTrue(any('authors must' in error for error in collect(self.root)[-1]))
+
+    def test_author_grouping_uses_explicit_credit_and_all_indexed_entries(self):
+        projects = [
+            {'slug': 'z', 'name': 'Zebra', 'authors': ['storytold'], 'repository': 'https://github.com/other/z'},
+            {'slug': 'a', 'name': 'Alpha', 'authors': ['storytold', 'bherbruck']},
+            {'slug': 'uncredited', 'name': 'Uncredited', 'repository': 'https://github.com/storytold/uncredited'},
+        ]
+        tools = [{'slug': 'tool', 'name': 'Tool', 'authors': ['daijro'], 'projects': ['a']}]
+        groups = entries_by_author(projects, tools)
+        self.assertEqual(list(groups), ['bherbruck', 'daijro', 'storytold'])
+        self.assertEqual([entry['slug'] for entry in groups['storytold']['projects']], ['a', 'z'])
+        self.assertEqual(groups['storytold']['tools'], [])
+        self.assertEqual(groups['storytold']['url'], 'https://github.com/storytold')
+        self.assertEqual([entry['slug'] for entry in groups['daijro']['tools']], ['tool'])
+        self.assertEqual(entries_by_author([], []), {})
 
     def test_request_valid_when_no_project(self):
         self.add_original()

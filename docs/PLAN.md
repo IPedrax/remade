@@ -18,6 +18,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 | `/explore` | Searchable directory with category/language/platform/status filters and sortable results |
 | `/software/[slug]` | Original software overview, official reference, all indexed reimplementations |
 | `/projects/[slug]` | Implementation detail, coverage/limitations, GitHub stats, link to repo |
+| `/authors/[github-user]` | Author identity and all attributed indexed projects and tools, including entries not featured |
 | `/about` | Mission and contribution model; links to GitHub and POLICY.md |
 | `/requests` | Requested reimplementations with no currently indexed matching project |
 | `/disclaimer` | Independently developed projects, qualified legal history, contact |
@@ -39,6 +40,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 - Link an implementation to one canonical original software record.
 - Search originals and implementation names/technical descriptions.
 - Project cards: name, concise purpose, original target, primary language, category, optional stars and status.
+- Attributed entries, including featured tabs, show **View More by Author** linked to `/authors/[github-user]`. Display GitHub handles; group all indexed entries independently of Featured. Author pages keep tools labeled Tool and support multiple credited authors.
 - Detail page: repository/docs, actual stated compatibility scope, known limitations, languages, platforms (if known), license, activity/archived status, GitHub stats.
 - Clearly distinguish **claimed** compatibility from verified compatibility; do not invent coverage percentages.
 - GitHub stats note: **“GitHub statistics are refreshed approximately every 24 hours.”** Hover/focus displays last successful update from data, if present.

@@ -1,6 +1,8 @@
 # Documentation example only; never publish as a real tool.
 slug: example-tool
 name: Example Tool
+# Optional: explicitly credited GitHub user or organization handles.
+# authors: [example]
 repository: https://github.com/example/example-tool
 url: https://example.org/tool
 description: A browser launcher that adds access to an indexed implementation.

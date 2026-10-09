@@ -12,7 +12,7 @@
 ## Data pipeline
 
 ```text
-Contributor PR (src/content/catalog/projects/<slug>.yaml OR src/content/catalog/requests/<original-slug>.yaml)
+Contributor PR (src/content/catalog/projects/<github-user>/<slug>.yaml OR src/content/catalog/requests/<original-slug>.yaml)
     ↓  read-only validation + Lychee + policy acknowledgment
 Maintainer reviews → merges
     ↓
@@ -24,6 +24,7 @@ Git-tracked project YAML + original records + featured selections
            ├── /explore                filters/sort + search
            ├── /software/[slug]        one original → many projects
            ├── /projects/[slug]        individual project
+           ├── /authors/[github-user] attributed indexed projects and tools
            ├── /requests              unfulfilled community requests
            ├── /disclaimer            approved text
            └── Pagefind index         no hosted search service
@@ -51,6 +52,7 @@ The trusted daily metadata job fetches data using a **short-lived organization-o
 
 1. Load and validate original records, projects, supporting tools, requests, and `featured.yaml`. Tools are a separate collection joined to existing project slugs; they do not count as implementations or fulfill requests. Featured selections may include tools labeled Tool.
 2. Join each project with one canonical original by slug.
+   Read explicit project/tool `authors` GitHub handles directly from entry YAML; group all indexed entries for static author pages independently of featured selection. Never fetch GitHub repositories from visitors or infer attribution from repository owners.
 3. Merge cached GitHub metadata (optional/null-safe).
 4. Generate static detail, grouping, browse, and unfulfilled request pages.
 5. Build Pagefind search index against generated HTML.

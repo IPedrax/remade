@@ -3,6 +3,8 @@
 # Maintainers choose featured listings in src/content/catalog/featured.yaml, by project slug.
 slug: example-implementation
 name: Example Implementation
+# Optional: explicitly credited GitHub user or organization handles.
+# authors: [example]
 repository: https://github.com/example/example-implementation
 original: example-software
 category: applications
