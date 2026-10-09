@@ -257,10 +257,13 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     for path in sorted((root / "src/content/catalog/tools").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         tool = checked_load(path, errors)
-        if not fields(tool, {"slug", "name", "repository", "url", "description", "projects"}, {"authors"}, loc, errors):
+        if not fields(tool, {"slug", "name", "repository", "url", "description", "projects"}, {"authors", "platforms"}, loc, errors):
             continue
         before = len(errors)
         validate_authors(tool, loc, errors)
+        platforms = tool.get("platforms", [])
+        if not isinstance(platforms, list) or any(not is_text(x, 1, 40) for x in platforms):
+            errors.append(f"{loc}: platforms must be a list of strings")
         if not is_slug(tool["slug"]) or tool["slug"] != path.stem:
             errors.append(f"{loc}: slug must match filename and be lowercase-kebab-case")
         if not is_text(tool["name"], 2, 100):

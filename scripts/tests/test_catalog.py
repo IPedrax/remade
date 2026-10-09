@@ -163,6 +163,25 @@ projects: [impl-a]
         self.assertFalse(errors)
         self.assertEqual(tools[0]['slug'], 'example-tool')
 
+    def test_tool_platforms_validation(self):
+        for platforms, valid in [
+            ('[Web]', True),
+            ('[Linux, macOS, Windows]', True),
+            ('[]', True),
+            ('Web', False),
+            ('null', False),
+            ('[null]', False),
+            ('["<b>Web</b>"]', False),
+            ('["' + 'a' * 41 + '"]', False),
+        ]:
+            with self.subTest(platforms=platforms):
+                path = self.add_tool()
+                path.write_text(path.read_text() + 'platforms: ' + platforms + '\n')
+                tools, errors = collect_tools(self.root)
+                self.assertEqual(not errors, valid)
+                if valid:
+                    self.assertIn('platforms', tools[0])
+
     def test_tool_requires_existing_project(self):
         self.add_tool()
         self.assertTrue(any('unknown project impl-a' in error for error in collect(self.root)[-1]))

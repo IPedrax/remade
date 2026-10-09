@@ -124,13 +124,14 @@ slug: example-tool
 name: Example Tool
 repository: https://github.com/example/example-tool
 url: https://example.org/tool
+platforms: [Web] # optional
 description: A browser launcher that adds access to the indexed implementation.
 projects: [example-implementation]
 ```
 
 All six fields are required; unknown fields are rejected. `slug` must match the filename and share a unique namespace with project slugs. `name` is 2–100 plain-text characters and `description` is 20–400. `repository` follows the project repository URL rules and must be unique across projects and tools; `url` must be public HTTPS. `projects` is a nonempty, duplicate-free list of existing project slugs. This relationship identifies what a tool extends, without inventing an original or compatibility claim. A repository link does not imply an open-source license; tool licensing must be reviewed from its sources.
 
-Tools also accept optional `authors` under the same GitHub-handle rules as projects. Load tools separately using `collect_tools`; `collect` validates their project references and author handles while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
+Tools also accept optional `platforms`, a list of 1–40 character plain-text platform names under the same rules as projects. Use `Web` for browser-based tools and list only documented platforms. Optional `authors` follows the same GitHub-handle rules as projects. Load tools separately using `collect_tools`; `collect` validates their project references and author handles while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
 
 ## Featured manifest
 
