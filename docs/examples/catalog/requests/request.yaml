@@ -1,0 +1,4 @@
+# Documentation example only; never publish as a real request.
+# A request is for an original with NO indexed qualifying implementation.
+original: example-software
+reason: A faithful, independently written implementation of the program's public behavior would support compatibility and historical preservation.

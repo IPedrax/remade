@@ -1,0 +1,19 @@
+# Documentation example only; never publish as a real listing.
+# Featured status is NOT set in individual project records.
+# Maintainers choose featured listings in src/content/catalog/featured.yaml, by project slug.
+slug: example-implementation
+name: Example Implementation
+repository: https://github.com/example/example-implementation
+original: example-software
+category: applications
+languages:
+  - Rust
+platforms:
+  - Linux
+  - macOS
+  - Windows
+status: experimental
+compatibility: targeting
+description: Independent implementation targeting the original application's behavior.
+license: MIT
+limitations: Many features are not yet implemented.
