@@ -1,0 +1,4 @@
+# Until the website launches, the policy's disclaimer-page URL may not resolve.
+# Remove this exception when /disclaimer is published.
+^https://remade\.wiki/disclaimer/?$
+# The documentation example's fake external URLs are not indexed by the generated link list.

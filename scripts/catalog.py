@@ -1,0 +1,225 @@
+"""Remade's Git-native catalog validation and ingestion helpers.
+
+Third-party catalog text is untrusted. Never execute anything from listed repositories.
+"""
+
+import ipaddress
+import validators
+import re
+from pathlib import Path
+from urllib.parse import urlsplit
+
+import yaml
+
+ROOT = Path(__file__).resolve().parents[1]
+CATEGORIES = {
+    "applications", "operating-systems", "games", "developer-tools",
+    "databases", "protocols", "compatibility", "other",
+}
+STATUSES = {"experimental", "alpha", "beta", "stable", "archived"}
+COMPATIBILITY = {"targeting", "partial", "high", "claimed-complete"}
+SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
+GH_REPO = re.compile(r"https://github\.com/([A-Za-z0-9-]+)/([A-Za-z0-9_.-]+)\Z")
+
+
+class DuplicateKeySafeLoader(yaml.SafeLoader):
+    pass
+
+
+def no_duplicate_keys(loader, node):
+    result = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node, deep=True)
+        if key in result:
+            raise ValueError(f"Duplicate YAML key: {key}")
+        result[key] = loader.construct_object(value_node, deep=True)
+    return result
+
+
+DuplicateKeySafeLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, no_duplicate_keys
+)
+
+
+def load_yaml(path: Path):
+    return yaml.load(path.read_text(encoding="utf-8"), Loader=DuplicateKeySafeLoader)
+
+
+def is_slug(v):
+    return isinstance(v, str) and bool(SLUG.fullmatch(v))
+
+
+def is_text(v, minlen=1, maxlen=400):
+    return isinstance(v, str) and minlen <= len(v.strip()) <= maxlen and "<" not in v and ">" not in v
+
+
+def is_https(v):
+    if not isinstance(v, str) or validators.url(v) is not True:
+        return False
+    try:
+        parts = urlsplit(v)
+        host = parts.hostname
+        if (parts.scheme != "https" or not host or parts.username or parts.password
+                or parts.port is not None or any(ch.isspace() for ch in v)):
+            return False
+        if host.lower() == "localhost" or host.lower().endswith((".local", ".internal", ".localhost", ".test")):
+            return False
+        try:
+            ipaddress.ip_address(host)
+            return False
+        except ValueError:
+            pass
+        return "." in host
+    except ValueError:
+        return False
+
+
+def fields(obj, required, optional, location, errors):
+    if not isinstance(obj, dict):
+        errors.append(f"{location}: expected a YAML mapping")
+        return False
+    missing = set(required) - obj.keys()
+    extra = obj.keys() - (set(required) | set(optional))
+    if missing:
+        errors.append(f"{location}: missing: {', '.join(sorted(missing))}")
+    if extra:
+        errors.append(f"{location}: unknown: {', '.join(sorted(extra))}")
+    return not missing and not extra
+
+
+def checked_load(path, errors):
+    try:
+        return load_yaml(path)
+    except (ValueError, yaml.YAMLError, UnicodeError) as e:
+        errors.append(f"{path}: malformed YAML: {e}")
+        return None
+
+
+def collect(root=ROOT):
+    errors = []
+    originals_file = root / "src/content/catalog/originals.yaml"
+    featured_file = root / "src/content/catalog/featured.yaml"
+    originals = checked_load(originals_file, errors)
+    featured = checked_load(featured_file, errors)
+    originals = originals if isinstance(originals, list) else []
+    featured = featured if isinstance(featured, list) else []
+    original_by_slug = {}
+    names = set()
+    for i, original in enumerate(originals):
+        loc = f"src/content/catalog/originals.yaml entry #{i+1}"
+        if not fields(original, {"slug", "name", "url", "category"}, {"aliases"}, loc, errors):
+            continue
+        slug = original["slug"]
+        if not is_slug(slug):
+            errors.append(f"{loc}: invalid slug")
+        elif slug in original_by_slug:
+            errors.append(f"{loc}: duplicate slug: {slug}")
+        else:
+            original_by_slug[slug] = original
+        if not is_text(original["name"], 2, 100):
+            errors.append(f"{loc}: invalid name")
+        if not is_https(original["url"]):
+            errors.append(f"{loc}: url must be a public HTTPS URL")
+        if not isinstance(original["category"], str) or original["category"] not in CATEGORIES:
+            errors.append(f"{loc}: invalid category")
+        aliases = original.get("aliases", [])
+        if not isinstance(aliases, list) or any(not is_text(x, 2, 100) for x in aliases):
+            errors.append(f"{loc}: aliases must be strings")
+            aliases = []
+        for name in [original["name"], *aliases]:
+            if isinstance(name, str):
+                norm = " ".join(name.lower().split())
+                if norm in names:
+                    errors.append(f"{loc}: duplicate name/alias: {name}")
+                names.add(norm)
+
+    project_by_slug = {}
+    seen_repos = set()
+    project_originals = set()
+    for path in sorted((root / "src/content/catalog/projects").glob("*.yaml")):
+        loc = str(path.relative_to(root))
+        project = checked_load(path, errors)
+        required = {"slug", "name", "repository", "original", "category", "languages", "status", "compatibility", "description", "license"}
+        optional = {"platforms", "docs", "limitations"}
+        if not fields(project, required, optional, loc, errors):
+            continue
+        slug = project["slug"]
+        if not is_slug(slug) or path.stem != slug:
+            errors.append(f"{loc}: slug must match filename and be lowercase-kebab-case")
+        if isinstance(slug, str) and slug in project_by_slug:
+            errors.append(f"{loc}: duplicate project slug")
+        else:
+            if isinstance(slug, str):
+                project_by_slug[slug] = project
+        repo = project["repository"]
+        if not is_https(repo):
+            errors.append(f"{loc}: repository must be a public HTTPS URL")
+        else:
+            parts = urlsplit(repo)
+            segments = parts.path.strip('/').removesuffix('.git').split('/')
+            if parts.query or parts.fragment or len(segments) < 2 or any(not segment for segment in segments):
+                errors.append(f"{loc}: repository must link to a repository root, not an issue, subpage, or search result")
+            elif parts.hostname == 'github.com' and (len(segments) != 2 or parts.path.endswith(('/', '.git'))):
+                errors.append(f"{loc}: GitHub repository must be canonical https://github.com/owner/repo")
+            else:
+                normalized = f"{parts.hostname.casefold()}/{'/'.join(segments).casefold()}"
+                if normalized in seen_repos:
+                    errors.append(f"{loc}: duplicate repository {normalized}")
+                seen_repos.add(normalized)
+        if not isinstance(project["original"], str) or project["original"] not in original_by_slug:
+            errors.append(f"{loc}: unknown original {project['original']}")
+        else:
+            project_originals.add(project["original"])
+        if not is_text(project["name"], 2, 100):
+            errors.append(f"{loc}: invalid name")
+        if not isinstance(project["category"], str) or project["category"] not in CATEGORIES:
+            errors.append(f"{loc}: invalid category")
+        langs = project["languages"]
+        if not isinstance(langs, list) or not langs or any(not is_text(x, 1, 40) for x in langs):
+            errors.append(f"{loc}: languages must be a nonempty list of strings")
+        platforms = project.get("platforms", [])
+        if not isinstance(platforms, list) or any(not is_text(x, 1, 40) for x in platforms):
+            errors.append(f"{loc}: platforms must be a list of strings")
+        if not isinstance(project["status"], str) or project["status"] not in STATUSES:
+            errors.append(f"{loc}: invalid status")
+        if not isinstance(project["compatibility"], str) or project["compatibility"] not in COMPATIBILITY:
+            errors.append(f"{loc}: invalid compatibility")
+        if not is_text(project["description"], 20, 400):
+            errors.append(f"{loc}: description must be 20–400 plain-text characters")
+        if not is_text(project["license"], 2, 80):
+            errors.append(f"{loc}: license must be a short license identifier")
+        if "limitations" in project and not is_text(project["limitations"], 2, 400):
+            errors.append(f"{loc}: invalid limitations text")
+        if "docs" in project and not is_https(project["docs"]):
+            errors.append(f"{loc}: docs must be a public HTTPS URL")
+
+    request_by_original = {}
+    for path in sorted((root / "src/content/catalog/requests").glob("*.yaml")):
+        loc = str(path.relative_to(root))
+        req = checked_load(path, errors)
+        if not fields(req, {"original", "reason"}, set(), loc, errors):
+            continue
+        original_slug = req["original"]
+        if not is_slug(original_slug) or original_slug != path.stem:
+            errors.append(f"{loc}: filename must match original slug")
+        if not isinstance(original_slug, str) or original_slug not in original_by_slug:
+            errors.append(f"{loc}: unknown original {original_slug}")
+        if isinstance(original_slug, str) and original_slug in project_originals:
+            errors.append(f"{loc}: already fulfilled by an indexed project; remove this request")
+        if isinstance(original_slug, str) and original_slug in request_by_original:
+            errors.append(f"{loc}: duplicate request for original")
+        if isinstance(original_slug, str):
+            request_by_original[original_slug] = req
+        if not is_text(req["reason"], 20, 400):
+            errors.append(f"{loc}: reason must be 20–400 plain-text characters")
+
+    featured_slugs = set()
+    for i, slug in enumerate(featured):
+        if not is_slug(slug):
+            errors.append(f"src/content/catalog/featured.yaml entry #{i+1}: invalid slug")
+        elif slug in featured_slugs:
+            errors.append(f"src/content/catalog/featured.yaml entry #{i+1}: duplicate featured slug {slug}")
+        elif slug not in project_by_slug:
+            errors.append(f"src/content/catalog/featured.yaml entry #{i+1}: unknown project {slug}")
+        featured_slugs.add(slug)
+    return originals, list(project_by_slug.values()), list(request_by_original.values()), featured, errors

@@ -1,0 +1,31 @@
+name: Catalog and PR policy checks
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  catalog:
+    name: Catalog integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+          enable-cache: true
+          cache-dependency-glob: scripts/pyproject.toml
+      - name: Validate all project, original, request and featured records
+        run: uv run --project scripts python scripts/validate_catalog.py
+      - name: Check policy acknowledgment in PR description
+        if: github.event_name == 'pull_request'
+        run: uv run --project scripts python scripts/check_pr_policy.py
+      - name: Run catalog validation tests
+        run: uv run --project scripts python -m unittest discover -s scripts/tests -v

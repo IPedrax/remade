@@ -1,0 +1,11 @@
+# Lychee, used for catalog URLs / docs and generated Astro HTML.
+cache = true
+max_cache_age = "1d"
+max_retries = 2
+retry_wait_time = 2
+timeout = 20
+max_concurrency = 8
+host_concurrency = 2
+host_request_interval = "250ms"
+exclude_all_private = true
+index_files = ["index.html"]

@@ -1,0 +1,83 @@
+name: Link checks
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 8 * * 0' # weekly catalog link audit
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+          enable-cache: true
+          cache-dependency-glob: scripts/pyproject.toml
+      - name: Generate explicit URL list from catalog files
+        id: url_list
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mkdir -p .generated
+          if [ "$EVENT_NAME" = 'pull_request' ]; then
+            uv run --project scripts python scripts/catalog_links.py --changed-from "$BASE_SHA" > .generated/catalog-urls.txt
+          else
+            uv run --project scripts python scripts/catalog_links.py --all > .generated/catalog-urls.txt
+          fi
+          if [ -s .generated/catalog-urls.txt ]; then
+            echo 'has_urls=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'has_urls=false' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/cache@v4
+        if: steps.url_list.outputs.has_urls == 'true'
+        with:
+          path: .lycheecache
+          key: lychee-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            lychee-${{ runner.os }}-
+      - name: Check changed URLs (full catalog weekly)
+        if: steps.url_list.outputs.has_urls == 'true'
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --cache --no-progress --files-from .generated/catalog-urls.txt
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      # Once Astro is scaffolded with packageManager + pnpm-lock.yaml,
+      # also validate generated HTML. No web runtime or hosting config is included.
+      - uses: pnpm/action-setup@v6
+        if: hashFiles('pnpm-lock.yaml') != ''
+        with:
+          run_install: false
+      - uses: actions/setup-node@v4
+        if: hashFiles('pnpm-lock.yaml') != ''
+        with:
+          node-version: '22'
+          cache: pnpm
+      - name: Install Astro dependencies
+        if: hashFiles('pnpm-lock.yaml') != ''
+        run: pnpm install --frozen-lockfile
+      - name: Build static site
+        if: hashFiles('pnpm-lock.yaml') != ''
+        run: pnpm build
+      - name: Check generated HTML and internal links
+        if: hashFiles('pnpm-lock.yaml') != ''
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --cache --no-progress --root-dir dist './dist/**/*.html'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

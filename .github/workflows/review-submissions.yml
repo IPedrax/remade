@@ -1,0 +1,53 @@
+name: Review catalog suggestions and requests
+
+on:
+  issues:
+    types: [opened, edited, reopened, labeled]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: submission-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    if: contains(github.event.issue.labels.*.name, 'catalog-suggestion') || contains(github.event.issue.labels.*.name, 'project-request')
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the trusted default branch. Never checkout contributor-supplied code.
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+          enable-cache: true
+          cache-dependency-glob: scripts/pyproject.toml
+      - name: Analyze submission and collect safe URLs
+        id: prepare
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .generated
+          uv run --project scripts python scripts/review_submission.py prepare --report .generated/submission.json --urls .generated/submission-urls.txt
+          if [ -s .generated/submission-urls.txt ]; then
+            echo "has_urls=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Check submitted links with Lychee
+        if: steps.prepare.outputs.has_urls == 'true'
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --exclude-all-private --no-progress --files-from .generated/submission-urls.txt
+          fail: false
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Publish or update review comment
+        if: always() && hashFiles('.generated/submission.json') != ''
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          LYCHEE_EXIT: ${{ steps.lychee.outputs.exit_code }}
+        run: uv run --project scripts python scripts/review_submission.py publish --report .generated/submission.json --lychee-exit "$LYCHEE_EXIT"

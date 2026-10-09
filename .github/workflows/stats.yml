@@ -1,0 +1,53 @@
+name: Refresh GitHub metadata
+
+on:
+  schedule:
+    - cron: '41 7 * * *' # approximately once a day; scheduling can be delayed
+  workflow_dispatch:
+
+permissions:
+  contents: write # built-in GITHUB_TOKEN pushes the cache, not the GitHub App
+
+concurrency:
+  group: remade-metadata
+  cancel-in-progress: false
+
+jobs:
+  metadata:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+          enable-cache: true
+          cache-dependency-glob: scripts/pyproject.toml
+      # This step runs only on the trusted default branch, never untrusted PR code.
+      # Create a short-lived installation token for metadata reads. The App only
+      # needs Metadata: Read and should be installed on this repository.
+      - name: Create organization-owned GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.REMADE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.REMADE_APP_PRIVATE_KEY }}
+      - name: Refresh cached repository statistics using GraphQL aliases
+        env:
+          GH_METADATA_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: uv run --project scripts python scripts/refresh_github_stats.py --batch-size 25
+      - name: Persist cache only when changed
+        run: |
+          if ! git diff --quiet -- cache/github-metadata.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add cache/github-metadata.json
+            git commit -m 'chore: refresh cached GitHub project statistics'
+            git push
+          else
+            echo 'Metadata snapshot unchanged'
+          fi
+      # This package deliberately excludes hosting/deployment configuration.
+      # Commits made with the built-in GITHUB_TOKEN do not normally trigger new
+      # GitHub Actions push workflows. Any downstream site refresh needs an
+      # explicit trigger when the Astro application is implemented.
