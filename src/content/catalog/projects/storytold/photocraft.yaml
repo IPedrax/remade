@@ -6,6 +6,7 @@ repository: https://github.com/storytold/photocraft
 original: adobe-photoshop
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: alpha
 compatibility: partial
 description: PhotoCraft by ArtCraft independently implements Photoshop-style image editing, including layers, adjustments, selections and layered PSD documents.

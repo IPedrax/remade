@@ -6,6 +6,7 @@ repository: https://github.com/storytold/filmcraft
 original: adobe-premiere-pro
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent Premiere-style video editor by ArtCraft with multitrack timelines, editing workspaces, color adjustments, audio, titles and media export.

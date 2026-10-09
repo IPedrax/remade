@@ -6,6 +6,7 @@ repository: https://github.com/storytold/pdfcraft
 original: adobe-acrobat
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent Acrobat-style PDF workbench by ArtCraft for viewing, organizing, annotating, filling and protecting PDF documents.

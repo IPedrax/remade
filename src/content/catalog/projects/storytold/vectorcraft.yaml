@@ -6,6 +6,7 @@ repository: https://github.com/storytold/vectorcraft
 original: adobe-illustrator
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: VectorCraft by ArtCraft independently implements Illustrator-style vector illustration, including paths, artboards, typography, SVG, PDF and PDF-compatible AI files.

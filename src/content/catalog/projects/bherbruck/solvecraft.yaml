@@ -6,6 +6,7 @@ repository: https://github.com/bherbruck/solvecraft
 original: autodesk-fusion
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: SolveCraft by bherbruck independently implements Fusion-style parametric CAD, with constrained sketches, solid modeling and a rebuildable feature timeline.

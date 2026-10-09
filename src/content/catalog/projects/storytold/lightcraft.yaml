@@ -6,6 +6,7 @@ repository: https://github.com/storytold/lightcraft
 original: adobe-lightroom
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent Lightroom-style photography application by ArtCraft with a photo library, non-destructive adjustments, RAW development and masking.

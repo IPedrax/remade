@@ -6,6 +6,7 @@ repository: https://github.com/Flare-Animate/Flare
 original: adobe-animate
 category: applications
 languages: [C++]
+platforms: [Linux, macOS, Windows]
 status: alpha
 compatibility: partial
 description: Flare by charlieduzstuf builds on OpenToonz with an Animate-style workspace and native import for Flash and Animate project formats.

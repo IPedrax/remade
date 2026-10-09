@@ -6,6 +6,7 @@ repository: https://github.com/storytold/deckcraft
 original: microsoft-powerpoint
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent PowerPoint-style presentation application by ArtCraft with themes, slide layouts, shapes, transitions, animations and PowerPoint file support.

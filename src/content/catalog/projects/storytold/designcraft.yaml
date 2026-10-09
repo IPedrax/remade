@@ -6,6 +6,7 @@ repository: https://github.com/storytold/designcraft
 original: adobe-indesign
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent InDesign-style publishing application by ArtCraft with page layouts, spreads, threaded text frames, paragraph composition and PDF export.

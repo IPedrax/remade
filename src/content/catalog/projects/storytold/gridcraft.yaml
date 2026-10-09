@@ -6,6 +6,7 @@ repository: https://github.com/storytold/gridcraft
 original: microsoft-excel
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent Excel-style spreadsheet application by ArtCraft with formulas, workbook recalculation, formatting, tables, charts and XLSX reading and writing.

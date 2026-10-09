@@ -6,6 +6,7 @@ repository: https://github.com/storytold/effectcraft
 original: adobe-after-effects
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent After Effects-style compositor by ArtCraft with compositions, layered animation, keyframes, expressions, effects and rendering.

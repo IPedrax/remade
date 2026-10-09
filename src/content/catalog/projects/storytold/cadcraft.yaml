@@ -6,6 +6,7 @@ repository: https://github.com/storytold/cadcraft
 original: autodesk-autocad
 category: applications
 languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
 description: An independent AutoCAD-style drafting application by ArtCraft with a command line, drawing and modification commands, layers, dimensions, DXF and DWG support.
