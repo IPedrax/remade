@@ -1,0 +1,13 @@
+# Scope and limitations are based on the repository README; compatibility is not independently verified.
+slug: soundcraft
+name: SoundCraft
+authors: [storytold]
+repository: https://github.com/storytold/soundcraft
+original: avid-pro-tools
+category: applications
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: An independent Pro Tools-style audio workstation by ArtCraft with audio and MIDI editing, mixing, automation and offline audio processing.
+license: MIT OR Apache-2.0
+limitations: Maintainers describe it as pre-alpha. Menu coverage does not establish complete behavioral or session-format compatibility.

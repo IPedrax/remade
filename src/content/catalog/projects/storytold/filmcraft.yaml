@@ -1,0 +1,13 @@
+# Scope and limitations are based on the repository README; compatibility is not independently verified.
+slug: filmcraft
+name: FilmCraft
+authors: [storytold]
+repository: https://github.com/storytold/filmcraft
+original: adobe-premiere-pro
+category: applications
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: An independent Premiere-style video editor by ArtCraft with multitrack timelines, editing workspaces, color adjustments, audio, titles and media export.
+license: MIT OR Apache-2.0
+limitations: Under active development. Full Premiere behavioral, project-format and plug-in compatibility is not asserted by this listing.

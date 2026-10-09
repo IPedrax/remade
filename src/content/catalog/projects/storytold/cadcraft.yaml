@@ -1,0 +1,13 @@
+# Scope and limitations are based on the repository README; compatibility is not independently verified.
+slug: cadcraft
+name: CADCraft
+authors: [storytold]
+repository: https://github.com/storytold/cadcraft
+original: autodesk-autocad
+category: applications
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: An independent AutoCAD-style drafting application by ArtCraft with a command line, drawing and modification commands, layers, dimensions, DXF and DWG support.
+license: MIT OR Apache-2.0
+limitations: Early development. DWG support uses the open-source acadrust library; complete AutoCAD behavioral and file-format fidelity is not asserted.

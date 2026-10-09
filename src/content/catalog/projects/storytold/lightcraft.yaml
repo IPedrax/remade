@@ -1,0 +1,13 @@
+# Scope and limitations are based on the repository README; compatibility is not independently verified.
+slug: lightcraft
+name: LightCraft
+authors: [storytold]
+repository: https://github.com/storytold/lightcraft
+original: adobe-lightroom
+category: applications
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: An independent Lightroom-style photography application by ArtCraft with a photo library, non-destructive adjustments, RAW development and masking.
+license: MIT OR Apache-2.0
+limitations: Camera calibration and some compressed RAW variants remain limited. AI masking, denoise, HDR, video and Classic Print, Book and Map workflows have gaps.

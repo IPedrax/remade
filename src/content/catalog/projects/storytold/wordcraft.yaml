@@ -1,0 +1,13 @@
+# Scope and limitations are based on the repository README; compatibility is not independently verified.
+slug: wordcraft
+name: WordCraft
+authors: [storytold]
+repository: https://github.com/storytold/wordcraft
+original: microsoft-word
+category: applications
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: An independent Word-style document editor by ArtCraft with ribbon workflows, paragraph styles, tables, review tools, DOCX reading and writing, and PDF export.
+license: MIT OR Apache-2.0
+limitations: Development and fidelity work are ongoing. Full Word layout, behavior and document-format parity is not asserted by this listing.

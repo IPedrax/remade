@@ -1,0 +1,13 @@
+# Scope and limitations are based on the repository README; compatibility is not independently verified.
+slug: gridcraft
+name: GridCraft
+authors: [storytold]
+repository: https://github.com/storytold/gridcraft
+original: microsoft-excel
+category: applications
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: An independent Excel-style spreadsheet application by ArtCraft with formulas, workbook recalculation, formatting, tables, charts and XLSX reading and writing.
+license: MIT OR Apache-2.0
+limitations: Maintainers describe it as pre-alpha. XLSX fidelity, very large sheets and features such as Solver and slicers still need work.

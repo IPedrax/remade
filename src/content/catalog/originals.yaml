@@ -52,3 +52,53 @@
   name: Traktor Pro
   url: https://www.native-instruments.com/products/traktor-pro
   category: applications
+- slug: adobe-acrobat
+  name: Adobe Acrobat
+  url: https://www.adobe.com/acrobat.html
+  category: applications
+  aliases: [Acrobat]
+- slug: avid-pro-tools
+  name: Avid Pro Tools
+  url: https://www.avid.com/pro-tools
+  category: applications
+  aliases: [Pro Tools]
+- slug: adobe-after-effects
+  name: Adobe After Effects
+  url: https://www.adobe.com/products/aftereffects.html
+  category: applications
+  aliases: [After Effects]
+- slug: adobe-lightroom
+  name: Adobe Lightroom
+  url: https://www.adobe.com/products/photoshop-lightroom.html
+  category: applications
+  aliases: [Lightroom]
+- slug: adobe-premiere-pro
+  name: Adobe Premiere Pro
+  url: https://www.adobe.com/products/premiere.html
+  category: applications
+  aliases: [Premiere Pro]
+- slug: microsoft-powerpoint
+  name: Microsoft PowerPoint
+  url: https://www.microsoft.com/en-us/microsoft-365/powerpoint
+  category: applications
+  aliases: [PowerPoint]
+- slug: microsoft-word
+  name: Microsoft Word
+  url: https://www.microsoft.com/en-us/microsoft-365/word
+  category: applications
+  aliases: [Word]
+- slug: autodesk-autocad
+  name: Autodesk AutoCAD
+  url: https://www.autodesk.com/products/autocad/overview
+  category: applications
+  aliases: [AutoCAD]
+- slug: microsoft-excel
+  name: Microsoft Excel
+  url: https://www.microsoft.com/en-us/microsoft-365/excel
+  category: applications
+  aliases: [Excel]
+- slug: adobe-indesign
+  name: Adobe InDesign
+  url: https://www.adobe.com/products/indesign.html
+  category: applications
+  aliases: [InDesign]
