@@ -38,6 +38,16 @@ def request_event(original: str = 'Example App', reason: str = 'Please recreate 
 
 
 class SuggestionValidationTest(unittest.TestCase):
+    @patch('review_submission.collect_tools')
+    @patch('review_submission.collect')
+    def test_suggestion_warns_on_duplicate_tool(self, collect_mock, tools_mock):
+        collect_mock.return_value = ([], [], [], [], [])
+        tools_mock.return_value = ([{
+            'slug': 'example-tool', 'repository': 'https://codeberg.org/acme/example',
+        }], [])
+        result = analyze(event('https://codeberg.org/acme/example'))
+        self.assertTrue(any('Already indexed as `example-tool`' in item['message'] for item in result['findings']))
+
     def test_project_request_without_links_is_valid(self):
         result = analyze(request_event())
         self.assertTrue(result['applicable'])

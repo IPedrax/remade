@@ -1,0 +1,7 @@
+# Documentation example only; never publish as a real tool.
+slug: example-tool
+name: Example Tool
+repository: https://github.com/example/example-tool
+url: https://example.org/tool
+description: A browser launcher that adds access to an indexed implementation.
+projects: [example-implementation]

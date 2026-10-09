@@ -2,6 +2,7 @@
 
 - [ ] Add a reimplementation to `src/content/catalog/projects/`
 - [ ] Add a **Project Request** to `src/content/catalog/requests/`
+- [ ] Add a supporting tool to `src/content/catalog/tools/`
 - [ ] Correct an existing entry or edit original-software metadata
 - [ ] Improve the website, documentation, or CI
 

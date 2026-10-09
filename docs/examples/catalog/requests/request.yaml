@@ -2,3 +2,5 @@
 # A request is for an original with NO indexed qualifying implementation.
 original: example-software
 reason: A faithful, independently written implementation of the program's public behavior would support compatibility and historical preservation.
+# Optional naming ideas; not reserved names or existing implementations.
+suggested_names: [ExampleCraft]

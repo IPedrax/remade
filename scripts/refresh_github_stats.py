@@ -12,7 +12,7 @@ from typing import Any
 import requests
 import typer
 
-from catalog import GH_REPO, ROOT, collect
+from catalog import GH_REPO, ROOT, collect, collect_tools
 
 app = typer.Typer(add_completion=False)
 API = 'https://api.github.com/graphql'
@@ -66,7 +66,8 @@ def main(batch_size: int = typer.Option(25, min=1, max=50)) -> None:
         raise typer.Exit(code=1)
 
     repositories: dict[str, tuple[str, str]] = {}
-    for project in projects:
+    tools, _ = collect_tools()
+    for project in [*projects, *tools]:
         if match := GH_REPO.fullmatch(project['repository']):
             key = f'{match.group(1)}/{match.group(2)}'.casefold()
             repositories[key] = match.group(1), match.group(2)

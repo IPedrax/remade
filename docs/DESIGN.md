@@ -39,7 +39,7 @@ Implement focus and hover states, ensure accessible contrast, and make the inter
 1. Header: logo, Explore, GitHub, Submit.
 2. Hero: `Everything can be remade.` and one supporting sentence.
 3. Prominent search with keyboard shortcut.
-4. **Featured**: one large editorial highlight plus smaller selected cards; if fewer entries exist, adapt gracefully instead of duplicating content.
+4. **Featured**: one large editorial highlight plus smaller selected cards; if fewer entries exist, adapt gracefully instead of duplicating content. Supporting tools may be featured with a visible **Tool** label and remain separate from reimplementation counts.
 5. Browse by category: clear icon labels, counts when known.
 6. Recently added: reviewed latest additions; no invented dates.
 7. **Project Requests**: unfulfilled targets, concise contextual descriptions, link to requests index and PR contribution instructions. Show an intentional empty state when no requests exist.

@@ -25,6 +25,7 @@ def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
     if all_files:
         return [ROOT / 'src/content/catalog/originals.yaml',
                 *(ROOT / 'src/content/catalog/projects').glob('*.yaml'),
+                *(ROOT / 'src/content/catalog/tools').glob('*.yaml'),
                 *(ROOT / 'src/content/catalog/requests').glob('*.yaml')]
     result = subprocess.run(
         ['git', 'diff', '--diff-filter=ACMR', '--name-only', changed_from, 'HEAD', '--', 'src/content/catalog/'],
@@ -33,7 +34,7 @@ def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
     paths = []
     for name in result.stdout.splitlines():
         if name == 'src/content/catalog/originals.yaml' or (
-            name.startswith(('src/content/catalog/projects/', 'src/content/catalog/requests/')) and name.endswith('.yaml')
+            name.startswith(('src/content/catalog/projects/', 'src/content/catalog/requests/', 'src/content/catalog/tools/')) and name.endswith('.yaml')
         ):
             path = ROOT / name
             if path.is_file() and path.resolve().is_relative_to(ROOT):

@@ -30,13 +30,19 @@ You can also submit an approved, published Project Request through a pull reques
 
 Requests have no votes, bounty promises, or claim/assignment system. They are distinct from approved reimplementation listings.
 
+## Add a supporting tool
+
+Tools that add on to indexed projects are welcome under `src/content/catalog/tools/<slug>.yaml`. Read the supporting-tools section of `POLICY.md` and copy `docs/examples/catalog/tools/tool.yaml`. Link the source repository and tool, describe the added functionality, and reference at least one existing project slug in `projects`. Disclose dependencies and licensing accurately. Tools are reviewed through the same PR flow and may be featured with a Tool label; they do not fulfill Project Requests.
+
+Requests may also include optional `suggested_names`, such as `[MusicCraft]`. These are naming ideas, not existing implementations or reserved names.
+
 ## Correct an entry
 
 Open a pull request modifying the existing YAML. Explain the correction and link to supporting documentation if possible.
 
 ## Featured listings
 
-Featured listings are an editorial selection curated by maintainers, not a field contributors need to set in their own submissions. To feature a project, a maintainer adds its `slug` to the ordered list in `src/content/catalog/featured.yaml` (the first slug is the primary Featured card). The catalog validator requires each slug to reference an existing project.
+Featured listings are an editorial selection curated by maintainers, not a field contributors need to set in their own submissions. To feature a project, a maintainer adds its `slug` to the ordered list in `src/content/catalog/featured.yaml` (the first slug is the primary Featured card). The catalog validator requires each slug to reference an existing project or supporting tool.
 
 ## Reporting legal concerns
 

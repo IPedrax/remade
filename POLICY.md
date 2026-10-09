@@ -2,7 +2,7 @@
 
 > Everything can be remade.
 
-Remade is a community-curated directory of independently developed software reimplementations. The directory links to third-party projects; it does not host or certify them.
+Remade is a community-curated directory of independently developed software reimplementations and tools that add on to indexed projects. The directory links to third-party projects; it does not host or certify them.
 
 This document describes **which projects qualify for listing**, **what submitters must provide**, and **how maintainers review submissions**. For general legal information and the reporting contact, see [the disclaimer](https://remade.wiki/disclaimer).
 
@@ -21,7 +21,7 @@ Work-in-progress projects are welcome if they have meaningful code and a specifi
 
 ## 2. Projects not accepted
 
-Remade does not list:
+Remade does not accept the following as reimplementation listings:
 
 - Forks, ports, or direct modifications of the original software's source code.
 - Wrappers, launchers, skins, mods, or patches that depend on the original implementation as their core engine.
@@ -31,6 +31,14 @@ Remade does not list:
 - Empty repositories, ideas without working source, deceptive listings, or duplicates of an existing listing.
 
 **Emulators, compatibility layers, and protocol implementations** are reviewed case by case. They qualify only when they genuinely implement a defined target and meet the independent-development requirements above.
+
+### Supporting tools
+
+Remade also accepts tools that add functionality to one or more indexed projects, including browser launchers, integrations, extensions and workflow helpers. Publish these separately under `src/content/catalog/tools/`, with links to the source repository and tool, a factual description, and references to the indexed projects they extend. A tool does not need to reimplement an original itself. It must have substantive, publicly accessible source and accurately describe its dependencies and licensing; do not infer an open-source license when none is stated.
+
+Tools may be featured with a clear **Tool** label, but do not count as reimplementations or fulfill Project Requests. They follow the same PR review, link checks, correction process and prohibition on unauthorized original code or assets. This does not expand the directory to unrelated alternatives.
+
+Using an independently licensed codebase other than the target as a foundation does not itself disqualify a reimplementation. Disclose that ancestry and the compatibility limits.
 
 ## 3. Clean-room and legal claims
 

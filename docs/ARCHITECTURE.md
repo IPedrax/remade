@@ -49,7 +49,7 @@ The trusted daily metadata job fetches data using a **short-lived organization-o
 
 ## Build stages (future Astro application)
 
-1. Load and validate original records, projects, requests, and `featured.yaml`.
+1. Load and validate original records, projects, supporting tools, requests, and `featured.yaml`. Tools are a separate collection joined to existing project slugs; they do not count as implementations or fulfill requests. Featured selections may include tools labeled Tool.
 2. Join each project with one canonical original by slug.
 3. Merge cached GitHub metadata (optional/null-safe).
 4. Generate static detail, grouping, browse, and unfulfilled request pages.

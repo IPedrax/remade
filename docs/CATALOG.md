@@ -7,6 +7,7 @@ src/content/catalog/
   originals.yaml           Canonical original programs/interfaces
   featured.yaml            Maintainer-selected project slugs in display order
   projects/<slug>.yaml     One community-submitted reimplementation each
+  tools/<slug>.yaml        One supporting tool each; separate from reimplementations
   requests/<original-slug>.yaml  One unfulfilled community request for the original
 examples/project.yaml      Example only: never indexed
 
@@ -89,15 +90,34 @@ Compatibility is not scored by Remade. `claimed-complete` is **not** a certifica
 ```yaml
 original: example-software
 reason: A faithful and independently developed alternative implementation would be useful for study and compatibility.
+suggested_names: [ExampleCraft] # optional
 ```
 
 - Filename must match its `original` slug (which must exist in `src/content/catalog/originals.yaml`).
 - `reason` is plain text, 20–400 characters, factual and non-promotional.
+- Optional `suggested_names` is a nonempty list of plain-text names, each 2–100 characters. Names must be unique after case folding and whitespace normalization. These are naming ideas, not existing implementations or reserved names.
 - No repository, popularity count, bounty, fundraising, deadline, ownership claim, or invented implementation status.
 - Exactly one open request per original.
 - **Do not list requests for any original with an indexed project.** The catalog validator enforces this; remove the request in the same PR that first adds its implementation.
 - A request has a stable link to `/software/<original-slug>` and is displayed on `/requests` and under **Project Requests** on the homepage.
 - Requests are distinct from projects and are never mixed into featured listings or project counts.
+
+## Supporting tool record
+
+`src/content/catalog/tools/<slug>.yaml` describes an add-on to existing indexed projects:
+
+```yaml
+slug: example-tool
+name: Example Tool
+repository: https://github.com/example/example-tool
+url: https://example.org/tool
+description: A browser launcher that adds access to the indexed implementation.
+projects: [example-implementation]
+```
+
+All six fields are required; unknown fields are rejected. `slug` must match the filename and share a unique namespace with project slugs. `name` is 2–100 plain-text characters and `description` is 20–400. `repository` follows the project repository URL rules and must be unique across projects and tools; `url` must be public HTTPS. `projects` is a nonempty, duplicate-free list of existing project slugs. This relationship identifies what a tool extends, without inventing an original or compatibility claim. A repository link does not imply an open-source license; tool licensing must be reviewed from its sources.
+
+Load tools separately using `collect_tools`; `collect` validates their references alongside projects while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
 
 ## Featured manifest
 
@@ -109,7 +129,7 @@ reason: A faithful and independently developed alternative implementation would 
 - project-b
 ```
 
-Every featured slug must point to a valid project. Contributors cannot self-promote by setting a field in their own entry.
+Every featured slug must point to a valid project or supporting tool. Preserve manifest order and label featured tools **Tool**. Contributors cannot self-promote by setting a field in their own entry.
 
 ## Metadata cache
 

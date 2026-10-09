@@ -7,6 +7,7 @@ This file is the fast-start guide for coding agents and human contributors. Read
 - **Name / site:** Remade: `remade.wiki`
 - **Tagline:** **Everything can be remade.**
 - **Purpose:** A polished, community-maintained directory of open-source, independently authored reimplementations aiming for faithful behavior or compatibility with existing software.
+- **Tools:** Add-ons to indexed projects are allowed under `src/content/catalog/tools/`; see `POLICY.md` and `docs/CATALOG.md`. They may be featured with a Tool label but do not count as reimplementations or fulfill requests.
 - **Initial editorial scope:** Reimplementations of software whose *original implementation* is not open source. This belongs in `POLICY.md`, not necessarily in the marketing hero.
 - **Not:** An alternatives marketplace, clone generator, file host, project certifier, or an implementation of the indexed software.
 - **Brand:** `#15191F` charcoal, `#C4F477` lime, white; overlapping-squares icon in `public/favicon.svg`.
@@ -71,6 +72,8 @@ When requirements conflict, make the inconsistency explicit and update the relev
 3. Copy `examples/request.yaml` into `src/content/catalog/requests/<original-slug>.yaml`; set `original` to that slug and write a short, specific `reason` explaining the compatibility behavior wanted.
 4. Submit a PR with the required policy acknowledgment. Automated checks run on the pull request.
 5. Request cards render under **Project Requests** and `/requests`; remove the request when an implementation is accepted.
+
+Requests may include optional `suggested_names` for naming ideas. Supporting tools reference indexed project slugs; copy `docs/examples/catalog/tools/tool.yaml` and follow the policy's supporting-tools rules.
 
 For corrections, edit the original YAML through a PR and cite supporting public sources. For policy exceptions, ask maintainers; don't work around the validator.
 

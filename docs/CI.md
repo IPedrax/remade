@@ -8,7 +8,7 @@ For GitHub Issue Forms, create the labels `catalog-suggestion` and `project-requ
 
 Python-based checks run automatically through **uv** using the pinned Python requirements. Contributors are not asked to run local commands.
 
-1. `checks.yml` validates all catalog YAML (projects, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs and fulfilled requests.
+1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
 2. `links.yml` scans only newly changed catalog URLs on PRs, using Lychee with low concurrency. When the Astro scaffold exists, this workflow may also scan generated site HTML after `pnpm build`.
 3. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
 

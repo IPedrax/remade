@@ -55,7 +55,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 ### Contribution/editorial
 - One YAML entry per project; submit via PR; maintainer review/merge is publication.
 - PR template has a mandatory `POLICY.md` confirmation checkbox; CI tests it. Two separate GitHub Issue Forms are supported: Catalog Suggestion (repository required) and Project Request (no URLs required).
-- Maintainers alone edit Featured list.
+- Maintainers alone edit Featured list. It may include supporting tools, visibly labeled **Tool**; tools are separate from reimplementation counts and never fulfill Project Requests.
 - Lychee link checks on PRs, plus full weekly audits; handle rate-limited hosts as triage, not permanent ignores.
 
 ## 4. Implementation tooling

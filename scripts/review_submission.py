@@ -13,7 +13,7 @@ import requests
 import typer
 import validators
 
-from catalog import ROOT, collect, is_https
+from catalog import ROOT, collect, collect_tools, is_https
 
 app = typer.Typer(add_completion=False, no_args_is_help=True)
 MARKER = '<!-- remade-submission-review -->'
@@ -161,7 +161,8 @@ def analyze(event: dict, *, catalog_root: Path = ROOT, gh_token: str | None = No
                 if any(item['original'] == slug for item in request_entries):
                     findings.append({'level': 'warning', 'message': f'A Project Request for `{slug}` is already indexed.'})
         if target:
-            for project in projects:
+            tools, _ = collect_tools(catalog_root)
+            for project in [*projects, *tools]:
                 if normalized_repo_url(project['repository']) == target:
                     findings.append({'level': 'warning', 'message': f'Already indexed as `{project["slug"]}`.'})
                     break
