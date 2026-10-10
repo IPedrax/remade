@@ -10,6 +10,7 @@ Show software and interfaces that community members want faithfully reimplemente
 
 - Navigate to `/requests` from the homepage section.
 - Browse requested originals, their reference links, the reason for a remake and any suggested names.
+- Filter `/requests` by vendor, category and addition date (past 7, 30 or 90 days, or the past year). Sort newest first, oldest first or alphabetically. Filters are reflected in the URL and can be cleared; browsing remains available without JavaScript.
 - Select **Submit a request** to open `.github/ISSUE_TEMPLATE/project-request.yml` for a link-free suggestion; maintainers review it and accepted catalog entries still require a PR adding `src/content/catalog/requests/<vendor>/<original-slug>.yaml`; create an original in `src/content/catalog/originals.yaml` if needed.
 - Select **Know an implementation?** to submit `src/content/catalog/projects/<github-user>/<slug>.yaml` by PR instead.
 - No login on Remade, runtime comments, upvotes, or status claims. GitHub account required to open an Issue or PR.
@@ -24,7 +25,7 @@ Show software and interfaces that community members want faithfully reimplemente
 
 ## Layout
 
-- Homepage below Recently added: **Project Requests**: 3–4 recent/editorially selected open requests, **View all requests** link.
+- Homepage below Recently added: **Project Requests**: the first three open requests alphabetically by software name, **View all requests** link.
 - `/requests`: compact card grid with original target name, category, plain-text reason, optional suggested names labeled as naming ideas, reference URL, and contribution CTA.
 - `/software/[slug]`: when an open request exists, display a gentle **No implementation listed yet** state with **Help make it happen** pointing to contribution instructions.
 - When no requests exist, show a friendly empty state instead of fabricated cards.

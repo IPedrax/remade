@@ -20,6 +20,12 @@ export default function Home({ catalog, metadata }: Props) {
 	const featured = catalog.featured.map((slug) =>
 		findBySlug(catalog.entries, slug),
 	);
+	const requests = catalog.requests
+		.map((request) => ({
+			request,
+			original: findBySlug(catalog.originals, request.original),
+		}))
+		.sort((a, b) => a.original.name.localeCompare(b.original.name, "en"));
 	return (
 		<>
 			<div className="max-w-[780px] pb-10 pt-14 sm:pt-[90px] [&_h1]:text-[clamp(2.4rem,6vw,4.8rem)] [&_p]:text-lg">
@@ -134,12 +140,12 @@ export default function Home({ catalog, metadata }: Props) {
 						View all requests →
 					</a>
 				</div>
-				{catalog.requests.length ? (
+				{requests.length ? (
 					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
-						{catalog.requests.slice(0, 3).map((request) => (
+						{requests.slice(0, 3).map(({ request, original }) => (
 							<RequestCard
 								key={request.original}
-								original={findBySlug(catalog.originals, request.original)}
+								original={original}
 								request={request}
 							/>
 						))}

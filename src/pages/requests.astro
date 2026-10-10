@@ -7,5 +7,5 @@ const catalog = await loadCatalog();
 ---
 
 <Layout title="Project Requests">
-	<RequestsPage catalog={catalog} />
+	<RequestsPage catalog={{ originals: catalog.originals, requests: catalog.requests }} client:load />
 </Layout>

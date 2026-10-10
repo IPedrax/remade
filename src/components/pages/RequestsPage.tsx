@@ -1,16 +1,126 @@
+import { useEffect, useMemo, useState } from "react";
 import type { CatalogData } from "../../lib/catalog";
-
 import {
 	contributeUrl,
 	findBySlug,
+	label,
 	repositoryUrl,
 } from "../../lib/presentation";
+import {
+	addedPeriods,
+	compareRequests,
+	defaultRequestFilters,
+	filterRequest,
+	type RequestFilters,
+} from "../../lib/request-browse";
 import RequestCard from "../RequestCard";
 
 interface Props {
-	catalog: CatalogData;
+	catalog: Pick<CatalogData, "originals" | "requests">;
 }
 export default function RequestsPage({ catalog }: Props) {
+	const [filters, setFilters] = useState<RequestFilters>(defaultRequestFilters);
+	const [ready, setReady] = useState(false);
+	useEffect(() => {
+		const readUrl = () => {
+			const params = new URLSearchParams(location.search);
+			const vendor = params.get("vendor") ?? "";
+			const category = params.get("category") ?? "";
+			const added = params.get("added") ?? "";
+			const sort = params.get("sort") ?? "recent";
+			setFilters({
+				vendor,
+				category,
+				added: addedPeriods.some((period) => period === added) ? added : "",
+				sort: ["recent", "oldest", "name"].includes(sort) ? sort : "recent",
+			});
+			setReady(true);
+		};
+		readUrl();
+		window.addEventListener("popstate", readUrl);
+		return () => window.removeEventListener("popstate", readUrl);
+	}, []);
+	useEffect(() => {
+		if (!ready) return;
+		const params = new URLSearchParams();
+		for (const key of ["vendor", "category", "added", "sort"] as const)
+			if (filters[key] && filters[key] !== defaultRequestFilters[key])
+				params.set(key, filters[key]);
+		history.replaceState(
+			null,
+			"",
+			`${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`,
+		);
+	}, [filters, ready]);
+	const allRequests = useMemo(
+		() =>
+			catalog.requests.map((request) => {
+				const original = findBySlug(catalog.originals, request.original);
+				return {
+					request,
+					original,
+					name: original.name,
+					category: original.category,
+					vendor: request.vendor,
+					addedAt: request.addedAt,
+				};
+			}),
+		[catalog],
+	);
+	const vendors = [...new Set(allRequests.map((item) => item.vendor))].sort();
+	const categories = [
+		...new Set(allRequests.map((item) => item.category)),
+	].sort();
+	const requests = allRequests
+		.filter((item) =>
+			filterRequest(
+				{ ...item, original: item.original.slug },
+				filters,
+				new Date(),
+			),
+		)
+		.sort((a, b) =>
+			compareRequests(
+				{ ...a, original: a.original.slug },
+				{ ...b, original: b.original.slug },
+				filters.sort,
+			),
+		);
+	const change = (key: keyof RequestFilters, value: string) =>
+		setFilters((previous) => ({ ...previous, [key]: value }));
+	const select = (
+		key: keyof RequestFilters,
+		title: string,
+		options: { value: string; text: string }[],
+	) => (
+		<label className="min-w-0 text-xs">
+			{title}
+			<span className="relative mt-1.5 block">
+				<select
+					className="mt-0 w-full appearance-none bg-canvas py-2 pl-3 pr-10 text-sm"
+					name={key}
+					onChange={(event) => change(key, event.target.value)}
+					value={filters[key]}
+				>
+					{options.map((option) => (
+						<option key={option.value} value={option.value}>
+							{option.text}
+						</option>
+					))}
+				</select>
+				<svg
+					aria-hidden="true"
+					className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-ink"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="1.5"
+					viewBox="0 0 24 24"
+				>
+					<path d="m6 9 6 6 6-6" />
+				</svg>
+			</span>
+		</label>
+	);
 	return (
 		<>
 			<div className="max-w-[860px] pt-16">
@@ -38,16 +148,75 @@ export default function RequestsPage({ catalog }: Props) {
 				</div>
 			</div>
 			<section>
+				{catalog.requests.length > 0 && (
+					<>
+						<form
+							className="mb-6 border-b border-line pb-6"
+							onSubmit={(event) => event.preventDefault()}
+						>
+							<div className="grid grid-cols-1 gap-3 min-[600px]:grid-cols-3">
+								{select("vendor", "Vendor", [
+									{ value: "", text: "All vendors" },
+									...vendors.map((value) => ({
+										value,
+										text: value === "unassigned" ? "Unassigned" : label(value),
+									})),
+								])}
+								{select("category", "Category", [
+									{ value: "", text: "All categories" },
+									...categories.map((value) => ({ value, text: label(value) })),
+								])}
+								{select("added", "Added", [
+									{ value: "", text: "Any time" },
+									...addedPeriods.map((value) => ({
+										value,
+										text: value === "365" ? "Past year" : `Past ${value} days`,
+									})),
+								])}
+							</div>
+							<div className="mt-4 flex flex-wrap items-end justify-between gap-4">
+								{select("sort", "Sort by", [
+									{ value: "recent", text: "Recently added" },
+									{ value: "oldest", text: "Oldest first" },
+									{ value: "name", text: "Alphabetical" },
+								])}
+								<button
+									className="text-sm text-muted hover:text-lime"
+									onClick={() => setFilters({ ...defaultRequestFilters })}
+									type="button"
+								>
+									Clear filters
+								</button>
+							</div>
+						</form>
+						<p aria-live="polite" className="mb-5 text-sm" role="status">
+							{requests.length} {requests.length === 1 ? "request" : "requests"}
+						</p>
+						<noscript>
+							<p>
+								All requests are listed below. Enable JavaScript to filter and
+								sort them.
+							</p>
+						</noscript>
+					</>
+				)}
 				{catalog.requests.length ? (
-					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
-						{catalog.requests.map((request) => (
-							<RequestCard
-								key={request.original}
-								original={findBySlug(catalog.originals, request.original)}
-								request={request}
-							/>
-						))}
-					</div>
+					<>
+						<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+							{requests.map(({ request, original }) => (
+								<RequestCard
+									key={request.original}
+									original={original}
+									request={request}
+								/>
+							))}
+						</div>
+						{requests.length === 0 && (
+							<p className="rounded-xl border border-dashed border-line p-8">
+								No matching requests. Try another filter or clear the filters.
+							</p>
+						)}
+					</>
 				) : (
 					<p className="rounded-xl border border-dashed border-line p-8">
 						There are no open requests. Suggest a software target using the

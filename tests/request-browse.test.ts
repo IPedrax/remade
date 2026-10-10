@@ -1,0 +1,112 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { loadCatalog } from "../src/lib/catalog";
+import {
+	type BrowseRequest,
+	compareRequests,
+	defaultRequestFilters,
+	filterRequest,
+} from "../src/lib/request-browse";
+
+const now = new Date("2026-10-10T12:00:00Z");
+const request: BrowseRequest = {
+	original: "example",
+	name: "Example",
+	vendor: "adobe",
+	category: "creative",
+	addedAt: "2026-10-05T12:00:00Z",
+};
+
+test("request filters combine vendor, category and addition period", () => {
+	assert.ok(
+		filterRequest(
+			request,
+			{
+				...defaultRequestFilters,
+				vendor: "adobe",
+				category: "creative",
+				added: "7",
+			},
+			now,
+		),
+	);
+	assert.equal(
+		filterRequest(request, { ...defaultRequestFilters, vendor: "apple" }, now),
+		false,
+	);
+	assert.equal(
+		filterRequest(
+			request,
+			{ ...defaultRequestFilters, category: "engineering" },
+			now,
+		),
+		false,
+	);
+	assert.equal(
+		filterRequest(
+			{ ...request, addedAt: "2026-09-01T00:00:00Z" },
+			{ ...defaultRequestFilters, added: "7" },
+			now,
+		),
+		false,
+	);
+});
+
+test("date filters include boundary dates and exclude unknown or future dates", () => {
+	const filters = { ...defaultRequestFilters, added: "7" };
+	assert.ok(
+		filterRequest(
+			{ ...request, addedAt: "2026-10-03T12:00:00Z" },
+			filters,
+			now,
+		),
+	);
+	for (const addedAt of [undefined, "invalid", "2026-10-11T00:00:00Z"])
+		assert.equal(filterRequest({ ...request, addedAt }, filters, now), false);
+	assert.ok(
+		filterRequest(
+			{ ...request, addedAt: undefined },
+			defaultRequestFilters,
+			now,
+		),
+	);
+});
+
+test("request sorts compare actual instants and keep unknown dates last in either date direction", () => {
+	const newer = {
+		...request,
+		original: "newer",
+		addedAt: "2026-10-06T00:30:00+02:00",
+	};
+	const older = {
+		...request,
+		original: "older",
+		addedAt: "2026-10-05T22:00:00Z",
+	};
+	const unknown = { ...request, addedAt: undefined };
+	assert.ok(compareRequests(newer, older, "recent") < 0);
+	assert.ok(compareRequests(newer, older, "oldest") > 0);
+	for (const sort of ["recent", "oldest"])
+		assert.ok(compareRequests(unknown, newer, sort) > 0);
+	assert.ok(
+		compareRequests(
+			{ ...request, name: "Alpha" },
+			{ ...request, name: "Zebra" },
+			"name",
+		) < 0,
+	);
+});
+
+test("catalog exposes vendors from nested request paths without changing original identities", async () => {
+	const catalog = await loadCatalog();
+	assert.equal(
+		catalog.requests.find((item) => item.original === "logic-pro")?.vendor,
+		"apple",
+	);
+	assert.equal(
+		catalog.requests.find(
+			(item) => item.original === "adobe-character-animator",
+		)?.vendor,
+		"adobe",
+	);
+});

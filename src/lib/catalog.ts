@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { readdir, readFile } from "node:fs/promises";
-import { basename, join } from "node:path";
+import { basename, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import * as v from "valibot";
 import {
@@ -97,10 +97,22 @@ export async function loadCatalog() {
 			addedAt: addedAt("tools", t.slug),
 		})),
 	];
+	const requestDirectory = new URL("src/content/catalog/requests/", root)
+		.pathname;
+	const requestVendors = new Map(
+		(await files(requestDirectory)).map((path) => {
+			const parts = relative(requestDirectory, path).split("/");
+			return [
+				basename(path, ".yaml"),
+				parts.length > 1 ? parts[0] : "unassigned",
+			];
+		}),
+	);
 	const recentRequests = requests
 		.map((request) => ({
 			...request,
 			addedAt: addedAt("requests", request.original),
+			vendor: requestVendors.get(request.original) ?? "unassigned",
 		}))
 		.sort(
 			(a, b) =>

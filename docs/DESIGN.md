@@ -52,7 +52,7 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 
 ## Project Requests page
 
-- Order requests newest first by their catalog addition dates in Git, on both the homepage and requests index. Unknown dates come last; ties use the original slug.
+- Order homepage requests alphabetically by the original software's display name. The requests index defaults to newest first by catalog addition dates in Git; unknown dates come last and ties use the original slug.
 - Heading: **Project Requests**
 - Explain that these are community wishes, *not active or approved implementation projects*.
 - Cards show target, category, description of what should be reproduced, and reference link.

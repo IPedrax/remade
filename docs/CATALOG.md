@@ -125,6 +125,7 @@ suggested_names: [ExampleCraft] # optional
 - **Do not list requests for any original with an indexed project.** The catalog validator enforces this; remove the request in the same PR that first adds its implementation.
 - A request has a stable link to `/software/<original-slug>` and is displayed on `/requests` and under **Project Requests** on the homepage.
 - Requests are distinct from projects and are never mixed into featured listings or project counts.
+- Request vendor filters derive their grouping from the first folder below `requests/`; root-level files are Unassigned. Vendor and Git addition dates are computed browsing metadata, not editable YAML fields, and do not affect public routes.
 - Request targets do not prescribe application boundaries: one implementation may cover related targets such as the Substance 3D apps, or separate applications may share an engine. Capture these possibilities in the request reason without claiming that an implementation already covers them.
 
 ## Supporting tool record

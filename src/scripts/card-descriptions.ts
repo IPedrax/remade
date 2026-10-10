@@ -4,6 +4,7 @@ function fitDescription(container: HTMLElement) {
 		"[data-card-read-more]",
 	);
 	if (!text || !link) return;
+	if (container.closest("astro-island[ssr]")) return;
 
 	text.style.webkitLineClamp = "unset";
 	text.style.display = "block";
@@ -58,6 +59,39 @@ const observer = new ResizeObserver((entries) => {
 	}
 });
 for (const description of descriptions) observer.observe(description);
+document.addEventListener(
+	"astro:hydrate",
+	(event) => {
+		if (!(event.target instanceof HTMLElement)) return;
+		for (const description of event.target.querySelectorAll<HTMLElement>(
+			"[data-card-description]",
+		))
+			fitDescription(description);
+	},
+	true,
+);
+// Hydrated filtering can insert new cards after the initial static render.
+const mutations = new MutationObserver((records) => {
+	for (const record of records) {
+		for (const node of record.addedNodes) {
+			if (!(node instanceof HTMLElement)) continue;
+			if (node.matches("[data-card-description]")) observer.observe(node);
+			for (const description of node.querySelectorAll<HTMLElement>(
+				"[data-card-description]",
+			))
+				observer.observe(description);
+		}
+		for (const node of record.removedNodes) {
+			if (!(node instanceof HTMLElement) || node.isConnected) continue;
+			if (node.matches("[data-card-description]")) observer.unobserve(node);
+			for (const description of node.querySelectorAll<HTMLElement>(
+				"[data-card-description]",
+			))
+				observer.unobserve(description);
+		}
+	}
+});
+mutations.observe(document.body, { childList: true, subtree: true });
 void document.fonts.ready.then(() => {
 	for (const description of descriptions) fitDescription(description);
 });
