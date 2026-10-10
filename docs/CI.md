@@ -8,9 +8,12 @@ For GitHub Issue Forms, create the labels `catalog-suggestion` and `project-requ
 
 Python-based checks run automatically through **uv** using the pinned Python requirements. Contributors are not asked to run local commands.
 
+Python tests use pytest, with temporary catalog fixtures, parametrized validation cases, and mocked HTTP calls. Run them locally with `uv run --project scripts pytest scripts/tests -v`; pytest discovers only `scripts/tests/` using the configuration in `scripts/pyproject.toml`.
+
 1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
-2. `links.yml` scans only newly changed catalog URLs on PRs, using Lychee with low concurrency. When the Astro scaffold exists, this workflow may also scan generated site HTML after `pnpm build`.
-3. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
+2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
+3. `build.yml` (**Build test**) independently runs the frontend type checks, tests, and production build.
+4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
 
 ## Issue suggestion and request checks
 

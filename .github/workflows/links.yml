@@ -1,4 +1,4 @@
-name: Link checks
+name: Dead Link Checker
 
 on:
   pull_request:
@@ -14,6 +14,8 @@ permissions:
 
 jobs:
   lychee:
+    name: Dead Link Checker
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,15 +51,15 @@ jobs:
           restore-keys: |
             lychee-${{ runner.os }}-
       - name: Check changed URLs (full catalog weekly)
+        timeout-minutes: 10
         if: steps.url_list.outputs.has_urls == 'true'
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml --cache --no-progress --files-from .generated/catalog-urls.txt
+          output: lychee/catalog-report.md
+          args: --config lychee.toml --cache --verbose --no-progress .generated/catalog-urls.txt
           fail: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      # Once Astro is scaffolded with packageManager + pnpm-lock.yaml,
-      # also validate generated HTML. No web runtime or hosting config is included.
       - uses: pnpm/action-setup@v6
         if: hashFiles('pnpm-lock.yaml') != ''
         with:
@@ -74,10 +76,20 @@ jobs:
         if: hashFiles('pnpm-lock.yaml') != ''
         run: pnpm build
       - name: Check generated HTML and internal links
+        timeout-minutes: 10
         if: hashFiles('pnpm-lock.yaml') != ''
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml --cache --no-progress --root-dir dist './dist/**/*.html'
+          output: lychee/site-report.md
+          args: --config lychee.toml --cache --verbose --no-progress --root-dir dist './dist/**/*.html'
           fail: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - name: Save link-check reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dead-link-reports
+          path: lychee/*-report.md
+          if-no-files-found: ignore
+          retention-days: 7
