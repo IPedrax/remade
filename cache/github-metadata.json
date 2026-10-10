@@ -27,6 +27,15 @@
       "pushedAt": "2026-10-09T20:48:53Z",
       "stars": 78
     },
+    "jub0t/concat": {
+      "fetchedAt": "2026-10-10T07:30:49Z",
+      "forks": 421,
+      "isArchived": false,
+      "licenseSpdx": "AGPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-10T03:52:13Z",
+      "stars": 4557
+    },
     "storytold/cadcraft": {
       "fetchedAt": "2026-10-10T01:37:09Z",
       "forks": 580,
