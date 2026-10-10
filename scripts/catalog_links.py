@@ -26,7 +26,7 @@ def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
         return [ROOT / 'src/content/catalog/originals.yaml',
                 *(ROOT / 'src/content/catalog/projects').rglob('*.yaml'),
                 *(ROOT / 'src/content/catalog/tools').rglob('*.yaml'),
-                *(ROOT / 'src/content/catalog/requests').glob('*.yaml')]
+                *(ROOT / 'src/content/catalog/requests').rglob('*.yaml')]
     result = subprocess.run(
         ['git', 'diff', '--diff-filter=ACMR', '--name-only', changed_from, 'HEAD', '--', 'src/content/catalog/'],
         cwd=ROOT, text=True, check=True, capture_output=True,

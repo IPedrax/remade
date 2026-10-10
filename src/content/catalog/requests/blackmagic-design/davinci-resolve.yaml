@@ -1,0 +1,3 @@
+original: davinci-resolve
+reason: Reproduce Resolve's editing, node-based color grading, compositing and audio post-production workflows in a coordinated video application.
+suggested_names: [ColorCraft]

@@ -24,7 +24,7 @@ You can also submit an approved, published Project Request through a pull reques
 
 1. Read `POLICY.md` and search both `src/content/catalog/projects/` and `src/content/catalog/requests/`.
 2. Ensure the target has an entry in `src/content/catalog/originals.yaml` (add one in the PR if necessary).
-3. Add `src/content/catalog/requests/<original-slug>.yaml` using `examples/request.yaml`. Explain the desired behavior or interface without copying protected code/assets.
+3. Add `src/content/catalog/requests/<vendor>/<original-slug>.yaml` using `examples/request.yaml`. Explain the desired behavior or interface without copying protected code/assets.
 4. Open a PR and check the `POLICY.md` acknowledgment. Maintainers can merge, request edits, or close it.
 5. When a matching project gets indexed, the request should be deleted in the same PR.
 

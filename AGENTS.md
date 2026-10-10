@@ -49,7 +49,7 @@ When requirements conflict, make the inconsistency explicit and update the relev
 2. Search `src/content/catalog/projects/**/*.yaml` for duplicate project/repository entries. Search `src/content/catalog/originals.yaml` for the target and its aliases; **reuse its canonical slug** if it exists.
 3. If the original is not in `src/content/catalog/originals.yaml`, add a record with `slug`, `name`, `url`, `category`, and optional `aliases`; use an official or credible HTTPS reference. Do not create a second record because of alternate spellings.
 4. Copy `examples/project.yaml` into `src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Replace **all** example values. Ensure `slug` matches its filename and `original` matches the canonical target; supply truthful language, license, status, compatibility target, description, and optional limitations/docs.
-5. If this is the first published implementation of the original, **delete** its `src/content/catalog/requests/<original-slug>.yaml` in the **same PR**. A request and an indexed project cannot coexist for the same original.
+5. If this is the first published implementation of the original, **delete** its `src/content/catalog/requests/<vendor>/<original-slug>.yaml` in the **same PR**. A request and an indexed project cannot coexist for the same original.
 6. Do not modify `src/content/catalog/featured.yaml` to feature your own submission; that file is maintainer-curated.
 7. Automated CI validates YAML, references, tests and links. Address any failures; do not silence Lychee for convenience.
 8. Open a PR using `.github/PULL_REQUEST_TEMPLATE.md`, summarize the compatibility target and sources, and tick: **“I have read and will adhere to POLICY.md.”** Maintainers may merge, request changes, or close the PR.
@@ -63,13 +63,13 @@ When requirements conflict, make the inconsistency explicit and update the relev
 - Never execute code, fetch arbitrary hostnames using `requests`, or interpolate issue bodies into shell/YAML expressions. GitHub API endpoints must be constructed from validated identifiers.
 - Both `catalog-suggestion` and `project-request` must exist as GitHub labels for the forms to apply them.
 - `.github/ISSUE_TEMPLATE/project-request.yml` allows Project Requests with no repository URL or other links. Such requests receive a review comment, with Lychee skipped when no URLs exist. Request issues do not publish catalog entries; those still require a PR.
-- Requests require the original software name and a reason. Suggestions require the source repository URL and original software name.
+- Request issues require the original software name, a description of what it does and a reason explaining what current open-source alternatives lack. Suggestions require the source repository URL and original software name.
 
 ## Add a Project Request (pull request)
 
 1. Confirm the target has **no indexed qualifying project** and no existing request. Requests are wanted implementations, **not announcements of existing work**.
 2. Reuse or add the canonical original in `src/content/catalog/originals.yaml`.
-3. Copy `examples/request.yaml` into `src/content/catalog/requests/<original-slug>.yaml`; set `original` to that slug and write a short, specific `reason` explaining the compatibility behavior wanted.
+3. Copy `examples/request.yaml` into `src/content/catalog/requests/<vendor>/<original-slug>.yaml`; set `original` to that slug and write a short, specific `reason` explaining the compatibility behavior wanted.
 4. Submit a PR with the required policy acknowledgment. Automated checks run on the pull request.
 5. Request cards render under **Project Requests** and `/requests`; remove the request when an implementation is accepted.
 

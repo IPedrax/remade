@@ -25,3 +25,16 @@ def test_tools_included_in_full_and_changed_catalog_checks(
         'https://github.com/example/launcher',
         'https://example.org/launcher',
     }
+
+
+def test_vendor_request_files_are_discovered_in_both_modes(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    path = tmp_path / 'src/content/catalog/requests/adobe/product.yaml'
+    path.parent.mkdir(parents=True)
+    path.write_text('original: product\nreason: Reproduce the original workflows.\n')
+    monkeypatch.setattr('catalog_links.ROOT', tmp_path)
+    assert path in paths_for_mode(all_files=True, changed_from=None)
+    run = Mock(return_value=Mock(stdout='src/content/catalog/requests/adobe/product.yaml\n'))
+    monkeypatch.setattr('catalog_links.subprocess.run', run)
+    assert paths_for_mode(all_files=False, changed_from='base') == [path]

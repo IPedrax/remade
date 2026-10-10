@@ -1,0 +1,3 @@
+original: adobe-audition
+reason: Reproduce Audition's waveform and multitrack editing, spectral repair, effects and mixing workflows.
+suggested_names: [AudioCraft]

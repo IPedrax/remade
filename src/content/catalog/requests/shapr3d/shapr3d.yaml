@@ -1,0 +1,3 @@
+original: shapr3d
+reason: Reproduce Shapr3D's touch-friendly sketching, constraints, direct solid modeling and design-history workflows. Could extend SolveCraft (https://github.com/bherbruck/solvecraft), or be separate projects sharing one 3D engine.
+suggested_names: [ShapeCraft]

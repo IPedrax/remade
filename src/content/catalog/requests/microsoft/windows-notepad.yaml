@@ -1,0 +1,3 @@
+original: windows-notepad
+reason: Reproduce the familiar, simple Windows Notepad interface and plain-text editing behavior, including find, replace, encoding and line endings.
+suggested_names: [NoteCraft]

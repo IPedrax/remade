@@ -12,7 +12,7 @@
 ## Data pipeline
 
 ```text
-Contributor PR (src/content/catalog/projects/<github-user>/<slug>.yaml OR src/content/catalog/requests/<original-slug>.yaml)
+Contributor PR (src/content/catalog/projects/<github-user>/<slug>.yaml OR src/content/catalog/requests/<vendor>/<original-slug>.yaml)
     ↓  read-only validation + Lychee + policy acknowledgment
 Maintainer reviews → merges
     ↓

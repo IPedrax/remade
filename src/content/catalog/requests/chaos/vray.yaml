@@ -1,0 +1,3 @@
+original: vray
+reason: Reproduce V-Ray's rendering, lighting, materials, global illumination and production scene workflows with reliable results.
+suggested_names: [RayCraft]

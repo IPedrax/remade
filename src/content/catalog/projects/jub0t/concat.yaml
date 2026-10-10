@@ -1,0 +1,15 @@
+# Features, beta status, platforms and licensing are documented in the repository README and LICENSE-EXCEPTIONS.md.
+slug: concat
+name: Concat
+authors: [jub0t]
+repository: https://github.com/jub0t/concat
+original: capcut
+category: creative
+languages: [Rust]
+platforms: [Linux, macOS, Windows, Android, iOS, iPadOS]
+status: beta
+compatibility: targeting
+description: Concat provides CapCut-style video editing with a native Rust engine, multi-track timelines, automatic captions, keyframe animation, effects and local video export.
+license: AGPL-3.0-or-later
+docs: https://concatenate.pages.dev/docs
+limitations: Beta software. CapCut project-file compatibility is not documented. iOS and iPadOS builds require sideloading; licensing includes an additional permission for independent plugins.

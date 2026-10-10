@@ -1,0 +1,3 @@
+original: autodesk-revit
+reason: Reproduce Revit's building information modeling, parametric families, coordinated views, schedules and documentation workflows. Could extend SolveCraft (https://github.com/bherbruck/solvecraft), or be separate projects sharing one 3D engine.
+suggested_names: [BIMCraft]

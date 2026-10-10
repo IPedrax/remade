@@ -36,10 +36,11 @@
   url: https://wilcom.com/embroiderystudio/designing
   category: creative
   aliases: [EmbroideryStudio, Wilcom Embroidery Studio]
-- slug: resolume-arena
-  name: Resolume Arena
+- slug: resolume-suite
+  name: Resolume Suite
   url: https://resolume.com/software
   category: creative
+  aliases: [Resolume Arena, Resolume Avenue]
 - slug: clip-studio-paint
   name: Clip Studio Paint
   url: https://www.clipstudio.net/en/
@@ -102,3 +103,254 @@
   url: https://www.adobe.com/products/indesign.html
   category: creative
   aliases: [InDesign]
+- slug: minecraft
+  name: Minecraft
+  url: https://www.minecraft.net/en-us
+  category: games
+- slug: capcut
+  name: CapCut
+  url: https://www.capcut.com/
+  category: creative
+- slug: rhino3d
+  name: Rhinoceros 3D
+  url: https://www.rhino3d.com/en/
+  category: engineering
+- slug: autodesk-revit
+  name: Autodesk Revit
+  url: https://www.autodesk.com/products/revit/overview
+  category: engineering
+- slug: autodesk-civil-3d
+  name: Autodesk Civil 3D
+  url: https://www.autodesk.com/products/civil-3d/overview
+  category: engineering
+- slug: autodesk-inventor
+  name: Autodesk Inventor
+  url: https://www.autodesk.com/products/inventor/overview
+  category: engineering
+- slug: autodesk-maya
+  name: Autodesk Maya
+  url: https://www.autodesk.com/products/maya/overview
+  category: creative
+- slug: solidworks
+  name: SOLIDWORKS
+  url: https://www.solidworks.com/
+  category: engineering
+- slug: foobar2000
+  name: foobar2000
+  url: https://www.foobar2000.org/
+  category: creative
+- slug: adobe-substance-3d-painter
+  name: Adobe Substance 3D Painter
+  url: https://www.adobe.com/products/substance3d/apps/painter.html
+  category: creative
+- slug: adobe-substance-3d-designer
+  name: Adobe Substance 3D Designer
+  url: https://www.adobe.com/products/substance3d/apps/designer.html
+  category: creative
+- slug: adobe-audition
+  name: Adobe Audition
+  url: https://www.adobe.com/products/audition.html
+  category: creative
+- slug: nuke
+  name: Nuke / NukeX
+  url: https://www.foundry.com/products/nuke-family/nuke
+  category: creative
+- slug: windows-notepad
+  name: Windows Notepad
+  url: https://apps.microsoft.com/detail/9msmlrh6lzf3
+  category: productivity
+- slug: zbrush
+  name: ZBrush
+  url: https://www.maxon.net/en/zbrush
+  category: creative
+- slug: adobe-fireworks
+  name: Adobe Fireworks
+  url: https://helpx.adobe.com/fireworks.html
+  category: creative
+- slug: adobe-xd
+  name: Adobe XD
+  url: https://helpx.adobe.com/xd/desktop/introduction/faq.html
+  category: creative
+- slug: autodesk-3ds-max
+  name: Autodesk 3ds Max
+  url: https://www.autodesk.com/products/3ds-max/overview
+  category: creative
+- slug: cinema-4d
+  name: Cinema 4D
+  url: https://www.maxon.net/en/cinema-4d
+  category: creative
+- slug: plasticity
+  name: Plasticity
+  url: https://www.plasticity.xyz/
+  category: creative
+- slug: quad-remesher
+  name: Quad Remesher
+  url: https://exoside.com/quadremesher/
+  category: creative
+- slug: vray
+  name: V-Ray
+  url: https://www.chaos.com/vray
+  category: creative
+- slug: redshift
+  name: Redshift
+  url: https://www.maxon.net/en/redshift
+  category: creative
+- slug: unreal-lumen
+  name: Unreal Engine Lumen
+  url: https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-global-illumination-and-reflections-in-unreal-engine
+  category: creative
+- slug: unreal-nanite
+  name: Unreal Engine Nanite
+  url: https://dev.epicgames.com/documentation/en-us/unreal-engine/nanite-virtualized-geometry-in-unreal-engine
+  category: creative
+- slug: chamsys-magicq
+  name: ChamSys MagicQ
+  url: https://uk.chamsyslighting.com/product/magicq-software/
+  category: creative
+- slug: style3d
+  name: Style3D
+  url: https://www.style3d.com/
+  category: creative
+- slug: clo3d
+  name: CLO 3D
+  url: https://www.clo3d.com/
+  category: creative
+- slug: marvelous-designer
+  name: Marvelous Designer
+  url: https://www.marvelousdesigner.com/
+  category: creative
+- slug: sketchup
+  name: SketchUp
+  url: https://sketchup.trimble.com/en
+  category: engineering
+- slug: ni-multisim
+  name: NI Multisim
+  url: https://www.ni.com/en/shop/electronic-test-instrumentation/application-software-for-electronic-test-and-instrumentation-category/what-is-multisim.html
+  category: engineering
+- slug: davinci-resolve
+  name: DaVinci Resolve
+  url: https://www.blackmagicdesign.com/products/davinciresolve
+  category: creative
+- slug: toon-boom-harmony
+  name: Toon Boom Harmony
+  url: https://www.toonboom.com/products/harmony
+  category: creative
+- slug: toon-boom-storyboard-pro
+  name: Toon Boom Storyboard Pro
+  url: https://www.toonboom.com/products/storyboard-pro
+  category: creative
+  aliases: [Storyboard Pro]
+- slug: toon-boom-producer
+  name: Toon Boom Producer
+  url: https://www.toonboom.com/products/producer
+  category: productivity
+- slug: sidefx-houdini
+  name: SideFX Houdini
+  url: https://www.sidefx.com/products/houdini/
+  category: creative
+- slug: evernote
+  name: Evernote
+  url: https://evernote.com/
+  category: productivity
+- slug: microsoft-onenote
+  name: Microsoft OneNote
+  url: https://www.onenote.com/
+  category: productivity
+- slug: goodnotes
+  name: Goodnotes
+  url: https://www.goodnotes.com/
+  category: productivity
+- slug: softimage-3d
+  name: Softimage 3D / Autodesk Softimage
+  url: https://download.autodesk.com/global/docs/softimage2014/en_us/
+  category: creative
+- slug: guitar-pro
+  name: Guitar Pro
+  url: https://www.guitar-pro.com/
+  category: creative
+- slug: loopy-pro
+  name: Loopy Pro
+  url: https://loopypro.com/
+  category: creative
+- slug: topaz-labs
+  name: Topaz Labs photo and video tools
+  url: https://www.topazlabs.com/
+  category: creative
+- slug: altium-designer
+  name: Altium Designer
+  url: https://www.altium.com/altium-designer
+  category: engineering
+- slug: figma
+  name: Figma
+  url: https://www.figma.com/
+  category: creative
+- slug: matlab
+  name: MATLAB / Simulink
+  url: https://www.mathworks.com/products/matlab.html
+  category: engineering
+  aliases: [MATLAB, Simulink]
+- slug: fontbase
+  name: FontBase
+  url: https://fontba.se/
+  category: creative
+- slug: adobe-dreamweaver
+  name: Adobe Dreamweaver
+  url: https://www.adobe.com/products/dreamweaver.html
+  category: developer-tools
+- slug: quadspinner-gaea
+  name: QuadSpinner Gaea
+  url: https://quadspinner.com/
+  category: creative
+- slug: ableton-live
+  name: Ableton Live
+  url: https://www.ableton.com/en/live/
+  category: creative
+- slug: microsoft-power-bi
+  name: Microsoft Power BI
+  url: https://www.microsoft.com/en-us/power-platform/products/power-bi
+  category: productivity
+- slug: microsoft-access
+  name: Microsoft Access
+  url: https://www.microsoft.com/en-us/microsoft-365/access
+  category: productivity
+- slug: microsoft-outlook
+  name: Microsoft Outlook
+  url: https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook
+  category: productivity
+- slug: shapr3d
+  name: Shapr3D
+  url: https://www.shapr3d.com/
+  category: engineering
+- slug: final-cut-pro
+  name: Final Cut Pro
+  url: https://www.apple.com/final-cut-pro/
+  category: creative
+- slug: poser
+  name: Poser
+  url: https://www.posersoftware.com/
+  category: creative
+- slug: adobe-substance-3d-sampler
+  name: Adobe Substance 3D Sampler
+  url: https://www.adobe.com/products/substance3d/apps/sampler.html
+  category: creative
+- slug: adobe-substance-3d-stager
+  name: Adobe Substance 3D Stager
+  url: https://www.adobe.com/products/substance3d/apps/stager.html
+  category: creative
+- slug: adobe-substance-3d-modeler
+  name: Adobe Substance 3D Modeler
+  url: https://www.adobe.com/products/substance3d/apps/modeler.html
+  category: creative
+- slug: adobe-bridge
+  name: Adobe Bridge
+  url: https://www.adobe.com/products/bridge.html
+  category: creative
+  aliases: [Bridge]
+- slug: kontakt
+  name: Kontakt
+  url: https://www.native-instruments.com/products/kontakt
+  category: creative
+- slug: massive-x
+  name: Massive X
+  url: https://www.native-instruments.com/products/massive-x
+  category: creative

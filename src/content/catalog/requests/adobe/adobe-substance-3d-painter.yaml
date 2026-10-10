@@ -1,0 +1,3 @@
+original: adobe-substance-3d-painter
+reason: Prioritize Painter's layered 3D texture painting, masks, smart materials, mesh-map baking and physically based texture export. One application could cover the Substance 3D suite; these requests describe separate compatibility targets.
+suggested_names: [TextureCraft]

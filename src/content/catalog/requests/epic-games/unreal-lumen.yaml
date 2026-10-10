@@ -1,0 +1,3 @@
+original: unreal-lumen
+reason: Reproduce Lumen-style real-time global illumination and reflections for integration into open-source rendering workflows such as Blender Eevee.
+suggested_names: [GlowCraft]

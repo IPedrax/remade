@@ -19,10 +19,18 @@ body:
     validations:
       required: true
   - type: textarea
+    id: software-description
+    attributes:
+      label: What the software does
+      description: Describe the software's purpose and main features.
+      placeholder: Explain what people use this software for.
+    validations:
+      required: true
+  - type: textarea
     id: reason
     attributes:
       label: Reason
-      description: What behavior or compatibility would you like a reimplementation to reproduce?
+      description: What behavior or compatibility would you like a reimplementation to reproduce? Explain what you find lacking in current open-source alternatives.
       placeholder: Explain what makes a faithful reimplementation useful.
     validations:
       required: true

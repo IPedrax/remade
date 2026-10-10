@@ -90,6 +90,29 @@ reason: An independently authored compatible implementation would be useful.
     assert not collect(original_catalog)[-1]
 
 
+def test_requests_load_recursively_and_reject_duplicates_across_vendors(original_catalog: Path) -> None:
+    directory = original_catalog / 'src/content/catalog/requests/vendor'
+    directory.mkdir()
+    path = directory / 'product-a.yaml'
+    path.write_text('original: product-a\nreason: Reproduce the original application workflows.\n')
+    _, _, requests, _, errors = collect(original_catalog)
+    assert not errors
+    assert [request['original'] for request in requests] == ['product-a']
+    other = directory.parent / 'another-vendor'
+    other.mkdir()
+    (other / path.name).write_text(path.read_text())
+    assert any('duplicate request' in error for error in collect(original_catalog)[-1])
+
+
+def test_nested_request_is_rejected_when_fulfilled(project_catalog: Path) -> None:
+    directory = project_catalog / 'src/content/catalog/requests/vendor'
+    directory.mkdir()
+    (directory / 'product-a.yaml').write_text(
+        'original: product-a\nreason: Reproduce the original application workflows.\n'
+    )
+    assert any('already fulfilled' in error for error in collect(project_catalog)[-1])
+
+
 @pytest.mark.parametrize(
     'names, valid',
     [

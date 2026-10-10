@@ -1,0 +1,3 @@
+original: solidworks
+reason: Reproduce SOLIDWORKS parametric part modeling, assemblies, constraints and engineering drawings for mechanical design. Could extend SolveCraft (https://github.com/bherbruck/solvecraft), or be separate projects sharing one 3D engine.
+suggested_names: [SolidCraft]

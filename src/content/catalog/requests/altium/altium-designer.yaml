@@ -1,0 +1,3 @@
+original: altium-designer
+reason: Reproduce Altium Designer's schematic capture, PCB layout, routing, design-rule checking and manufacturing-output workflows.
+suggested_names: [PCBCraft]

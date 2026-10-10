@@ -10,7 +10,7 @@ Show software and interfaces that community members want faithfully reimplemente
 
 - Navigate to `/requests` from the homepage section.
 - Browse requested originals, their reference links, the reason for a remake and any suggested names.
-- Select **Submit a request** to open `.github/ISSUE_TEMPLATE/project-request.yml` for a link-free suggestion; maintainers review it and accepted catalog entries still require a PR adding `src/content/catalog/requests/<original-slug>.yaml`; create an original in `src/content/catalog/originals.yaml` if needed.
+- Select **Submit a request** to open `.github/ISSUE_TEMPLATE/project-request.yml` for a link-free suggestion; maintainers review it and accepted catalog entries still require a PR adding `src/content/catalog/requests/<vendor>/<original-slug>.yaml`; create an original in `src/content/catalog/originals.yaml` if needed.
 - Select **Know an implementation?** to submit `src/content/catalog/projects/<github-user>/<slug>.yaml` by PR instead.
 - No login on Remade, runtime comments, upvotes, or status claims. GitHub account required to open an Issue or PR.
 
@@ -31,4 +31,4 @@ Show software and interfaces that community members want faithfully reimplemente
 
 ## Technical model
 
-`src/content/catalog/requests/<original-slug>.yaml` requires the `original` slug and a short `reason`, and accepts optional `suggested_names` as defined in `docs/CATALOG.md`. Requests are joined against `src/content/catalog/originals.yaml` and the set of projects during validation/build. Supporting tools do not fulfill requests. `src/content/catalog/requests/` files are PR-managed source data; the generated site is fully static. Issue requests are unlisted proposals until a maintainer merges an eligible catalog PR. Request issues may omit all links; catalog publication still requires the original reference URL.
+`src/content/catalog/requests/<vendor>/<original-slug>.yaml` requires the `original` slug and a short `reason`, and accepts optional `suggested_names` as defined in `docs/CATALOG.md`. Requests are joined against `src/content/catalog/originals.yaml` and the set of projects during validation/build. Supporting tools do not fulfill requests. `src/content/catalog/requests/` files are PR-managed source data; the generated site is fully static. Issue requests are unlisted proposals until a maintainer merges an eligible catalog PR. Request issues may omit all links; catalog publication still requires the original reference URL.

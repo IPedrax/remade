@@ -197,7 +197,7 @@ def collect(root=ROOT):
         validate_authors(project, loc, errors)
 
     request_by_original = {}
-    for path in sorted((root / "src/content/catalog/requests").glob("*.yaml")):
+    for path in sorted((root / "src/content/catalog/requests").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         req = checked_load(path, errors)
         if not fields(req, {"original", "reason"}, {"suggested_names"}, loc, errors):

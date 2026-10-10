@@ -11,8 +11,20 @@ def event(repo: str, official: str='https://example.org/') -> dict:
     return {'issue': {'labels': [{'name': 'catalog-suggestion'}], 'body': f'### Repository URL\n\n{repo}\n\n### Original software\n\nExample App\n\n### Official software URL\n\n{official}\n\n### Notes\n\nAn independent implementation.\n'}}
 
 
-def request_event(original: str='Example App', reason: str='Please recreate this app faithfully.') -> dict:
-    return {'issue': {'labels': [{'name': 'project-request'}], 'body': f'### Original software\n\n{original}\n\n### Reason\n\n{reason}\n\n### Official software URL\n\n_No response_\n'}}
+def request_event(original: str='Example App', reason: str='Please recreate this app faithfully.', description: str='An editor for creating and arranging illustrations.') -> dict:
+    return {'issue': {'labels': [{'name': 'project-request'}], 'body': f'### Original software\n\n{original}\n\n### What the software does\n\n{description}\n\n### Reason\n\n{reason}\n\n### Official software URL\n\n_No response_\n'}}
+
+
+@pytest.mark.parametrize('description', ['', '_No response_', 'Too short', 'x' * 1001])
+def test_request_requires_valid_software_description(description: str) -> None:
+    result = analyze(request_event(description=description))
+    assert any(item['level'] == 'error' and ('software does' in item['message'] or 'Software description' in item['message']) for item in result['findings'])
+
+
+def test_request_parses_description_separately_from_reason() -> None:
+    fields = parse_issue_form(request_event()['issue']['body'])
+    assert fields['What the software does'] == 'An editor for creating and arranging illustrations.'
+    assert fields['Reason'] == 'Please recreate this app faithfully.'
 
 
 def test_suggestion_warns_on_duplicate_tool(monkeypatch: pytest.MonkeyPatch) -> None:

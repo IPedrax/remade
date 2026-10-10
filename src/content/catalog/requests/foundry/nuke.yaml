@@ -1,0 +1,3 @@
+original: nuke
+reason: Reproduce Nuke's node-based compositing alongside NukeX's extended tools, including camera tracking, cleanup, corrections, 3D particles and CopyCat-style custom image effects.
+suggested_names: [NodeCraft]

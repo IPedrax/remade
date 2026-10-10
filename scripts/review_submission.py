@@ -34,7 +34,7 @@ REPO_PATH_PARTS = {
     'git.sr.ht': 2,
     'gitea.com': 2,
 }
-FIELDS = {'Repository URL', 'Original software', 'Official software URL', 'Notes', 'Reason'}
+FIELDS = {'Repository URL', 'Original software', 'Official software URL', 'Notes', 'Reason', 'What the software does'}
 
 
 def parse_issue_form(body: str) -> dict[str, str]:
@@ -95,6 +95,7 @@ def analyze(event: dict, *, catalog_root: Path = ROOT, gh_token: str | None = No
     official = fields.get('Official software URL', '').strip()
     notes = fields.get('Notes', '')
     reason = fields.get('Reason', '').strip()
+    description = fields.get('What the software does', '').strip()
     findings: list[dict[str, str]] = []
 
     if kind == 'suggestion':
@@ -103,6 +104,10 @@ def analyze(event: dict, *, catalog_root: Path = ROOT, gh_token: str | None = No
         else:
             findings.extend(url_check(repo, 'Repository URL'))
     else:
+        if not description or description == '_No response_':
+            findings.append({'level': 'error', 'message': 'Describe what the software does.'})
+        elif len(description) < 20 or len(description) > 1000:
+            findings.append({'level': 'error', 'message': 'Software description must be between 20 and 1,000 characters.'})
         if not reason or reason == '_No response_':
             findings.append({'level': 'error', 'message': 'Explain why this software should be remade.'})
         elif len(reason) < 20 or len(reason) > 1000:

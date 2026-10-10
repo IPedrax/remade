@@ -1,0 +1,3 @@
+original: ableton-live
+reason: Reproduce Live's session and arrangement views, clip launching, warping and performance workflows. A shared engine with an FL Studio implementation could support a separate frontend.
+suggested_names: [SessionCraft]

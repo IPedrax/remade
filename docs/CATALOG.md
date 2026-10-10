@@ -8,7 +8,7 @@ src/content/catalog/
   featured.yaml            Maintainer-selected project slugs in display order
   projects/<github-user>/<slug>.yaml     One community-submitted reimplementation each
   tools/<github-user>/<slug>.yaml        One supporting tool each; separate from reimplementations
-  requests/<original-slug>.yaml  One unfulfilled community request for the original
+  requests/<vendor>/<original-slug>.yaml  One unfulfilled community request for the original
 examples/project.yaml      Example only: never indexed
 
 cache/github-metadata.json Cached API enrichment, not source of truth
@@ -109,7 +109,7 @@ The remaining groups cover operating systems, games, developer tools, protocols,
 
 ## Project Request record
 
-`src/content/catalog/requests/<original-slug>.yaml` describes a **desired reimplementation**, not an existing project:
+`src/content/catalog/requests/<vendor>/<original-slug>.yaml` describes a **desired reimplementation**, not an existing project:
 
 ```yaml
 original: example-software
@@ -125,6 +125,7 @@ suggested_names: [ExampleCraft] # optional
 - **Do not list requests for any original with an indexed project.** The catalog validator enforces this; remove the request in the same PR that first adds its implementation.
 - A request has a stable link to `/software/<original-slug>` and is displayed on `/requests` and under **Project Requests** on the homepage.
 - Requests are distinct from projects and are never mixed into featured listings or project counts.
+- Request targets do not prescribe application boundaries: one implementation may cover related targets such as the Substance 3D apps, or separate applications may share an engine. Capture these possibilities in the request reason without claiming that an implementation already covers them.
 
 ## Supporting tool record
 
