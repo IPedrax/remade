@@ -4,7 +4,7 @@ name: EffectCraft
 authors: [storytold]
 repository: https://github.com/storytold/effectcraft
 original: adobe-after-effects
-category: applications
+category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

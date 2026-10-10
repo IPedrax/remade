@@ -4,7 +4,7 @@ name: WordCraft
 authors: [storytold]
 repository: https://github.com/storytold/wordcraft
 original: microsoft-word
-category: applications
+category: productivity
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

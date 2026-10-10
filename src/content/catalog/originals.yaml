@@ -1,104 +1,104 @@
 - slug: adobe-photoshop
   name: Adobe Photoshop
   url: https://www.adobe.com/products/photoshop.html
-  category: applications
+  category: creative
   aliases: [Photoshop]
 - slug: adobe-illustrator
   name: Adobe Illustrator
   url: https://www.adobe.com/products/illustrator.html
-  category: applications
+  category: creative
   aliases: [Illustrator]
 - slug: autodesk-fusion
   name: Autodesk Fusion
   url: https://www.autodesk.com/products/fusion-360/overview
-  category: applications
+  category: engineering
   aliases: [Fusion 360, Autodesk Fusion 360]
 - slug: adobe-animate
   name: Adobe Animate
   url: https://www.adobe.com/products/animate.html
-  category: applications
+  category: creative
   aliases: [Adobe Flash Professional, Flash Professional]
 - slug: fl-studio
   name: FL Studio
   url: https://www.image-line.com/fl-studio
-  category: applications
+  category: creative
   aliases: [FruityLoops]
 - slug: voicemod
   name: Voicemod
   url: https://www.voicemod.net/
-  category: applications
+  category: creative
 - slug: arcgis
   name: ArcGIS
   url: https://www.esri.com/en-us/arcgis/geospatial-platform/overview
-  category: applications
+  category: engineering
 - slug: wilcom-embroiderystudio
   name: Wilcom EmbroideryStudio
   url: https://wilcom.com/embroiderystudio/designing
-  category: applications
+  category: creative
   aliases: [EmbroideryStudio, Wilcom Embroidery Studio]
 - slug: resolume-arena
   name: Resolume Arena
   url: https://resolume.com/software
-  category: applications
+  category: creative
 - slug: clip-studio-paint
   name: Clip Studio Paint
   url: https://www.clipstudio.net/en/
-  category: applications
+  category: creative
 - slug: procreate
   name: Procreate
   url: https://procreate.com/procreate
-  category: applications
+  category: creative
 - slug: traktor-pro
   name: Traktor Pro
   url: https://www.native-instruments.com/products/traktor-pro
-  category: applications
+  category: creative
 - slug: adobe-acrobat
   name: Adobe Acrobat
   url: https://www.adobe.com/acrobat.html
-  category: applications
+  category: productivity
   aliases: [Acrobat]
 - slug: avid-pro-tools
   name: Avid Pro Tools
   url: https://www.avid.com/pro-tools
-  category: applications
+  category: creative
   aliases: [Pro Tools]
 - slug: adobe-after-effects
   name: Adobe After Effects
   url: https://www.adobe.com/products/aftereffects.html
-  category: applications
+  category: creative
   aliases: [After Effects]
 - slug: adobe-lightroom
   name: Adobe Lightroom
   url: https://www.adobe.com/products/photoshop-lightroom.html
-  category: applications
+  category: creative
   aliases: [Lightroom]
 - slug: adobe-premiere-pro
   name: Adobe Premiere Pro
   url: https://www.adobe.com/products/premiere.html
-  category: applications
+  category: creative
   aliases: [Premiere Pro]
 - slug: microsoft-powerpoint
   name: Microsoft PowerPoint
   url: https://www.microsoft.com/en-us/microsoft-365/powerpoint
-  category: applications
+  category: productivity
   aliases: [PowerPoint]
 - slug: microsoft-word
   name: Microsoft Word
   url: https://www.microsoft.com/en-us/microsoft-365/word
-  category: applications
+  category: productivity
   aliases: [Word]
 - slug: autodesk-autocad
   name: Autodesk AutoCAD
   url: https://www.autodesk.com/products/autocad/overview
-  category: applications
+  category: engineering
   aliases: [AutoCAD]
 - slug: microsoft-excel
   name: Microsoft Excel
   url: https://www.microsoft.com/en-us/microsoft-365/excel
-  category: applications
+  category: productivity
   aliases: [Excel]
 - slug: adobe-indesign
   name: Adobe InDesign
   url: https://www.adobe.com/products/indesign.html
-  category: applications
+  category: creative
   aliases: [InDesign]

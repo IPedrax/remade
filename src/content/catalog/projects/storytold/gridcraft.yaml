@@ -4,7 +4,7 @@ name: GridCraft
 authors: [storytold]
 repository: https://github.com/storytold/gridcraft
 original: microsoft-excel
-category: applications
+category: productivity
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

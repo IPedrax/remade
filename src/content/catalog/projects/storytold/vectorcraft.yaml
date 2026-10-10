@@ -4,7 +4,7 @@ name: VectorCraft
 authors: [storytold]
 repository: https://github.com/storytold/vectorcraft
 original: adobe-illustrator
-category: applications
+category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

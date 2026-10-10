@@ -22,7 +22,7 @@ class CatalogValidationTest(unittest.TestCase):
 - slug: product-a
   name: Product A
   url: https://example.com/product-a
-  category: applications
+  category: other
 ''')
 
     def add_project(self):
@@ -31,7 +31,7 @@ slug: impl-a
 name: Implementation A
 repository: https://github.com/example/impl-a
 original: product-a
-category: applications
+category: other
 languages: [Rust]
 status: experimental
 compatibility: targeting

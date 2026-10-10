@@ -13,8 +13,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORIES = {
-    "applications", "operating-systems", "games", "developer-tools",
-    "databases", "protocols", "compatibility", "other",
+    "creative", "productivity", "engineering",
+    "operating-systems", "games", "developer-tools",
+    "protocols", "other",
 }
 STATUSES = {"experimental", "alpha", "beta", "stable", "archived"}
 COMPATIBILITY = {"targeting", "partial", "high", "claimed-complete"}

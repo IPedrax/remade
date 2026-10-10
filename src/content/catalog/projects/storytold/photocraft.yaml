@@ -4,7 +4,7 @@ name: PhotoCraft
 authors: [storytold]
 repository: https://github.com/storytold/photocraft
 original: adobe-photoshop
-category: applications
+category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: alpha

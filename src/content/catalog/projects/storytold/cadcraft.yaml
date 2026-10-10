@@ -4,7 +4,7 @@ name: CADCraft
 authors: [storytold]
 repository: https://github.com/storytold/cadcraft
 original: autodesk-autocad
-category: applications
+category: engineering
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

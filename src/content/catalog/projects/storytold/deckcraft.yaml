@@ -4,7 +4,7 @@ name: DeckCraft
 authors: [storytold]
 repository: https://github.com/storytold/deckcraft
 original: microsoft-powerpoint
-category: applications
+category: productivity
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

@@ -4,7 +4,7 @@ name: DesignCraft
 authors: [storytold]
 repository: https://github.com/storytold/designcraft
 original: adobe-indesign
-category: applications
+category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

@@ -4,7 +4,7 @@ name: SolveCraft
 authors: [bherbruck]
 repository: https://github.com/bherbruck/solvecraft
 original: autodesk-fusion
-category: applications
+category: engineering
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental

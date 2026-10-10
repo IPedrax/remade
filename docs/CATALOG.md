@@ -18,7 +18,7 @@ Use **stable, URL-friendly slugs**; names may change, but slugs should remain st
 
 ## Astro content integration
 
-The source files live under `src/content/catalog/`, matching the Astro app's content layout. In Astro 5+, define collection loaders in `src/content.config.ts` that match `projects/**/*.yaml` and `tools/**/*.yaml` and `requests/*.yaml` separately. Keep `originals.yaml` and `featured.yaml` as their existing shared reference/curation files rather than treating them as individual project entries. Use typed Zod schemas matching these files, and let Python CI enforce cross-file relationships and duplicate rules. Example YAML in `examples/` must never be indexed.
+The source files live under `src/content/catalog/`, matching the Astro app's content layout. `src/content.config.ts` defines separate project, tool, and request loaders. They use the recursive YAML loader in `src/lib/catalog.ts` and strict Valibot schemas in `src/lib/schemas.ts`; validation runs inside the loaders because Astro’s schema option expects Zod. `originals.yaml` and `featured.yaml` remain shared reference/curation files. The static build and Python CI both enforce cross-file relationships and duplicate rules. Documentation examples are never indexed.
 
 ## Canonical original record
 
@@ -28,7 +28,7 @@ The source files live under `src/content/catalog/`, matching the Astro app's con
 - slug: example-software
   name: Example Software
   url: https://example.org/software
-  category: applications
+  category: other
   aliases:
     - Example App
 ```
@@ -43,9 +43,9 @@ Credit authors explicitly rather than inferring authorship from repository owner
 
 Organize attributed files as `projects/<github-user>/<slug>.yaml` and `tools/<github-user>/<slug>.yaml`, using the first credited author for the folder. For example, PhotoCraft lives at `projects/storytold/photocraft.yaml`. Keep one file per entry even with multiple authors. The `authors` field remains authoritative for attribution and grouping; folders are organizational. Entries without established attribution may remain at the collection root. Load both collections recursively, enforcing slug and repository uniqueness across all author folders. Original and request records remain shared and keyed by original slug; featured selections and public project URLs continue to use global entry slugs.
 
-`entries_by_author` derives groups directly from validated project and tool YAML, sorts them deterministically, and keeps separate project/tool lists. Grouping includes every attributed indexed entry independently of Featured. The planned `/authors/[github-user]` route uses the handle directly: ArtCraft entries with `authors: [storytold]` appear at `/authors/storytold`. This does not automatically import or publish other repositories.
+`entries_by_author` derives groups directly from validated project and tool YAML, sorts them deterministically, and keeps separate project/tool lists. Grouping includes every attributed indexed entry independently of Featured. The static `/authors/[github-user]` route uses the handle directly: ArtCraft entries with `authors: [storytold]` appear at `/authors/storytold`. This does not automatically import or publish other repositories.
 
-Entry cards, detail pages and featured tabs will show **View More by Author**, labeled with the GitHub handle and linked to that route. Multiple authors get separately labeled links. Omit links when no author is recorded. Author pages and links remain planned for website implementation; this change adds data and grouping support.
+Entry cards, detail pages and featured cards show **View More by Author**, labeled with the GitHub handle and linked to that route. Multiple authors get separately labeled links. Omit links when no author is recorded. Author pages include every explicitly attributed entry, with separate reimplementation and supporting-tool sections.
 
 ## Project record
 
@@ -56,7 +56,7 @@ slug: example-implementation
 name: Example Implementation
 repository: https://github.com/example/example-implementation
 original: example-software
-category: applications
+category: other
 languages: [Rust]
 platforms: [Linux, macOS, Windows]
 status: experimental
@@ -75,7 +75,7 @@ license: MIT
 | `name` | Yes | Short nonempty project name |
 | `repository` | Yes | Public HTTPS repository root URL. GitHub entries must use `https://github.com/<owner>/<repo>` without trailing slash, `.git`, subpath, query, or fragment. Other Git hosts (including self-hosted Git) may be accepted after maintainer review. |
 | `original` | Yes | References exactly one slug in originals list |
-| `category` | Yes | `applications`, `operating-systems`, `games`, `developer-tools`, `databases`, `protocols`, `compatibility`, `other` |
+| `category` | Yes | `creative`, `productivity`, `engineering`, `operating-systems`, `games`, `developer-tools`, `protocols`, `other` |
 | `languages` | Yes | Nonempty list of programming language names |
 | `platforms` | No | Optional list of platforms |
 | `status` | Yes | `experimental`, `alpha`, `beta`, `stable`, `archived` (self-reported except GitHub archive flag) |
@@ -87,6 +87,17 @@ license: MIT
 | `authors` | No | Nonempty, duplicate-free list of lowercase GitHub handles |
 
 Compatibility is not scored by Remade. `claimed-complete` is **not** a certification.
+
+### Choosing a category
+
+Use the most specific group that describes the software's primary purpose, consistently across its original and project records:
+
+- `creative`: illustration, photography, animation, video, audio, publishing, and creative design.
+- `productivity`: documents, PDFs, spreadsheets, presentations, and office workflows.
+- `engineering`: CAD, drafting, modeling, technical design, mapping, GIS, and spatial analysis.
+- `other`: software that does not fit a more specific category.
+
+The remaining groups cover operating systems, games, developer tools, protocols, and other software. Supporting tools remain separately labeled Tools.
 
 ### Uniqueness
 

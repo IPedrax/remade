@@ -4,7 +4,7 @@ name: SoundCraft
 authors: [storytold]
 repository: https://github.com/storytold/soundcraft
 original: avid-pro-tools
-category: applications
+category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
