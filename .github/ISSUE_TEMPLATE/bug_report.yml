@@ -1,0 +1,60 @@
+name: Bug Report
+description: Report a problem with the Remade website, catalog, or contributor tooling.
+title: "[Bug] "
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What went wrong?
+      description: Describe the problem clearly and briefly.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Website
+        - Catalog data
+        - CI or contributor tooling
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Affected page or file
+      description: Include a page URL, catalog entry, file path, or workflow run link if relevant.
+    validations:
+      required: false
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click or run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead? Include relevant error messages or screenshots.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: For website problems, include your browser, operating system, and device. For tooling problems, include relevant tool versions.
+    validations:
+      required: false
