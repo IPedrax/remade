@@ -17,18 +17,22 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
+          version: '0.13.0'
+          working-directory: scripts
           python-version: '3.14'
           enable-cache: true
-          cache-dependency-glob: scripts/pyproject.toml
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
       # This step runs only on the trusted default branch, never untrusted PR code.
       # Create a short-lived installation token for metadata reads. The App only
       # needs Metadata: Read and should be installed on this repository.
       - name: Create organization-owned GitHub App token
         id: app-token
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@v3.2.0
         with:
           client-id: ${{ secrets.REMADE_GH_APP_CLIENT_ID }}
           private-key: ${{ secrets.REMADE_GH_APP_PRIVATE_KEY }}

@@ -18,14 +18,18 @@ jobs:
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
+          version: '0.13.0'
+          working-directory: scripts
           python-version: '3.14'
           enable-cache: true
-          cache-dependency-glob: scripts/pyproject.toml
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
       - name: Generate explicit URL list from catalog files
         id: url_list
         env:
@@ -43,7 +47,7 @@ jobs:
           else
             echo 'has_urls=false' >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6.1.0
         if: steps.url_list.outputs.has_urls == 'true'
         with:
           path: .lycheecache
@@ -53,18 +57,18 @@ jobs:
       - name: Check changed URLs (full catalog weekly)
         timeout-minutes: 10
         if: steps.url_list.outputs.has_urls == 'true'
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@v2.9.0
         with:
           output: lychee/catalog-report.md
           args: --config lychee.toml --cache --verbose --no-progress .generated/catalog-urls.txt
           fail: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@v6.1.0
         if: hashFiles('pnpm-lock.yaml') != ''
         with:
           run_install: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.1.0
         if: hashFiles('pnpm-lock.yaml') != ''
         with:
           node-version: '22'
@@ -78,7 +82,7 @@ jobs:
       - name: Check generated HTML and internal links
         timeout-minutes: 10
         if: hashFiles('pnpm-lock.yaml') != ''
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@v2.9.0
         with:
           output: lychee/site-report.md
           args: --config lychee.toml --cache --verbose --no-progress --root-dir dist './dist/**/*.html'
@@ -87,7 +91,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Save link-check reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: dead-link-reports
           path: lychee/*-report.md

@@ -6,7 +6,7 @@ For GitHub Issue Forms, create the labels `catalog-suggestion` and `project-requ
 
 ## PR checks
 
-Python-based checks run automatically through **uv** using the pinned Python requirements. Contributors are not asked to run local commands.
+Python-based checks run automatically through **uv** using the pinned Python requirements. The setup action uses uv 0.13.0, works in `scripts/`, and keys its cache from both `pyproject.toml` and `uv.lock`. JavaScript actions use Node 24 runtimes, independently of the frontend Node version selected by each workflow. Contributors are not asked to run local commands.
 
 Python tests use pytest, with temporary catalog fixtures, parametrized validation cases, and mocked HTTP calls. Run them locally with `uv run --project scripts pytest scripts/tests -v`; pytest discovers only `scripts/tests/` using the configuration in `scripts/pyproject.toml`.
 

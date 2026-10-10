@@ -17,15 +17,18 @@ jobs:
     if: contains(github.event.issue.labels.*.name, 'catalog-suggestion') || contains(github.event.issue.labels.*.name, 'project-request')
     runs-on: ubuntu-latest
     steps:
-      # Checkout the trusted default branch. Never checkout contributor-supplied code.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
+          version: '0.13.0'
+          working-directory: scripts
           python-version: '3.14'
           enable-cache: true
-          cache-dependency-glob: scripts/pyproject.toml
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
       - name: Analyze submission and collect safe URLs
         id: prepare
         env:
@@ -39,7 +42,7 @@ jobs:
       - name: Check submitted links with Lychee
         if: steps.prepare.outputs.has_urls == 'true'
         id: lychee
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@v2.9.0
         with:
           args: --config lychee.toml --exclude-all-private --no-progress .generated/submission-urls.txt
           fail: false
