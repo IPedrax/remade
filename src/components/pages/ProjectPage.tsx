@@ -97,7 +97,7 @@ export default function ProjectPage({ project, catalog, metadata }: Props) {
 			{tools.length > 0 && (
 				<section>
 					<h2>Supporting tools</h2>
-					<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{tools.map((entry) => (
 							<EntryCard
 								entry={entry}
@@ -112,7 +112,7 @@ export default function ProjectPage({ project, catalog, metadata }: Props) {
 			{related.length > 0 && (
 				<section>
 					<h2>More implementations of {original.name}</h2>
-					<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{related.map((entry) => (
 							<EntryCard
 								entry={entry}

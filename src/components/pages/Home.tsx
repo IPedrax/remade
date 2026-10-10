@@ -40,14 +40,14 @@ export default function Home({ catalog, metadata }: Props) {
 					<span className="text-sm text-[#B2BEC9]">Selected by Remade</span>
 				</div>
 				{featured.length ? (
-					<div className="grid grid-cols-1 gap-[18px] min-[900px]:grid-cols-[1.1fr_1fr] [&>article]:border-t-3 [&>article]:border-t-lime [&>article]:bg-panel [&>article]:p-6 sm:[&>article]:p-9 [&>article_h3]:text-[2rem]">
+					<div className="grid grid-cols-1 gap-[18px] max-[599px]:auto-rows-fr min-[900px]:grid-cols-[1.1fr_1fr] min-[900px]:[&>article]:h-full min-[900px]:[&>article]:border-t-3 min-[900px]:[&>article]:border-t-lime min-[900px]:[&>article]:bg-panel min-[900px]:[&>article]:p-9 min-[900px]:[&>article_h3]:text-[2rem]">
 						<EntryCard
 							entry={featured[0]}
 							key={featured[0].slug}
 							metadata={metadataFor(featured[0], metadata)}
 							originals={catalog.originals}
 						/>
-						<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2">
+						<div className="contents auto-rows-fr gap-[18px] min-[600px]:grid min-[600px]:grid-cols-2">
 							{featured.slice(1).map((entry) => (
 								<EntryCard
 									entry={entry}
@@ -72,7 +72,7 @@ export default function Home({ catalog, metadata }: Props) {
 						Explore all →
 					</a>
 				</div>
-				<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+				<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 					{categories.map((category) => (
 						<a
 							className="flex justify-between gap-3 rounded-lg border border-line p-5 hover:border-lime/50"
@@ -102,7 +102,7 @@ export default function Home({ catalog, metadata }: Props) {
 						View all →
 					</a>
 				</div>
-				<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+				<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 					{recent(catalog.entries)
 						.slice(0, 6)
 						.map((entry) => (
@@ -135,7 +135,7 @@ export default function Home({ catalog, metadata }: Props) {
 					</a>
 				</div>
 				{catalog.requests.length ? (
-					<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{catalog.requests.slice(0, 3).map((request) => (
 							<RequestCard
 								key={request.original}

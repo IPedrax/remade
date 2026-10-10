@@ -37,13 +37,14 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 - Max content width approximately 1100–1200px; reading sections narrower.
 - Responsive project cards: 1 column small screens, 2 on tablets, 3 on desktop.
 - Usable down to 320px width; cards should not truncate vital project names.
+- Keep card rows equal in height, allowing enough room for six description lines when needed even when headings or author links wrap. Show descriptions in full when they fit the available space; truncate only at the card boundary and show a subtle “Read more…” link only for overflowing descriptions. Preserve full project names and keep author links or suggested names at the bottom.
 
 ## Home page sections (ordered)
 
 1. Header: logo, Explore, GitHub, Submit.
 2. Hero: `Everything can be remade.` and one supporting sentence.
 3. Compact dark search field with a magnifying glass and bordered keyboard shortcut badge.
-4. **Featured**: one large editorial highlight plus smaller selected cards; if fewer entries exist, adapt gracefully instead of duplicating content. Supporting tools may be featured with a visible **Tool** label and remain separate from reimplementation counts.
+4. **Featured**: one large editorial highlight plus smaller selected cards on desktop. On mobile, show equal-size cards stacked in featured order, with the first entry on top. If fewer entries exist, adapt gracefully instead of duplicating content. Supporting tools may be featured with a visible **Tool** label and remain separate from reimplementation counts.
 5. Browse by category: clear icon labels, counts when known.
 6. Recently added: reviewed latest additions; no invented dates.
 7. **Project Requests**: place **“Step up to the plate?”** in smaller text after the introductory description; unfulfilled targets, concise contextual descriptions, link to requests index and PR contribution instructions. Show an intentional empty state when no requests exist.

@@ -45,7 +45,7 @@ export default function ToolPage({ tool, catalog, metadata }: Props) {
 					This tool adds functionality to these projects. Tools do not count as
 					reimplementations or fulfill requests.
 				</p>
-				<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+				<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 					{catalog.entries
 						.filter(
 							(e) => e.kind === "project" && tool.projects.includes(e.slug),

@@ -260,7 +260,7 @@ export default function Explore({ catalog, metadata }: Props) {
 					</span>
 				</label>
 			</div>
-			<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+			<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 				{entries.map((entry) => (
 					<EntryCard
 						entry={entry}

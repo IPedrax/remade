@@ -60,6 +60,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 	</body>
 </html>
 <script>
+import "../scripts/card-descriptions";
 document.addEventListener("keydown", (event) => {
 	if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
 		const search = document.querySelector<HTMLInputElement>("#site-search");

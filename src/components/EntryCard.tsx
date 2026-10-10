@@ -9,6 +9,7 @@ import {
 } from "../lib/presentation";
 import type { Original } from "../lib/schemas";
 import Authors from "./Authors";
+import CardDescription from "./CardDescription";
 
 interface Props {
 	entry: Entry;
@@ -21,8 +22,8 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 			? originals.find((o) => o.slug === entry.original)
 			: undefined;
 	return (
-		<article className="relative isolate flex min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 focus-within:border-lime sm:p-[26px]">
-			<div className="mb-3.5 flex flex-wrap gap-2">
+		<article className="relative isolate flex h-full min-h-[360px] min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 focus-within:border-lime sm:p-[26px]">
+			<div className="mb-3.5 flex shrink-0 flex-wrap gap-2">
 				<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
 					{entry.kind === "tool" ? "Tool" : label(entry.status)}
 				</span>
@@ -41,7 +42,7 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 					</a>
 				)}
 			</div>
-			<h3>
+			<h3 className="shrink-0">
 				<a
 					className="after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-lime"
 					href={entryUrl(entry)}
@@ -49,7 +50,7 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 					{entry.name} ↗
 				</a>
 			</h3>
-			<p className="mb-3.5 text-xs">
+			<p className="mb-3.5 shrink-0 text-xs">
 				{original ? (
 					<>
 						Reimplements{" "}
@@ -64,7 +65,11 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 					"Adds on to indexed projects"
 				)}
 			</p>
-			<p>{entry.description}</p>
+			<CardDescription
+				href={entryUrl(entry)}
+				label={`Read more about ${entry.name}`}
+				text={entry.description}
+			/>
 			<Authors authors={entry.authors} />
 		</article>
 	);

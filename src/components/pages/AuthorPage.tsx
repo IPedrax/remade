@@ -39,7 +39,7 @@ export default function AuthorPage({ user, catalog, metadata }: Props) {
 								{kind === "tool" ? "Supporting tools" : "Reimplementations"}{" "}
 								<span className="text-lime">{group.length}</span>
 							</h2>
-							<div className="grid grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+							<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 								{group.map((entry) => (
 									<EntryCard
 										entry={entry}
