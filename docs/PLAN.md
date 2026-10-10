@@ -19,7 +19,6 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 | `/software/[slug]` | Original software overview, official reference, all indexed reimplementations |
 | `/projects/[slug]` | Implementation detail, coverage/limitations, GitHub stats, link to repo |
 | `/authors/[github-user]` | Author identity and all attributed indexed projects and tools, including entries not featured |
-| `/about` | Mission and contribution model; links to GitHub and POLICY.md |
 | `/requests` | Requested reimplementations with no currently indexed matching project |
 | `/disclaimer` | Independently developed projects, qualified legal history, contact |
 | `/404` | Custom not-found state and search/explore navigation |
@@ -62,7 +61,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 
 ## 4. Implementation tooling
 
-Use **pnpm** exclusively for Astro/TypeScript dependencies and scripts (`pnpm-lock.yaml` must be committed). Keep the site statically generated; build-time GitHub cache ingestion is distinct from content submitted by PR. See `AGENTS.md` for coding rules.
+Use **Astro + React + strict TypeScript + Tailwind CSS**, with React UI components rendered statically unless explicitly hydrated for interaction. Use **pnpm** exclusively for frontend dependencies and scripts (`pnpm-lock.yaml` must be committed). Keep the site statically generated; build-time GitHub cache ingestion is distinct from content submitted by PR. See `AGENTS.md` for coding rules.
 
 ## 5. Explicit non-goals for launch
 

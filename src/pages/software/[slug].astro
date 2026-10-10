@@ -1,0 +1,18 @@
+---
+import SoftwarePage from "../../components/pages/SoftwarePage";
+import Layout from "../../layouts/Layout.astro";
+import { loadCatalog, loadMetadata } from "../../lib/catalog";
+export async function getStaticPaths() {
+	const catalog = await loadCatalog();
+	return catalog.originals.map((original) => ({
+		params: { slug: original.slug },
+		props: { original, catalog },
+	}));
+}
+const { original, catalog } = Astro.props;
+const metadata = await loadMetadata();
+---
+
+<Layout index title={original.name}>
+	<SoftwarePage catalog={catalog} metadata={metadata} original={original} />
+</Layout>

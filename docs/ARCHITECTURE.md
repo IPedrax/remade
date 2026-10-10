@@ -48,7 +48,7 @@ The trusted daily metadata job fetches data using a **short-lived organization-o
 
 **Do not** request actual stars in the visitor's browser: that would consume shared anonymous limits and make server-rendered sorting unstable.
 
-## Build stages (future Astro application)
+## Static build stages
 
 1. Load and validate original records, projects, supporting tools, requests, and `featured.yaml`. Tools are a separate collection joined to existing project slugs; they do not count as implementations or fulfill requests. Featured selections may include tools labeled Tool.
 2. Join each project with one canonical original by slug.
@@ -82,7 +82,7 @@ The trusted daily metadata job fetches data using a **short-lived organization-o
 
 ## Dependencies
 
-Astro, TypeScript, Tailwind CSS, Pagefind, Python 3 with uv-managed PyYAML for catalog validation and metadata scripts, and Lychee in CI. Do not add a client framework solely for static cards; use minimal hydrated islands only for truly interactive elements.
+Astro, React, strict TypeScript, Tailwind CSS, Valibot, Pagefind, Python 3 with uv-managed PyYAML for catalog validation and metadata scripts, and Lychee in CI. React components provide the shared UI and page content; Astro handles static routes, document metadata, and build-time catalog loading. Tailwind utility classes style the UI, with global CSS limited to theme tokens and base defaults. With the Astro React integration, React components render to HTML at build time by default and send no React runtime to visitors. A `client:*` directive opts a component into browser hydration; use hydration only for interactions that need it, with focused components and a working static browsing baseline. See [Astro’s framework component documentation](https://docs.astro.build/en/guides/framework-components/).
 
 Reference: https://docs.github.com/en/graphql/overview/rate-limits-and-query-limits-for-the-graphql-api
 

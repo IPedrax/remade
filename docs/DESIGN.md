@@ -26,6 +26,10 @@ A modern reference library for developers: precise, understated, inviting. Inspi
 
 Implement focus and hover states, ensure accessible contrast, and make the interface usable without relying on color alone. Reserve lime for interactive emphasis and the icon.
 
+## UI implementation
+
+Use React components for the UI and Tailwind utility classes for layout, spacing, typography, responsive behavior, and component states. Keep global CSS to theme tokens and base defaults. Astro owns static routes and document metadata. Hydrate React only for browser interactions; static React components do not send a React runtime to visitors. Format source with Biome.
+
 ## Typography and layout
 
 - Use a clean modern sans-serif, preferably system font initially; if a webfont is added, self-host and subset it.
@@ -38,15 +42,16 @@ Implement focus and hover states, ensure accessible contrast, and make the inter
 
 1. Header: logo, Explore, GitHub, Submit.
 2. Hero: `Everything can be remade.` and one supporting sentence.
-3. Prominent search with keyboard shortcut.
+3. Compact dark search field with a magnifying glass and bordered keyboard shortcut badge.
 4. **Featured**: one large editorial highlight plus smaller selected cards; if fewer entries exist, adapt gracefully instead of duplicating content. Supporting tools may be featured with a visible **Tool** label and remain separate from reimplementation counts.
 5. Browse by category: clear icon labels, counts when known.
 6. Recently added: reviewed latest additions; no invented dates.
-7. **Project Requests**: unfulfilled targets, concise contextual descriptions, link to requests index and PR contribution instructions. Show an intentional empty state when no requests exist.
+7. **Project Requests**: place **“Step up to the plate?”** in smaller text after the introductory description; unfulfilled targets, concise contextual descriptions, link to requests index and PR contribution instructions. Show an intentional empty state when no requests exist.
 8. Footer: brand/tagline + GitHub, Submit, and **Disclaimer** links. **Do not display `admin@remade.wiki` in footer.**
 
 ## Project Requests page
 
+- Order requests newest first by their catalog addition dates in Git, on both the homepage and requests index. Unknown dates come last; ties use the original slug.
 - Heading: **Project Requests**
 - Explain that these are community wishes, *not active or approved implementation projects*.
 - Cards show target, category, description of what should be reproduced, and reference link.
@@ -57,7 +62,7 @@ Implement focus and hover states, ensure accessible contrast, and make the inter
 ## Explore page
 
 - Search across original software name, project name, description, languages.
-- Category and language filters, compatibility target, development status, platform if known.
+- Compact category, language, and platform filters beneath the search field; expandable additional filters for compatibility and development status. Filters apply immediately. Keep sorting beside the result count.
 - Sorting: recent, alphabetical, stars. `stars: null` sorts after known counts.
 - Cards expose original → implementation relationship at a glance.
 - Empty state proposes clearing filters or contributing a new project.
@@ -87,3 +92,5 @@ Implement focus and hover states, ensure accessible contrast, and make the inter
 - Accessible search input labels and live region for filter result counts.
 - Reduced-motion support; meaningful icon labels or `aria-hidden` for decoration.
 - Decorative branding icon may be empty-alt alongside explicit wordmark.
+- Keep each author handle and arrow together on one line; move the complete handle to the next line when needed.
+- Disclaimer citations use numbered references and a Sources section; external source links open in a new tab.

@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+
+interface Props {
+	title: string;
+	description?: string;
+	index?: boolean;
+}
+const {
+	title,
+	description = "Discover independently developed software reimplementations. Everything can be remade.",
+	index = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width" name="viewport">
+		<title>
+			{title === "Remade"
+				? "Remade — Everything can be remade."
+				: `${title} · Remade`}
+		</title>
+		<meta content={description} name="description">
+		<link href={canonical} rel="canonical">
+		<link href="/favicon.svg" rel="icon" type="image/svg+xml">
+		<link href="/favicon.ico" rel="icon">
+		<link href="/apple-touch-icon.png" rel="apple-touch-icon">
+		<meta content={title} property="og:title">
+		<meta content={description} property="og:description">
+		<meta content="website" property="og:type">
+		<meta content={canonical} property="og:url">
+		<meta
+			content={new URL("/web-app-manifest-512x512.png", Astro.site)}
+			property="og:image"
+		>
+		<meta content="#15191F" name="theme-color">
+	</head>
+	<body>
+		<a
+			class="absolute -top-24 left-4 z-10 bg-lime p-3 text-canvas focus:top-3"
+			href="#main"
+			>Skip to content</a
+		>
+		<Header pathname={Astro.url.pathname} />
+		<main
+			class="mx-auto min-h-[65vh] max-w-[1180px] px-[18px] pb-[72px] sm:px-6"
+			data-pagefind-body={index ? "" : undefined}
+			data-pagefind-ignore={!index ? "" : undefined}
+			id="main"
+		>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+<script>
+document.addEventListener("keydown", (event) => {
+	if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+		const search = document.querySelector<HTMLInputElement>("#site-search");
+		if (search) {
+			event.preventDefault();
+			search.focus();
+		}
+	}
+});
+</script>

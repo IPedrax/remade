@@ -14,7 +14,7 @@ This file is the fast-start guide for coding agents and human contributors. Read
 - **Home:** Hero → search → Featured → categories → recent entries → **Project Requests** → footer.
 - **Editorial/legal:** `POLICY.md` is authoritative on eligibility. `/disclaimer` uses `content/DISCLAIMER.md`; footer links to `/disclaimer` but must **not** display `admin@remade.wiki`. The email belongs on the disclaimer page only.
 
-This archive is a **planning and contributor-infrastructure starter**, not yet a runnable Astro application. Add an Astro app as part of implementation; do not claim one already exists.
+This repository includes a runnable static Astro application. Run `pnpm dev` for development and `pnpm build` to generate the site and Pagefind index. Catalog validation uses strict Valibot schemas in the TypeScript loaders and the existing Python checks.
 
 ## Source of truth / reading order
 
@@ -29,9 +29,9 @@ When requirements conflict, make the inconsistency explicit and update the relev
 
 ## Engineering rules
 
-- **Astro + strict TypeScript + Tailwind**, statically generated pages. Use Pagefind for static search and the generated catalog for local filtering/sorting.
+- **Astro + React + strict TypeScript + Tailwind**, statically generated pages. Use Pagefind for static search and the generated catalog for local filtering/sorting.
 - **pnpm only** for JavaScript dependencies and scripts. Commit `pnpm-lock.yaml` and specify an exact `packageManager` in `package.json`. Do not introduce npm or Yarn lockfiles, npm commands, or deployment-specific setup.
-- Keep JavaScript optional for core browsing; use Astro components by default and small client-side scripts for search enhancements. Avoid React/islands unless the behavior justifies them.
+- Keep JavaScript optional for core browsing. Astro and React components are both suitable for static UI: React components render to static HTML by default in Astro, without sending the React runtime to the browser. Use React for shared UI and page content, with Tailwind utility classes for styling. Keep Astro for document layouts, static routing, and build-time data loading; add `client:*` hydration only when browser interaction requires it, and keep hydrated components focused.
 - Implement single-purpose modules and components. Prefer explicit types, schema validation, predictable pure functions, and readable naming over clever abstractions. Avoid `any`, hidden global state, and premature plugins.
 - No live visitor requests to GitHub, runtime database, user accounts, or custom CMS. Approved **pull requests**, not issues or labels, are the publishing workflow: **merge = publish; close = decline**.
 - Keep catalog data separate from computed metadata. Community files under `src/content/catalog/` are source of truth. `cache/github-metadata.json` is a replaceable best-effort cache, refreshed approximately every 24 hours by trusted CI.

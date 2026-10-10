@@ -1,0 +1,11 @@
+---
+import RequestsPage from "../components/pages/RequestsPage";
+import Layout from "../layouts/Layout.astro";
+import { loadCatalog } from "../lib/catalog";
+
+const catalog = await loadCatalog();
+---
+
+<Layout title="Project Requests">
+	<RequestsPage catalog={catalog} />
+</Layout>

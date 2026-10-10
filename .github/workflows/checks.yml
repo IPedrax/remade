@@ -29,3 +29,20 @@ jobs:
         run: uv run --project scripts python scripts/check_pr_policy.py
       - name: Run catalog validation tests
         run: uv run --project scripts python -m unittest discover -s scripts/tests -v
+
+  frontend:
+    name: Static website
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm test
+      - run: pnpm build

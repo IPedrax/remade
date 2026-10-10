@@ -1,0 +1,18 @@
+---
+import ToolPage from "../../components/pages/ToolPage";
+import Layout from "../../layouts/Layout.astro";
+import { loadCatalog, loadMetadata } from "../../lib/catalog";
+export async function getStaticPaths() {
+	const catalog = await loadCatalog();
+	return catalog.tools.map((tool) => ({
+		params: { slug: tool.slug },
+		props: { tool, catalog },
+	}));
+}
+const { tool, catalog } = Astro.props;
+const metadata = await loadMetadata();
+---
+
+<Layout description={tool.description} index title={tool.name}>
+	<ToolPage catalog={catalog} metadata={metadata} tool={tool} />
+</Layout>

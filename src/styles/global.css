@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import "@fontsource-variable/open-sans";
+@theme {
+	--font-sans: "Open Sans Variable", ui-sans-serif, system-ui, sans-serif;
+	--color-lime: #c4f477;
+	--color-lime-light: #d5fa9c;
+	--color-canvas: #15191f;
+	--color-deep: #111419;
+	--color-surface: #1b2129;
+	--color-panel: #232b34;
+	--color-line: #3a444f;
+	--color-ink: #f7f9fa;
+	--color-muted: #b2bec9;
+}
+@layer base {
+	:root {
+		color-scheme: dark;
+	}
+	body {
+		@apply m-0 bg-canvas font-sans leading-relaxed text-ink;
+	}
+	a {
+		@apply hover:text-lime;
+	}
+	:focus-visible {
+		@apply outline-2 outline-offset-4 outline-lime;
+	}
+	h1 {
+		@apply mb-6 text-[clamp(2.3rem,5vw,3.5rem)] leading-[1.08] font-bold tracking-[-0.055em];
+	}
+	h2 {
+		@apply mb-6 text-[1.7rem] leading-snug font-semibold tracking-tight;
+	}
+	h3 {
+		@apply mb-3 text-[1.3rem] font-semibold tracking-tight;
+	}
+	p {
+		@apply mb-4 text-muted;
+	}
+	section {
+		@apply mt-16;
+	}
+	dt {
+		@apply text-xs text-muted;
+	}
+	dd {
+		@apply mt-1;
+	}
+	input,
+	select {
+		@apply max-w-full rounded-lg border border-line bg-deep px-4 py-3 text-ink;
+	}
+	select,
+	button {
+		@apply cursor-pointer;
+	}
+	label {
+		@apply block text-sm text-muted;
+	}
+	label input,
+	label select {
+		@apply mt-1.5 w-full;
+	}
+}

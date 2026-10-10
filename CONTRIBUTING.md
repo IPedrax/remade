@@ -38,7 +38,7 @@ Requests may also include optional `suggested_names`, such as `[MusicCraft]`. Th
 
 ## Credit authors
 
-Projects and tools may include `authors: [github-handle]` directly in their YAML. Use lowercase GitHub user or organization handles; no separate author file is needed. Credit documented authors explicitly; repository ownership or dependency relationships do not establish authorship. Multiple authors are supported. These handles drive the planned `/authors/<github-handle>` pages and **View More by Author** links without changing featured selections.
+Projects and tools may include `authors: [github-handle]` directly in their YAML. Use lowercase GitHub user or organization handles; no separate author file is needed. Credit documented authors explicitly; repository ownership or dependency relationships do not establish authorship. Multiple authors are supported. These handles drive the static `/authors/<github-handle>` pages and **View More by Author** links without changing featured selections.
 
 ## Correct an entry
 
