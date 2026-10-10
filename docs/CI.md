@@ -27,7 +27,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 ## Scheduled checks
 
 - `links.yml` weekly full catalog audit; a failed run is a maintenance alert, not a public deletion.
-- `stats.yml` daily GraphQL metadata refresh on trusted default branch (manual dispatch supported). It uses an **organization-owned GitHub App installation token** for GraphQL reads and the built-in `GITHUB_TOKEN` only for writing the metadata snapshot. Updates cached JSON if some repositories succeed, preserving older records for failed lookups.
+- `stats.yml` daily GraphQL metadata refresh on trusted default branch (manual dispatch supported). It uses an **organization-owned GitHub App installation token** for GraphQL reads and pushes of the metadata snapshot. Updates cached JSON if some repositories succeed, preserving older records for failed lookups.
 - Pushes to `main` that change project or tool YAML also trigger metadata collection. This mode compares GitHub repository identities with the catalog at the push's previous commit and queries only newly introduced repositories. Existing repositories, renamed entries, original records and request files do not cause additional API queries. When none are new, token creation and cache writes are skipped. Scheduled and manual runs continue to refresh the full catalog; App secrets are never used on pull requests.
 
 ## GraphQL behavior
@@ -35,15 +35,16 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 - The GitHub App installation has a **5,000 GraphQL point/hour/installation** baseline on GitHub.com for non-Enterprise organizations (potentially higher with scaling); a point is not a repository. Limits and per-field access may change.
 - The built-in `GITHUB_TOKEN` is **not tied to a personal account** and could also fetch metadata, with a typical limit of **1,000 GraphQL points/hour/repository**. Use the App when the independent installation budget/identity is desired.
 - Repository settings required for the trusted daily job:
-  - Create a GitHub App owned by the Remade organization, with **Metadata: Read** only, and install it on the catalog repository.
+  - Create a GitHub App owned by the Remade organization, with **Metadata: Read** and **Contents: Write**, and install it on the catalog repository. Approve the updated installation permissions if the App already exists.
+  - Add the App to the bypass list for every ruleset protecting `main`, using **Always** bypass so direct cache pushes are permitted. For classic branch protection, allow the App to bypass the required pull request rule and any applicable push restrictions.
   - Set repository Actions secret `REMADE_GH_APP_CLIENT_ID` (App's Client ID).
   - Set Actions secret `REMADE_GH_APP_PRIVATE_KEY` (PEM contents), available only to the trusted repository/workflow; do not expose it to forked PRs, build logs, or the client bundle.
-  - Use `actions/create-github-app-token@v3` to mint a one-hour installation token; the script reads `GH_METADATA_TOKEN`. This is separate from the built-in `GITHUB_TOKEN` used to commit `cache/github-metadata.json`.
+  - Use `actions/create-github-app-token@v3` to mint a one-hour installation token; the script reads `GH_METADATA_TOKEN`. The workflow requests Contents: Write on this token and configures checkout with it before pushing `cache/github-metadata.json`. The built-in `GITHUB_TOKEN` only needs Contents: Read.
   - Test a public third-party repository in GraphQL: installation tokens may restrict certain nested fields for repositories **outside** the installation; if GitHub returns `Resource not accessible by integration`, simplify the query fields or use the built-in `GITHUB_TOKEN` for this read-only metadata job.
 - Batched alias query at 25 repositories/request (configurable). Monitor reported cost and remaining points; avoid burst concurrency.
 - A 24-hour refresh is **best effort**; the UI must show: **GitHub statistics are refreshed approximately every 24 hours.** If a cached record is older, its exact last-successful timestamp must remain discoverable.
 - Metadata cache is not an eligibility source. GitHub API failures never remove listings.
-- The scheduled workflow commits `cache/github-metadata.json` with the built-in `GITHUB_TOKEN`, **not** the App token, so the App needs no write permission. Such commits do not normally trigger a separate push-triggered GitHub Actions workflow; the future site refresh must be explicitly integrated. Hosting setup is outside this package.
+- The workflow pushes `cache/github-metadata.json` using the App installation token. App-authenticated pushes can trigger downstream push workflows. The metadata workflow only listens for project/tool YAML changes, so its cache-only commits do not start another metadata refresh. Hosting setup is outside this package.
 
 ## Link checking
 

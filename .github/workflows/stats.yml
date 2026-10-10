@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # built-in GITHUB_TOKEN pushes the cache, not the GitHub App
+  contents: read # the GitHub App token pushes the cache
 
 concurrency:
   group: remade-metadata
@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: astral-sh/setup-uv@v10.2.0
         with:
           version: '0.13.0'
@@ -52,8 +53,8 @@ jobs:
             echo 'has_repositories=false' >> "$GITHUB_OUTPUT"
           fi
       # This step runs only on the trusted default branch, never untrusted PR code.
-      # Create a short-lived installation token for metadata reads. The App only
-      # needs Metadata: Read and should be installed on this repository.
+      # The App needs Metadata: Read, Contents: Write, and permission to bypass
+      # the rules protecting main. Keep its installation scoped to this repository.
       - name: Create organization-owned GitHub App token
         if: steps.repositories.outputs.has_repositories == 'true'
         id: app-token
@@ -61,6 +62,15 @@ jobs:
         with:
           client-id: ${{ secrets.REMADE_GH_APP_CLIENT_ID }}
           private-key: ${{ secrets.REMADE_GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+      - name: Authenticate cache pushes as the GitHub App
+        if: steps.repositories.outputs.has_repositories == 'true'
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          clean: false
+          token: ${{ steps.app-token.outputs.token }}
       - name: Refresh cached repository statistics using GraphQL aliases
         if: steps.repositories.outputs.has_repositories == 'true'
         env:
@@ -81,11 +91,9 @@ jobs:
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add cache/github-metadata.json
             git commit -m 'chore: refresh cached GitHub project statistics'
-            git push
+            git push origin HEAD:main
           else
             echo 'Metadata snapshot unchanged'
           fi
-      # This package deliberately excludes hosting/deployment configuration.
-      # Commits made with the built-in GITHUB_TOKEN do not normally trigger new
-      # GitHub Actions push workflows. Any downstream site refresh needs an
-      # explicit trigger when the Astro application is implemented.
+      # App-authenticated cache pushes can trigger downstream push workflows.
+      # This workflow's paths exclude the cache, preventing a refresh loop.
