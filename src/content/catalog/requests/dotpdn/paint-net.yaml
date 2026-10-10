@@ -1,0 +1,5 @@
+original: paint-net
+reason: Reproduce Paint.NET's approachable image editor, including layers, selections, drawing tools, effects, adjustments and undo history, with compatible handling of existing PDN documents.
+suggested_names:
+- DoodleCraft
+- PaintCraft

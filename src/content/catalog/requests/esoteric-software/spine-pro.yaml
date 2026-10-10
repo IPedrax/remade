@@ -1,0 +1,3 @@
+original: spine-pro
+reason: Reproduce Spine Professional's 2D skeletal animation workflow, including bone rigging, mesh deformation, constraints, timelines and compatible animation exports for game-engine integration.
+suggested_names: [BoneCraft]

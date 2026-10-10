@@ -1,0 +1,4 @@
+original: cheat-engine
+reason: Reproduce Cheat Engine's memory scanning, value editing, pointer searches, debugging and Lua automation for authorized local development and modding, with compatible cheat-table workflows and a clean installer.
+suggested_names:
+- MemoryCraft

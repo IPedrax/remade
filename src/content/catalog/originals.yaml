@@ -354,3 +354,92 @@
   name: Massive X
   url: https://www.native-instruments.com/products/massive-x
   category: creative
+- slug: character-creator
+  name: Reallusion Character Creator
+  url: https://www.reallusion.com/character-creator/
+  category: creative
+  aliases: [Character Creator]
+- slug: spine-pro
+  name: Spine Pro
+  url: https://esotericsoftware.com/spine-purchase
+  category: creative
+  aliases: [Spine Professional]
+- slug: microsoft-project
+  name: Microsoft Project
+  url: https://www.microsoft.com/en-us/microsoft-365/planner/project-plan-3
+  category: productivity
+- slug: microsoft-publisher
+  name: Microsoft Publisher
+  url: https://support.microsoft.com/en-us/publisher/publisher-help
+  category: creative
+- slug: helicon-focus
+  name: Helicon Focus
+  url: https://www.heliconsoft.com/heliconsoft-products/helicon-focus/
+  category: creative
+- slug: zerene-stacker
+  name: Zerene Stacker
+  url: https://zerenesystems.com/cms/stacker
+  category: creative
+- slug: bluebeam-revu
+  name: Bluebeam Revu
+  url: https://www.bluebeam.com/us/products/revu/
+  category: engineering
+- slug: pdf-xchange-editor
+  name: PDF-XChange Editor
+  url: https://www.pdf-xchange.com/product/pdf-xchange-editor
+  category: productivity
+- slug: autodesk-alias-autostudio
+  name: Autodesk Alias AutoStudio
+  url: https://www.autodesk.com/products/alias-products/overview
+  category: engineering
+- slug: wolfram-mathematica
+  name: Wolfram Mathematica
+  url: https://www.wolfram.com/mathematica/
+  category: engineering
+- slug: cascadeur
+  name: Cascadeur
+  url: https://cascadeur.com/
+  category: creative
+- slug: 3dcoat
+  name: 3DCoat
+  url: https://3dcoat.com/features/home-page-3dcoat/
+  category: creative
+  aliases:
+  - 3D Coat
+  - 3D-Coat
+- slug: acdsee
+  name: ACDSee Photo Studio
+  url: https://www.acdsee.com/en/photo-editing-software/
+  category: creative
+  aliases:
+  - ACDSee
+- slug: autodesk-meshmixer
+  name: Autodesk Meshmixer
+  url: https://www.research.autodesk.com/projects/meshmixer/
+  category: engineering
+- slug: autodesk-123d-make
+  name: Autodesk 123D Make
+  url: https://www.autodesk.com/solutions/123d-apps
+  category: engineering
+- slug: cheat-engine
+  name: Cheat Engine
+  url: https://cheatengine.org/aboutce.php
+  category: developer-tools
+- slug: autopano-giga
+  name: Autopano Giga
+  url: https://www.dl-c.com/Documents/AutoPano.pdf
+  category: creative
+- slug: paint-net
+  name: Paint.NET
+  url: https://www.getpaint.net/
+  category: creative
+- slug: logic-pro
+  name: Logic Pro
+  url: https://www.apple.com/logic-pro/
+  category: creative
+  aliases: [Logic Pro X, Apple Logic Pro]
+- slug: adobe-character-animator
+  name: Adobe Character Animator
+  url: https://helpx.adobe.com/adobe-character-animator/desktop.html
+  category: creative
+  aliases: [Character Animator]
