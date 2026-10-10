@@ -1,5 +1,7 @@
 # Lychee, used for catalog URLs / docs and generated Astro HTML.
 cache = true
+# Treat forbidden responses as non-blocking; other HTTP errors still fail.
+accept = ["200..=299", "403"]
 max_cache_age = "1d"
 max_retries = 2
 retry_wait_time = 2

@@ -50,7 +50,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 - PR check checks changed catalog files only to avoid blocking unrelated PRs on old broken links.
 - Weekly check checks all catalog links.
 - Once `dist/` exists, Lychee checks generated pages and internal links after the Astro build.
-- Treat 403/429 as an investigation item before exclusion. `.lycheeignore` is for documented, temporary exceptions, not a blanket bypass.
+- Lychee accepts HTTP 403 responses globally to avoid blocking CI on forbidden responses. HTTP 429 rate limits and other errors still fail. `.lycheeignore` is for documented, temporary exceptions.
 
 ## Security
 
