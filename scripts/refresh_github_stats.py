@@ -3,6 +3,8 @@
 import datetime as dt
 import json
 import os
+import re
+import subprocess
 import sys
 import time
 from collections.abc import Iterator
@@ -11,12 +13,39 @@ from typing import Any
 
 import requests
 import typer
+import yaml
 
-from catalog import GH_REPO, ROOT, collect, collect_tools
+from catalog import DuplicateKeySafeLoader, GH_REPO, ROOT, collect, collect_tools
 
 app = typer.Typer(add_completion=False)
 API = 'https://api.github.com/graphql'
 CACHE = ROOT / 'cache/github-metadata.json'
+
+
+def repositories_at_revision(revision: str) -> set[str]:
+    """Read repository identities from a previous catalog without making API calls."""
+    if not re.fullmatch(r'[0-9a-fA-F]{40}|[0-9a-fA-F]{64}', revision):
+        raise typer.BadParameter('The base revision must be a full Git commit SHA')
+    if set(revision) == {'0'}:
+        return set()
+    result = subprocess.run(
+        ['git', 'ls-tree', '-r', '-z', '--name-only', revision, '--',
+         'src/content/catalog/projects/', 'src/content/catalog/tools/'],
+        cwd=ROOT, text=True, capture_output=True, check=True,
+    )
+    repositories = set()
+    for path in result.stdout.split('\0'):
+        if not path.endswith('.yaml'):
+            continue
+        content = subprocess.run(
+            ['git', 'show', f'{revision}:{path}'],
+            cwd=ROOT, text=True, capture_output=True, check=True,
+        )
+        record = yaml.load(content.stdout, Loader=DuplicateKeySafeLoader)
+        if isinstance(record, dict) and isinstance(record.get('repository'), str):
+            if match := GH_REPO.fullmatch(record['repository']):
+                repositories.add(f'{match.group(1)}/{match.group(2)}'.casefold())
+    return repositories
 
 
 def batches[T](items: list[T], size: int) -> Iterator[list[T]]:
@@ -54,11 +83,11 @@ def call_graphql(token: str, query: str) -> dict[str, Any]:
 
 
 @app.command()
-def main(batch_size: int = typer.Option(25, min=1, max=50)) -> None:
-    token = os.getenv('GH_METADATA_TOKEN')
-    if not token:
-        typer.echo('Missing GH_METADATA_TOKEN', err=True)
-        raise typer.Exit(code=1)
+def main(
+    batch_size: int = typer.Option(25, min=1, max=50),
+    added_since: str | None = typer.Option(None, help='Only query GitHub repositories absent from this commit'),
+    list_only: bool = typer.Option(False, help='Print selected repository identities without querying GitHub'),
+) -> None:
     _, projects, _, _, errors = collect()
     if errors:
         for error in errors:
@@ -71,6 +100,21 @@ def main(batch_size: int = typer.Option(25, min=1, max=50)) -> None:
         if match := GH_REPO.fullmatch(project['repository']):
             key = f'{match.group(1)}/{match.group(2)}'.casefold()
             repositories[key] = match.group(1), match.group(2)
+
+    if added_since is not None:
+        previous_repositories = repositories_at_revision(added_since)
+        repositories = {key: value for key, value in repositories.items() if key not in previous_repositories}
+    if list_only:
+        for key in sorted(repositories):
+            typer.echo(key)
+        return
+    if not repositories:
+        typer.echo('No GitHub repositories to refresh')
+        return
+    token = os.getenv('GH_METADATA_TOKEN')
+    if not token:
+        typer.echo('Missing GH_METADATA_TOKEN', err=True)
+        raise typer.Exit(code=1)
 
     current = json.loads(CACHE.read_text(encoding='utf-8')) if CACHE.exists() else {'repositories': {}}
     previous: dict[str, dict] = current.get('repositories', {})

@@ -20,7 +20,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 - `review-submissions.yml` runs when a `catalog-suggestion` or `project-request` issue is opened, edited, reopened, or labeled. `scripts/review_submission.py` validates both.
 - The bot posts **one CI-style issue comment**, updating its existing marked comment on reruns rather than creating a new comment for every edit.
 - Warnings appear at the **top** of that comment, ahead of all successful findings. A nonrecognized Git host receives the exact text: **This does not link to a recognized Git provider. Proceed with caution.**
-- Catalog Suggestions require a repository URL. Project Requests require a reason but permit no links, in which case Lychee is skipped.
+- Catalog Suggestions require a repository URL. Project Request issues require separate software-description and reason fields; the reason should explain what current open-source alternatives lack. Links remain optional, with Lychee skipped when none are supplied.
 - Below the warning: errors, warnings, informational metadata checks, and the Lychee result. Findings are advisory; maintainers decide whether to accept a suggestion.
 - No contributor-supplied repository code runs in this workflow. `issues: write` is needed for the bot comment; it uses the built-in token rather than GitHub App metadata credentials.
 
@@ -28,6 +28,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 
 - `links.yml` weekly full catalog audit; a failed run is a maintenance alert, not a public deletion.
 - `stats.yml` daily GraphQL metadata refresh on trusted default branch (manual dispatch supported). It uses an **organization-owned GitHub App installation token** for GraphQL reads and the built-in `GITHUB_TOKEN` only for writing the metadata snapshot. Updates cached JSON if some repositories succeed, preserving older records for failed lookups.
+- Pushes to `main` that change project or tool YAML also trigger metadata collection. This mode compares GitHub repository identities with the catalog at the push's previous commit and queries only newly introduced repositories. Existing repositories, renamed entries, original records and request files do not cause additional API queries. When none are new, token creation and cache writes are skipped. Scheduled and manual runs continue to refresh the full catalog; App secrets are never used on pull requests.
 
 ## GraphQL behavior
 

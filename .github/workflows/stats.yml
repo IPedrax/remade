@@ -1,6 +1,11 @@
 name: Refresh GitHub metadata
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/catalog/projects/**/*.yaml'
+      - 'src/content/catalog/tools/**/*.yaml'
   schedule:
     - cron: '41 7 * * *' # approximately once a day; scheduling can be delayed
   workflow_dispatch:
@@ -18,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
       - uses: astral-sh/setup-uv@v10.2.0
         with:
           version: '0.13.0'
@@ -27,20 +34,47 @@ jobs:
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
+      - name: Select repositories to refresh
+        id: repositories
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.before }}
+        run: |
+          mkdir -p .generated
+          if [ "$EVENT_NAME" = 'push' ]; then
+            uv run --project scripts python scripts/refresh_github_stats.py --added-since "$BASE_SHA" --list-only > .generated/metadata-repositories.txt
+          else
+            uv run --project scripts python scripts/refresh_github_stats.py --list-only > .generated/metadata-repositories.txt
+          fi
+          if [ -s .generated/metadata-repositories.txt ]; then
+            echo 'has_repositories=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'has_repositories=false' >> "$GITHUB_OUTPUT"
+          fi
       # This step runs only on the trusted default branch, never untrusted PR code.
       # Create a short-lived installation token for metadata reads. The App only
       # needs Metadata: Read and should be installed on this repository.
       - name: Create organization-owned GitHub App token
+        if: steps.repositories.outputs.has_repositories == 'true'
         id: app-token
         uses: actions/create-github-app-token@v3.2.0
         with:
           client-id: ${{ secrets.REMADE_GH_APP_CLIENT_ID }}
           private-key: ${{ secrets.REMADE_GH_APP_PRIVATE_KEY }}
       - name: Refresh cached repository statistics using GraphQL aliases
+        if: steps.repositories.outputs.has_repositories == 'true'
         env:
           GH_METADATA_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: uv run --project scripts python scripts/refresh_github_stats.py --batch-size 25
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.before }}
+        run: |
+          if [ "$EVENT_NAME" = 'push' ]; then
+            uv run --project scripts python scripts/refresh_github_stats.py --batch-size 25 --added-since "$BASE_SHA"
+          else
+            uv run --project scripts python scripts/refresh_github_stats.py --batch-size 25
+          fi
       - name: Persist cache only when changed
+        if: steps.repositories.outputs.has_repositories == 'true'
         run: |
           if ! git diff --quiet -- cache/github-metadata.json; then
             git config user.name 'github-actions[bot]'
