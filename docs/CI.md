@@ -35,8 +35,8 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 - The built-in `GITHUB_TOKEN` is **not tied to a personal account** and could also fetch metadata, with a typical limit of **1,000 GraphQL points/hour/repository**. Use the App when the independent installation budget/identity is desired.
 - Repository settings required for the trusted daily job:
   - Create a GitHub App owned by the Remade organization, with **Metadata: Read** only, and install it on the catalog repository.
-  - Set Actions variable `REMADE_APP_CLIENT_ID` (App's Client ID).
-  - Set Actions secret `REMADE_APP_PRIVATE_KEY` (PEM contents), available only to the trusted repository/workflow; do not expose it to forked PRs, build logs, or the client bundle.
+  - Set Actions variable `REMADE_GH_APP_CLIENT_ID` (App's Client ID).
+  - Set Actions secret `REMADE_GH_APP_PRIVATE_KEY` (PEM contents), available only to the trusted repository/workflow; do not expose it to forked PRs, build logs, or the client bundle.
   - Use `actions/create-github-app-token@v3` to mint a one-hour installation token; the script reads `GH_METADATA_TOKEN`. This is separate from the built-in `GITHUB_TOKEN` used to commit `cache/github-metadata.json`.
   - Test a public third-party repository in GraphQL: installation tokens may restrict certain nested fields for repositories **outside** the installation; if GitHub returns `Resource not accessible by integration`, simplify the query fields or use the built-in `GITHUB_TOKEN` for this read-only metadata job.
 - Batched alias query at 25 repositories/request (configurable). Monitor reported cost and remaining points; avoid burst concurrency.

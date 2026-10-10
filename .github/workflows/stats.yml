@@ -30,8 +30,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
-          client-id: ${{ vars.REMADE_APP_CLIENT_ID }}
-          private-key: ${{ secrets.REMADE_APP_PRIVATE_KEY }}
+          client-id: ${{ vars.REMADE_GH_APP_CLIENT_ID }}
+          private-key: ${{ secrets.REMADE_GH_APP_PRIVATE_KEY }}
       - name: Refresh cached repository statistics using GraphQL aliases
         env:
           GH_METADATA_TOKEN: ${{ steps.app-token.outputs.token }}
