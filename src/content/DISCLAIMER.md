@@ -1,6 +1,6 @@
 # Disclaimer
 
-*Remade: Everything can be remade.*
+*Remade.wiki: Everything can be remade.*
 
 ## About Remade
 
@@ -14,9 +14,9 @@ Clean-room development is a recognized approach to implementing compatible softw
 
 ## Legal Status
 
-Independent software reimplementation and interoperability have been examined in legal decisions, including *Sega Enterprises Ltd. v. Accolade, Inc.*, 977 F.2d 1510 (9th Cir. 1992), and *Sony Computer Entertainment, Inc. v. Connectix Corp.*, 203 F.3d 596 (9th Cir. 2000). Those decisions addressed particular reverse-engineering practices and fair-use questions under U.S. law; they do not establish blanket legality for all reimplementations.
+Independent software reimplementation and interoperability have been examined in legal decisions, including *Sega Enterprises Ltd. v. Accolade, Inc.*, 977 F.2d 1510 (9th Cir. 1992)<sup><a href="#source-1">[1]</a></sup>, and *Sony Computer Entertainment, Inc. v. Connectix Corp.*, 203 F.3d 596 (9th Cir. 2000)<sup><a href="#source-2">[2]</a></sup>. Those decisions addressed particular reverse-engineering practices and fair-use questions under U.S. law; they do not establish blanket legality for all reimplementations.
 
-A notable historical example is **Phoenix Technologies' IBM PC-compatible BIOS**, released in 1984. Phoenix used a documented separation between analysis/specification and independently written implementation to produce a compatible BIOS. This is an example of clean-room engineering practice, **not a court judgment declaring every such reimplementation lawful**.
+A notable historical example is **Phoenix Technologies' IBM PC-compatible BIOS**, released in 1984. Phoenix used a documented separation between analysis/specification and independently written implementation to produce a compatible BIOS.<sup><a href="#source-3">[3]</a></sup> This is an example of clean-room engineering practice, **not a court judgment declaring every such reimplementation lawful**.
 
 These historical examples illustrate approaches to interoperability, but the legal status of any project depends on its specific facts and applicable law. Inclusion in Remade is not a legal opinion or certification of compliance.
 
@@ -36,8 +36,10 @@ If you believe a listing infringes your intellectual property rights, contains u
 
 *This page provides general information and does not provide legal advice. Legal review before publication is recommended.*
 
-### Sources for the legal-history statements
+### Sources
 
-- [Sega Enterprises Ltd. v. Accolade, Inc. (9th Cir. 1992)](https://law.justia.com/cases/federal/appellate-courts/ca9/92-15655/92-15655.html)
-- [Sony Computer Entertainment, Inc. v. Connectix Corp. (9th Cir. 2000)](https://law.justia.com/cases/federal/appellate-courts/F3/203/596/474793/)
-- [Phoenix ROM BIOS Ver. 1.xx (historical overview)](https://wiki.softhistory.org/wiki/Phoenix_ROM_BIOS_Ver_1.xx)
+<ol class="list-none pl-0">
+<li id="source-1">[1] <a href="https://law.justia.com/cases/federal/appellate-courts/ca9/92-15655/92-15655.html" target="_blank" rel="noopener noreferrer">Sega Enterprises Ltd. v. Accolade, Inc. (9th Cir. 1992)</a></li>
+<li id="source-2">[2] <a href="https://law.justia.com/cases/federal/appellate-courts/F3/203/596/474793/" target="_blank" rel="noopener noreferrer">Sony Computer Entertainment, Inc. v. Connectix Corp. (9th Cir. 2000)</a></li>
+<li id="source-3">[3] <a href="https://en.wikipedia.org/wiki/Phoenix_Technologies#Cloning_the_IBM_PC_BIOS" target="_blank" rel="noopener noreferrer">Phoenix Technologies: Cloning the IBM PC BIOS (Wikipedia)</a></li>
+</ol>
