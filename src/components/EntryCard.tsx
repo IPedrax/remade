@@ -1,8 +1,11 @@
 import {
 	type Entry,
 	entryUrl,
+	formatStars,
 	label,
 	type Metadata,
+	relativeDate,
+	shortDate,
 } from "../lib/presentation";
 import type { Original } from "../lib/schemas";
 import Authors from "./Authors";
@@ -18,7 +21,7 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 			? originals.find((o) => o.slug === entry.original)
 			: undefined;
 	return (
-		<article className="flex min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 sm:p-[26px]">
+		<article className="relative isolate flex min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 focus-within:border-lime sm:p-[26px]">
 			<div className="mb-3.5 flex flex-wrap gap-2">
 				<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
 					{entry.kind === "tool" ? "Tool" : label(entry.status)}
@@ -29,22 +32,31 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 					</span>
 				)}
 				{metadata && (
-					<span
-						className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted"
-						title={`Last successful update: ${metadata.fetchedAt}`}
+					<a
+						className="relative z-10 rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted"
+						href={entryUrl(entry)}
+						title={`${metadata.stars.toLocaleString("en")} GitHub stars · Last successful update: ${relativeDate(metadata.fetchedAt)} (${shortDate(metadata.fetchedAt)})`}
 					>
-						★ {metadata.stars.toLocaleString()}
-					</span>
+						★ {formatStars(metadata.stars)}
+					</a>
 				)}
 			</div>
 			<h3>
-				<a href={entryUrl(entry)}>{entry.name} ↗</a>
+				<a
+					className="after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-lime"
+					href={entryUrl(entry)}
+				>
+					{entry.name} ↗
+				</a>
 			</h3>
 			<p className="mb-3.5 text-xs">
 				{original ? (
 					<>
 						Reimplements{" "}
-						<a className="text-lime" href={`/software/${original.slug}/`}>
+						<a
+							className="relative z-10 text-lime"
+							href={`/software/${original.slug}/`}
+						>
 							{original.name}
 						</a>
 					</>

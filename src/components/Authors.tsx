@@ -11,7 +11,7 @@ export default function Authors({ authors = [] }: Props) {
 				>
 					{authors.map((author) => (
 						<a
-							className="text-sm text-lime hover:underline"
+							className="relative z-10 text-sm text-lime hover:underline"
 							href={`/authors/${author}/`}
 							key={author}
 						>

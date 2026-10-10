@@ -1,4 +1,9 @@
-import type { Metadata } from "../lib/presentation";
+import {
+	formatStars,
+	type Metadata,
+	relativeDate,
+	shortDate,
+} from "../lib/presentation";
 
 interface Props {
 	metadata?: Metadata;
@@ -12,7 +17,9 @@ export default function Stats({ metadata }: Props) {
 					<dl className="grid grid-cols-1 gap-4 min-[600px]:grid-cols-2 [&>div]:border-b [&>div]:border-line [&>div]:py-3">
 						<div>
 							<dt>GitHub stars</dt>
-							<dd>{metadata.stars.toLocaleString()}</dd>
+							<dd title={metadata.stars.toLocaleString("en")}>
+								{formatStars(metadata.stars)}
+							</dd>
 						</div>
 						<div>
 							<dt>Forks</dt>
@@ -22,7 +29,12 @@ export default function Stats({ metadata }: Props) {
 							<dt>Last push</dt>
 							<dd>
 								{metadata.pushedAt ? (
-									<time dateTime={metadata.pushedAt}>{metadata.pushedAt}</time>
+									<time
+										dateTime={metadata.pushedAt}
+										title={shortDate(metadata.pushedAt)}
+									>
+										{relativeDate(metadata.pushedAt)}
+									</time>
 								) : (
 									"Unavailable"
 								)}
@@ -35,7 +47,12 @@ export default function Stats({ metadata }: Props) {
 					</dl>
 					<p className="mt-4 text-sm">
 						Last successful update:{" "}
-						<time dateTime={metadata.fetchedAt}>{metadata.fetchedAt}</time>
+						<time
+							dateTime={metadata.fetchedAt}
+							title={shortDate(metadata.fetchedAt)}
+						>
+							{relativeDate(metadata.fetchedAt)}
+						</time>
 					</p>
 				</>
 			) : (

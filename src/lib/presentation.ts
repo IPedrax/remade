@@ -1,8 +1,24 @@
+import { format, formatDistanceToNow, isValid, parseISO } from "date-fns";
 import type { Entry, Metadata } from "./catalog";
 
 export type { Entry, Metadata } from "./catalog";
 export const repositoryUrl = "https://github.com/replicraft/remade";
 export const contributeUrl = `${repositoryUrl}/blob/main/CONTRIBUTING.md`;
+const starFormatter = new Intl.NumberFormat("en", {
+	notation: "compact",
+	maximumFractionDigits: 1,
+});
+export const formatStars = (stars: number) => starFormatter.format(stars);
+export function shortDate(timestamp: string) {
+	const date = parseISO(timestamp);
+	return isValid(date) ? format(date, "MM/dd/yy hh:mm:ss a") : "Unavailable";
+}
+export function relativeDate(timestamp: string) {
+	const date = parseISO(timestamp);
+	return isValid(date)
+		? formatDistanceToNow(date, { addSuffix: true })
+		: "Unavailable";
+}
 export const label = (value: string) =>
 	value.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 export function metadataFor(entry: Entry, metadata: Record<string, Metadata>) {
