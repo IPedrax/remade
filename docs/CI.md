@@ -11,7 +11,7 @@ Python-based checks run automatically through **uv** using the pinned Python req
 Python tests use pytest, with temporary catalog fixtures, parametrized validation cases, and mocked HTTP calls. Run them locally with `uv run --project scripts pytest scripts/tests -v`; pytest discovers only `scripts/tests/` using the configuration in `scripts/pyproject.toml`.
 
 1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
-2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
+2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Link-check failures are advisory and do not fail the workflow; setup and build failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
 3. `build.yml` (**Build test**) independently runs the frontend type checks, tests, and production build.
 4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
 
@@ -50,7 +50,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 - PR check checks changed catalog files only to avoid blocking unrelated PRs on old broken links.
 - Weekly check checks all catalog links.
 - Once `dist/` exists, Lychee checks generated pages and internal links after the Astro build.
-- Lychee accepts HTTP 403 responses globally to avoid blocking CI on forbidden responses. HTTP 429 rate limits and other errors still fail. `.lycheeignore` is for documented, temporary exceptions.
+- Lychee accepts HTTP 403 responses globally. HTTP 429 rate limits and other errors are reported, but link-check failures do not fail the workflow. `.lycheeignore` is for documented, temporary exceptions.
 
 ## Security
 
