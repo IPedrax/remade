@@ -36,6 +36,15 @@
       "pushedAt": "2026-10-10T03:52:13Z",
       "stars": 4608
     },
+    "opencut-app/opencut": {
+      "fetchedAt": "2026-10-11T02:28:24Z",
+      "forks": 9179,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "TypeScript",
+      "pushedAt": "2026-09-24T09:24:44Z",
+      "stars": 93493
+    },
     "storytold/cadcraft": {
       "fetchedAt": "2026-10-10T13:57:59Z",
       "forks": 664,
