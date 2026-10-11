@@ -19,6 +19,7 @@ const publicProject = v.object({
 	slug: projectSchema.entries.slug,
 	name: projectSchema.entries.name,
 	original: projectSchema.entries.original,
+	additional_originals: projectSchema.entries.additional_originals,
 	repository: projectSchema.entries.repository,
 	website: projectSchema.entries.website,
 	docs: projectSchema.entries.docs,

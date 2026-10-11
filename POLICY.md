@@ -12,7 +12,7 @@ A submission must meet **all** of these conditions:
 
 1. **Identifiable original.** It targets a specific, existing software product or a well-defined software interface, protocol, or subsystem. The original must be identifiable by name and a credible reference URL.
 2. **Independent implementation.** Its implementation is independently authored and must not incorporate leaked, stolen, or otherwise unauthorized source code, binaries, or copyrighted assets from the original.
-3. **Faithful reimplementation goal.** It aims to reproduce the original's observable behavior, compatibility, interface, file formats, or other specified functionality:not merely build a loosely inspired alternative. Exact compatibility is a **goal**, not a requirement that every feature already be finished.
+3. **Faithful reimplementation goal.** It aims to reproduce the original's observable behavior, compatibility, interface, file formats, or other specified functionality. Exact compatibility is a **goal**, not a requirement that every feature already be finished. Broader alternatives may be included **with maintainer approval**, provided they meet the other eligibility requirements and accurately describe their scope and limitations.
 4. **Open-source implementation.** The submitted source is publicly accessible, under an identifiable open-source license, and has enough substance to demonstrate an actual implementation rather than an announcement or empty scaffold.
 5. **Current catalog scope.** For now, Remade focuses on reimplementations of software whose original implementation is **not released as open-source software**. A separate rewrite of an already-open-source application does not currently qualify.
 6. **Honest documentation.** The repository must describe its scope and limitations accurately. Projects must not claim complete compatibility or a verified clean-room process without adequate support.
@@ -25,7 +25,7 @@ Remade does not accept the following as reimplementation listings:
 
 - Forks, ports, or direct modifications of the original software's source code.
 - Wrappers, launchers, skins, mods, or patches that depend on the original implementation as their core engine.
-- General alternatives, lookalike interfaces, or products only inspired by the original, without a meaningful behavioral or compatibility objective.
+- General alternatives, lookalike interfaces, or products only inspired by the original, without a meaningful behavioral or compatibility objective, unless accepted **with maintainer approval**.
 - Repositories primarily redistributing unauthorized original source code, binaries, firmware, game assets, or other copyrighted material.
 - Projects whose main purpose is distributing cracks, pirated copies, or tools for unauthorized access.
 - Empty repositories, ideas without working source, deceptive listings, or duplicates of an existing listing.

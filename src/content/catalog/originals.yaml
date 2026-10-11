@@ -629,3 +629,40 @@
   url: https://www.chitubox.com/
   category: engineering
   aliases: [CHITUBOX Basic, CHITUBOX Pro]
+- slug: microsoft-power-apps
+  name: Microsoft Power Apps
+  url: https://www.microsoft.com/en-us/power-platform/products/power-apps
+  category: productivity
+  aliases: [Power Apps, PowerApps]
+- slug: microsoft-power-automate
+  name: Microsoft Power Automate
+  url: https://www.microsoft.com/en-us/power-platform/products/power-automate
+  category: productivity
+  aliases: [Power Automate, Microsoft Flow]
+- slug: microsoft-power-pages
+  name: Microsoft Power Pages
+  url: https://www.microsoft.com/en-us/power-platform/products/power-pages
+  category: productivity
+  aliases: [Power Pages]
+- slug: adobe-dimension
+  name: Adobe Dimension
+  url: https://www.adobe.com/products/dimension.html
+  category: creative
+- slug: jira
+  name: Jira
+  url: https://www.atlassian.com/software/jira
+  category: productivity
+  aliases: [Atlassian Jira, Jira Software]
+- slug: linear
+  name: Linear
+  url: https://linear.app/
+  category: productivity
+- slug: monday
+  name: monday.com
+  url: https://monday.com/
+  category: productivity
+  aliases: [Monday]
+- slug: clickup
+  name: ClickUp
+  url: https://clickup.com/
+  category: productivity

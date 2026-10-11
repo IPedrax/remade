@@ -14,7 +14,7 @@ examples/project.yaml      Example only: never indexed
 cache/github-metadata.json Cached API enrichment, not source of truth
 ```
 
-Use **stable, URL-friendly slugs**; names may change, but slugs should remain stable to avoid broken URLs. Original software has a many-to-one relationship with project records. Do not automatically derive stable original slugs from free-text names.
+Use **stable, URL-friendly slugs**; names may change, but slugs should remain stable to avoid broken URLs. Each original may have multiple projects, and a project may target several originals using `additional_originals`. Do not automatically derive stable original slugs from free-text names.
 
 ## Astro content integration
 
@@ -76,7 +76,8 @@ license: MIT
 | `slug` | Yes | Lowercase `[a-z0-9]+(-[a-z0-9]+)*`; matches YAML filename |
 | `name` | Yes | Short nonempty project name |
 | `repository` | Yes | Public HTTPS repository root URL. GitHub entries must use `https://github.com/<owner>/<repo>` without trailing slash, `.git`, subpath, query, or fragment. Other Git hosts (including self-hosted Git) may be accepted after maintainer review. |
-| `original` | Yes | References exactly one slug in originals list |
+| `original` | Yes | Primary target slug in the originals list |
+| `additional_originals` | No | Nonempty list of distinct additional target slugs in the originals list. Must not repeat the primary target. Each target requires editorial review and honest scope notes. Keep one project/repository listing: it appears on every target's software page and in searches for all targets. |
 | `category` | Yes | `creative`, `productivity`, `engineering`, `operating-systems`, `games`, `developer-tools`, `protocols`, `other` |
 | `languages` | Yes | Nonempty list of programming language names |
 | `platforms` | No | Optional list of platforms |
@@ -127,7 +128,7 @@ suggested_names: [ExampleCraft] # optional
 - Optional `suggested_names` is a nonempty list of plain-text names, each 2–100 characters. Names must be unique after case folding and whitespace normalization. These are naming ideas, not existing implementations or reserved names.
 - No repository, popularity count, bounty, fundraising, deadline, ownership claim, or invented implementation status.
 - Exactly one open request per original.
-- **Do not list requests for any original with an indexed project.** The catalog validator enforces this; remove the request in the same PR that first adds its implementation.
+- **Do not list requests for any original with an indexed project, including additional targets.** The catalog validator enforces this; remove requests for every covered target in the same PR that first adds its implementation.
 - A request has a stable link to `/software/<original-slug>` and is displayed on `/requests` and under **Project Requests** on the homepage.
 - Requests are distinct from projects and are never mixed into featured listings or project counts.
 - Request vendor filters derive their grouping from the first folder below `requests/`; root-level files are Unassigned. Vendor and Git addition dates are computed browsing metadata, not editable YAML fields, and do not affect public routes.

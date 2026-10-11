@@ -8,6 +8,7 @@ import {
 	defaultRequestFilters,
 	filterRequest,
 } from "../lib/request-browse";
+import { projectOriginals } from "../lib/schemas";
 import EntryCard from "./EntryCard";
 import RequestCard from "./RequestCard";
 import { SearchField } from "./Search";
@@ -50,17 +51,18 @@ function browseData(
 	catalog: CatalogData,
 	metadata: Record<string, Metadata>,
 ): BrowseEntry {
-	const original =
+	const originals =
 		entry.kind === "project"
-			? catalog.originals.find((o) => o.slug === entry.original)
-			: undefined;
+			? catalog.originals.filter((o) =>
+					projectOriginals(entry).includes(o.slug),
+				)
+			: [];
 	return {
 		name: entry.name,
 		search: [
 			entry.name,
 			entry.description,
-			original?.name,
-			...(original?.aliases ?? []),
+			...originals.flatMap((o) => [o.name, ...(o.aliases ?? [])]),
 			...(entry.authors ?? []),
 			...(entry.kind === "project" ? entry.languages : []),
 		]

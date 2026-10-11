@@ -161,7 +161,7 @@ def analyze(event: dict, *, catalog_root: Path = ROOT, gh_token: str | None = No
             slug = matching_original['slug']
             findings.append({'level': 'info', 'message': f'Original software matches catalog entry `{slug}`.'})
             if kind == 'request':
-                if any(project['original'] == slug for project in projects):
+                if any(slug in [project['original'], *project.get('additional_originals', [])] for project in projects):
                     findings.append({'level': 'warning', 'message': 'An implementation of this original is already indexed. A Project Request may be unnecessary.'})
                 if any(item['original'] == slug for item in request_entries):
                     findings.append({'level': 'warning', 'message': f'A Project Request for `{slug}` is already indexed.'})

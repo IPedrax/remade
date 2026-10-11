@@ -10,6 +10,7 @@ import {
 import type { Original } from "../lib/schemas";
 import Authors from "./Authors";
 import CardDescription from "./CardDescription";
+import OriginalLinks from "./OriginalLinks";
 
 interface Props {
 	entry: Entry;
@@ -17,10 +18,6 @@ interface Props {
 	metadata?: Metadata;
 }
 export default function EntryCard({ entry, originals, metadata }: Props) {
-	const original =
-		entry.kind === "project"
-			? originals.find((o) => o.slug === entry.original)
-			: undefined;
 	return (
 		<article className="relative isolate flex h-full min-h-[360px] min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 focus-within:border-lime sm:p-[26px]">
 			<div className="mb-3.5 flex shrink-0 flex-wrap gap-2">
@@ -51,15 +48,14 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 				</a>
 			</h3>
 			<p className="mb-3.5 shrink-0 text-xs">
-				{original ? (
+				{entry.kind === "project" ? (
 					<>
 						Reimplements{" "}
-						<a
-							className="relative z-10 text-lime"
-							href={`/software/${original.slug}/`}
-						>
-							{original.name}
-						</a>
+						<OriginalLinks
+							className="relative z-10 text-lime hover:underline"
+							originals={originals}
+							project={entry}
+						/>
 					</>
 				) : (
 					"Adds on to indexed projects"

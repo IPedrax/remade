@@ -1,6 +1,6 @@
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import { contributeUrl, label, metadataFor } from "../../lib/presentation";
-import type { Original } from "../../lib/schemas";
+import { type Original, projectOriginals } from "../../lib/schemas";
 import EntryCard from "../EntryCard";
 import ProjectComparison from "../ProjectComparison";
 
@@ -12,7 +12,7 @@ interface Props {
 export default function SoftwarePage({ original, catalog, metadata }: Props) {
 	const entries = catalog.entries
 		.filter((entry) => entry.kind === "project")
-		.filter((entry) => entry.original === original.slug);
+		.filter((entry) => projectOriginals(entry).includes(original.slug));
 	const request = catalog.requests.find((r) => r.original === original.slug);
 	return (
 		<>

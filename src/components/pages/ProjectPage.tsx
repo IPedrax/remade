@@ -5,9 +5,10 @@ import {
 	label,
 	metadataFor,
 } from "../../lib/presentation";
-import type { Project } from "../../lib/schemas";
+import { type Project, projectOriginals } from "../../lib/schemas";
 import Authors from "../Authors";
 import EntryCard from "../EntryCard";
+import OriginalLinks from "../OriginalLinks";
 import Stats from "../Stats";
 
 interface Props {
@@ -21,7 +22,9 @@ export default function ProjectPage({ project, catalog, metadata }: Props) {
 	const related = catalog.entries.filter(
 		(e) =>
 			e.kind === "project" &&
-			e.original === project.original &&
+			projectOriginals(e).some((slug) =>
+				projectOriginals(project).includes(slug),
+			) &&
 			e.slug !== project.slug,
 	);
 	const tools = catalog.entries.filter(
@@ -36,12 +39,11 @@ export default function ProjectPage({ project, catalog, metadata }: Props) {
 				<h1 data-pagefind-meta="title">{project.name}</h1>
 				<p>
 					Reimplements{" "}
-					<a
+					<OriginalLinks
 						className="text-sm text-lime hover:underline"
-						href={`/software/${original.slug}/`}
-					>
-						{original.name}
-					</a>
+						originals={catalog.originals}
+						project={project}
+					/>
 				</p>
 				<p>{project.description}</p>
 				<div className="flex flex-wrap items-center gap-6">
@@ -162,7 +164,11 @@ export default function ProjectPage({ project, catalog, metadata }: Props) {
 			)}
 			{related.length > 0 && (
 				<section>
-					<h2>More implementations of {original.name}</h2>
+					<h2>
+						{project.additional_originals?.length
+							? "More implementations of these targets"
+							: `More implementations of ${original.name}`}
+					</h2>
 					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{related.map((entry) => (
 							<EntryCard

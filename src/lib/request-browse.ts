@@ -1,5 +1,6 @@
 import { isValid, isWithinInterval, parseISO, subDays } from "date-fns";
 import type { CatalogData } from "./catalog";
+import { projectOriginals } from "./schemas";
 
 export interface RequestFilters {
 	q: string;
@@ -35,17 +36,22 @@ export function matchingImplementations(
 	return catalog.entries
 		.filter((entry) => entry.kind === "project")
 		.map((entry) => {
-			const original = catalog.originals.find(
-				(item) => item.slug === entry.original,
+			const originals = catalog.originals.filter((item) =>
+				projectOriginals(entry).includes(item.slug),
 			);
 			return {
 				entry,
 				original: entry.original,
-				name: original?.name ?? entry.name,
+				name: originals.map((o) => o.name).join(" · ") || entry.name,
 				vendor: entry.authors?.join(" ") ?? "",
 				category: entry.category,
 				addedAt: entry.addedAt,
-				aliases: [entry.name, ...(original?.aliases ?? []), ...entry.languages],
+				aliases: [
+					entry.name,
+					...originals.flatMap((o) => o.aliases ?? []),
+					...projectOriginals(entry),
+					...entry.languages,
+				],
 				reason: entry.description,
 			};
 		})

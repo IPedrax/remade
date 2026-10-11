@@ -10,6 +10,29 @@ def test_empty_catalog_valid(catalog_root: Path) -> None:
     assert not collect(catalog_root)[-1]
 
 
+@pytest.mark.parametrize('additional, valid', [
+    ('[product-b]', True), ('[]', False), ('product-b', False),
+    ('[product-b, product-b]', False), ('[product-a]', False), ('[missing]', False),
+    ('[null]', False),
+])
+def test_additional_originals_validation(project_catalog: Path, additional: str, valid: bool) -> None:
+    originals = project_catalog / 'src/content/catalog/originals.yaml'
+    originals.write_text(originals.read_text() + '\n- slug: product-b\n  name: Product B\n  url: https://example.com/product-b\n  category: other\n')
+    project = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
+    project.write_text(project.read_text() + f'additional_originals: {additional}\n')
+    assert (not collect(project_catalog)[-1]) == valid
+
+
+def test_additional_target_fulfills_request(project_catalog: Path) -> None:
+    originals = project_catalog / 'src/content/catalog/originals.yaml'
+    originals.write_text(originals.read_text() + '\n- slug: product-b\n  name: Product B\n  url: https://example.com/product-b\n  category: other\n')
+    project = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
+    project.write_text(project.read_text() + 'additional_originals: [product-b]\n')
+    request = project_catalog / 'src/content/catalog/requests/product-b.yaml'
+    request.write_text('original: product-b\nreason: Please faithfully recreate this software.\n')
+    assert any('already fulfilled' in error for error in collect(project_catalog)[-1])
+
+
 @pytest.mark.parametrize('mirrors, valid', [
     ('[https://codeberg.org/example/project]', True),
     ('[]', False),

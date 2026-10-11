@@ -46,11 +46,11 @@ When requirements conflict, make the inconsistency explicit and update the relev
 
 ## Add a reimplementation entry (pull request)
 
-1. Read `POLICY.md` and check that the implementation is independently authored, has meaningful open-source code, and aims at specific observable compatibility. A loose lookalike, port, fork, or wrapper is not sufficient.
+1. Read `POLICY.md` and check that the implementation is independently authored, has meaningful open-source code, and aims at specific observable compatibility. Broader alternatives may be included with maintainer approval, subject to the other eligibility requirements. A port, fork, or wrapper of the original implementation is not sufficient.
 2. Search `src/content/catalog/projects/**/*.yaml` for duplicate project/repository entries. Search `src/content/catalog/originals.yaml` for the target and its aliases; **reuse its canonical slug** if it exists.
 3. If the original is not in `src/content/catalog/originals.yaml`, add a record with `slug`, `name`, `url`, `category`, and optional `aliases`; use an official or credible HTTPS reference. Do not create a second record because of alternate spellings.
 4. Copy `examples/project.yaml` into `src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Replace **all** example values. Ensure `slug` matches its filename and `original` matches the canonical target; supply truthful language, license, status, compatibility target, description, and optional limitations/docs.
-5. If this is the first published implementation of the original, **delete** its `src/content/catalog/requests/<vendor>/<original-slug>.yaml` in the **same PR**. A request and an indexed project cannot coexist for the same original.
+5. If this is the first published implementation of a target, **delete** its `src/content/catalog/requests/<vendor>/<original-slug>.yaml` in the **same PR**. Apply this to the primary `original` and every optional `additional_originals` target. Use one project record for multi-target implementations; a request and an indexed project cannot coexist for any of its targets.
 6. Do not modify `src/content/catalog/featured.yaml` to feature your own submission; that file is maintainer-curated.
 7. Automated CI validates YAML, references, tests and links. Address any failures; do not silence Lychee for convenience.
 8. Open a PR using `.github/PULL_REQUEST_TEMPLATE.md`, summarize the compatibility target and sources, and tick: **“I have read and will adhere to POLICY.md.”** Maintainers may merge, request changes, or close the PR.

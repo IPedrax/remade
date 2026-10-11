@@ -4,7 +4,7 @@ Remade is a community-curated directory. You can contribute by proposing a new l
 
 ## Add a project
 
-1. Read [POLICY.md](POLICY.md) to confirm the project is eligible.
+1. Read [POLICY.md](POLICY.md) to confirm the project is eligible. Broader alternatives require maintainer approval.
 2. Search `src/content/catalog/projects/` to make sure it has not already been listed.
 3. Reuse the original record in `src/content/catalog/originals.yaml` (or add it if missing), then fork the repository and add one YAML file at `src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Use `examples/project.yaml` as a template, but replace all placeholder values.
 4. Open a pull request. Complete the description and check the policy acknowledgment in the PR template.
@@ -28,7 +28,7 @@ You can also submit an approved, published Project Request through a pull reques
 2. Ensure the target has an entry in `src/content/catalog/originals.yaml` (add one in the PR if necessary).
 3. Add `src/content/catalog/requests/<vendor>/<original-slug>.yaml` using `examples/request.yaml`. Explain the desired behavior or interface without copying protected code/assets. If the request or its details came from an issue, include its URL in a YAML comment above the record. Keep source issue comments on project and tool suggestions too.
 4. Open a PR and check the `POLICY.md` acknowledgment. Maintainers can merge, request edits, or close it.
-5. When a matching project gets indexed, the request should be deleted in the same PR.
+5. When a matching project gets indexed, requests for its primary and any additional targets should be deleted in the same PR. Multi-target projects use one listing with optional `additional_originals`; see [the catalog schema](docs/CATALOG.md).
 
 Requests have no votes, bounty promises, or claim/assignment system. They are distinct from approved reimplementation listings.
 
