@@ -1,0 +1,3 @@
+original: rcs-gselector
+reason: Reproduce GSelector's radio music scheduling, station clocks, song metadata, rotation and separation rules, log editing and multi-station workflows, with compatible schedule exchange. Prioritize affordable self-hosted use for small and medium stations. RadioCraft could combine this scheduler with Zetta-style automation and playout.
+suggested_names: [RadioCraft]

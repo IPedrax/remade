@@ -352,6 +352,16 @@
   name: Quixel Bridge
   url: https://dev.epicgames.com/documentation/en-us/unreal-engine/quixel-bridge-plugin-for-unreal-engine
   category: creative
+- slug: rcs-gselector
+  name: RCS GSelector
+  url: https://www.rcsworks.com/gselector/
+  category: creative
+  aliases: [GSelector, G Selector]
+- slug: rcs-zetta
+  name: RCS Zetta
+  url: https://www.rcsworks.com/zetta/
+  category: creative
+  aliases: [Zetta]
 - slug: kontakt
   name: Kontakt
   url: https://www.native-instruments.com/products/kontakt
@@ -720,3 +730,26 @@
   url: https://www.powerworld.com/products/simulator/overview
   category: engineering
   aliases: [PowerWorld]
+
+- slug: materialise-magics
+  name: Materialise Magics
+  url: https://www.materialise.com/en/industrial/software/materialise-magics
+  category: engineering
+  aliases: [Magics]
+
+- slug: notion
+  name: Notion
+  url: https://www.notion.com
+  category: productivity
+
+- slug: autocad-map-3d
+  name: Autodesk AutoCAD Map 3D
+  url: https://www.autodesk.com/products/autocad/included-toolsets/autocad-map-3d
+  category: engineering
+  aliases: [AutoCAD Map 3D]
+
+- slug: cubase
+  name: Steinberg Cubase
+  url: https://www.steinberg.net/cubase/
+  category: creative
+  aliases: [Cubase]
