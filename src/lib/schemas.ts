@@ -105,6 +105,13 @@ export const projectSchema = v.strictObject({
 	limitations: v.optional(text(2, 400)),
 });
 export const toolSchema = v.strictObject({
+	mirrors: projectSchema.entries.mirrors,
+	license: v.optional(text(2, 80)),
+	languages: projectSchema.entries.languages,
+	status: v.optional(projectSchema.entries.status),
+	docs: projectSchema.entries.docs,
+	website: projectSchema.entries.website,
+	limitations: projectSchema.entries.limitations,
 	slug,
 	name: text(2, 100),
 	repository,

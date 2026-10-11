@@ -261,6 +261,9 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 									key={entry.slug}
 									metadata={metadataFor(entry, metadata)}
 									originals={catalog.originals}
+									projects={catalog.entries.filter(
+										(entry) => entry.kind === "project",
+									)}
 								/>
 							))}
 						</div>

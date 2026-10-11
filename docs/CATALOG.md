@@ -141,6 +141,8 @@ suggested_names: [ExampleCraft] # optional
 
 Both files use ISO timestamps when addition dates are available and slug order independent of UI sorting. Optional fields are omitted when unavailable. Fields are explicitly allowlisted; source comments and internal editorial fields are not exported. Generate these files through Astro builds, not by editing or committing generated JSON. Anyone can read them cross-origin; see [Architecture](ARCHITECTURE.md#public-json-exports) for caching and serving headers.
 
+Only language badges hide JavaScript when TypeScript is also recorded, including the JS/TS abbreviations. Detail lists, comparisons, catalog data and public exports retain both languages; search and language filters still match both. Tools display language badges alongside their Tool label.
+
 ## Supporting tool record
 
 `src/content/catalog/tools/<github-user>/<slug>.yaml` describes an add-on to existing indexed projects:
@@ -148,16 +150,22 @@ Both files use ISO timestamps when addition dates are available and slug order i
 ```yaml
 slug: example-tool
 name: Example Tool
+languages: [JavaScript]
 repository: https://github.com/example/example-tool
 url: https://example.org/tool
 platforms: [Web] # optional
+license: MIT # optional; use the documented license identifier
 description: A browser launcher that adds access to the indexed implementation.
 projects: [example-implementation]
 ```
 
-All six fields are required; unknown fields are rejected. `slug` must match the filename and share a unique namespace with project slugs. `name` is 2–100 plain-text characters and `description` is 20–400. `repository` follows the project repository URL rules and must be unique across projects and tools; `url` must be public HTTPS. `projects` is a nonempty, duplicate-free list of existing project slugs. This relationship identifies what a tool extends, without inventing an original or compatibility claim. A repository link does not imply an open-source license; tool licensing must be reviewed from its sources.
+All seven fields are required; unknown fields are rejected. `slug` must match the filename and share a unique namespace with project slugs. `name` is 2–100 plain-text characters and `description` is 20–400. `repository` follows the project repository URL rules and must be unique across projects and tools; `url` must be public HTTPS. `projects` is a nonempty, duplicate-free list of existing project slugs. This relationship identifies what a tool extends, without inventing an original or compatibility claim. A repository link does not imply an open-source license; tool licensing must be reviewed from its sources.
 
-Tools also accept optional `platforms`, a list of 1–40 character plain-text platform names under the same rules as projects. Use `Web` for browser-based tools and list only documented platforms. Optional `authors` follows the same GitHub-handle rules as projects. Load tools separately using `collect_tools`; `collect` validates their project references and author handles while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
+Tools require `languages` (a nonempty list of 1–40 character names). They also accept optional `mirrors` (a nonempty list of unique canonical repository URLs, following the project mirror rules), `status` (the project maturity enum, maintainer-reported), `docs` and `website` (public HTTPS URLs), and `limitations` (2–400 plain-text characters). Tools inherit categories from the indexed projects they support, using every distinct category when they extend multiple projects. These derived categories appear on cards and detail pages and match Explore category filters; the Supporting tools filter remains available. No separate tool category field is needed.
+
+Tool pages share the project details layout and Repository Mirrors accordion, including “No mirrors found” when absent, and retain their “Works with” listings. These fields use the project validation rules, appear on tool pages and are included in public JSON exports. Record known dependencies and scope limits in `limitations`; supply documented languages and do not invent development status. Tools retain their project references rather than original targets or a reimplementation compatibility rating.
+
+Tools accept optional `license`, a 2–80 character plain-text license identifier, included in public JSON exports and shown on tool pages. Omit it when unknown; the page displays “Not documented”. Do not infer a license from public source availability. Tools also accept optional `platforms`, a list of 1–40 character plain-text platform names under the same rules as projects. Use `Web` for browser-based tools and list only documented platforms. Optional `authors` follows the same GitHub-handle rules as projects. Load tools separately using `collect_tools`; `collect` validates their project references and author handles while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
 
 ## Featured manifest
 

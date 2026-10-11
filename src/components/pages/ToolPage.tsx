@@ -1,8 +1,14 @@
 import type { CatalogData, Metadata } from "../../lib/catalog";
-import { findBySlug, metadataFor } from "../../lib/presentation";
+import {
+	entryCategories,
+	findBySlug,
+	label,
+	metadataFor,
+} from "../../lib/presentation";
 import type { Tool } from "../../lib/schemas";
 import Authors from "../Authors";
 import EntryCard from "../EntryCard";
+import RepositoryMirrors from "../RepositoryMirrors";
 import Stats from "../Stats";
 
 interface Props {
@@ -33,11 +39,31 @@ export default function ToolPage({ tool, catalog, metadata }: Props) {
 					>
 						Source repository ↗
 					</a>
+					{tool.website && (
+						<a
+							className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-line px-4 py-3 text-sm font-semibold text-ink hover:border-lime hover:text-lime"
+							href={tool.website}
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							Official website ↗
+						</a>
+					)}
+					{tool.docs && (
+						<a
+							className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-line px-4 py-3 text-sm font-semibold text-ink hover:border-lime hover:text-lime"
+							href={tool.docs}
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							Documentation ↗
+						</a>
+					)}
 				</div>
-				<p className="mt-6">
-					Platforms: {tool.platforms?.join(", ") || "Not documented"}
-				</p>
-				<Authors authors={tool.authors} />
+				<div className="mt-6">
+					<RepositoryMirrors mirrors={tool.mirrors} />
+					<Authors authors={tool.authors} />
+				</div>
 			</div>
 			<section>
 				<h2>Works with</h2>
@@ -56,9 +82,50 @@ export default function ToolPage({ tool, catalog, metadata }: Props) {
 								key={entry.slug}
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
+								projects={catalog.projects}
 							/>
 						))}
 				</div>
+			</section>
+			<section className="max-w-[780px]">
+				<h2>Details and scope</h2>
+				<p className="border-l-2 border-lime bg-surface px-5 py-4">
+					Development status and scope are maintainer-reported. Inclusion is not
+					an independent verification or certification.
+				</p>
+				<dl className="grid grid-cols-1 gap-4 min-[600px]:grid-cols-2 [&>div]:border-b [&>div]:border-line [&>div]:py-3">
+					<div>
+						<dt>Categories</dt>
+						<dd>
+							{entryCategories(entry, catalog.projects).map(label).join(", ")}
+						</dd>
+					</div>
+					<div>
+						<dt>Development status</dt>
+						<dd>
+							{tool.status
+								? `${label(tool.status)} (maintainer-reported)`
+								: "Not documented"}
+						</dd>
+					</div>
+					<div>
+						<dt>Languages</dt>
+						<dd>{tool.languages.join(", ")}</dd>
+					</div>
+					<div>
+						<dt>Platforms</dt>
+						<dd>{tool.platforms?.join(", ") || "Not documented"}</dd>
+					</div>
+					<div>
+						<dt>License</dt>
+						<dd>{tool.license || "Not documented"}</dd>
+					</div>
+				</dl>
+				<h3 className="mt-8">Known limitations</h3>
+				<p>
+					{tool.limitations ??
+						"No specific limitations recorded. Consult the source repository for current coverage."}
+				</p>
 			</section>
 			<Stats metadata={metadataFor(entry, metadata)} />
 		</>

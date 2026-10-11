@@ -50,6 +50,7 @@ export default function Home({ catalog, metadata }: Props) {
 							key={featured[0].slug}
 							metadata={metadataFor(featured[0], metadata)}
 							originals={catalog.originals}
+							projects={catalog.projects}
 						/>
 						<div className="contents auto-rows-fr gap-[18px] min-[600px]:grid min-[600px]:grid-cols-2">
 							{featured.slice(1).map((entry) => (
@@ -58,6 +59,7 @@ export default function Home({ catalog, metadata }: Props) {
 									key={entry.slug}
 									metadata={metadataFor(entry, metadata)}
 									originals={catalog.originals}
+									projects={catalog.projects}
 								/>
 							))}
 						</div>
@@ -115,6 +117,7 @@ export default function Home({ catalog, metadata }: Props) {
 								key={entry.slug}
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
+								projects={catalog.projects}
 							/>
 						))}
 				</div>

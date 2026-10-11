@@ -7,6 +7,7 @@ import {
 	filterEntries,
 } from "../src/lib/browse";
 import { loadCatalog, loadMetadata } from "../src/lib/catalog";
+import { badgeLanguages, entryCategories } from "../src/lib/presentation";
 import {
 	type Catalog,
 	parseYaml,
@@ -33,6 +34,8 @@ test("strict schemas reject unknown fields, markup, bad URLs and malformed platf
 	const c = await loadCatalog();
 	const p = c.projects[0];
 	const t = c.tools[0];
+	const { languages: _languages, ...withoutLanguages } = t;
+	assert.throws(() => v.parse(toolSchema, withoutLanguages));
 	for (const extra of [
 		{ unknown: true },
 		{ description: "<script>alert(1)</script>" },
@@ -54,6 +57,54 @@ test("strict schemas reject unknown fields, markup, bad URLs and malformed platf
 	])
 		assert.throws(() => v.parse(projectSchema, { ...p, ...extra }));
 	assert.throws(() => v.parse(toolSchema, { ...t, platforms: [null] }));
+	for (const extra of [
+		{ languages: [] },
+		{ languages: [null] },
+		{ status: "unknown" },
+		{ docs: "http://example.org" },
+		{ website: "https://localhost/" },
+		{ limitations: "<b>bad</b>" },
+		{ limitations: null },
+	])
+		assert.throws(() => v.parse(toolSchema, { ...t, ...extra }));
+	for (const mirrors of [
+		[],
+		"https://codeberg.org/example/tool",
+		["http://example.org/tool"],
+		["https://github.com/example/tool/issues"],
+		[
+			"https://codeberg.org/example/tool",
+			"https://codeberg.org/example/tool.git",
+		],
+	])
+		assert.throws(() => v.parse(toolSchema, { ...t, mirrors }));
+	assert.deepEqual(
+		v.parse(toolSchema, {
+			...t,
+			mirrors: ["https://codeberg.org/example/tool"],
+		}).mirrors,
+		["https://codeberg.org/example/tool"],
+	);
+	const details = {
+		languages: ["JavaScript"],
+		status: "beta",
+		docs: "https://example.org/docs",
+		website: "https://example.org",
+		limitations: "Some host APIs are not supported.",
+	};
+	const parsed = v.parse(toolSchema, { ...t, ...details });
+	for (const key of [
+		"languages",
+		"status",
+		"docs",
+		"website",
+		"limitations",
+	] as const)
+		assert.deepEqual(parsed[key], details[key]);
+
+	for (const license of [null, "", 42, "<b>MIT</b>"])
+		assert.throws(() => v.parse(toolSchema, { ...t, license }));
+	assert.equal(v.parse(toolSchema, { ...t, license: "MIT" }).license, "MIT");
 	assert.deepEqual(
 		v.parse(projectSchema, {
 			...p,
@@ -121,4 +172,42 @@ test("metadata is optional and never controls entry inclusion", async () => {
 	const metadata = await loadMetadata();
 	assert.equal(typeof metadata, "object");
 	assert.ok((await loadCatalog()).entries.length);
+});
+
+test("language badges hide JavaScript without changing recorded languages", () => {
+	const languages = ["JavaScript", "TypeScript", "Rust"];
+	assert.deepEqual(badgeLanguages(languages), ["TypeScript", "Rust"]);
+	assert.deepEqual(languages, ["JavaScript", "TypeScript", "Rust"]);
+	assert.deepEqual(badgeLanguages(["JavaScript", "Rust"]), [
+		"JavaScript",
+		"Rust",
+	]);
+	assert.deepEqual(badgeLanguages(["JS", "TS"]), ["TS"]);
+	assert.deepEqual(badgeLanguages(["typescript", "javascript"]), [
+		"typescript",
+	]);
+});
+
+test("tool categories follow all supported projects and remain filterable as tools", async () => {
+	const catalog = await loadCatalog();
+	const tool = catalog.entries.find(
+		(entry) => entry.kind === "tool" && entry.slug === "openplayground",
+	);
+	assert.ok(tool);
+	const expected = [
+		...new Set(
+			catalog.projects
+				.filter(
+					(project) =>
+						tool.kind === "tool" && tool.projects.includes(project.slug),
+				)
+				.map((project) => project.category),
+		),
+	];
+	assert.deepEqual(entryCategories(tool, catalog.projects), expected);
+	const browse = { ...entry, category: "tools", categories: expected };
+	for (const category of expected)
+		assert.ok(filterEntries(browse, { category }));
+	assert.ok(filterEntries(browse, { category: "tools" }));
+	assert.ok(!filterEntries(browse, { category: "games" }));
 });

@@ -31,7 +31,10 @@ export default function ProjectComparison({
 		);
 	const rows: { name: string; value: (project: ProjectEntry) => ReactNode }[] =
 		[
-			{ name: "Languages", value: (p) => p.languages.join(", ") },
+			{
+				name: "Languages",
+				value: (p) => p.languages.join(", "),
+			},
 			{
 				name: "Platforms",
 				value: (p) =>

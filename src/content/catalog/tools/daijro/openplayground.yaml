@@ -3,6 +3,7 @@ name: OpenPlayground
 authors: [daijro]
 repository: https://github.com/daijro/openplayground
 url: https://playground.daijro.dev
+languages: [JavaScript]
 platforms: [Web]
 description: OpenPlayground by Daijro runs ArtCraft implementations in the browser, adding optimized WebAssembly builds, compression, themes and clipboard workarounds.
 # Supported apps are listed in the upstream tools.yaml manifest.

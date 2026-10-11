@@ -204,27 +204,7 @@ def collect(root=ROOT):
         if "website" in project and not is_https(project["website"]):
             errors.append(f"{loc}: website must be a public HTTPS URL")
         validate_authors(project, loc, errors)
-        if "mirrors" in project:
-            mirrors = project["mirrors"]
-            if not isinstance(mirrors, list) or not mirrors:
-                errors.append(f"{loc}: mirrors must be a nonempty list of repository URLs")
-            else:
-                seen_mirrors = set()
-                for mirror in mirrors:
-                    if not is_https(mirror):
-                        errors.append(f"{loc}: mirror must be a public HTTPS URL")
-                        continue
-                    parts = urlsplit(mirror)
-                    segments = parts.path.removeprefix('/').split('/')
-                    if (parts.query or parts.fragment or len(segments) < 2 or
-                            any(not segment for segment in segments) or
-                            (parts.hostname == 'github.com' and
-                             (len(segments) != 2 or parts.path.endswith('.git')))):
-                        errors.append(f"{loc}: mirror must be a canonical repository root")
-                    normalized = mirror.casefold().removesuffix('.git')
-                    if normalized in seen_mirrors:
-                        errors.append(f"{loc}: duplicate mirror repository")
-                    seen_mirrors.add(normalized)
+        validate_mirrors(project, loc, errors)
 
     request_by_original = {}
     for path in sorted((root / "src/content/catalog/requests").rglob("*.yaml")):
@@ -281,6 +261,30 @@ def collect(root=ROOT):
     return originals, list(project_by_slug.values()), list(request_by_original.values()), featured, errors
 
 
+
+def validate_mirrors(record: dict, loc: str, errors: list[str]) -> None:
+    if "mirrors" in record:
+        mirrors = record["mirrors"]
+        if not isinstance(mirrors, list) or not mirrors:
+            errors.append(f"{loc}: mirrors must be a nonempty list of repository URLs")
+        else:
+            seen_mirrors = set()
+            for mirror in mirrors:
+                if not is_https(mirror):
+                    errors.append(f"{loc}: mirror must be a public HTTPS URL")
+                    continue
+                parts = urlsplit(mirror)
+                segments = parts.path.removeprefix('/').split('/')
+                if (parts.query or parts.fragment or len(segments) < 2 or
+                        any(not segment for segment in segments) or
+                        (parts.hostname == 'github.com' and
+                         (len(segments) != 2 or parts.path.endswith('.git')))):
+                    errors.append(f"{loc}: mirror must be a canonical repository root")
+                normalized = mirror.casefold().removesuffix('.git')
+                if normalized in seen_mirrors:
+                    errors.append(f"{loc}: duplicate mirror repository")
+                seen_mirrors.add(normalized)
+
 def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     tools: list[dict] = []
     errors: list[str] = []
@@ -288,9 +292,21 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     for path in sorted((root / "src/content/catalog/tools").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         tool = checked_load(path, errors)
-        if not fields(tool, {"slug", "name", "repository", "url", "description", "projects"}, {"authors", "platforms"}, loc, errors):
+        if not fields(tool, {"slug", "name", "repository", "url", "description", "projects", "languages"}, {"authors", "platforms", "license", "status", "docs", "website", "limitations", "mirrors"}, loc, errors):
             continue
         before = len(errors)
+        if "license" in tool and not is_text(tool["license"], 2, 80):
+            errors.append(f"{loc}: license must be a short license identifier")
+        if "languages" in tool and (not isinstance(tool["languages"], list) or not tool["languages"] or any(not is_text(x, 1, 40) for x in tool["languages"])):
+            errors.append(f"{loc}: languages must be a nonempty list of strings")
+        if "status" in tool and (not isinstance(tool["status"], str) or tool["status"] not in STATUSES):
+            errors.append(f"{loc}: invalid status")
+        for field in ("docs", "website"):
+            if field in tool and not is_https(tool[field]):
+                errors.append(f"{loc}: {field} must be a public HTTPS URL")
+        if "limitations" in tool and not is_text(tool["limitations"], 2, 400):
+            errors.append(f"{loc}: limitations must be 2–400 plain-text characters")
+        validate_mirrors(tool, loc, errors)
         validate_authors(tool, loc, errors)
         platforms = tool.get("platforms", [])
         if not isinstance(platforms, list) or any(not is_text(x, 1, 40) for x in platforms):

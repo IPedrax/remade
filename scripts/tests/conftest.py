@@ -50,6 +50,7 @@ def write_tool(catalog_root: Path) -> Path:
     path.write_text("""
 slug: example-tool
 name: Example Tool
+languages: [JavaScript]
 repository: https://github.com/example/example-tool
 url: https://example.org/tool
 description: A browser launcher for the indexed implementation.

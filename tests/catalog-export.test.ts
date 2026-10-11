@@ -21,7 +21,16 @@ test("exports preserve public relationships and strip unlisted fields at every l
 				.map((p) => ({ ...p, ...internal })),
 			tools: catalog.entries
 				.filter((e) => e.kind === "tool")
-				.map((t) => ({ ...t, ...internal })),
+				.map((t) => ({
+					...t,
+					...internal,
+					mirrors: ["https://codeberg.org/example/tool"],
+					languages: ["JavaScript"],
+					status: "beta" as const,
+					docs: "https://example.org/docs",
+					website: "https://example.org",
+					limitations: "Some host APIs are not supported.",
+				})),
 			featured: catalog.featured,
 		},
 		site,
@@ -51,7 +60,17 @@ test("exports preserve public relationships and strip unlisted fields at every l
 		assert.ok(!("additional_originals" in project));
 		assert.equal(project.pageUrl, `${site}projects/${project.slug}/`);
 	}
+	assert.equal(
+		output.tools.find((t) => t.slug === "lazymaplayers-effectcraft")?.license,
+		"MIT",
+	);
 	for (const tool of output.tools) {
+		assert.deepEqual(tool.mirrors, ["https://codeberg.org/example/tool"]);
+		assert.deepEqual(tool.languages, ["JavaScript"]);
+		assert.equal(tool.status, "beta");
+		assert.equal(tool.docs, "https://example.org/docs");
+		assert.equal(tool.website, "https://example.org");
+		assert.equal(tool.limitations, "Some host APIs are not supported.");
 		assert.equal(tool.pageUrl, `${site}tools/${tool.slug}/`);
 		assert.ok(
 			tool.projects.every((slug) =>

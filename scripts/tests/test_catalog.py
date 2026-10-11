@@ -288,3 +288,56 @@ original: product-b
 reason: An independent compatible implementation would be useful.
 """)
     assert any(('Duplicate YAML key' in x for x in collect(original_catalog)[-1]))
+
+
+@pytest.mark.parametrize('license_value, valid', [('MIT', True), ('""', False), ('null', False), ('42', False), ('"<b>MIT</b>"', False)])
+def test_tool_license(project_catalog: Path, tool_factory: Callable[[], Path], license_value: str, valid: bool) -> None:
+    path = tool_factory()
+    path.write_text(path.read_text() + f'\nlicense: {license_value}\n')
+    tools, errors = collect_tools(project_catalog)
+    assert (not errors) == valid
+    if valid:
+        assert tools[0]['license'] == 'MIT'
+
+
+@pytest.mark.parametrize('field, value, valid', [
+    ('languages', '[JavaScript]', True), ('languages', '[]', False), ('languages', '[null]', False),
+    ('status', 'beta', True), ('status', 'unknown', False),
+    ('docs', 'https://example.org/docs', True), ('docs', 'http://example.org', False),
+    ('website', 'https://example.org', True), ('website', 'https://localhost/', False),
+    ('limitations', 'Some host APIs are not supported.', True), ('limitations', 'null', False),
+    ('limitations', '"<b>bad</b>"', False),
+])
+def test_tool_details(project_catalog: Path, tool_factory: Callable[[], Path], field: str, value: str, valid: bool) -> None:
+    path = tool_factory()
+    source = path.read_text()
+    if field == 'languages':
+        source = source.replace('languages: [JavaScript]', f'languages: {value}')
+    else:
+        source += f'\n{field}: {value}\n'
+    path.write_text(source)
+    tools, errors = collect_tools(project_catalog)
+    assert (not errors) == valid
+    if valid:
+        assert field in tools[0]
+
+
+def test_tool_requires_languages(project_catalog: Path, tool_factory: Callable[[], Path]) -> None:
+    path = tool_factory()
+    path.write_text(path.read_text().replace('languages: [JavaScript]\n', ''))
+    assert collect_tools(project_catalog)[1]
+
+
+@pytest.mark.parametrize('value, valid', [
+    ('[https://codeberg.org/example/tool]', True), ('[]', False),
+    ('https://codeberg.org/example/tool', False), ('[http://example.org/tool]', False),
+    ('[https://github.com/example/tool/issues]', False),
+    ('[https://codeberg.org/example/tool, https://codeberg.org/example/tool.git]', False),
+])
+def test_tool_mirrors(project_catalog: Path, tool_factory: Callable[[], Path], value: str, valid: bool) -> None:
+    path = tool_factory()
+    path.write_text(path.read_text() + f'\nmirrors: {value}\n')
+    tools, errors = collect_tools(project_catalog)
+    assert (not errors) == valid
+    if valid:
+        assert tools[0]['mirrors'] == ['https://codeberg.org/example/tool']

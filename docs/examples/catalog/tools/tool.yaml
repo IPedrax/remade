@@ -6,5 +6,13 @@ name: Example Tool
 repository: https://github.com/example/example-tool
 url: https://example.org/tool
 platforms: [Web]
+# Optional: use the documented license identifier; omit when unknown.
+license: MIT
+languages: [TypeScript]
+# status: beta
+# mirrors: [https://codeberg.org/example/example-tool]
+# docs: https://example.org/tool/docs
+# website: https://example.org/tool
+# limitations: Some host APIs are not yet supported.
 description: A browser launcher that adds access to an indexed implementation.
 projects: [example-implementation]

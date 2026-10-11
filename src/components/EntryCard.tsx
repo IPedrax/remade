@@ -1,5 +1,7 @@
 import {
+	badgeLanguages,
 	type Entry,
+	entryCategories,
 	entryUrl,
 	formatStars,
 	label,
@@ -7,7 +9,7 @@ import {
 	relativeDate,
 	shortDate,
 } from "../lib/presentation";
-import type { Original } from "../lib/schemas";
+import type { Original, Project } from "../lib/schemas";
 import Authors from "./Authors";
 import CardDescription from "./CardDescription";
 import OriginalLinks from "./OriginalLinks";
@@ -15,18 +17,38 @@ import OriginalLinks from "./OriginalLinks";
 interface Props {
 	entry: Entry;
 	originals: Original[];
+	projects: Project[];
 	metadata?: Metadata;
 }
-export default function EntryCard({ entry, originals, metadata }: Props) {
+export default function EntryCard({
+	entry,
+	originals,
+	projects,
+	metadata,
+}: Props) {
 	return (
 		<article className="relative isolate flex h-full min-h-[360px] min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 focus-within:border-lime sm:p-[26px]">
 			<div className="mb-3.5 flex shrink-0 flex-wrap gap-2">
 				<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
 					{entry.kind === "tool" ? "Tool" : label(entry.status)}
 				</span>
-				{entry.kind === "project" && (
+				{entry.kind === "tool" && (
 					<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
-						{entry.languages.join(" · ")}
+						{entry.status ? label(entry.status) : "Status not documented"}
+					</span>
+				)}
+				{entry.kind === "tool" &&
+					entryCategories(entry, projects).map((category) => (
+						<span
+							className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted"
+							key={category}
+						>
+							{label(category)}
+						</span>
+					))}
+				{entry.languages.length > 0 && (
+					<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
+						{badgeLanguages(entry.languages).join(" · ")}
 					</span>
 				)}
 				{metadata && (
@@ -58,7 +80,22 @@ export default function EntryCard({ entry, originals, metadata }: Props) {
 						/>
 					</>
 				) : (
-					"Adds on to indexed projects"
+					<>
+						Tool for{" "}
+						{projects
+							.filter((project) => entry.projects.includes(project.slug))
+							.map((project, index) => (
+								<span key={project.slug}>
+									{index > 0 && ", "}
+									<a
+										className="relative z-10 text-lime hover:underline"
+										href={`/projects/${project.slug}/`}
+									>
+										{project.name}
+									</a>
+								</span>
+							))}
+					</>
 				)}
 			</p>
 			<CardDescription

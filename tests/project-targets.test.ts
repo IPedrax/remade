@@ -23,7 +23,11 @@ test("Plane appears once in the catalog and under all four targets, with searcha
 	const entry = catalog.entries.find((e) => e.slug === project.slug);
 	assert.ok(entry);
 	const card = renderToStaticMarkup(
-		createElement(EntryCard, { entry, originals: catalog.originals }),
+		createElement(EntryCard, {
+			entry,
+			originals: catalog.originals,
+			projects: catalog.projects,
+		}),
 	);
 	const page = renderToStaticMarkup(
 		createElement(ProjectPage, { project, catalog, metadata: {} }),

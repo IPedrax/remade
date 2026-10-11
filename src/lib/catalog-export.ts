@@ -35,6 +35,13 @@ const publicProject = v.object({
 	addedAt,
 });
 const publicTool = v.object({
+	mirrors: toolSchema.entries.mirrors,
+	license: toolSchema.entries.license,
+	languages: toolSchema.entries.languages,
+	status: toolSchema.entries.status,
+	docs: toolSchema.entries.docs,
+	website: toolSchema.entries.website,
+	limitations: toolSchema.entries.limitations,
 	slug: toolSchema.entries.slug,
 	name: toolSchema.entries.name,
 	repository: toolSchema.entries.repository,

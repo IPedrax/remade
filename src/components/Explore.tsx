@@ -2,7 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { type BrowseEntry, compareEntries, filterEntries } from "../lib/browse";
 import type { CatalogData, Entry, Metadata } from "../lib/catalog";
 import { categories, compatibility, statuses } from "../lib/constants";
-import { contributeUrl, label, metadataFor, recent } from "../lib/presentation";
+import {
+	contributeUrl,
+	entryCategories,
+	label,
+	metadataFor,
+	recent,
+} from "../lib/presentation";
 import {
 	compareRequests,
 	defaultRequestFilters,
@@ -61,14 +67,15 @@ function browseData(
 			entry.description,
 			...originals.flatMap((o) => [o.name, ...(o.aliases ?? [])]),
 			...(entry.authors ?? []),
-			...(entry.kind === "project" ? entry.languages : []),
+			...entry.languages,
 		]
 			.filter(Boolean)
 			.join(" "),
 		category: entry.kind === "project" ? entry.category : "tools",
-		languages: entry.kind === "project" ? entry.languages : [],
+		categories: entryCategories(entry, catalog.projects),
+		languages: entry.languages,
 		platforms: entry.platforms ?? [],
-		status: entry.kind === "project" ? entry.status : "",
+		status: entry.status ?? "",
 		compatibility: entry.kind === "project" ? entry.compatibility : "",
 		addedAt: entry.addedAt ?? "",
 		stars: metadataFor(entry, metadata)?.stars ?? null,
@@ -104,7 +111,8 @@ export default function Explore({ catalog, metadata }: Props) {
 		);
 	}, [filters, ready]);
 	const languages = useMemo(
-		() => [...new Set(catalog.projects.flatMap((p) => p.languages))].sort(),
+		() =>
+			[...new Set(catalog.entries.flatMap((entry) => entry.languages))].sort(),
 		[catalog],
 	);
 	const platforms = useMemo(
@@ -303,6 +311,7 @@ export default function Explore({ catalog, metadata }: Props) {
 						key={entry.slug}
 						metadata={metadataFor(entry, metadata)}
 						originals={catalog.originals}
+						projects={catalog.projects}
 					/>
 				))}
 			</div>

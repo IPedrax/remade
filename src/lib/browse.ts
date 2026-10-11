@@ -2,6 +2,7 @@ export interface BrowseEntry {
 	name: string;
 	search: string;
 	category: string;
+	categories?: string[];
 	languages: string[];
 	platforms: string[];
 	status: string;
@@ -20,7 +21,9 @@ export function filterEntries(
 		.filter(Boolean);
 	return (
 		terms.every((term) => entry.search.toLowerCase().includes(term)) &&
-		(!filters.category || entry.category === filters.category) &&
+		(!filters.category ||
+			entry.category === filters.category ||
+			(entry.categories?.includes(filters.category) ?? false)) &&
 		(!filters.language || entry.languages.includes(filters.language)) &&
 		(!filters.platform || entry.platforms.includes(filters.platform)) &&
 		(!filters.status || entry.status === filters.status) &&
