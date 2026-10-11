@@ -13,6 +13,7 @@ export default function Footer() {
 					aria-label="Footer"
 					className="flex flex-wrap items-center gap-6 text-sm"
 				>
+					<a href="/about/">About</a>
 					<a href={repositoryUrl}>GitHub</a>
 					<a href={contributeUrl}>Submit</a>
 					<a href="/disclaimer/">Disclaimer</a>

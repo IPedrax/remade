@@ -48,7 +48,15 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 5. Browse by category: clear icon labels, counts when known.
 6. Recently added: reviewed latest additions; no invented dates.
 7. **Project Requests**: place **“Step up to the plate?”** in smaller text after the introductory description; unfulfilled targets, concise contextual descriptions, link to requests index and PR contribution instructions. Show an intentional empty state when no requests exist.
-8. Footer: brand/tagline + GitHub, Submit, and **Disclaimer** links. **Do not display `admin@remade.wiki` in footer.**
+8. Footer: brand/tagline + GitHub, Submit, **About**, and **Disclaimer** links.
+
+## About page
+
+- `/about` presents Remade's story, mission, engineering philosophy, and community contribution links in well-spaced editorial sections, with narrow reading columns.
+- Lead with **Everything can be remade.** and preserve **“An implementation is one way to solve a problem, not necessarily the only way.”**
+- Celebrate independent engineering, interoperability and preservation without framing the directory as hostile to proprietary software or implying Remade builds the listed projects. Credit their developers and communities.
+- Provide secondary navigation to the GitHub repository, contribution guidelines, Project Requests and Disclaimer. External resource links open in new tabs. Badge documentation is not included.
+- Render statically without React hydration; include the page in the sitemap and Pagefind index.
 
 ## Project Requests page
 

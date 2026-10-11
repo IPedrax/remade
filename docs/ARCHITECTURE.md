@@ -26,6 +26,7 @@ Git-tracked project YAML + original records + featured selections
            ├── /projects/[slug]        individual project
            ├── /authors/[github-user] attributed indexed projects and tools
            ├── /requests              unfulfilled community requests
+           ├── /about                 story, mission and community
            ├── /data/catalog.json     public machine-readable catalog
            ├── /data/requests.json    public machine-readable requests
            ├── /disclaimer            approved text

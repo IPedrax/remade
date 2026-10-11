@@ -20,6 +20,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 | `/projects/[slug]` | Implementation detail, coverage/limitations, GitHub stats, link to repo |
 | `/authors/[github-user]` | Author identity and all attributed indexed projects and tools, including entries not featured |
 | `/requests` | Requested reimplementations with no currently indexed matching project |
+| `/about` | Remade's story, mission, engineering philosophy, and contribution links |
 | `/disclaimer` | Independently developed projects, qualified legal history, contact |
 | `/404` | Custom not-found state and search/explore navigation |
 
