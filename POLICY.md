@@ -56,6 +56,8 @@ Requests are not assignments, endorsements, authorizations from rights holders, 
 
 ## 5. Submission requirements
 
+**Suggested names must be distinct from existing brands.** Naming ideas for requested implementations must not be confusingly similar to the original software's brand or another existing software brand, or imply affiliation, endorsement, or an official successor. Do not reuse a brand name, use a close spelling variant, or simply append “Craft” to it. Choose an independently recognizable name. This is an editorial requirement, not trademark clearance or a guarantee of legal availability.
+
 Contributions should be made by pull request, adding **one project file per project** under `src/content/catalog/projects/`.
 
 Each submission must include:

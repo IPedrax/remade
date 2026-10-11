@@ -36,7 +36,7 @@ Requests have no votes, bounty promises, or claim/assignment system. They are di
 
 Tools that add on to indexed projects are welcome under `src/content/catalog/tools/<github-user>/<slug>.yaml`. Read the supporting-tools section of `POLICY.md` and copy `docs/examples/catalog/tools/tool.yaml`. Link the source repository and tool, describe the added functionality, and reference at least one existing project slug in `projects`. Disclose dependencies and licensing accurately. Tools are reviewed through the same PR flow and may be featured with a Tool label; they do not fulfill Project Requests.
 
-Requests may also include optional `suggested_names`, such as `[MusicCraft]`. These are naming ideas, not existing implementations or reserved names.
+Requests may also include optional `suggested_names`, such as `[MusicCraft]`. These are naming ideas, not existing implementations or reserved names. Choose names distinct from existing software brands, without implying affiliation; see the naming requirement in [POLICY.md](POLICY.md#5-submission-requirements).
 
 ## Credit authors
 

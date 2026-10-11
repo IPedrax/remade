@@ -74,7 +74,7 @@ When requirements conflict, make the inconsistency explicit and update the relev
 4. Submit a PR with the required policy acknowledgment. Automated checks run on the pull request.
 5. Request cards render under **Project Requests** and `/requests`; remove the request when an implementation is accepted.
 
-Requests may include optional `suggested_names` for naming ideas. Supporting tools reference indexed project slugs; copy `docs/examples/catalog/tools/tool.yaml` and follow the policy's supporting-tools rules.
+Requests may include optional `suggested_names` for naming ideas. Only propose names that are distinct from existing software brands and unlikely to be confused with them; follow the naming requirement in `POLICY.md`. Supporting tools reference indexed project slugs; copy `docs/examples/catalog/tools/tool.yaml` and follow the policy's supporting-tools rules.
 
 For corrections, edit the original YAML through a PR and cite supporting public sources. For policy exceptions, ask maintainers; don't work around the validator.
 

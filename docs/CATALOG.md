@@ -125,6 +125,7 @@ suggested_names: [ExampleCraft] # optional
 - For entries or details sourced from a GitHub issue, add a YAML comment above the record linking to the source, such as `# Requested in https://github.com/replicraft/remade/issues/14.` Use `# Additional request details in ...` when an issue expands an existing request. Apply this convention to project and tool suggestions too; comments are contributor references, not schema fields or public UI content.
 - `reason` is plain text, 20–400 characters, factual and non-promotional.
 - Optional `suggested_names` is a nonempty list of plain-text names, each 2–100 characters. Names must be unique after case folding and whitespace normalization. These are naming ideas, not existing implementations or reserved names.
+- Suggested names must be distinct from existing software brands and must not imply affiliation. Follow the naming requirement in [POLICY.md](../POLICY.md#5-submission-requirements); semantic brand-confusion review is a maintainer responsibility, not a schema check.
 - No repository, popularity count, bounty, fundraising, deadline, ownership claim, or invented implementation status.
 - Exactly one open request per original.
 - **Do not list requests for any original with an indexed project, across its entire `originals` list.** The catalog validator enforces this; remove requests for every covered target in the same PR that first adds its implementation.
