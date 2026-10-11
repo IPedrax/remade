@@ -29,6 +29,7 @@ When requirements conflict, make the inconsistency explicit and update the relev
 
 ## Engineering rules
 
+- Split each batch into small, logical, conventional commits, with one coherent purpose per commit. Keep a feature or schema change together with its necessary data migration, tests, and documentation; commit unrelated catalog additions, UI changes, and policy changes separately. Separate shared-file changes by hunk when needed, account for every requested change, and leave unrelated user files untracked or unstaged.
 - For the first local commit in a batch, run one command: `git pull --ff-only && git add <explicit file paths> && git commit -m "<message>"`. Subsequent commits in the same batch use `git add <explicit file paths> && git commit -m "<message>"` without another pull. This includes upstream changes, including automated metadata updates, before the batch. If pulling fails, resolve the issue before committing; do not automatically rebase, reset, or discard local work.
 - **Astro + React + strict TypeScript + Tailwind**, statically generated pages. Use Pagefind for static search and the generated catalog for local filtering/sorting.
 - **pnpm only** for JavaScript dependencies and scripts. Commit `pnpm-lock.yaml` and specify an exact `packageManager` in `package.json`. Do not introduce npm or Yarn lockfiles, npm commands, or deployment-specific setup.
