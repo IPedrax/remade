@@ -1,3 +1,3 @@
 original: vectorworks
-reason: Reproduce Vectorworks' 2D drafting, 3D modeling, BIM and documentation workflows for architecture, landscape and entertainment design, with compatible project and interchange formats. Could extend SolveCraft (https://github.com/bherbruck/solvecraft), or be separate projects sharing one 3D engine.
+reason: Reproduce Vectorworks' 2D drafting, 3D modeling, BIM and documentation workflows for architecture, landscape and entertainment design, with compatible project and interchange formats. Could extend SolidCraft (https://github.com/bherbruck/solidcraft), or be separate projects sharing one 3D engine.
 suggested_names: [DraftCraft]

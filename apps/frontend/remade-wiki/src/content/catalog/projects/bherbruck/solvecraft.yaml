@@ -1,15 +1,15 @@
 # Scope and limitations are maintainer-reported in the repository README.
 slug: solvecraft
-name: SolveCraft
+name: SolidCraft
 authors: [bherbruck]
-repository: https://github.com/bherbruck/solvecraft
-website: https://bherbruck.github.io/solvecraft/
+repository: https://github.com/bherbruck/solidcraft
+website: https://bherbruck.github.io/solidcraft/
 originals: [autodesk-fusion]
 category: engineering
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
 status: experimental
 compatibility: partial
-description: SolveCraft by bherbruck independently implements Fusion-style parametric CAD, with constrained sketches, solid modeling and a rebuildable feature timeline.
+description: SolidCraft by bherbruck independently implements Fusion-style parametric CAD, with constrained sketches, solid modeling and a rebuildable feature timeline.
 license: MIT OR Apache-2.0
 limitations: Early development focused on simple parts and the Fusion Design workspace. Full Fusion compatibility is not claimed.
