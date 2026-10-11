@@ -28,7 +28,7 @@ Listed projects are developed and maintained by their respective authors, who ar
 
 ## Trademarks and Affiliation
 
-Product names, trademarks, and logos are the property of their respective holders. Remade references original software for identification and informational comparison only. Such references do not imply affiliation, sponsorship, or endorsement.
+All third-party product names, trademarks, logos, and images referenced or displayed on Remade remain the property of their respective rights holders. Remade uses these materials for identification and informational comparison only. Their use does not imply affiliation, sponsorship, approval, or endorsement of Remade or any listed project by those rights holders. All rights in these materials remain with their respective holders.
 
 ## Reporting Concerns
 
