@@ -453,3 +453,17 @@
   url: https://www.adobe.com/products/fresco.html
   category: creative
   aliases: [Fresco]
+- slug: microsoft-visual-studio
+  name: Microsoft Visual Studio
+  url: https://visualstudio.microsoft.com/vs/
+  category: developer-tools
+  aliases: [Visual Studio]
+- slug: smaart
+  name: Smaart
+  url: https://www.rationalacoustics.com/collections/smaart
+  category: engineering
+  aliases: [Rational Acoustics Smaart]
+- slug: vectorworks
+  name: Vectorworks
+  url: https://www.vectorworks.net/en-GB/products
+  category: engineering

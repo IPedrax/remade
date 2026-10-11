@@ -1,0 +1,14 @@
+slug: opencut
+name: OpenCut
+authors: [opencut-app]
+repository: https://github.com/OpenCut-app/OpenCut
+original: capcut
+category: creative
+languages: [TypeScript, Rust]
+platforms: [Web]
+status: experimental
+compatibility: targeting
+description: OpenCut is an independently developed video editor targeting CapCut-style editing workflows. Its existing browser editor remains available while a rewrite aims to bring a shared Rust core, plugins and automation to web, desktop and mobile.
+license: MIT
+docs: https://github.com/OpenCut-app/OpenCut#readme
+limitations: The repository is undergoing a rewrite; opencut.app still serves the classic editor. Desktop support is an early window-only prototype and mobile support is planned. CapCut project-file compatibility is not documented.
