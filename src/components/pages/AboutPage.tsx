@@ -112,6 +112,11 @@ export default function AboutPage() {
 							An implementation is one way to solve a problem, not necessarily
 							the only way.
 						</p>
+
+						<blockquote className="mt-7 text-muted italic">
+							Raise a glass to freedom, something they can never take away. No
+							matter what they tell you.
+						</blockquote>
 					</section>
 
 					<section aria-labelledby="community-heading">
