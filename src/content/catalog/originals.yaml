@@ -558,3 +558,8 @@
   name: Nomad Sculpt
   url: https://nomadsculpt.com/
   category: creative
+- slug: internet-explorer
+  name: Internet Explorer
+  url: https://support.microsoft.com/en-us/internet-explorer/internet-explorer-help
+  category: other
+  aliases: [Microsoft Internet Explorer, Windows Internet Explorer, IE]

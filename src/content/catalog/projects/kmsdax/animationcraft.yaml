@@ -1,0 +1,16 @@
+# Features and development status are maintainer-reported in the README.
+# License is declared in the workspace Cargo.toml.
+slug: animationcraft
+name: AnimationCraft
+authors: [kmsdax]
+repository: https://github.com/KMSDax/AnimationCraft
+original: adobe-animate
+category: creative
+languages: [Rust]
+platforms: [Linux, macOS, Windows]
+status: experimental
+compatibility: partial
+description: AnimationCraft recreates Adobe Animate's 2D authoring workflow in Rust, with a familiar stage, timeline, properties and library workspace, symbols, layers, keyframes, classic, shape and motion tweens, onion skin and scripting.
+license: MIT OR Apache-2.0
+docs: https://github.com/KMSDax/AnimationCraft#readme
+limitations: Work-in-progress demo. macOS support is unverified. Features are maintainer-reported; FLA, XFL and SWF import/export compatibility is not documented. Video export requires FFmpeg.
