@@ -1,0 +1,3 @@
+original: tekla-structures
+reason: Reproduce Tekla Structures' structural BIM, steel and concrete detailing, reinforcement, fabrication drawings and model coordination, with compatible interchange. BIMCraft could combine Revit, Advance Steel and Tekla workflows with MCP automation, extending SolveCraft (https://github.com/bherbruck/solvecraft) or sharing a 3D engine between applications.
+suggested_names: [BIMCraft]

@@ -503,3 +503,44 @@
   url: https://www.ptc.com/en/products/creo
   category: engineering
   aliases: [Creo, Creo Parametric, Creo 3D]
+- slug: gamemaker-studio
+  name: GameMaker Studio
+  url: https://gamemaker.io/en
+  category: developer-tools
+  aliases: [GameMaker, GameMaker Studio 2, GameMaker 8, GM8]
+- slug: synthesizer-v-studio-2-pro
+  name: Synthesizer V Studio 2 Pro
+  url: https://www.dreamtonics.com/synthesizerv/
+  category: creative
+  aliases: [Synthesizer V Pro 2, Synth V Studio 2 Pro]
+- slug: cricut-design-space
+  name: Cricut Design Space
+  url: https://cricut.com/en/our-software
+  category: creative
+- slug: silhouette-studio
+  name: Silhouette Studio
+  url: https://www.silhouetteamerica.com/software
+  category: creative
+- slug: xtool-studio
+  name: xTool Studio
+  url: https://www.xtool.com/pages/software
+  category: creative
+  aliases: [xTool Creative Space, XCS]
+- slug: macrium-reflect
+  name: Macrium Reflect
+  url: https://www.macrium.com/cloning-software
+  category: other
+- slug: autodesk-advance-steel
+  name: Autodesk Advance Steel
+  url: https://www.autodesk.com/products/advance-steel/overview
+  category: engineering
+  aliases: [Advance Steel]
+- slug: tekla-structures
+  name: Tekla Structures
+  url: https://www.tekla.com/products/tekla-structures
+  category: engineering
+- slug: ptc-mathcad
+  name: PTC Mathcad
+  url: https://www.ptc.com/en/products/mathcad/
+  category: engineering
+  aliases: [Mathcad, Mathcad Prime]
