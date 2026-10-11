@@ -1,0 +1,14 @@
+slug: lightcraft-classic
+name: LightCraft Classic
+authors: [emmertex]
+repository: https://github.com/emmertex/lightcraft-classic
+original: adobe-lightroom
+category: creative
+languages: [Rust]
+platforms: [Linux, macOS, Windows, FreeBSD, Web]
+status: experimental
+compatibility: partial
+description: A downstream fork of ArtCraft's LightCraft focused on Lightroom Classic workflows, with a seven-module workspace, non-destructive RAW development, photo catalogs and Immich integration. Shared changes are intended to flow back upstream.
+license: MIT AND Apache-2.0
+docs: https://github.com/emmertex/lightcraft-classic#readme
+limitations: Compatibility is incomplete and maintainer-reported. Expanded Lightroom catalog support, camera calibration, some compressed RAW formats, AI masking and denoising, HDR and video remain works in progress; real-camera tethering checks are pending.

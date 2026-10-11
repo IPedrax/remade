@@ -72,7 +72,7 @@
   name: Adobe Lightroom
   url: https://www.adobe.com/products/photoshop-lightroom.html
   category: creative
-  aliases: [Lightroom]
+  aliases: [Lightroom, Lightroom Classic, Adobe Lightroom Classic]
 - slug: adobe-premiere-pro
   name: Adobe Premiere Pro
   url: https://www.adobe.com/products/premiere.html
@@ -467,3 +467,13 @@
   name: Vectorworks
   url: https://www.vectorworks.net/en-GB/products
   category: engineering
+- slug: windows-movie-maker
+  name: Windows Movie Maker
+  url: https://support.microsoft.com/en-us/windows/apps/support-for-windows-essentials-apps
+  category: creative
+  aliases: [Movie Maker]
+- slug: quickbooks
+  name: QuickBooks
+  url: https://quickbooks.intuit.com/accounting/
+  category: productivity
+  aliases: [Intuit QuickBooks]

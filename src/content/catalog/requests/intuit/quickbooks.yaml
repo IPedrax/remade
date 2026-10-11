@@ -1,0 +1,3 @@
+original: quickbooks
+reason: Reproduce QuickBooks' bookkeeping, invoicing, reconciliation and reporting workflows with compatible data import/export. Initially target small businesses only; require validated calculations, audit trails, accountant review and defined accuracy obligations before production use. Clarify the implementer's liability limits through legal review rather than promise zero liability.
+suggested_names: [LedgerCraft]
