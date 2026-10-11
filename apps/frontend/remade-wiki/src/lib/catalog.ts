@@ -61,7 +61,11 @@ async function records<S extends v.GenericSchema>(
 	);
 }
 
-function addedAt(folder: string, slug: string): string | undefined {
+function addedAt(
+	folder: string,
+	slug: string,
+	previousSlugs: string[] = [],
+): string | undefined {
 	try {
 		const output = execFileSync(
 			"git",
@@ -70,10 +74,12 @@ function addedAt(folder: string, slug: string): string | undefined {
 				"--diff-filter=A",
 				"--format=%aI",
 				"--",
-				`:(glob)apps/frontend/remade-wiki/src/content/catalog/${folder}/**/${slug}.yaml`,
-				`apps/frontend/remade-wiki/src/content/catalog/${folder}/${slug}.yaml`,
-				`:(glob)src/content/catalog/${folder}/**/${slug}.yaml`,
-				`src/content/catalog/${folder}/${slug}.yaml`,
+				...[slug, ...previousSlugs].flatMap((name) => [
+					`:(glob)apps/frontend/remade-wiki/src/content/catalog/${folder}/**/${name}.yaml`,
+					`apps/frontend/remade-wiki/src/content/catalog/${folder}/${name}.yaml`,
+					`:(glob)src/content/catalog/${folder}/**/${name}.yaml`,
+					`src/content/catalog/${folder}/${name}.yaml`,
+				]),
 			],
 			{
 				cwd: repositoryRoot,
@@ -104,11 +110,25 @@ export async function loadCatalog() {
 
 	validateRelationships(catalog);
 
+	// Old slugs in project redirects preserve the original catalog addition date.
+	const redirects = await readFile(new URL("public/_redirects", root), "utf8");
+	const previousSlugs = (slug: string) => [
+		...new Set(
+			redirects.split("\n").flatMap((line) => {
+				const match = line.match(
+					/^\/projects\/([a-z0-9-]+)\/?\s+\/projects\/([a-z0-9-]+)\/?\s+302$/,
+				);
+
+				return match?.[2] === slug ? [match[1]] : [];
+			}),
+		),
+	];
+
 	const entries: Entry[] = [
 		...projects.map((p) => ({
 			...p,
 			kind: "project" as const,
-			addedAt: addedAt("projects", p.slug),
+			addedAt: addedAt("projects", p.slug, previousSlugs(p.slug)),
 		})),
 		...tools.map((t) => ({
 			...t,

@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import BadgeShare from "../../src/components/BadgeShare";
 import { badgeSnippets } from "../../src/lib/badges";
 
-const projectUrl = "https://remade.wiki/projects/solvecraft/";
+const projectUrl = "https://remade.wiki/projects/solidcraft/";
 
 beforeEach(() => {
 	vi.spyOn(navigator.clipboard, "writeText").mockResolvedValue();

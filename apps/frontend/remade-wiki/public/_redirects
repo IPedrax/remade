@@ -1,0 +1,3 @@
+# Temporary redirects for renamed project slugs. Point every old URL to the current slug.
+/projects/solvecraft/ /projects/solidcraft/ 302
+/projects/solvecraft /projects/solidcraft/ 302

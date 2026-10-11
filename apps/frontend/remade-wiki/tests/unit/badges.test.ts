@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { badgeSnippets, badgeUrl } from "../../src/lib/badges";
 
-const projectUrl = new URL("/projects/solvecraft/", "https://remade.wiki").href;
+const projectUrl = new URL("/projects/solidcraft/", "https://remade.wiki").href;
 
 describe("badge snippets", () => {
 	it.each(["dark", "light", "classic"] as const)(
@@ -30,7 +30,7 @@ describe("badge snippets", () => {
 
 		for (const snippet of Object.values(badgeSnippets(canonical))) {
 			expect(snippet).toContain(canonical);
-			expect(snippet).not.toContain("solvecraft");
+			expect(snippet).not.toContain("solidcraft");
 		}
 	});
 

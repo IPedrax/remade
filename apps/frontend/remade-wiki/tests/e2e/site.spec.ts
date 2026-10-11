@@ -1,10 +1,21 @@
 import { expect, test } from "@playwright/test";
 
+test("the previous SolveCraft URL redirects to SolidCraft", async ({
+	page,
+}) => {
+	await page.goto("/projects/solvecraft/");
+
+	await expect(page).toHaveURL(/\/projects\/solidcraft\/$/);
+	await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+		"SolidCraft",
+	);
+});
+
 test("project badge sharing copies the canonical listing and links to badge documentation", async ({
 	page,
 }) => {
 	await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
-	await page.goto("/projects/solvecraft/");
+	await page.goto("/projects/solidcraft/");
 
 	const canonical = await page
 		.locator('link[rel="canonical"]')

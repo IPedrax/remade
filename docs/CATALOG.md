@@ -108,7 +108,7 @@ The remaining groups cover operating systems, games, developer tools, protocols,
 - `slug` and filename must agree.
 - No duplicate normalized repository URLs, using host and namespace/repository identity.
 - No duplicate original slugs. A corrected name should use `aliases` instead of creating a second original.
-- Prefer stable slugs. A display-name change or author-folder move does not require a new slug or public URL. If a project slug changes, add a temporary redirect from `/projects/<old-slug>/` to `/projects/<new-slug>/` in the same PR, unless maintainers explicitly approve an exception under `POLICY.md`. Update featured selections, supporting-tool references and any earlier redirects to the current slug; do not reuse old slugs for another project unless maintainers approve an exception.
+- Prefer stable slugs. A display-name change or author-folder move does not require a new slug or public URL. If a project slug changes, add a temporary redirect from `/projects/<old-slug>/` to `/projects/<new-slug>/` in the same PR, unless maintainers explicitly approve an exception under `POLICY.md`. Update featured selections, supporting-tool references and any earlier redirects to the current slug; do not reuse old slugs for another project unless maintainers approve an exception. Add the old route to Astro’s `redirects` configuration and add explicit 302 rules for both trailing-slash forms in `apps/frontend/remade-wiki/public/_redirects` for Cloudflare Pages. The catalog loader uses these project redirect rules to include earlier slugs when finding the original Git addition date.
 - Reject unknown fields (to catch typos) and malformed URLs.
 
 ## Project Request record
