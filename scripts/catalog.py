@@ -4,18 +4,23 @@ Third-party catalog text is untrusted. Never execute anything from listed reposi
 """
 
 import ipaddress
-import validators
 import re
 from pathlib import Path
 from urllib.parse import urlsplit
 
+import validators
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORIES = {
-    "creative", "productivity", "engineering",
-    "operating-systems", "games", "developer-tools",
-    "protocols", "other",
+    "creative",
+    "productivity",
+    "engineering",
+    "operating-systems",
+    "games",
+    "developer-tools",
+    "protocols",
+    "other",
 }
 STATUSES = {"experimental", "alpha", "beta", "stable", "archived"}
 COMPATIBILITY = {"targeting", "partial", "high", "claimed-complete"}
@@ -52,7 +57,9 @@ def is_slug(v):
 
 
 def is_text(v, minlen=1, maxlen=400):
-    return isinstance(v, str) and minlen <= len(v.strip()) <= maxlen and "<" not in v and ">" not in v
+    return (
+        isinstance(v, str) and minlen <= len(v.strip()) <= maxlen and "<" not in v and ">" not in v
+    )
 
 
 def is_https(v):
@@ -61,10 +68,18 @@ def is_https(v):
     try:
         parts = urlsplit(v)
         host = parts.hostname
-        if (parts.scheme != "https" or not host or parts.username or parts.password
-                or parts.port is not None or any(ch.isspace() for ch in v)):
+        if (
+            parts.scheme != "https"
+            or not host
+            or parts.username
+            or parts.password
+            or parts.port is not None
+            or any(ch.isspace() for ch in v)
+        ):
             return False
-        if host.lower() == "localhost" or host.lower().endswith((".local", ".internal", ".localhost", ".test")):
+        if host.lower() == "localhost" or host.lower().endswith(
+            (".local", ".internal", ".localhost", ".test")
+        ):
             return False
         try:
             ipaddress.ip_address(host)
@@ -108,7 +123,7 @@ def collect(root=ROOT):
     original_by_slug = {}
     names = set()
     for i, original in enumerate(originals):
-        loc = f"src/content/catalog/originals.yaml entry #{i+1}"
+        loc = f"src/content/catalog/originals.yaml entry #{i + 1}"
         if not fields(original, {"slug", "name", "url", "category"}, {"aliases"}, loc, errors):
             continue
         slug = original["slug"]
@@ -141,7 +156,18 @@ def collect(root=ROOT):
     for path in sorted((root / "src/content/catalog/projects").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         project = checked_load(path, errors)
-        required = {"slug", "name", "repository", "originals", "category", "languages", "status", "compatibility", "description", "license"}
+        required = {
+            "slug",
+            "name",
+            "repository",
+            "originals",
+            "category",
+            "languages",
+            "status",
+            "compatibility",
+            "description",
+            "license",
+        }
         optional = {"platforms", "docs", "website", "mirrors", "limitations", "authors"}
         if not fields(project, required, optional, loc, errors):
             continue
@@ -158,18 +184,33 @@ def collect(root=ROOT):
             errors.append(f"{loc}: repository must be a public HTTPS URL")
         else:
             parts = urlsplit(repo)
-            segments = parts.path.strip('/').removesuffix('.git').split('/')
-            if parts.query or parts.fragment or len(segments) < 2 or any(not segment for segment in segments):
-                errors.append(f"{loc}: repository must link to a repository root, not an issue, subpage, or search result")
-            elif parts.hostname == 'github.com' and (len(segments) != 2 or parts.path.endswith(('/', '.git'))):
-                errors.append(f"{loc}: GitHub repository must be canonical https://github.com/owner/repo")
+            segments = parts.path.strip("/").removesuffix(".git").split("/")
+            if (
+                parts.query
+                or parts.fragment
+                or len(segments) < 2
+                or any(not segment for segment in segments)
+            ):
+                errors.append(
+                    f"{loc}: repository must link to a repository root, not an issue, subpage, or search result"
+                )
+            elif parts.hostname == "github.com" and (
+                len(segments) != 2 or parts.path.endswith(("/", ".git"))
+            ):
+                errors.append(
+                    f"{loc}: GitHub repository must be canonical https://github.com/owner/repo"
+                )
             else:
                 normalized = f"{parts.hostname.casefold()}/{'/'.join(segments).casefold()}"
                 if normalized in seen_repos:
                     errors.append(f"{loc}: duplicate repository {normalized}")
                 seen_repos.add(normalized)
         targets = project["originals"]
-        if not isinstance(targets, list) or not targets or any(not is_slug(target) for target in targets):
+        if (
+            not isinstance(targets, list)
+            or not targets
+            or any(not is_slug(target) for target in targets)
+        ):
             errors.append(f"{loc}: originals must be a nonempty list of original slugs")
         else:
             if len(set(targets)) != len(targets):
@@ -191,7 +232,10 @@ def collect(root=ROOT):
             errors.append(f"{loc}: platforms must be a list of strings")
         if not isinstance(project["status"], str) or project["status"] not in STATUSES:
             errors.append(f"{loc}: invalid status")
-        if not isinstance(project["compatibility"], str) or project["compatibility"] not in COMPATIBILITY:
+        if (
+            not isinstance(project["compatibility"], str)
+            or project["compatibility"] not in COMPATIBILITY
+        ):
             errors.append(f"{loc}: invalid compatibility")
         if not is_text(project["description"], 20, 400):
             errors.append(f"{loc}: description must be 20–400 plain-text characters")
@@ -227,10 +271,17 @@ def collect(root=ROOT):
             errors.append(f"{loc}: reason must be 20–400 plain-text characters")
         if "suggested_names" in req:
             suggested_names = req["suggested_names"]
-            if (not isinstance(suggested_names, list) or not suggested_names
-                    or any(not is_text(name, 2, 100) for name in suggested_names)):
-                errors.append(f"{loc}: suggested_names must be a nonempty list of 2–100 character plain-text names")
-            elif len({" ".join(name.casefold().split()) for name in suggested_names}) != len(suggested_names):
+            if (
+                not isinstance(suggested_names, list)
+                or not suggested_names
+                or any(not is_text(name, 2, 100) for name in suggested_names)
+            ):
+                errors.append(
+                    f"{loc}: suggested_names must be a nonempty list of 2–100 character plain-text names"
+                )
+            elif len({" ".join(name.casefold().split()) for name in suggested_names}) != len(
+                suggested_names
+            ):
                 errors.append(f"{loc}: duplicate suggested name")
 
     tools, tool_errors = collect_tools(root)
@@ -242,7 +293,9 @@ def collect(root=ROOT):
         if slug in project_by_slug:
             errors.append(f"tools/{slug}: slug already used by a project")
         parts = urlsplit(tool["repository"])
-        repository = f"{parts.hostname.casefold()}/{parts.path.strip('/').removesuffix('.git').casefold()}"
+        repository = (
+            f"{parts.hostname.casefold()}/{parts.path.strip('/').removesuffix('.git').casefold()}"
+        )
         if repository in seen_repos:
             errors.append(f"tools/{slug}: repository already used by a project")
         for project_slug in tool["projects"]:
@@ -252,14 +305,23 @@ def collect(root=ROOT):
     featured_slugs = set()
     for i, slug in enumerate(featured):
         if not is_slug(slug):
-            errors.append(f"src/content/catalog/featured.yaml entry #{i+1}: invalid slug")
+            errors.append(f"src/content/catalog/featured.yaml entry #{i + 1}: invalid slug")
         elif slug in featured_slugs:
-            errors.append(f"src/content/catalog/featured.yaml entry #{i+1}: duplicate featured slug {slug}")
+            errors.append(
+                f"src/content/catalog/featured.yaml entry #{i + 1}: duplicate featured slug {slug}"
+            )
         elif slug not in project_by_slug and slug not in tool_slugs:
-            errors.append(f"src/content/catalog/featured.yaml entry #{i+1}: unknown project or tool {slug}")
+            errors.append(
+                f"src/content/catalog/featured.yaml entry #{i + 1}: unknown project or tool {slug}"
+            )
         featured_slugs.add(slug)
-    return originals, list(project_by_slug.values()), list(request_by_original.values()), featured, errors
-
+    return (
+        originals,
+        list(project_by_slug.values()),
+        list(request_by_original.values()),
+        featured,
+        errors,
+    )
 
 
 def validate_mirrors(record: dict, loc: str, errors: list[str]) -> None:
@@ -274,16 +336,23 @@ def validate_mirrors(record: dict, loc: str, errors: list[str]) -> None:
                     errors.append(f"{loc}: mirror must be a public HTTPS URL")
                     continue
                 parts = urlsplit(mirror)
-                segments = parts.path.removeprefix('/').split('/')
-                if (parts.query or parts.fragment or len(segments) < 2 or
-                        any(not segment for segment in segments) or
-                        (parts.hostname == 'github.com' and
-                         (len(segments) != 2 or parts.path.endswith('.git')))):
+                segments = parts.path.removeprefix("/").split("/")
+                if (
+                    parts.query
+                    or parts.fragment
+                    or len(segments) < 2
+                    or any(not segment for segment in segments)
+                    or (
+                        parts.hostname == "github.com"
+                        and (len(segments) != 2 or parts.path.endswith(".git"))
+                    )
+                ):
                     errors.append(f"{loc}: mirror must be a canonical repository root")
-                normalized = mirror.casefold().removesuffix('.git')
+                normalized = mirror.casefold().removesuffix(".git")
                 if normalized in seen_mirrors:
                     errors.append(f"{loc}: duplicate mirror repository")
                 seen_mirrors.add(normalized)
+
 
 def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     tools: list[dict] = []
@@ -292,14 +361,35 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     for path in sorted((root / "src/content/catalog/tools").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         tool = checked_load(path, errors)
-        if not fields(tool, {"slug", "name", "repository", "url", "description", "projects", "languages"}, {"authors", "platforms", "license", "status", "docs", "website", "limitations", "mirrors"}, loc, errors):
+        if not fields(
+            tool,
+            {"slug", "name", "repository", "url", "description", "projects", "languages"},
+            {
+                "authors",
+                "platforms",
+                "license",
+                "status",
+                "docs",
+                "website",
+                "limitations",
+                "mirrors",
+            },
+            loc,
+            errors,
+        ):
             continue
         before = len(errors)
         if "license" in tool and not is_text(tool["license"], 2, 80):
             errors.append(f"{loc}: license must be a short license identifier")
-        if "languages" in tool and (not isinstance(tool["languages"], list) or not tool["languages"] or any(not is_text(x, 1, 40) for x in tool["languages"])):
+        if "languages" in tool and (
+            not isinstance(tool["languages"], list)
+            or not tool["languages"]
+            or any(not is_text(x, 1, 40) for x in tool["languages"])
+        ):
             errors.append(f"{loc}: languages must be a nonempty list of strings")
-        if "status" in tool and (not isinstance(tool["status"], str) or tool["status"] not in STATUSES):
+        if "status" in tool and (
+            not isinstance(tool["status"], str) or tool["status"] not in STATUSES
+        ):
             errors.append(f"{loc}: invalid status")
         for field in ("docs", "website"):
             if field in tool and not is_https(tool[field]):
@@ -324,16 +414,28 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
             errors.append(f"{loc}: repository must be a public HTTPS URL")
         else:
             parts = urlsplit(repo)
-            segments = parts.path.strip('/').removesuffix('.git').split('/')
-            if (parts.query or parts.fragment or len(segments) < 2 or any(not segment for segment in segments)
-                    or (parts.hostname == 'github.com' and (len(segments) != 2 or parts.path.endswith(('/', '.git'))))):
+            segments = parts.path.strip("/").removesuffix(".git").split("/")
+            if (
+                parts.query
+                or parts.fragment
+                or len(segments) < 2
+                or any(not segment for segment in segments)
+                or (
+                    parts.hostname == "github.com"
+                    and (len(segments) != 2 or parts.path.endswith(("/", ".git")))
+                )
+            ):
                 errors.append(f"{loc}: repository must be a canonical repository root")
             normalized = f"{parts.hostname.casefold()}/{'/'.join(segments).casefold()}"
             if normalized in seen_repositories:
                 errors.append(f"{loc}: duplicate repository {normalized}")
             seen_repositories.add(normalized)
         projects = tool["projects"]
-        if not isinstance(projects, list) or not projects or any(not is_slug(slug) for slug in projects):
+        if (
+            not isinstance(projects, list)
+            or not projects
+            or any(not is_slug(slug) for slug in projects)
+        ):
             errors.append(f"{loc}: projects must be a nonempty list of project slugs")
         elif len(set(projects)) != len(projects):
             errors.append(f"{loc}: duplicate project reference")
@@ -346,8 +448,11 @@ def validate_authors(entry: dict, loc: str, errors: list[str]) -> None:
     if "authors" not in entry:
         return
     authors = entry["authors"]
-    if (not isinstance(authors, list) or not authors
-            or any(not isinstance(slug, str) or not AUTHOR_SLUG.fullmatch(slug) for slug in authors)):
+    if (
+        not isinstance(authors, list)
+        or not authors
+        or any(not isinstance(slug, str) or not AUTHOR_SLUG.fullmatch(slug) for slug in authors)
+    ):
         errors.append(f"{loc}: authors must be a nonempty list of lowercase GitHub handles")
         return
     if len(set(authors)) != len(authors):
@@ -361,6 +466,11 @@ def entries_by_author(projects: list[dict], tools: list[dict]) -> dict[str, dict
         for entry in sorted(entries, key=lambda item: (item["name"].casefold(), item["slug"])):
             for slug in entry.get("authors", []):
                 if slug not in groups:
-                    groups[slug] = {"github_user": slug, "url": f"https://github.com/{slug}", "projects": [], "tools": []}
+                    groups[slug] = {
+                        "github_user": slug,
+                        "url": f"https://github.com/{slug}",
+                        "projects": [],
+                        "tools": [],
+                    }
                 groups[slug][kind].append(entry)
     return dict(sorted(groups.items()))

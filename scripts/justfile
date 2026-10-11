@@ -1,0 +1,33 @@
+# Python recipes run from this directory using the shared uv project.
+
+set positional-arguments := true
+
+# Show available Python commands.
+default:
+    @just --list
+
+# Lint Python source and check Ruff formatting.
+lint:
+    uv run ruff check .
+    uv run ruff format --check .
+
+# Fix Python lint issues and format source.
+format:
+    uv run ruff check --fix .
+    uv run ruff format .
+
+# Check Python types with ty.
+check:
+    uv run ty check
+
+# Run Python tests.
+test *args:
+    uv run pytest tests "$@"
+
+# Validate catalog records and relationships.
+validate-catalog:
+    uv run python validate_catalog.py
+
+# Refresh GitHub metadata using GH_METADATA_APP_TOKEN from the root .env.
+metadata-refresh *args:
+    uv run --env-file ../.env python refresh_github_stats.py "$@"

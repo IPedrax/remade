@@ -74,7 +74,7 @@ jobs:
       - name: Refresh cached repository statistics using GraphQL aliases
         if: steps.repositories.outputs.has_repositories == 'true'
         env:
-          GH_METADATA_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_METADATA_APP_TOKEN: ${{ steps.app-token.outputs.token }}
           EVENT_NAME: ${{ github.event_name }}
           BASE_SHA: ${{ github.event.before }}
         run: |

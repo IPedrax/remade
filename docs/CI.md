@@ -8,6 +8,8 @@ For GitHub Issue Forms, create the labels `catalog-suggestion` and `project-requ
 
 Python-based checks run automatically through **uv** using the pinned Python requirements. The setup action uses uv 0.13.0, works in `scripts/`, and keys its cache from both `pyproject.toml` and `uv.lock`. JavaScript actions use Node 24 runtimes, independently of the frontend Node version selected by each workflow. Contributors are not asked to run local commands.
 
+Python tooling uses Ruff for linting and formatting and ty for type checking, configured in `scripts/pyproject.toml` and locked in `scripts/uv.lock`. CI runs all three checks before validation and pytest. Run `just py::lint`, `just py::format` or `just py::check` locally. Pydantic strictly validates incoming GitHub repository metadata before updating the cache; malformed records preserve the previous successful entry while other repositories continue refreshing.
+
 Python tests use pytest, with temporary catalog fixtures, parametrized validation cases, and mocked HTTP calls. Run them locally with `uv run --project scripts pytest scripts/tests -v`; pytest discovers only `scripts/tests/` using the configuration in `scripts/pyproject.toml`.
 
 1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
@@ -30,6 +32,26 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 - `stats.yml` daily GraphQL metadata refresh on trusted default branch (manual dispatch supported). It uses an **organization-owned GitHub App installation token** for GraphQL reads and pushes of the metadata snapshot. Updates cached JSON if some repositories succeed, preserving older records for failed lookups.
 - Pushes to `main` that change project or tool YAML also trigger metadata collection. This mode compares GitHub repository identities with the catalog at the push's previous commit and queries only newly introduced repositories. Existing repositories, renamed entries, original records and request files do not cause additional API queries. When none are new, token creation and cache writes are skipped. Scheduled and manual runs continue to refresh the full catalog; App secrets are never used on pull requests.
 
+## Local task commands
+
+The root `justfile` is the common entry point for frontend and Python tasks. Run `just` to list recipes. Frontend recipes delegate to pnpm (`just dev`, `just build`, `just check`, `just format`, `just test`, `just test-unit`, `just test-react`, `just test-e2e`, `just preview`, `just astro`); Python recipes live in `scripts/justfile`, exposed through the root `mod py`, and use the existing uv project (`just py::lint`, `just py::format`, `just py::check`, `just py::test`, `just py::validate-catalog`, `just py::metadata-refresh`). Python recipes run from `scripts/`; the metadata recipe loads `../.env` from the repository root. `package.json` contains frontend scripts only. CI can invoke pnpm and uv directly without requiring just on the runner.
+
+`types-pyyaml` and `types-requests` are development-only typing stubs for ty; they are not runtime dependencies. Keep them so calls into these libraries are type-checked.
+
+## Local metadata refresh
+
+Run `just py::metadata-refresh` from the repository root to refresh `cache/github-metadata.json` for all indexed GitHub projects and tools. The command uses the existing uv project and uv's built-in dotenv support; no additional dependency is needed.
+
+Put the token in a repository-root `.env` file:
+
+```dotenv
+GH_METADATA_APP_TOKEN=your-github-token
+```
+
+Use a GitHub access token (such as an App installation token or personal access token), not the App's PEM private key or Client ID. `.env` files are ignored by Git. An existing `GH_METADATA_APP_TOKEN` in the process environment takes precedence over the file, and CI continues to supply its installation token directly.
+
+Arguments pass through to the collector. `just py::metadata-refresh --list-only` lists selected repositories without making API calls or changing the cache. Use `--added-since <full-commit-sha>` to refresh only repositories introduced since a commit, or `--batch-size <number>` to change the batch size.
+
 ## GraphQL behavior
 
 - The GitHub App installation has a **5,000 GraphQL point/hour/installation** baseline on GitHub.com for non-Enterprise organizations (potentially higher with scaling); a point is not a repository. Limits and per-field access may change.
@@ -39,7 +61,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
   - Add the App to the bypass list for every ruleset protecting `main`, using **Always** bypass so direct cache pushes are permitted. For classic branch protection, allow the App to bypass the required pull request rule and any applicable push restrictions.
   - Set repository Actions secret `REMADE_GH_APP_CLIENT_ID` (App's Client ID).
   - Set Actions secret `REMADE_GH_APP_PRIVATE_KEY` (PEM contents), available only to the trusted repository/workflow; do not expose it to forked PRs, build logs, or the client bundle.
-  - Use `actions/create-github-app-token@v3` to mint a one-hour installation token; the script reads `GH_METADATA_TOKEN`. The workflow requests Contents: Write on this token and configures checkout with it before pushing `cache/github-metadata.json`. The built-in `GITHUB_TOKEN` only needs Contents: Read.
+  - Use `actions/create-github-app-token@v3` to mint a one-hour installation token; the script reads `GH_METADATA_APP_TOKEN`. The workflow requests Contents: Write on this token and configures checkout with it before pushing `cache/github-metadata.json`. The built-in `GITHUB_TOKEN` only needs Contents: Read.
   - Test a public third-party repository in GraphQL: installation tokens may restrict certain nested fields for repositories **outside** the installation; if GitHub returns `Resource not accessible by integration`, simplify the query fields or use the built-in `GITHUB_TOKEN` for this read-only metadata job.
 - Batched alias query at 25 repositories/request (configurable). Monitor reported cost and remaining points; avoid burst concurrency.
 - A 24-hour refresh is **best effort**; the UI must show: **GitHub statistics are refreshed approximately every 24 hours.** If a cached record is older, its exact last-successful timestamp must remain discoverable.

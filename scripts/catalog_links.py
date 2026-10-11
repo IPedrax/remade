@@ -1,8 +1,8 @@
 """Extract explicit, validated catalog URLs for Lychee."""
 
 import subprocess
-from pathlib import Path
 from collections.abc import Iterator
+from pathlib import Path
 
 import typer
 
@@ -15,11 +15,11 @@ def url_values(path: Path) -> Iterator[str]:
     obj = load_yaml(path)
     for record in obj if isinstance(obj, list) else [obj]:
         if isinstance(record, dict):
-            for key in ('url', 'repository', 'docs', 'website'):
+            for key in ("url", "repository", "docs", "website"):
                 value = record.get(key)
                 if is_https(value):
                     yield value
-            mirrors = record.get('mirrors', [])
+            mirrors = record.get("mirrors", [])
             if isinstance(mirrors, list):
                 for value in mirrors:
                     if is_https(value):
@@ -28,18 +28,42 @@ def url_values(path: Path) -> Iterator[str]:
 
 def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
     if all_files:
-        return [ROOT / 'src/content/catalog/originals.yaml',
-                *(ROOT / 'src/content/catalog/projects').rglob('*.yaml'),
-                *(ROOT / 'src/content/catalog/tools').rglob('*.yaml'),
-                *(ROOT / 'src/content/catalog/requests').rglob('*.yaml')]
+        return [
+            ROOT / "src/content/catalog/originals.yaml",
+            *(ROOT / "src/content/catalog/projects").rglob("*.yaml"),
+            *(ROOT / "src/content/catalog/tools").rglob("*.yaml"),
+            *(ROOT / "src/content/catalog/requests").rglob("*.yaml"),
+        ]
+    if changed_from is None:
+        raise typer.BadParameter("A base revision is required when not reading all files")
+
     result = subprocess.run(
-        ['git', 'diff', '--diff-filter=ACMR', '--name-only', changed_from, 'HEAD', '--', 'src/content/catalog/'],
-        cwd=ROOT, text=True, check=True, capture_output=True,
+        [
+            "git",
+            "diff",
+            "--diff-filter=ACMR",
+            "--name-only",
+            changed_from,
+            "HEAD",
+            "--",
+            "src/content/catalog/",
+        ],
+        cwd=ROOT,
+        text=True,
+        check=True,
+        capture_output=True,
     )
     paths = []
     for name in result.stdout.splitlines():
-        if name == 'src/content/catalog/originals.yaml' or (
-            name.startswith(('src/content/catalog/projects/', 'src/content/catalog/requests/', 'src/content/catalog/tools/')) and name.endswith('.yaml')
+        if name == "src/content/catalog/originals.yaml" or (
+            name.startswith(
+                (
+                    "src/content/catalog/projects/",
+                    "src/content/catalog/requests/",
+                    "src/content/catalog/tools/",
+                )
+            )
+            and name.endswith(".yaml")
         ):
             path = ROOT / name
             if path.is_file() and path.resolve().is_relative_to(ROOT):
@@ -49,16 +73,21 @@ def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
 
 @app.command()
 def main(
-    all_files: bool = typer.Option(False, '--all', help='Read all catalog entries'),
-    changed_from: str | None = typer.Option(None, '--changed-from', help='Check changed entries only'),
+    all_files: bool = typer.Option(False, "--all", help="Read all catalog entries"),
+    changed_from: str | None = typer.Option(
+        None, "--changed-from", help="Check changed entries only"
+    ),
 ) -> None:
     if all_files == (changed_from is not None):
-        raise typer.BadParameter('Choose exactly one of --all or --changed-from')
-    values = {url for path in paths_for_mode(all_files=all_files, changed_from=changed_from)
-              for url in url_values(path)}
+        raise typer.BadParameter("Choose exactly one of --all or --changed-from")
+    values = {
+        url
+        for path in paths_for_mode(all_files=all_files, changed_from=changed_from)
+        for url in url_values(path)
+    }
     for url in sorted(values):
         typer.echo(url)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app()

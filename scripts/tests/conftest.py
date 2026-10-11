@@ -4,20 +4,18 @@ from pathlib import Path
 import pytest
 
 
-
 @pytest.fixture
 def catalog_root(tmp_path: Path) -> Path:
-    for folder in ('projects', 'requests'):
-        (tmp_path / 'src/content/catalog' / folder).mkdir(parents=True)
-    (tmp_path / 'src/content/catalog/originals.yaml').write_text('[]\n')
-    (tmp_path / 'src/content/catalog/featured.yaml').write_text('[]\n')
+    for folder in ("projects", "requests"):
+        (tmp_path / "src/content/catalog" / folder).mkdir(parents=True)
+    (tmp_path / "src/content/catalog/originals.yaml").write_text("[]\n")
+    (tmp_path / "src/content/catalog/featured.yaml").write_text("[]\n")
     return tmp_path
-
 
 
 @pytest.fixture
 def original_catalog(catalog_root: Path) -> Path:
-    (catalog_root / 'src/content/catalog/originals.yaml').write_text("""
+    (catalog_root / "src/content/catalog/originals.yaml").write_text("""
 - slug: product-a
   name: Product A
   url: https://example.com/product-a
@@ -28,7 +26,7 @@ def original_catalog(catalog_root: Path) -> Path:
 
 @pytest.fixture
 def project_catalog(original_catalog: Path) -> Path:
-    (original_catalog / 'src/content/catalog/projects/impl-a.yaml').write_text("""
+    (original_catalog / "src/content/catalog/projects/impl-a.yaml").write_text("""
 slug: impl-a
 name: Implementation A
 repository: https://github.com/example/impl-a
@@ -44,9 +42,9 @@ license: MIT
 
 
 def write_tool(catalog_root: Path) -> Path:
-    directory = catalog_root / 'src/content/catalog/tools'
+    directory = catalog_root / "src/content/catalog/tools"
     directory.mkdir(exist_ok=True)
-    path = directory / 'example-tool.yaml'
+    path = directory / "example-tool.yaml"
     path.write_text("""
 slug: example-tool
 name: Example Tool

@@ -7,6 +7,7 @@ dist/
 __pycache__/
 *.py[cod]
 .venv/
+.ruff_cache
 
 # dependencies
 node_modules/
@@ -23,6 +24,7 @@ pnpm-debug.log*
 /playwright-report/
 /.vitest/
 .pytest_cache
+.ruff_cache/
 .lycheecache
 
 # environment variables
