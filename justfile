@@ -47,3 +47,7 @@ test-react *args:
 # Build and run production E2E tests.
 test-e2e *args:
     pnpm test:e2e "$@"
+
+# Install or refresh local commit hooks.
+hooks-install:
+    pnpm exec lefthook install

@@ -38,6 +38,14 @@ The root `justfile` is the common entry point for frontend and Python tasks. Run
 
 `types-pyyaml` and `types-requests` are development-only typing stubs for ty; they are not runtime dependencies. Keep them so calls into these libraries are type-checked.
 
+## Commit hooks
+
+The `prepare` script in `package.json` runs `lefthook install` during pnpm installation. Lefthook's dependency install script is also explicitly permitted by `pnpm-workspace.yaml`. Run `just hooks-install` to install it manually in an existing checkout. CI continues to run its own checks.
+
+Before committing, Biome fixes and checks staged frontend files; Ruff fixes and formats staged Python files. Changed Python files or project configuration also trigger ty. Formatting fixes are automatically staged; remaining lint or type errors block the commit. Lefthook temporarily hides unstaged portions of partially staged files while running pre-commit jobs.
+
+Biome covers JavaScript, TypeScript, JSX, TSX, Astro, HTML, CSS and JSON here. It does not format Markdown, YAML or TOML; CI validates catalog YAML with the existing strict validator. These hooks do not run the browser suites.
+
 ## Local metadata refresh
 
 Run `just py::metadata-refresh` from the repository root to refresh `cache/github-metadata.json` for all indexed GitHub projects and tools. The command uses the existing uv project and uv's built-in dotenv support; no additional dependency is needed.

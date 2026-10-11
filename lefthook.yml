@@ -1,0 +1,18 @@
+# Format only staged files, then include their fixes in the commit.
+glob_matcher: doublestar
+
+pre-commit:
+  commands:
+    frontend:
+      glob: "**/*.{js,cjs,mjs,jsx,ts,tsx,json,jsonc,css,html,astro}"
+      run: pnpm exec biome check --write --no-errors-on-unmatched "{staged_files}"
+      stage_fixed: true
+
+    python:
+      glob: "scripts/**/*.py"
+      run: uv run --project scripts ruff check --fix "{staged_files}" && uv run --project scripts ruff format "{staged_files}"
+      stage_fixed: true
+
+    python-types:
+      glob: "scripts/**/*.{py,toml}"
+      run: uv run --project scripts ty check --project scripts
