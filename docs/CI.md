@@ -14,7 +14,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 
 1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
 2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Link-check failures are advisory and do not fail the workflow; setup and build failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
-3. `build.yml` (**App Build + Unit Tests**) always reports its required check, conditionally running Biome linting, frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup. Frontend, workspace, metadata-cache, Biome and build-workflow changes trigger validation; unrelated changes skip expensive steps without leaving a required check pending.
+3. `frontend-test.yml` (**App Build + Unit Tests**) always reports its required check, conditionally running advisory Biome linting, required frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup. Frontend, workspace, metadata-cache, Biome and build-workflow changes trigger validation; unrelated changes skip expensive steps without leaving a required check pending.
 4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
 5. `backend.yml` (**Auth Worker Validation**) always reports its check and conditionally validates changed backend/shared-tooling inputs. It runs Rust formatting, native and Wasm clippy, security tests, the official Wasm build, a fresh local D1 migration and Vitest tests against the compiled Worker with mocked GitHub. It needs no OAuth or production Cloudflare secrets.
 
@@ -45,7 +45,7 @@ The `prepare` script in `package.json` runs `lefthook install` during pnpm insta
 
 Before committing, Biome fixes and checks staged frontend files; Ruff fixes and formats staged Python files. Changed Python files or project configuration also trigger ty. Formatting fixes are automatically staged; remaining lint or type errors block the commit. Lefthook temporarily hides unstaged portions of partially staged files while running pre-commit jobs.
 
-Biome covers JavaScript, TypeScript, JSX, TSX, Astro, HTML, CSS and JSON here. It does not format Markdown, YAML or TOML; CI validates catalog YAML with the existing strict validator. These hooks do not run the browser suites.
+Biome covers JavaScript, TypeScript, JSX, TSX, Astro, HTML, CSS and JSON here. SVG assets are explicitly excluded. Its frontend CI step reports diagnostics without failing the required build check; frontend type checks, unit tests and production build remain required. It does not format Markdown, YAML or TOML; CI validates catalog YAML with the existing strict validator. These hooks do not run the browser suites.
 
 ## Local metadata refresh
 

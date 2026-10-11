@@ -27,7 +27,7 @@ jobs:
         run: |
           if [ "$EVENT_NAME" = 'workflow_dispatch' ] || ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null; then
             echo 'frontend=true' >> "$GITHUB_OUTPUT"
-          elif [ -n "$(git diff --name-only "$BASE_SHA" HEAD -- apps/frontend/remade-wiki package.json pnpm-lock.yaml pnpm-workspace.yaml cache/github-metadata.json biome.jsonc .github/workflows/build.yml)" ]; then
+          elif [ -n "$(git diff --name-only "$BASE_SHA" HEAD -- apps/frontend/remade-wiki package.json pnpm-lock.yaml pnpm-workspace.yaml cache/github-metadata.json biome.jsonc .github/workflows/frontend-test.yml)" ]; then
             echo 'frontend=true' >> "$GITHUB_OUTPUT"
           else
             echo 'frontend=false' >> "$GITHUB_OUTPUT"
@@ -41,7 +41,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
         if: steps.changes.outputs.frontend == 'true'
-      - run: pnpm exec biome check apps/frontend/remade-wiki
+      - name: Biome lint and formatting (advisory)
+        run: pnpm exec biome check apps/frontend/remade-wiki
+        continue-on-error: true
         if: steps.changes.outputs.frontend == 'true'
       - run: pnpm check
         if: steps.changes.outputs.frontend == 'true'

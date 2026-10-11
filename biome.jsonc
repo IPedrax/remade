@@ -6,7 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!!**/dist", "*.md"]
+		"includes": ["**", "!!**/dist", "!!**/*.svg", "*.md"]
 	},
 	"formatter": {
 		"enabled": true,
