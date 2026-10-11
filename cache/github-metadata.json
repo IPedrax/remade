@@ -18,6 +18,15 @@
       "pushedAt": "2026-10-10T13:42:40Z",
       "stars": 2
     },
+    "emmertex/lightcraft-classic": {
+      "fetchedAt": "2026-10-11T03:10:45Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-11T03:06:47Z",
+      "stars": 4
+    },
     "flare-animate/flare": {
       "fetchedAt": "2026-10-10T13:57:59Z",
       "forks": 10,
