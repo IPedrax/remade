@@ -1,3 +1,3 @@
 original: traktor-pro
-reason: An open-source, independently authored implementation of Traktor Pro deck mixing, beat synchronization, cue points, loops and effects workflows would support compatible DJ performances and reuse of prepared track libraries.
+reason: Reproduce Traktor Pro's deck mixing, beat synchronization, cue points, loops and effects, with compatible prepared track libraries. DJCraft should combine Serato DJ, Traktor Pro and Rekordbox workflows in one application, preserving each target's familiar behavior and library interoperability. Mixxx (https://mixxx.org/) is an open-source inspiration.
 suggested_names: [DJCraft]

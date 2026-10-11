@@ -485,3 +485,12 @@
   name: Jobber
   url: https://www.getjobber.com/features/
   category: productivity
+- slug: rekordbox
+  name: Rekordbox
+  url: https://rekordbox.com/en/
+  category: creative
+- slug: serato-dj-pro
+  name: Serato DJ Pro
+  url: https://serato.com/dj/pro
+  category: creative
+  aliases: [Serato DJ]
