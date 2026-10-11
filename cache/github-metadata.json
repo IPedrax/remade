@@ -54,6 +54,15 @@
       "pushedAt": "2026-10-10T03:52:13Z",
       "stars": 4608
     },
+    "kmsdax/animationcraft": {
+      "fetchedAt": "2026-10-11T08:33:44Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": null,
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-11T07:51:23Z",
+      "stars": 1
+    },
     "monkeysaint/mailcraft": {
       "fetchedAt": "2026-10-11T06:24:27Z",
       "forks": 0,
