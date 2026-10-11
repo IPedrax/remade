@@ -563,3 +563,18 @@
   url: https://support.microsoft.com/en-us/internet-explorer/internet-explorer-help
   category: other
   aliases: [Microsoft Internet Explorer, Windows Internet Explorer, IE]
+- slug: elprocad
+  name: ELPROCAD
+  url: https://www.elprocad.com/en/
+  category: engineering
+  aliases: [ELPROCAD ic, ELPROCAD xt]
+- slug: ansys
+  name: Ansys
+  url: https://www.ansys.com/products/ansys-workbench
+  category: engineering
+  aliases: [Ansys Workbench]
+- slug: altair-suite
+  name: Altair Software Suite
+  url: https://altair.com/altair-one
+  category: engineering
+  aliases: [Altair One, Altair HyperWorks, Altair RapidMiner, Altair HPCWorks]
