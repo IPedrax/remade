@@ -141,7 +141,7 @@ suggested_names: [ExampleCraft] # optional
 
 Both files use ISO timestamps when addition dates are available and slug order independent of UI sorting. Optional fields are omitted when unavailable. Fields are explicitly allowlisted; source comments and internal editorial fields are not exported. Generate these files through Astro builds, not by editing or committing generated JSON. Anyone can read them cross-origin; see [Architecture](ARCHITECTURE.md#public-json-exports) for caching and serving headers.
 
-Only language badges hide JavaScript when TypeScript is also recorded, including the JS/TS abbreviations. Detail lists, comparisons, catalog data and public exports retain both languages; search and language filters still match both. Tools display language badges alongside their Tool label.
+Only language badges hide JavaScript when TypeScript is also recorded, including the JS/TS abbreviations. Detail lists, comparisons, catalog data and public exports retain both languages; search and language filters still match both. Tools display language badges alongside their Tool label. Show a maturity badge only when `status` is recorded; omit the badge when status is undocumented.
 
 ## Supporting tool record
 

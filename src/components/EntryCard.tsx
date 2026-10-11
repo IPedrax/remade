@@ -32,9 +32,9 @@ export default function EntryCard({
 				<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
 					{entry.kind === "tool" ? "Tool" : label(entry.status)}
 				</span>
-				{entry.kind === "tool" && (
+				{entry.kind === "tool" && entry.status && (
 					<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
-						{entry.status ? label(entry.status) : "Status not documented"}
+						{label(entry.status)}
 					</span>
 				)}
 				{entry.kind === "tool" &&
