@@ -44,7 +44,9 @@ describe("badge sharing", () => {
 
 		await expect
 			.element(screen.getByRole("status"))
-			.toHaveTextContent("Couldn’t copy automatically.");
+			.toHaveTextContent(
+				"Couldn’t copy automatically. Select and copy the snippet below.",
+			);
 
 		await expect
 			.element(screen.getByRole("textbox", { name: "Badge snippet" }))
