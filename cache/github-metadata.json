@@ -36,6 +36,15 @@
       "pushedAt": "2026-10-10T13:38:10Z",
       "stars": 78
     },
+    "ingelibre/ingetrazo": {
+      "fetchedAt": "2026-10-11T05:25:29Z",
+      "forks": 121,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Python",
+      "pushedAt": "2026-10-08T23:11:09Z",
+      "stars": 820
+    },
     "jub0t/concat": {
       "fetchedAt": "2026-10-10T13:57:59Z",
       "forks": 428,
