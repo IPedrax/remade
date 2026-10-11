@@ -753,3 +753,15 @@
   url: https://www.steinberg.net/cubase/
   category: creative
   aliases: [Cubase]
+
+- slug: exocad-dentalcad
+  name: exocad DentalCAD
+  url: https://exocad.com/our-products/dentalcad
+  category: engineering
+  aliases: [exocad, DentalCAD, Dental Exocad]
+
+- slug: maize-sampler
+  name: Maize Sampler
+  url: https://www.maizesoft.com/cms/?page_id=48
+  category: creative
+  aliases: [Maize Sampler 2]
