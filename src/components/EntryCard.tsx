@@ -20,6 +20,7 @@ interface Props {
 	projects: Project[];
 	metadata?: Metadata;
 }
+
 export default function EntryCard({
 	entry,
 	originals,
@@ -32,11 +33,13 @@ export default function EntryCard({
 				<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
 					{entry.kind === "tool" ? "Tool" : label(entry.status)}
 				</span>
+
 				{entry.kind === "tool" && entry.status && (
 					<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
 						{label(entry.status)}
 					</span>
 				)}
+
 				{entry.kind === "tool" &&
 					entryCategories(entry, projects).map((category) => (
 						<span
@@ -46,11 +49,13 @@ export default function EntryCard({
 							{label(category)}
 						</span>
 					))}
+
 				{entry.languages.length > 0 && (
 					<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">
 						{badgeLanguages(entry.languages).join(" · ")}
 					</span>
 				)}
+
 				{metadata && (
 					<a
 						className="relative z-10 rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted"
@@ -61,6 +66,7 @@ export default function EntryCard({
 					</a>
 				)}
 			</div>
+
 			<h3 className="shrink-0">
 				<a
 					className="after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-lime"
@@ -69,6 +75,7 @@ export default function EntryCard({
 					{entry.name} ↗
 				</a>
 			</h3>
+
 			<p className="mb-3.5 shrink-0 text-xs">
 				{entry.kind === "project" ? (
 					<>
@@ -87,6 +94,7 @@ export default function EntryCard({
 							.map((project, index) => (
 								<span key={project.slug}>
 									{index > 0 && ", "}
+
 									<a
 										className="relative z-10 text-lime hover:underline"
 										href={`/projects/${project.slug}/`}
@@ -98,11 +106,13 @@ export default function EntryCard({
 					</>
 				)}
 			</p>
+
 			<CardDescription
 				href={entryUrl(entry)}
 				label={`Read more about ${entry.name}`}
 				text={entry.description}
 			/>
+
 			<Authors authors={entry.authors} />
 		</article>
 	);

@@ -3,7 +3,9 @@ function fitDescription(container: HTMLElement) {
 	const link = container.querySelector<HTMLAnchorElement>(
 		"[data-card-read-more]",
 	);
+
 	if (!text || !link) return;
+
 	if (container.closest("astro-island[ssr]")) return;
 
 	text.style.webkitLineClamp = "unset";
@@ -13,13 +15,16 @@ function fitDescription(container: HTMLElement) {
 
 	// Hidden cards in filtered lists are measured when they become visible again.
 	if (container.clientHeight === 0) return;
+
 	link.hidden = false;
 	link.style.display = "block";
+
 	const lineHeight = Number.parseFloat(getComputedStyle(text).lineHeight);
 	const linkSpace =
 		link.offsetHeight + Number.parseFloat(getComputedStyle(link).marginTop);
 	const fullHeight = text.scrollHeight;
 	const card = container.closest("article");
+
 	if (card) {
 		// Wrapped headings and footers must not squeeze the preview to a sentence.
 		const chromeHeight =
@@ -34,17 +39,22 @@ function fitDescription(container: HTMLElement) {
 			),
 		);
 		const value = `${minimumHeight}px`;
+
 		if (card.style.minHeight !== value) card.style.minHeight = value;
 	}
+
 	if (fullHeight <= container.clientHeight + 1) {
 		link.hidden = true;
 		link.style.display = "none";
+
 		return;
 	}
+
 	const lines = Math.max(
 		1,
 		Math.floor((container.clientHeight - linkSpace) / lineHeight),
 	);
+
 	text.style.display = "-webkit-box";
 	text.style.setProperty("-webkit-box-orient", "vertical");
 	text.style.webkitLineClamp = String(lines);
@@ -58,11 +68,14 @@ const observer = new ResizeObserver((entries) => {
 		if (entry.target instanceof HTMLElement) fitDescription(entry.target);
 	}
 });
+
 for (const description of descriptions) observer.observe(description);
+
 document.addEventListener(
 	"astro:hydrate",
 	(event) => {
 		if (!(event.target instanceof HTMLElement)) return;
+
 		for (const description of event.target.querySelectorAll<HTMLElement>(
 			"[data-card-description]",
 		))
@@ -70,20 +83,26 @@ document.addEventListener(
 	},
 	true,
 );
+
 // Hydrated filtering can insert new cards after the initial static render.
 const mutations = new MutationObserver((records) => {
 	for (const record of records) {
 		for (const node of record.addedNodes) {
 			if (!(node instanceof HTMLElement)) continue;
+
 			if (node.matches("[data-card-description]")) observer.observe(node);
+
 			for (const description of node.querySelectorAll<HTMLElement>(
 				"[data-card-description]",
 			))
 				observer.observe(description);
 		}
+
 		for (const node of record.removedNodes) {
 			if (!(node instanceof HTMLElement) || node.isConnected) continue;
+
 			if (node.matches("[data-card-description]")) observer.unobserve(node);
+
 			for (const description of node.querySelectorAll<HTMLElement>(
 				"[data-card-description]",
 			))
@@ -91,6 +110,7 @@ const mutations = new MutationObserver((records) => {
 		}
 	}
 });
+
 mutations.observe(document.body, { childList: true, subtree: true });
 void document.fonts.ready.then(() => {
 	for (const description of descriptions) fitDescription(description);

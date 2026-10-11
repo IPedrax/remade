@@ -7,28 +7,37 @@ import { matchingImplementations } from "../../src/lib/request-browse";
 import { projectSchema, validateRelationships } from "../../src/lib/schemas";
 
 let catalog: Awaited<ReturnType<typeof loadCatalog>>;
+
 beforeAll(async () => {
 	catalog = await loadCatalog();
 });
+
 const targets = ["jira", "linear", "monday", "clickup"];
 
 describe("multi-target implementations", () => {
 	it("exports Plane once with all four targets", () => {
 		const project = findBySlug(catalog.projects, "plane");
+
 		expect(
 			catalog.projects.filter((p) => p.repository === project.repository),
 		).toHaveLength(1);
+
 		expect(project.originals).toEqual(targets);
+
 		const output = catalogExport(catalog, "https://remade.wiki/");
+
 		expect(findBySlug(output.projects, "plane").originals).toEqual(targets);
 	});
+
 	it.each(targets)("is searchable and fulfills requests for %s", (slug) => {
 		const original = findBySlug(catalog.originals, slug);
+
 		expect(
 			matchingImplementations(catalog, original.name).filter(
 				(entry) => entry.slug === "plane",
 			),
 		).toHaveLength(1);
+
 		expect(() =>
 			validateRelationships({
 				...catalog,
@@ -41,6 +50,7 @@ describe("multi-target implementations", () => {
 			}),
 		).toThrow(/Fulfilled request/);
 	});
+
 	it.each(
 		[[], "linear", null, [null], ["linear", "linear"], ["bad slug"]].map(
 			(originals) => ({ originals }),
@@ -53,6 +63,7 @@ describe("multi-target implementations", () => {
 			}),
 		).toThrow();
 	});
+
 	it.each(["missing", "singular", "mixed", "additional"])(
 		"rejects %s legacy targets",
 		(shape) => {
@@ -64,11 +75,13 @@ describe("multi-target implementations", () => {
 				mixed: { ...project, original: originals[0] },
 				additional: { ...project, additional_originals: ["linear"] },
 			};
+
 			expect(() =>
 				v.parse(projectSchema, cases[shape as keyof typeof cases]),
 			).toThrow();
 		},
 	);
+
 	it.each([["missing"], ["jira", "jira"]])(
 		"rejects invalid relationships: %j",
 		(...originals) => {

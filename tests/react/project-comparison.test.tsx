@@ -15,11 +15,13 @@ describe("project comparison", () => {
 					projects={projects}
 				/>,
 			);
+
 			await expect
 				.element(screen.getByText("Compare", { exact: true }))
 				.not.toBeInTheDocument();
 		},
 	);
+
 	it("opens the comparison and shows project details and honest activity fallbacks", async () => {
 		const screen = await render(
 			<ProjectComparison
@@ -32,15 +34,21 @@ describe("project comparison", () => {
 			name: "Compare implementations of Target",
 			includeHidden: true,
 		});
+
 		await expect.element(table).not.toBeVisible();
+
 		await screen.getByText("Compare", { exact: true }).click();
+
 		await expect.element(table).toBeVisible();
+
 		await expect
 			.element(table.getByRole("link", { name: "Alpha ↗" }))
 			.toHaveAttribute("href", "/projects/alpha/");
+
 		await expect
 			.element(table.getByRole("link", { name: "Beta ↗" }))
 			.toHaveAttribute("href", "/projects/beta/");
+
 		for (const name of [
 			"Languages",
 			"Platforms",
@@ -54,6 +62,7 @@ describe("project comparison", () => {
 			await expect
 				.element(table.getByRole("rowheader", { name, exact: true }))
 				.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -69,6 +78,7 @@ describe("project comparison", () => {
 					.getByRole("cell", { name: "Not documented", exact: true }),
 			)
 			.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -77,6 +87,7 @@ describe("project comparison", () => {
 					.first(),
 			)
 			.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -85,6 +96,7 @@ describe("project comparison", () => {
 					.first(),
 			)
 			.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -93,6 +105,7 @@ describe("project comparison", () => {
 					.first(),
 			)
 			.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -104,6 +117,7 @@ describe("project comparison", () => {
 					.first(),
 			)
 			.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -119,6 +133,7 @@ describe("project comparison", () => {
 					.getByRole("cell", { name: "Unavailable", exact: true }),
 			)
 			.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -127,6 +142,7 @@ describe("project comparison", () => {
 					.first(),
 			)
 			.toBeVisible();
+
 		await expect
 			.element(
 				table
@@ -134,13 +150,17 @@ describe("project comparison", () => {
 					.getByTitle(shortDate(stats.pushedAt ?? "")),
 			)
 			.toHaveAttribute("datetime", stats.pushedAt ?? "");
+
 		await expect
 			.element(table.getByRole("columnheader", { name: "Feature" }))
 			.toHaveAttribute("scope", "col");
+
 		await expect
 			.element(table.getByRole("rowheader", { name: "Languages" }))
 			.toHaveAttribute("scope", "row");
+
 		await screen.getByText("Compare", { exact: true }).click();
+
 		await expect.element(table).not.toBeVisible();
 	});
 });

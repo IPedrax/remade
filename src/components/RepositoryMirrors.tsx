@@ -4,11 +4,13 @@ export default function RepositoryMirrors({ mirrors }: { mirrors?: string[] }) {
 	return (
 		<>
 			<p className="mb-2 text-base">Repository Mirrors</p>
+
 			{mirrors?.length ? (
 				<details className="mb-6">
 					<summary className="w-fit cursor-pointer text-sm text-lime hover:underline">
 						<span className="ml-1">View Mirrors</span>
 					</summary>
+
 					<div className="mt-3">
 						<ul className="flex flex-wrap list-none gap-4 rounded-lg border border-line p-4">
 							{mirrors.map((mirror) => (

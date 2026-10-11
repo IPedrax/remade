@@ -14,9 +14,11 @@ const text = (min = 1, max = 400) =>
 		),
 	);
 const slug = v.pipe(v.string(), v.regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/));
+
 export function publicHttps(value: string): boolean {
 	try {
 		const u = new URL(value);
+
 		return (
 			u.protocol === "https:" &&
 			!u.username &&
@@ -32,6 +34,7 @@ export function publicHttps(value: string): boolean {
 		return false;
 	}
 }
+
 const https = v.pipe(
 	v.string(),
 	v.check(publicHttps, "Expected a public HTTPS URL."),
@@ -41,6 +44,7 @@ const repository = v.pipe(
 	v.check((value) => {
 		const u = new URL(value);
 		const parts = u.pathname.slice(1).split("/");
+
 		return (
 			!u.search &&
 			!u.hash &&
@@ -141,10 +145,15 @@ export const requestSchema = v.strictObject({
 	),
 });
 export const featuredSchema = v.array(slug);
+
 export type Original = v.InferOutput<typeof originalSchema>;
+
 export type Project = v.InferOutput<typeof projectSchema>;
+
 export type Tool = v.InferOutput<typeof toolSchema>;
+
 export type Request = v.InferOutput<typeof requestSchema>;
+
 export type Catalog = {
 	originals: Original[];
 	projects: Project[];
@@ -152,21 +161,26 @@ export type Catalog = {
 	requests: Request[];
 	featured: string[];
 };
+
 export function parseYaml(source: string): unknown {
 	const document = parseDocument(source, { uniqueKeys: true });
+
 	if (document.errors.length || document.warnings.length)
 		throw new Error(
 			[...document.errors, ...document.warnings]
 				.map((e) => e.message)
 				.join("\n"),
 		);
+
 	return document.toJS({ maxAliasCount: 20 }) as unknown;
 }
+
 export function validateRelationships(catalog: Catalog): void {
 	const unique = (values: string[], kind: string) => {
 		if (new Set(values).size !== values.length)
 			throw new Error(`Duplicate ${kind}`);
 	};
+
 	unique(
 		catalog.originals.map((o) => o.slug),
 		"original slug",
@@ -177,7 +191,9 @@ export function validateRelationships(catalog: Catalog): void {
 			.map((s) => s.trim().toLowerCase().replace(/\s+/g, " ")),
 		"original name or alias",
 	);
+
 	const entries = [...catalog.projects, ...catalog.tools];
+
 	unique(
 		entries.map((p) => p.slug),
 		"entry slug",
@@ -191,23 +207,30 @@ export function validateRelationships(catalog: Catalog): void {
 		catalog.requests.map((r) => r.original),
 		"request",
 	);
+
 	for (const p of catalog.projects) {
 		const targets = p.originals;
+
 		unique(targets, "project original");
+
 		for (const target of targets)
 			if (!catalog.originals.some((o) => o.slug === target))
 				throw new Error(`Unknown original: ${target}`);
 	}
+
 	for (const t of catalog.tools)
 		for (const p of t.projects)
 			if (!catalog.projects.some((e) => e.slug === p))
 				throw new Error(`Unknown tool project: ${p}`);
+
 	for (const r of catalog.requests) {
 		if (!catalog.originals.some((o) => o.slug === r.original))
 			throw new Error(`Unknown request original: ${r.original}`);
+
 		if (catalog.projects.some((p) => p.originals.includes(r.original)))
 			throw new Error(`Fulfilled request: ${r.original}`);
 	}
+
 	for (const slug of catalog.featured)
 		if (!entries.some((e) => e.slug === slug))
 			throw new Error(`Unknown featured entry: ${slug}`);

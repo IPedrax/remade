@@ -2,16 +2,19 @@
 import AuthorPage from "../../components/pages/AuthorPage";
 import Layout from "../../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../../lib/catalog";
+
 export async function getStaticPaths() {
 	const catalog = await loadCatalog();
 	const authors = [
 		...new Set(catalog.entries.flatMap((e) => e.authors ?? [])),
 	].sort();
+
 	return authors.map((user) => ({
 		params: { user },
 		props: { user, catalog },
 	}));
 }
+
 const { user, catalog } = Astro.props;
 const metadata = await loadMetadata();
 ---

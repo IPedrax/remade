@@ -30,6 +30,13 @@ Implement focus and hover states, ensure accessible contrast, and make the inter
 
 Use React components for the UI and Tailwind utility classes for layout, spacing, typography, responsive behavior, and component states. Keep global CSS to theme tokens and base defaults. Astro owns static routes and document metadata. Hydrate React only for browser interactions; static React components do not send a React runtime to visitors. Format source with Biome.
 
+### Source readability
+
+- Separate logical blocks with a blank line: imports and declarations, setup and assertions, independent test cases, control-flow blocks and returns. Keep related statements together rather than compressing an entire component or test into uninterrupted lines.
+- Keep each Astro/HTML opening and closing tag intact. Never move `>` onto the next line before a child (such as `><div`) or split a closing tag into `</Layout` and `>` on different lines. For multiline attributes, put the closing `>` on its own line and start children on the following line.
+- Use Biome's HTML `whitespaceSensitivity: "ignore"` to avoid whitespace-preserving bracket contortions. Preserve intentional inline text spacing explicitly and review rendered output when reformatting markup.
+- Formatting commits must be separate from behavior, schema and catalog changes. Apply these conventions throughout app source and tests; Biome preserves blank lines but does not decide where logical separation is needed.
+
 ## Typography and layout
 
 - Use a clean modern sans-serif, preferably system font initially; if a webfont is added, self-host and subset it.

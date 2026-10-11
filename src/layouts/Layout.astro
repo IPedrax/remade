@@ -8,6 +8,7 @@ interface Props {
 	description?: string;
 	index?: boolean;
 }
+
 const {
 	title,
 	description = "Discover independently developed software reimplementations. Everything can be remade.",
@@ -45,8 +46,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		<a
 			class="absolute -top-24 left-4 z-10 bg-lime p-3 text-canvas focus:top-3"
 			href="#main"
-			>Skip to content</a
 		>
+			Skip to content
+		</a>
 		<Header pathname={Astro.url.pathname} />
 		<main
 			class="mx-auto min-h-[65vh] max-w-[1180px] px-[18px] pb-[72px] sm:px-6"
@@ -61,9 +63,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 </html>
 <script>
 import "../scripts/card-descriptions";
+
 document.addEventListener("keydown", (event) => {
 	if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
 		const search = document.querySelector<HTMLInputElement>("#site-search");
+
 		if (search) {
 			event.preventDefault();
 			search.focus();

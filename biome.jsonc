@@ -26,7 +26,8 @@
 	"html": {
 		"experimentalFullSupportEnabled": true,
 		"formatter": {
-			"enabled": true
+			"enabled": true,
+			"whitespaceSensitivity": "ignore"
 		}
 	},
 	"css": {

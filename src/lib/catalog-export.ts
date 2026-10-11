@@ -108,6 +108,7 @@ export function requestsExport(
 	const originals = new Map(
 		originalsWithPages(input.originals, site).map((o) => [o.slug, o]),
 	);
+
 	return {
 		schemaVersion: 1,
 		site,
@@ -116,10 +117,12 @@ export function requestsExport(
 			.sort((a, b) => a.original.localeCompare(b.original))
 			.map((request) => {
 				const original = originals.get(request.original);
+
 				if (!original)
 					throw new Error(
 						`Unknown exported request original: ${request.original}`,
 					);
+
 				return { ...request, software: original };
 			}),
 	};

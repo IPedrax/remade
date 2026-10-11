@@ -22,9 +22,11 @@ interface Props {
 	catalog: Pick<CatalogData, "originals" | "requests" | "entries">;
 	metadata: Record<string, Metadata>;
 }
+
 export default function RequestsPage({ catalog, metadata }: Props) {
 	const [filters, setFilters] = useState<RequestFilters>(defaultRequestFilters);
 	const [ready, setReady] = useState(false);
+
 	useEffect(() => {
 		const readUrl = () => {
 			const params = new URLSearchParams(location.search);
@@ -32,6 +34,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 			const category = params.get("category") ?? "";
 			const added = params.get("added") ?? "";
 			const sort = params.get("sort") ?? "recent";
+
 			setFilters({
 				q: params.get("q") ?? "",
 				vendor,
@@ -41,26 +44,33 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 			});
 			setReady(true);
 		};
+
 		readUrl();
 		window.addEventListener("popstate", readUrl);
+
 		return () => window.removeEventListener("popstate", readUrl);
 	}, []);
 	useEffect(() => {
 		if (!ready) return;
+
 		const params = new URLSearchParams();
+
 		for (const key of ["q", "vendor", "category", "added", "sort"] as const)
 			if (filters[key] && filters[key] !== defaultRequestFilters[key])
 				params.set(key, filters[key]);
+
 		history.replaceState(
 			null,
 			"",
 			`${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`,
 		);
 	}, [filters, ready]);
+
 	const allRequests = useMemo(
 		() =>
 			catalog.requests.map((request) => {
 				const original = findBySlug(catalog.originals, request.original);
+
 				return {
 					request,
 					original,
@@ -107,6 +117,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 	) => (
 		<label className="min-w-0 text-xs">
 			{title}
+
 			<span className="relative mt-1.5 block">
 				<select
 					className="mt-0 w-full appearance-none bg-canvas py-2 pl-3 pr-10 text-sm"
@@ -120,6 +131,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 						</option>
 					))}
 				</select>
+
 				<svg
 					aria-hidden="true"
 					className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-ink"
@@ -133,17 +145,21 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 			</span>
 		</label>
 	);
+
 	return (
 		<>
 			<div className="max-w-[860px] pt-16">
 				<p className="mb-5 text-xs font-bold uppercase tracking-[0.16em] text-lime">
 					The community wishlist
 				</p>
+
 				<h1>Project Requests</h1>
+
 				<p>
 					Software people would like to see independently reimplemented. These
 					are community wishes, not active or approved implementation projects.
 				</p>
+
 				<div className="flex flex-wrap items-center gap-6">
 					<a
 						className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-lime bg-lime px-4 py-3 text-sm font-semibold text-canvas hover:bg-lime-light hover:text-canvas"
@@ -151,6 +167,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 					>
 						Submit a request ↗
 					</a>
+
 					<a
 						className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-line px-4 py-3 text-sm font-semibold text-ink hover:border-lime hover:text-lime"
 						href={contributeUrl}
@@ -159,6 +176,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 					</a>
 				</div>
 			</div>
+
 			<section>
 				{catalog.requests.length > 0 && (
 					<>
@@ -177,6 +195,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 									value={filters.q}
 								/>
 							</label>
+
 							<div className="grid grid-cols-1 gap-3 min-[600px]:grid-cols-3">
 								{select("vendor", "Vendor", [
 									{ value: "", text: "All vendors" },
@@ -185,10 +204,12 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 										text: value === "unassigned" ? "Unassigned" : label(value),
 									})),
 								])}
+
 								{select("category", "Category", [
 									{ value: "", text: "All categories" },
 									...categories.map((value) => ({ value, text: label(value) })),
 								])}
+
 								{select("added", "Added", [
 									{ value: "", text: "Any time" },
 									...addedPeriods.map((value) => ({
@@ -197,12 +218,14 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 									})),
 								])}
 							</div>
+
 							<div className="mt-4 flex flex-wrap items-end justify-between gap-4">
 								{select("sort", "Sort by", [
 									{ value: "recent", text: "Recently added" },
 									{ value: "oldest", text: "Oldest first" },
 									{ value: "name", text: "Alphabetical" },
 								])}
+
 								<button
 									className="text-sm text-muted hover:text-lime"
 									onClick={() => setFilters({ ...defaultRequestFilters })}
@@ -212,9 +235,11 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 								</button>
 							</div>
 						</form>
+
 						<p aria-live="polite" className="mb-5 text-sm" role="status">
 							{requests.length} {requests.length === 1 ? "request" : "requests"}
 						</p>
+
 						<noscript>
 							<p>
 								All requests are listed below. Enable JavaScript to filter and
@@ -223,6 +248,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 						</noscript>
 					</>
 				)}
+
 				{catalog.requests.length ? (
 					<>
 						<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
@@ -234,6 +260,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 								/>
 							))}
 						</div>
+
 						{requests.length === 0 && (
 							<p className="rounded-xl border border-dashed border-line p-8">
 								No matching requests. Try another filter or clear the filters.
@@ -246,14 +273,17 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 						request form.
 					</p>
 				)}
+
 				{implementations.length > 0 && (
 					<section aria-labelledby="matching-implementations" className="mt-8">
 						<h2 id="matching-implementations">Matching implementations</h2>
+
 						<p>
 							Your search matches these indexed projects. Requests are removed
 							when an implementation is listed, even if it is still in early
 							development. Check each project's status and limitations.
 						</p>
+
 						<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 							{implementations.map((entry) => (
 								<EntryCard
@@ -267,6 +297,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 								/>
 							))}
 						</div>
+
 						<a
 							className="mt-4 inline-block text-sm text-lime hover:underline"
 							href={`/explore/?${new URLSearchParams({ q: filters.q })}`}

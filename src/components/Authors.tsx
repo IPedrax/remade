@@ -1,6 +1,7 @@
 interface Props {
 	authors?: string[];
 }
+
 export default function Authors({ authors = [] }: Props) {
 	return (
 		<>

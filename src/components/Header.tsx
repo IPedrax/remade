@@ -4,6 +4,7 @@ import { contributeUrl, repositoryUrl } from "../lib/presentation";
 interface Props {
 	pathname: string;
 }
+
 export default function Header({ pathname }: Props) {
 	return (
 		<header className="border-b border-line" data-pagefind-ignore>
@@ -20,10 +21,12 @@ export default function Header({ pathname }: Props) {
 						src={remadeMark}
 						width={36}
 					/>
+
 					<span>
 						remade<span className="text-lime">.wiki</span>
 					</span>
 				</a>
+
 				<nav
 					aria-label="Main navigation"
 					className="flex flex-wrap items-center gap-4 text-sm sm:gap-6"
@@ -35,6 +38,7 @@ export default function Header({ pathname }: Props) {
 					>
 						Explore
 					</a>
+
 					<a
 						aria-current={pathname.startsWith("/requests") ? "page" : undefined}
 						className="aria-[current=page]:text-lime"
@@ -42,7 +46,9 @@ export default function Header({ pathname }: Props) {
 					>
 						Requests
 					</a>
+
 					<a href={repositoryUrl}>GitHub ↗</a>
+
 					<a
 						className="inline-flex rounded-lg border border-line px-4 py-3 font-semibold hover:border-lime"
 						href={contributeUrl}

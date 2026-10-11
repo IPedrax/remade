@@ -8,5 +8,13 @@ const metadata = await loadMetadata();
 ---
 
 <Layout title="Project Requests">
-	<RequestsPage catalog={{ originals: catalog.originals, requests: catalog.requests, entries: catalog.entries }} metadata={metadata} client:load />
+	<RequestsPage
+		catalog={{
+			originals: catalog.originals,
+			requests: catalog.requests,
+			entries: catalog.entries,
+		}}
+		metadata={metadata}
+		client:load
+	/>
 </Layout>

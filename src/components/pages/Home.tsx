@@ -16,6 +16,7 @@ interface Props {
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
 }
+
 export default function Home({ catalog, metadata }: Props) {
 	const featured = catalog.featured.map((slug) =>
 		findBySlug(catalog.entries, slug),
@@ -24,25 +25,32 @@ export default function Home({ catalog, metadata }: Props) {
 		request,
 		original: findBySlug(catalog.originals, request.original),
 	}));
+
 	return (
 		<>
 			<div className="max-w-[780px] pb-10 pt-14 sm:pt-[90px] [&_h1]:text-[clamp(2.4rem,6vw,4.8rem)] [&_p]:text-lg">
 				<p className="mb-5 text-xs font-bold uppercase tracking-wide text-lime">
 					A community-maintained software directory
 				</p>
+
 				<h1>
 					Everything can
 					<br />
 					be remade<span className="text-lime">.</span>
 				</h1>
+
 				<p>Discover independently developed software reimplementations</p>
 			</div>
+
 			<Search />
+
 			<section aria-labelledby="featured-heading">
 				<div className="mb-6 flex flex-wrap items-baseline justify-between gap-4 [&_h2]:mb-0">
 					<h2 id="featured-heading">Featured</h2>
+
 					<span className="text-sm text-[#B2BEC9]">Selected by Remade</span>
 				</div>
+
 				{featured.length ? (
 					<div className="grid grid-cols-1 gap-[18px] max-[599px]:auto-rows-fr min-[900px]:grid-cols-[1.1fr_1fr] min-[900px]:[&>article]:h-full min-[900px]:[&>article]:border-t-3 min-[900px]:[&>article]:border-t-lime min-[900px]:[&>article]:bg-panel min-[900px]:[&>article]:p-9 min-[900px]:[&>article_h3]:text-[2rem]">
 						<EntryCard
@@ -52,6 +60,7 @@ export default function Home({ catalog, metadata }: Props) {
 							originals={catalog.originals}
 							projects={catalog.projects}
 						/>
+
 						<div className="contents auto-rows-fr gap-[18px] min-[600px]:grid min-[600px]:grid-cols-2">
 							{featured.slice(1).map((entry) => (
 								<EntryCard
@@ -71,13 +80,16 @@ export default function Home({ catalog, metadata }: Props) {
 					</p>
 				)}
 			</section>
+
 			<section>
 				<div className="mb-6 flex flex-wrap items-baseline justify-between gap-4 [&_h2]:mb-0">
 					<h2>Browse by category</h2>
+
 					<a className="text-sm text-lime hover:underline" href="/explore/">
 						Explore all →
 					</a>
 				</div>
+
 				<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 					{categories.map((category) => (
 						<a
@@ -86,28 +98,34 @@ export default function Home({ catalog, metadata }: Props) {
 							key={category}
 						>
 							<span>{label(category)}</span>
+
 							<span className="text-lime">
 								{catalog.projects.filter((p) => p.category === category).length}{" "}
 								→
 							</span>
 						</a>
 					))}
+
 					<a
 						className="flex justify-between gap-3 rounded-lg border border-line p-5 hover:border-lime/50"
 						href="/explore/?category=tools"
 					>
 						<span>Supporting tools</span>
+
 						<span className="text-lime">{catalog.tools.length} →</span>
 					</a>
 				</div>
 			</section>
+
 			<section>
 				<div className="mb-6 flex flex-wrap items-baseline justify-between gap-4 [&_h2]:mb-0">
 					<h2>Recently added</h2>
+
 					<a className="text-sm text-lime hover:underline" href="/explore/">
 						View all →
 					</a>
 				</div>
+
 				<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 					{recent(catalog.entries)
 						.slice(0, 6)
@@ -121,11 +139,13 @@ export default function Home({ catalog, metadata }: Props) {
 							/>
 						))}
 				</div>
+
 				<div className="mt-4 flex flex-wrap items-center justify-between gap-4">
 					<p className="mb-0 text-xs text-muted">
 						Ordered by catalog additions recorded in Git; tools are labeled
 						separately.
 					</p>
+
 					<a
 						className="inline-flex items-center rounded-lg border border-line px-3 py-2 text-xs font-semibold hover:border-lime hover:text-lime"
 						href={contributeUrl}
@@ -134,13 +154,16 @@ export default function Home({ catalog, metadata }: Props) {
 					</a>
 				</div>
 			</section>
+
 			<section>
 				<div className="mb-6 flex flex-wrap items-baseline justify-between gap-4 [&_h2]:mb-0">
 					<h2>Project Requests</h2>
+
 					<a className="text-sm text-lime hover:underline" href="/requests/">
 						View all requests →
 					</a>
 				</div>
+
 				{requests.length ? (
 					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{requests.slice(0, 3).map(({ request, original }) => (
@@ -157,13 +180,16 @@ export default function Home({ catalog, metadata }: Props) {
 						<a href="/requests/">Suggest a software target.</a>
 					</p>
 				)}
+
 				<div className="mt-6">
 					<p className="text-xs text-muted">
 						Software the community would like to see remade. These are wishes,
 						not existing implementations.
 					</p>
+
 					<div className="flex flex-wrap items-center gap-4">
 						<p className="mb-0 text-sm text-muted">Step up to the plate?</p>
+
 						<a
 							className="inline-flex items-center rounded-lg border border-line px-3 py-2 text-xs font-semibold hover:border-lime hover:text-lime"
 							href={`${repositoryUrl}/issues/new?template=project-request.yml`}

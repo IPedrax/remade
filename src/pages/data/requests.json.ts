@@ -8,10 +8,12 @@ export const prerender = true;
 export const GET: APIRoute = async ({ site }) => {
 	if (!site)
 		throw new Error("The site URL is required for public request exports.");
+
 	const [catalog, requests] = await Promise.all([
 		loadCatalog(),
 		getCollection("requests"),
 	]);
+
 	return jsonResponse(
 		requestsExport(
 			{

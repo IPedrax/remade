@@ -9,25 +9,31 @@ interface Props {
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
 }
+
 export default function SoftwarePage({ original, catalog, metadata }: Props) {
 	const entries = catalog.entries
 		.filter((entry) => entry.kind === "project")
 		.filter((entry) => entry.originals.includes(original.slug));
 	const request = catalog.requests.find((r) => r.original === original.slug);
+
 	return (
 		<>
 			<div className="max-w-[860px] pt-16">
 				<p className="mb-5 text-xs font-bold uppercase tracking-[0.16em] text-lime">
 					Original software · {label(original.category)}
 				</p>
+
 				<h1 data-pagefind-meta="title">{original.name}</h1>
+
 				{original.aliases?.length && (
 					<p>Also known as {original.aliases.join(", ")}</p>
 				)}
+
 				<p>
 					Independent implementations targeting {original.name}, collected by
 					the Remade community.
 				</p>
+
 				<a
 					className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-line px-4 py-3 text-sm font-semibold text-ink hover:border-lime hover:text-lime"
 					href={original.url}
@@ -35,17 +41,20 @@ export default function SoftwarePage({ original, catalog, metadata }: Props) {
 					Original software reference ↗
 				</a>
 			</div>
+
 			<section className="relative">
 				<h2
 					className={entries.length > 1 ? "min-h-[50px] pr-[160px]" : undefined}
 				>
 					Reimplementations <span className="text-lime">{entries.length}</span>
 				</h2>
+
 				<ProjectComparison
 					metadata={metadata}
 					originalName={original.name}
 					projects={entries}
 				/>
+
 				{entries.length ? (
 					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{entries.map((entry) => (
@@ -64,10 +73,13 @@ export default function SoftwarePage({ original, catalog, metadata }: Props) {
 					</p>
 				)}
 			</section>
+
 			{request && (
 				<section className="max-w-[780px]">
 					<h2>Project Request</h2>
+
 					<p>{request.reason}</p>
+
 					{request.suggested_names && (
 						<p>
 							Suggested names:{" "}
@@ -76,10 +88,12 @@ export default function SoftwarePage({ original, catalog, metadata }: Props) {
 							</span>
 						</p>
 					)}
+
 					<p>
 						These are community wishes, not active implementation projects or
 						reserved names.
 					</p>
+
 					<a
 						className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-lime bg-lime px-4 py-3 text-sm font-semibold text-canvas hover:bg-lime-light hover:text-canvas"
 						href={contributeUrl}

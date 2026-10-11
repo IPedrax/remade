@@ -9,6 +9,7 @@ import {
 } from "../lib/presentation";
 
 type ProjectEntry = Extract<Entry, { kind: "project" }>;
+
 interface Props {
 	projects: ProjectEntry[];
 	metadata: Record<string, Metadata>;
@@ -21,6 +22,7 @@ export default function ProjectComparison({
 	originalName,
 }: Props) {
 	if (projects.length < 2) return null;
+
 	const timestamp = (value?: string) =>
 		value ? (
 			<time dateTime={value} title={shortDate(value)}>
@@ -54,6 +56,7 @@ export default function ProjectComparison({
 				name: "Repository state",
 				value: (p) => {
 					const stats = metadataFor(p, metadata);
+
 					return stats
 						? stats.isArchived
 							? "Archived"
@@ -65,6 +68,7 @@ export default function ProjectComparison({
 				name: "GitHub stars",
 				value: (p) => {
 					const stats = metadataFor(p, metadata);
+
 					return stats ? (
 						<span title={stats.stars.toLocaleString("en")}>
 							{formatStars(stats.stars)}
@@ -79,6 +83,7 @@ export default function ProjectComparison({
 				value: (p) => timestamp(metadataFor(p, metadata)?.fetchedAt),
 			},
 		];
+
 	return (
 		<details className="group mb-6">
 			<summary className="absolute right-0 top-0 inline-flex cursor-pointer list-none items-center gap-3 rounded-lg border border-lime bg-lime px-5 py-3 text-base font-semibold text-canvas hover:bg-lime-light [&::-webkit-details-marker]:hidden">
@@ -94,11 +99,13 @@ export default function ProjectComparison({
 					<path d="m6 9 6 6 6-6" />
 				</svg>
 			</summary>
+
 			<p className="text-sm">
 				Compatibility, maturity and platform support are maintainer-reported.
 				Activity uses cached GitHub statistics, refreshed approximately every 24
 				hours.
 			</p>
+
 			<section
 				aria-label={`Comparison of ${originalName} implementations`}
 				className="mt-0 overflow-x-auto rounded-xl border border-line focus-visible:outline-lime"
@@ -109,11 +116,13 @@ export default function ProjectComparison({
 					<caption className="sr-only">
 						Compare implementations of {originalName}
 					</caption>
+
 					<thead className="bg-panel">
 						<tr>
 							<th className="min-w-[170px] p-4" scope="col">
 								Feature
 							</th>
+
 							{projects.map((p) => (
 								<th
 									className="min-w-[260px] p-4 text-base"
@@ -130,6 +139,7 @@ export default function ProjectComparison({
 							))}
 						</tr>
 					</thead>
+
 					<tbody>
 						{rows.map((row) => (
 							<tr className="border-t border-line bg-surface" key={row.name}>
@@ -139,6 +149,7 @@ export default function ProjectComparison({
 								>
 									{row.name}
 								</th>
+
 								{projects.map((p) => (
 									<td className="p-4 align-top" key={p.slug}>
 										{row.value(p)}

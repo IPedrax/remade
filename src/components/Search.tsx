@@ -14,6 +14,7 @@ export function SearchField({
 			<label className="sr-only" htmlFor="site-search">
 				Search software and projects
 			</label>
+
 			<svg
 				aria-hidden="true"
 				className="size-5 shrink-0"
@@ -23,8 +24,10 @@ export function SearchField({
 				viewBox="0 0 24 24"
 			>
 				<circle cx="10.5" cy="10.5" r="7.5" />
+
 				<path d="m16 16 5 5" />
 			</svg>
+
 			<input
 				className="min-w-0 flex-1 rounded-none border-0 bg-transparent p-0 text-base placeholder:text-muted focus-visible:outline-none"
 				id="site-search"
@@ -36,6 +39,7 @@ export function SearchField({
 				type="search"
 				value={value}
 			/>
+
 			<kbd className="shrink-0 rounded border border-white/15 px-1.5 py-0.5 text-xs font-sans">
 				⌘ K
 			</kbd>

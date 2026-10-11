@@ -1,4 +1,5 @@
 import Search from "../Search";
+
 export default function NotFoundPage() {
 	return (
 		<>
@@ -6,12 +7,16 @@ export default function NotFoundPage() {
 				<p className="mb-5 text-xs font-bold uppercase tracking-[0.16em] text-lime">
 					404
 				</p>
+
 				<h1>This page hasn’t been remade.</h1>
+
 				<p>Try searching the directory or head back to Explore.</p>
+
 				<a className="text-sm text-lime hover:underline" href="/explore/">
 					Explore the directory →
 				</a>
 			</div>
+
 			<Search />
 		</>
 	);

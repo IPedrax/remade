@@ -20,6 +20,7 @@ import {
 } from "../../src/lib/schemas";
 
 let catalog: Awaited<ReturnType<typeof loadCatalog>>;
+
 beforeAll(async () => {
 	catalog = await loadCatalog();
 });
@@ -29,16 +30,20 @@ describe("catalog loading and validation", () => {
 		expect(catalog.entries).toHaveLength(
 			catalog.projects.length + catalog.tools.length,
 		);
+
 		expect(catalog.entries.every((entry) => entry.slug)).toBe(true);
+
 		for (const slug of catalog.featured)
 			expect(catalog.entries.map((entry) => entry.slug)).toContain(slug);
 	});
+
 	it.each(["slug: one\nslug: two", "slug: !execute dangerous"])(
 		"rejects invalid YAML: %s",
 		(source) => {
 			expect(() => parseYaml(source)).toThrow();
 		},
 	);
+
 	it.each([
 		{ unknown: true },
 		{ description: "<script>alert(1)</script>" },
@@ -62,6 +67,7 @@ describe("catalog loading and validation", () => {
 			v.parse(projectSchema, { ...catalog.projects[0], ...extra }),
 		).toThrow();
 	});
+
 	it.each([
 		{ platforms: [null] },
 		{ languages: [] },
@@ -90,9 +96,12 @@ describe("catalog loading and validation", () => {
 			v.parse(toolSchema, { ...catalog.tools[0], ...extra }),
 		).toThrow();
 	});
+
 	it("requires tool languages and preserves supported detail fields", () => {
 		const { languages: _languages, ...withoutLanguages } = catalog.tools[0];
+
 		expect(() => v.parse(toolSchema, withoutLanguages)).toThrow();
+
 		const details = {
 			languages: ["JavaScript"],
 			status: "beta",
@@ -103,9 +112,11 @@ describe("catalog loading and validation", () => {
 			platforms: ["Web"],
 			mirrors: ["https://codeberg.org/example/tool"],
 		};
+
 		expect(
 			v.parse(toolSchema, { ...catalog.tools[0], ...details }),
 		).toMatchObject(details);
+
 		expect(
 			v.parse(projectSchema, {
 				...catalog.projects[0],
@@ -117,6 +128,7 @@ describe("catalog loading and validation", () => {
 			mirrors: ["https://codeberg.org/example/project"],
 		});
 	});
+
 	it.each([
 		"duplicate project",
 		"missing feature",
@@ -124,11 +136,15 @@ describe("catalog loading and validation", () => {
 		"fulfilled request",
 	])("rejects %s", (scenario) => {
 		const input: Catalog = { ...catalog };
+
 		if (scenario === "duplicate project")
 			input.projects = [...catalog.projects, catalog.projects[0]];
+
 		if (scenario === "missing feature") input.featured = ["missing"];
+
 		if (scenario === "missing tool target")
 			input.tools = [{ ...catalog.tools[0], projects: ["missing"] }];
+
 		if (scenario === "fulfilled request")
 			input.requests = [
 				{
@@ -136,10 +152,13 @@ describe("catalog loading and validation", () => {
 					reason: "A compatible implementation would be useful.",
 				},
 			];
+
 		expect(() => validateRelationships(input)).toThrow();
 	});
+
 	it("does not let optional metadata control catalog inclusion", async () => {
 		expect(await loadMetadata()).toBeTypeOf("object");
+
 		expect(catalog.entries.length).toBeGreaterThan(0);
 	});
 });
@@ -155,6 +174,7 @@ const entry: BrowseEntry = {
 	stars: null,
 	addedAt: "",
 };
+
 describe("entry filtering and sorting", () => {
 	it.each([
 		[{ q: "PHOTO rust", platform: "Web" }, true],
@@ -163,10 +183,12 @@ describe("entry filtering and sorting", () => {
 	] as const)("combines filters %j", (filters, matches) => {
 		expect(filterEntries(entry, { ...filters })).toBe(matches);
 	});
+
 	it("puts missing stars after real zeroes and sorts additions newest first", () => {
 		expect(
 			compareEntries(entry, { ...entry, stars: 0 }, "stars"),
 		).toBeGreaterThan(0);
+
 		expect(
 			compareEntries(
 				{ ...entry, addedAt: "2026-10-09" },
@@ -175,10 +197,14 @@ describe("entry filtering and sorting", () => {
 			),
 		).toBeLessThan(0);
 	});
+
 	it("inherits every supported project category while retaining the tools filter", () => {
 		const tool = findBySlug(catalog.entries, "openplayground");
+
 		expect(tool.kind).toBe("tool");
+
 		if (tool.kind !== "tool") throw new Error("Expected a tool");
+
 		const expected = [
 			...new Set(
 				catalog.projects
@@ -186,10 +212,14 @@ describe("entry filtering and sorting", () => {
 					.map((project) => project.category),
 			),
 		];
+
 		expect(entryCategories(tool, catalog.projects)).toEqual(expected);
+
 		const browse = { ...entry, category: "tools", categories: expected };
+
 		for (const category of [...expected, "tools"])
 			expect(filterEntries(browse, { category })).toBe(true);
+
 		expect(filterEntries(browse, { category: "games" })).toBe(false);
 	});
 });
@@ -210,7 +240,9 @@ describe("language badges", () => {
 		"formats %j without mutating recorded languages",
 		(languages, expected) => {
 			const original = [...languages];
+
 			expect(badgeLanguages(languages)).toEqual(expected);
+
 			expect(languages).toEqual(original);
 		},
 	);

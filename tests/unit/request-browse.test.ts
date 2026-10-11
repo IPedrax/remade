@@ -9,9 +9,11 @@ import {
 } from "../../src/lib/request-browse";
 
 let catalog: Awaited<ReturnType<typeof loadCatalog>>;
+
 beforeAll(async () => {
 	catalog = await loadCatalog();
 });
+
 const now = new Date("2026-10-10T12:00:00Z");
 const request: BrowseRequest = {
 	original: "example",
@@ -36,12 +38,14 @@ describe("request search", () => {
 			).toContain("mailcraft");
 		},
 	);
+
 	it.each(["  ", "nonexistent-xyz123"])(
 		"returns no fallback for %j",
 		(query) => {
 			expect(matchingImplementations(catalog, query)).toEqual([]);
 		},
 	);
+
 	it("returns only reimplementations in the fallback", () => {
 		expect(
 			matchingImplementations(catalog, "Rust").every(
@@ -49,6 +53,7 @@ describe("request search", () => {
 			),
 		).toBe(true);
 	});
+
 	it.each([" EXAMPLE ", "legacy title", "examplecraft", "adobe brush"])(
 		"matches titles, aliases, suggestions and features: %s",
 		(q) => {
@@ -57,6 +62,7 @@ describe("request search", () => {
 			);
 		},
 	);
+
 	it.each([{ q: "missing" }, { q: "Example", vendor: "apple" }])(
 		"combines search and filters: %j",
 		(filters) => {
@@ -82,6 +88,7 @@ describe("request facets and dates", () => {
 			),
 		).toBe(true);
 	});
+
 	it.each([{ vendor: "apple" }, { category: "engineering" }])(
 		"rejects mismatched facets: %j",
 		(filters) => {
@@ -90,6 +97,7 @@ describe("request facets and dates", () => {
 			).toBe(false);
 		},
 	);
+
 	it.each([
 		{ addedAt: "2026-10-03T12:00:00Z", matches: true },
 		{ addedAt: "2026-09-01T00:00:00Z", matches: false },
@@ -108,6 +116,7 @@ describe("request facets and dates", () => {
 			).toBe(matches);
 		},
 	);
+
 	it("includes unknown dates when no period is selected", () => {
 		expect(
 			filterRequest(
@@ -117,6 +126,7 @@ describe("request facets and dates", () => {
 			),
 		).toBe(true);
 	});
+
 	it.each([
 		{ original: "logic-pro", vendor: "apple" },
 		{ original: "adobe-character-animator", vendor: "adobe" },
@@ -141,10 +151,13 @@ describe("request sorting", () => {
 		original: "older",
 		addedAt: "2026-10-05T22:00:00Z",
 	};
+
 	it("compares actual instants instead of timestamp strings", () => {
 		expect(compareRequests(newer, older, "recent")).toBeLessThan(0);
+
 		expect(compareRequests(newer, older, "oldest")).toBeGreaterThan(0);
 	});
+
 	it.each(["recent", "oldest"])(
 		"keeps unknown dates last with %s sorting",
 		(sort) => {
@@ -153,6 +166,7 @@ describe("request sorting", () => {
 			).toBeGreaterThan(0);
 		},
 	);
+
 	it("supports alphabetical order", () => {
 		expect(
 			compareRequests(
@@ -162,22 +176,27 @@ describe("request sorting", () => {
 			),
 		).toBeLessThan(0);
 	});
+
 	const title = { ...request, name: "Brush", addedAt: "2026-09-01T00:00:00Z" };
 	const phrase = { ...request, name: "Brush Studio" };
 	const description = { ...request, name: "Alpha", reason: "Brush workflows" };
+
 	it.each(["recent", "oldest", "name"])(
 		"prioritizes title matches over other fields with %s sorting",
 		(sort) => {
 			expect(compareRequests(title, phrase, sort, " brush ")).toBeLessThan(0);
+
 			expect(compareRequests(phrase, description, sort, "brush")).toBeLessThan(
 				0,
 			);
 		},
 	);
+
 	it("uses the selected sort for equal relevance and still searches descriptions", () => {
 		expect(compareRequests(title, description, "recent", "")).toBeGreaterThan(
 			0,
 		);
+
 		expect(
 			compareRequests(
 				description,
@@ -186,6 +205,7 @@ describe("request sorting", () => {
 				"brush",
 			),
 		).toBeLessThan(0);
+
 		expect(
 			filterRequest(description, { ...defaultRequestFilters, q: "brush" }, now),
 		).toBe(true);

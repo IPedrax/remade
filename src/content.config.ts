@@ -1,5 +1,6 @@
 import { defineCollection } from "astro:content";
 import { loadCatalog } from "./lib/catalog";
+
 // Valibot validation happens inside the loaders, including cross-file rules.
 export const collections = {
 	projects: defineCollection({

@@ -21,26 +21,34 @@ describe("supporting tools", () => {
 				projects={catalog.projects}
 			/>,
 		);
+
 		await expect
 			.element(screen.getByText("Tool", { exact: true }))
 			.toBeVisible();
+
 		await expect
 			.element(screen.getByText("Alpha", { exact: true }))
 			.toBeVisible();
+
 		await expect
 			.element(screen.getByText("TypeScript", { exact: true }))
 			.toBeVisible();
+
 		await expect
 			.element(screen.getByText("JavaScript", { exact: true }))
 			.not.toBeInTheDocument();
+
 		await expect
 			.element(screen.getByText("Creative", { exact: true }))
 			.toBeVisible();
+
 		await expect
 			.element(screen.getByRole("link", { name: "EffectCraft", exact: true }))
 			.toHaveAttribute("href", "/projects/effectcraft/");
+
 		await expect.element(screen.getByText(/Tool for/)).toBeVisible();
 	});
+
 	it("omits the status badge when maturity is undocumented", async () => {
 		const screen = await render(
 			<EntryCard
@@ -53,9 +61,11 @@ describe("supporting tools", () => {
 		await expect
 			.element(screen.getByText("Tool", { exact: true }))
 			.toBeVisible();
+
 		await expect
 			.element(screen.getByText("Status not documented", { exact: true }))
 			.not.toBeInTheDocument();
+
 		await expect
 			.element(screen.getByText("Alpha", { exact: true }))
 			.not.toBeInTheDocument();
@@ -65,15 +75,19 @@ describe("supporting tools", () => {
 		const screen = await render(
 			<ToolPage catalog={catalog} metadata={{}} tool={tool} />,
 		);
+
 		await expect
 			.element(screen.getByText("JavaScript, TypeScript", { exact: true }))
 			.toBeVisible();
+
 		await expect
 			.element(screen.getByText("MIT", { exact: true }))
 			.toBeVisible();
+
 		await expect
 			.element(screen.getByText(tool.limitations ?? "", { exact: true }))
 			.toBeVisible();
+
 		expect(
 			screen
 				.getByRole("heading", { name: "Works with", exact: true })
@@ -88,14 +102,18 @@ describe("supporting tools", () => {
 describe("repository mirrors", () => {
 	it("shows the empty state without an accordion", async () => {
 		const screen = await render(<RepositoryMirrors />);
+
 		await expect.element(screen.getByText(/No mirrors found/)).toBeVisible();
+
 		await expect
 			.element(screen.getByText("View Mirrors", { exact: true }))
 			.not.toBeInTheDocument();
+
 		await expect
 			.element(screen.getByRole("link", { name: "Contribute a mirror link ↗" }))
 			.toBeVisible();
 	});
+
 	it("expands and collapses mirror links", async () => {
 		const screen = await render(
 			<RepositoryMirrors mirrors={["https://codeberg.org/example/project"]} />,
@@ -104,11 +122,17 @@ describe("repository mirrors", () => {
 			name: "codeberg.org/example/project ↗",
 			includeHidden: true,
 		});
+
 		await expect.element(link).not.toBeVisible();
+
 		await screen.getByText("View Mirrors", { exact: true }).click();
+
 		await expect.element(link).toBeVisible();
+
 		await expect.element(link).toHaveAttribute("target", "_blank");
+
 		await screen.getByText("View Mirrors", { exact: true }).click();
+
 		await expect.element(link).not.toBeVisible();
 	});
 });

@@ -1,4 +1,5 @@
 import type { Entry, Metadata } from "../../src/lib/catalog";
+
 export const project: Extract<Entry, { kind: "project" }> = {
 	kind: "project",
 	slug: "alpha",
