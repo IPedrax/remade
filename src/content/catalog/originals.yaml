@@ -666,3 +666,13 @@
   name: ClickUp
   url: https://clickup.com/
   category: productivity
+- slug: microsoft-snipping-tool
+  name: Microsoft Snipping Tool
+  url: https://www.microsoft.com/en-us/windows/tips/snipping-tool
+  category: productivity
+  aliases: [Snipping Tool]
+- slug: microsoft-sticky-notes
+  name: Microsoft Sticky Notes
+  url: https://support.microsoft.com/en-us/windows/apps/stickynotes/get-started-with-sticky-notes
+  category: productivity
+  aliases: [Sticky Notes]
