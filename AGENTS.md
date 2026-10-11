@@ -41,6 +41,7 @@ When requirements conflict, make the inconsistency explicit and update the relev
 - Treat contributions as untrusted input: parse YAML safely, reject unknown fields and duplicate keys, validate identifiers/URLs, escape user-authored text, and never execute code from a listed repository. Don't place elevated secrets in workflows that run PR code.
 - Avoid guessed stars, fabricated compatibility claims, fabricated activity, or inferred legality. Clearly distinguish maintainer-reported compatibility from independently verified facts.
 - Build for accessibility: semantic HTML, visible focus, keyboard functionality, contrast, sensible screen-reader labels, reduced motion, and responsive layouts (including small mobile viewports).
+- Frontend tests use Vitest for unit logic, `vitest-browser-react` for React components and Playwright for separate E2E flows. Use `pnpm test:unit`, `pnpm test:react`, or `pnpm test:e2e`; `pnpm test` runs all three. CI runs unit tests only; browser suites are local. Do not use Node's test runner or React Testing Library.
 - Add focused automated tests when changing parsing, request fulfillment, schema rules, metadata ingestion, or other nontrivial logic; keep CI green before merging.
 - Legal explanations stay qualified. Do not promise that all clean-room implementations are lawful or imply Remade can certify their provenance. Don't replace the carefully scoped disclaimer with blanket non-liability language.
 - **Out of scope for this starter:** hosting/deployment, DNS, and mail-provider setup.

@@ -3,12 +3,10 @@ dist/
 # generated types
 .astro/
 .pagefind/
-.lycheecache
 .generated/
 __pycache__/
 *.py[cod]
 .venv/
-.pytest_cache
 
 # dependencies
 node_modules/
@@ -19,6 +17,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# test artifacts
+/test-results/
+/playwright-report/
+/.vitest/
+.pytest_cache
+.lycheecache
 
 # environment variables
 .env*

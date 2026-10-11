@@ -12,7 +12,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 
 1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
 2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Link-check failures are advisory and do not fail the workflow; setup and build failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
-3. `build.yml` (**Build test**) independently runs the frontend type checks, tests, and production build.
+3. `build.yml` (**App Build + Unit Tests**) independently runs the frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup.
 4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
 
 ## Issue suggestion and request checks
@@ -66,3 +66,12 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 The entire Python automation suite uses one uv project within `scripts/` and workspace definition in `scripts/pyproject.toml`. Python 3.14 is selected by `scripts/.python-version`, and GitHub Actions uses `astral-sh/setup-uv`. No `requirements.txt`, pip installation steps, or individual script environments are supported.
 
 The initial package intentionally has no `scripts/uv.lock` because its dependencies could not be resolved in the artifact generation environment. The first connected uv invocation resolves and creates the lockfile automatically. Once generated, commit that file and use locked execution in workflows for stronger reproducibility. This does not require contributors to install anything or run setup commands locally.
+
+## Frontend tests
+
+- `pnpm test`: runs the unit, React component and E2E suites in sequence.
+- `pnpm test:unit`: Vitest in Node for schemas, catalog relationships, exports, filtering and sorting.
+- `pnpm test:react`: `vitest-browser-react` component tests in headless Chromium through Vitest's Playwright provider. These mount components directly and use browser locators and interactions; they do not start the Astro site.
+- `pnpm test:e2e`: builds Astro and Pagefind, then runs Playwright against the production preview server. It covers navigation, hydrated filtering, search fallbacks, static comparisons and generated data/discovery files.
+
+Install the local browser once with `pnpm exec playwright install chromium`. The two browser suites are separate from each other and from CI. Neither uses React Testing Library. React tests receive a serializable catalog loaded by the test configuration; frontend content collections remain the source of truth. Python tests continue to use pytest.
