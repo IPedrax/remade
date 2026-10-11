@@ -17,8 +17,8 @@ export default function BadgesPage() {
 			</p>
 
 			<p>
-				Our badges are free to use, lightweight, and available in dark and light
-				variants. Add one to your GitHub README, project website, or
+				Our badges are free to use, lightweight, and available in dark, light,
+				and Classic variants. Add one to your GitHub README, project website, or
 				documentation to help others discover your listing.
 			</p>
 
@@ -61,6 +61,25 @@ export default function BadgesPage() {
 						<p className="mb-0 text-sm">
 							A high-contrast alternative with dark text and logo on a light
 							background.
+						</p>
+					</div>
+
+					<div className="rounded-xl border border-line bg-surface p-5">
+						<h3 className="text-base">Classic</h3>
+
+						<div className="mb-4 flex min-h-20 items-center justify-center rounded-lg bg-deep p-4">
+							<img
+								alt="Listed on Remade — classic badge"
+								className="h-5 w-[115px] max-w-none"
+								height={20}
+								src={badgePath("classic")}
+								width={115}
+							/>
+						</div>
+
+						<p className="mb-0 text-sm">
+							A traditional two-part badge with a gray label and lime-green
+							Remade name.
 						</p>
 					</div>
 				</div>
@@ -110,7 +129,7 @@ export default function BadgesPage() {
 						Do not modify the badge in ways that imply certification or official
 						endorsement.
 					</li>
-					<li>Either variant may be used to suit the surrounding design.</li>
+					<li>Any variant may be used to suit the surrounding design.</li>
 				</ul>
 
 				<p className="border-l-2 border-lime bg-surface px-5 py-4">

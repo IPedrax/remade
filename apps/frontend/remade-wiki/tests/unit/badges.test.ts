@@ -4,22 +4,26 @@ import { badgeSnippets, badgeUrl } from "../../src/lib/badges";
 const projectUrl = new URL("/projects/solvecraft/", "https://remade.wiki").href;
 
 describe("badge snippets", () => {
-	it.each(["dark", "light"] as const)("generates all %s formats", (variant) => {
-		const image = badgeUrl(variant);
-		const snippets = badgeSnippets(projectUrl, variant);
+	it.each(["dark", "light", "classic"] as const)(
+		"generates all %s formats",
+		(variant) => {
+			const image = badgeUrl(variant);
+			const snippets = badgeSnippets(projectUrl, variant);
+			const width = variant === "classic" ? 115 : 127;
 
-		expect(snippets.markdown).toBe(
-			`[![Listed on Remade](${image})](${projectUrl})`,
-		);
+			expect(snippets.markdown).toBe(
+				`[![Listed on Remade](${image})](${projectUrl})`,
+			);
 
-		expect(snippets.html).toBe(
-			`<a href="${projectUrl}">\n  <img src="${image}" alt="Listed on Remade" width="127" height="20">\n</a>`,
-		);
+			expect(snippets.html).toBe(
+				`<a href="${projectUrl}">\n  <img src="${image}" alt="Listed on Remade" width="${width}" height="20">\n</a>`,
+			);
 
-		expect(snippets.bbcode).toBe(
-			`[url=${projectUrl}][img]${image}[/img][/url]`,
-		);
-	});
+			expect(snippets.bbcode).toBe(
+				`[url=${projectUrl}][img]${image}[/img][/url]`,
+			);
+		},
+	);
 
 	it("uses the supplied canonical listing instead of a fixed project", () => {
 		const canonical = new URL("/projects/plane/", "https://remade.wiki").href;
@@ -43,6 +47,10 @@ describe("badge snippets", () => {
 
 		expect(badgeUrl("light")).toBe(
 			"https://remade.wiki/badges/listed-on-remade-light.svg",
+		);
+
+		expect(badgeUrl("classic")).toBe(
+			"https://remade.wiki/badges/listed-on-remade-classic.svg",
 		);
 	});
 });

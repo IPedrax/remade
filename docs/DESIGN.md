@@ -67,8 +67,8 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 
 ### Listed on Remade badges
 
-- `/about/badges` documents the existing dark and light SVG badges, displayed at their native 127 × 20 size. Preserve the SVG assets unchanged.
-- Individual project and tool detail pages include a Share this project or Share this tool section, a dark badge preview and an About Remade badges link beside the heading and beneath the controls. Reuse `BadgeShareSection` for the static layout. Hydrate only `BadgeShare` for the split Copy Markdown button and `react-dropdown` commands: HTML, BBCode, separator, then light Markdown, HTML and BBCode. Keep the trigger unchanged after selecting a command.
+- The dark and light SVG badges are 127 × 20; the single Classic variant at `/badges/listed-on-remade-classic.svg` is 115 × 20. Preserve the SVG assets unchanged and use their native dimensions in HTML snippets. `/about/badges` previews all three variants and documents badge usage.
+- Individual project and tool detail pages include a Share this project or Share this tool section, a dark badge preview and an About Remade badges link beside the heading and beneath the controls. Reuse `BadgeShareSection` for the static layout. Hydrate only `BadgeShare` for the split Copy Markdown button and `react-dropdown` commands: HTML, BBCode, separator, light Markdown, HTML and BBCode, then another separator and Classic Markdown, HTML and BBCode. The primary button always copies dark Markdown. Keep the trigger unchanged after selecting a command.
 - Generate snippets from the page's canonical URL, escape HTML attributes, announce clipboard success or failure, and offer a selectable snippet if copying fails. Support keyboard navigation, Escape dismissal and visible focus.
 - Badges indicate a directory listing, not an audit, certification or endorsement. Link project badges to their canonical `/projects/...` URL and tool badges to their canonical `/tools/...` URL. Do not add sharing controls to cards, software pages or requests.
 

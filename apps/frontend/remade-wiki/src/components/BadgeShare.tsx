@@ -24,6 +24,21 @@ const options: DropdownEntry[] = [
 			{ value: "light:bbcode", label: "Copy BBCode (Light)" },
 		],
 	},
+	{
+		type: "group",
+		name: (
+			<>
+				<hr className="my-1 border-line" />
+
+				<span className="sr-only">Classic badge</span>
+			</>
+		),
+		items: [
+			{ value: "classic:markdown", label: "Copy Markdown (Classic)" },
+			{ value: "classic:html", label: "Copy HTML (Classic)" },
+			{ value: "classic:bbcode", label: "Copy BBCode (Classic)" },
+		],
+	},
 ];
 
 const chevron = (

@@ -70,9 +70,16 @@ describe("badge sharing", () => {
 			"Copy Markdown (Light)",
 			"Copy HTML (Light)",
 			"Copy BBCode (Light)",
+			"Copy Markdown (Classic)",
+			"Copy HTML (Classic)",
+			"Copy BBCode (Classic)",
 		]);
 
-		await expect.element(screen.getByRole("separator")).toBeVisible();
+		expect(screen.getByRole("separator").elements()).toHaveLength(2);
+
+		await expect.element(screen.getByRole("separator").first()).toBeVisible();
+
+		await expect.element(screen.getByRole("separator").last()).toBeVisible();
 
 		await screen
 			.getByRole("option", { name: "Copy HTML (Light)", exact: true })
@@ -94,6 +101,35 @@ describe("badge sharing", () => {
 
 		expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(2);
 	});
+
+	it.each([
+		["Copy Markdown (Classic)", "markdown"],
+		["Copy HTML (Classic)", "html"],
+		["Copy BBCode (Classic)", "bbcode"],
+	] as const)(
+		"copies %s while keeping dark Markdown as the primary action",
+		async (label, format) => {
+			const screen = await render(<BadgeShare projectUrl={projectUrl} />);
+
+			await screen
+				.getByRole("combobox", { name: "More badge copy options" })
+				.click();
+
+			await screen.getByRole("option", { name: label, exact: true }).click();
+
+			expect(navigator.clipboard.writeText).toHaveBeenLastCalledWith(
+				badgeSnippets(projectUrl, "classic")[format],
+			);
+
+			await screen
+				.getByRole("button", { name: "Copy Markdown", exact: true })
+				.click();
+
+			expect(navigator.clipboard.writeText).toHaveBeenLastCalledWith(
+				badgeSnippets(projectUrl).markdown,
+			);
+		},
+	);
 
 	it("supports keyboard selection and Escape dismissal", async () => {
 		const screen = await render(<BadgeShare projectUrl={projectUrl} />);
