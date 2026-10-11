@@ -14,7 +14,7 @@ examples/project.yaml      Example only: never indexed
 cache/github-metadata.json Cached API enrichment, not source of truth
 ```
 
-Use **stable, URL-friendly slugs**; names may change, but slugs should remain stable to avoid broken URLs. Each original may have multiple projects, and a project may target several originals using `additional_originals`. Do not automatically derive stable original slugs from free-text names.
+Use **stable, URL-friendly slugs**; names may change, but slugs should remain stable to avoid broken URLs. Each original may have multiple projects, and a project may target several originals using its required `originals` list. Do not automatically derive stable original slugs from free-text names.
 
 ## Astro content integration
 
@@ -55,7 +55,7 @@ Entry cards, detail pages and featured cards show **View More by Author**, label
 slug: example-implementation
 name: Example Implementation
 repository: https://github.com/example/example-implementation
-original: example-software
+originals: [example-software]
 category: other
 languages: [Rust]
 platforms: [Linux, macOS, Windows]
@@ -76,8 +76,7 @@ license: MIT
 | `slug` | Yes | Lowercase `[a-z0-9]+(-[a-z0-9]+)*`; matches YAML filename |
 | `name` | Yes | Short nonempty project name |
 | `repository` | Yes | Public HTTPS repository root URL. GitHub entries must use `https://github.com/<owner>/<repo>` without trailing slash, `.git`, subpath, query, or fragment. Other Git hosts (including self-hosted Git) may be accepted after maintainer review. |
-| `original` | Yes | Primary target slug in the originals list |
-| `additional_originals` | No | Nonempty list of distinct additional target slugs in the originals list. Must not repeat the primary target. Each target requires editorial review and honest scope notes. Keep one project/repository listing: it appears on every target's software page and in searches for all targets. |
+| `originals` | Yes | Nonempty list of distinct canonical target slugs in the originals list. Each target requires editorial review and honest scope notes. Keep one project/repository listing: it appears on every target's software page and in searches for all targets. There is no primary target; single-target projects use a one-item list. |
 | `category` | Yes | `creative`, `productivity`, `engineering`, `operating-systems`, `games`, `developer-tools`, `protocols`, `other` |
 | `languages` | Yes | Nonempty list of programming language names |
 | `platforms` | No | Optional list of platforms |
@@ -128,7 +127,7 @@ suggested_names: [ExampleCraft] # optional
 - Optional `suggested_names` is a nonempty list of plain-text names, each 2–100 characters. Names must be unique after case folding and whitespace normalization. These are naming ideas, not existing implementations or reserved names.
 - No repository, popularity count, bounty, fundraising, deadline, ownership claim, or invented implementation status.
 - Exactly one open request per original.
-- **Do not list requests for any original with an indexed project, including additional targets.** The catalog validator enforces this; remove requests for every covered target in the same PR that first adds its implementation.
+- **Do not list requests for any original with an indexed project, across its entire `originals` list.** The catalog validator enforces this; remove requests for every covered target in the same PR that first adds its implementation.
 - A request has a stable link to `/software/<original-slug>` and is displayed on `/requests` and under **Project Requests** on the homepage.
 - Requests are distinct from projects and are never mixed into featured listings or project counts.
 - Request vendor filters derive their grouping from the first folder below `requests/`; root-level files are Unassigned. Vendor and Git addition dates are computed browsing metadata, not editable YAML fields, and do not affect public routes.
@@ -136,10 +135,10 @@ suggested_names: [ExampleCraft] # optional
 
 ## Public machine-readable exports
 
-- `https://remade.wiki/data/catalog.json`: `{ schemaVersion, site, originals, projects, tools, featured }`. Originals include `slug`, `name`, reference `url`, `category`, optional `aliases` and absolute `pageUrl`. Projects expose the documented public project fields plus optional Git-derived `addedAt` and absolute `pageUrl`. Tools expose their public fields, optional `addedAt` and absolute `pageUrl`. `featured` preserves the curated list of entry slugs. Cached GitHub statistics are not part of this contract.
-- `https://remade.wiki/data/requests.json`: `{ schemaVersion, site, requests }`. Each open request includes `original`, `reason`, optional `suggested_names`, derived `vendor`, optional `addedAt` and a `software` object containing the original's public fields and absolute software `pageUrl`.
+- `https://remade.wiki/data/catalog.json`: `{ schemaVersion, site, originals, projects, tools, featured }`. Originals include `slug`, `name`, reference `url`, `category`, optional `aliases` and absolute `pageUrl`. Catalog exports use `schemaVersion: 1`. Projects expose the required `originals` array and the other documented public project fields plus optional Git-derived `addedAt` and absolute `pageUrl`. Tools expose their public fields, optional `addedAt` and absolute `pageUrl`. `featured` preserves the curated list of entry slugs. Cached GitHub statistics are not part of this contract.
+- `https://remade.wiki/data/requests.json`: `{ schemaVersion, site, requests }`. Request exports retain `schemaVersion: 1`. Each open request includes `original`, `reason`, optional `suggested_names`, derived `vendor`, optional `addedAt` and a `software` object containing the original's public fields and absolute software `pageUrl`.
 
-Both files use schema version `1`, ISO timestamps when addition dates are available, and slug order independent of UI sorting. Optional fields are omitted when unavailable. Fields are explicitly allowlisted; source comments and internal editorial fields are not exported. Generate these files through Astro builds, not by editing or committing generated JSON. Anyone can read them cross-origin; see [Architecture](ARCHITECTURE.md#public-json-exports) for caching and serving headers.
+Both files use ISO timestamps when addition dates are available and slug order independent of UI sorting. Optional fields are omitted when unavailable. Fields are explicitly allowlisted; source comments and internal editorial fields are not exported. Generate these files through Astro builds, not by editing or committing generated JSON. Anyone can read them cross-origin; see [Architecture](ARCHITECTURE.md#public-json-exports) for caching and serving headers.
 
 ## Supporting tool record
 

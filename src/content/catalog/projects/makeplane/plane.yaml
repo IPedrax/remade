@@ -4,8 +4,7 @@ authors: [makeplane]
 repository: https://github.com/makeplane/plane
 website: https://plane.so/
 docs: https://docs.plane.so/
-original: jira
-additional_originals: [linear, monday, clickup]
+originals: [jira, linear, monday, clickup]
 category: productivity
 languages: [TypeScript, Python]
 platforms: [Web]

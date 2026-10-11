@@ -4,7 +4,7 @@ name: Flare
 authors: [flare-animate]
 repository: https://github.com/Flare-Animate/Flare
 website: https://flare-animate.github.io/website/
-original: adobe-animate
+originals: [adobe-animate]
 category: creative
 languages: [C++]
 platforms: [Linux, macOS, Windows]

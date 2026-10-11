@@ -3,7 +3,7 @@ slug: designcraft
 name: DesignCraft
 authors: [storytold]
 repository: https://github.com/storytold/designcraft
-original: adobe-indesign
+originals: [adobe-indesign]
 category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]

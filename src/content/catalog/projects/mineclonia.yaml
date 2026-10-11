@@ -3,7 +3,7 @@
 slug: mineclonia
 name: Mineclonia
 repository: https://codeberg.org/mineclonia/mineclonia
-original: minecraft
+originals: [minecraft]
 category: games
 languages: [Lua]
 platforms: [Linux, macOS, Windows, Android]

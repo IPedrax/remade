@@ -3,7 +3,7 @@ slug: lightcraft-classic
 name: LightCraft Classic
 authors: [emmertex]
 repository: https://github.com/emmertex/lightcraft-classic
-original: adobe-lightroom
+originals: [adobe-lightroom]
 category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]

@@ -141,8 +141,8 @@ def collect(root=ROOT):
     for path in sorted((root / "src/content/catalog/projects").rglob("*.yaml")):
         loc = str(path.relative_to(root))
         project = checked_load(path, errors)
-        required = {"slug", "name", "repository", "original", "category", "languages", "status", "compatibility", "description", "license"}
-        optional = {"platforms", "docs", "website", "mirrors", "limitations", "authors", "additional_originals"}
+        required = {"slug", "name", "repository", "originals", "category", "languages", "status", "compatibility", "description", "license"}
+        optional = {"platforms", "docs", "website", "mirrors", "limitations", "authors"}
         if not fields(project, required, optional, loc, errors):
             continue
         slug = project["slug"]
@@ -168,22 +168,17 @@ def collect(root=ROOT):
                 if normalized in seen_repos:
                     errors.append(f"{loc}: duplicate repository {normalized}")
                 seen_repos.add(normalized)
-        if not isinstance(project["original"], str) or project["original"] not in original_by_slug:
-            errors.append(f"{loc}: unknown original {project['original']}")
+        targets = project["originals"]
+        if not isinstance(targets, list) or not targets or any(not is_slug(target) for target in targets):
+            errors.append(f"{loc}: originals must be a nonempty list of original slugs")
         else:
-            project_originals.add(project["original"])
-        if "additional_originals" in project:
-            additional = project["additional_originals"]
-            if not isinstance(additional, list) or not additional or any(not is_slug(target) for target in additional):
-                errors.append(f"{loc}: additional_originals must be a nonempty list of original slugs")
-            else:
-                if len(set(additional)) != len(additional) or project["original"] in additional:
-                    errors.append(f"{loc}: duplicate project original")
-                for target in additional:
-                    if target not in original_by_slug:
-                        errors.append(f"{loc}: unknown original {target}")
-                    else:
-                        project_originals.add(target)
+            if len(set(targets)) != len(targets):
+                errors.append(f"{loc}: duplicate project original")
+            for target in targets:
+                if target not in original_by_slug:
+                    errors.append(f"{loc}: unknown original {target}")
+                else:
+                    project_originals.add(target)
         if not is_text(project["name"], 2, 100):
             errors.append(f"{loc}: invalid name")
         if not isinstance(project["category"], str) or project["category"] not in CATEGORIES:

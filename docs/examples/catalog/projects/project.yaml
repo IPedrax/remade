@@ -8,8 +8,7 @@ name: Example Implementation
 repository: https://github.com/example/example-implementation
 # website: https://example.org        # optional official project website
 # mirrors: [https://codeberg.org/example/example-implementation] # optional
-original: example-software
-# additional_originals: [another-software] # optional distinct reviewed targets
+originals: [example-software] # one or more distinct reviewed target slugs
 category: other
 languages:
   - Rust

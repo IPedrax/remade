@@ -3,7 +3,7 @@ name: IngeTrazo
 authors: [ingelibre]
 repository: https://github.com/ingelibre/ingetrazo
 website: https://ingetrazo.com/en
-original: sketchup
+originals: [sketchup]
 category: engineering
 languages: [Python]
 platforms: [Linux, Windows, macOS]

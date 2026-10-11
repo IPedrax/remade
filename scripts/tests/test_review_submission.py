@@ -65,13 +65,13 @@ def test_request_requires_reason_not_repository() -> None:
 def test_request_warns_when_project_already_exists(monkeypatch: pytest.MonkeyPatch) -> None:
     collect_mock = Mock()
     monkeypatch.setattr('review_submission.collect', collect_mock)
-    collect_mock.return_value = ([{'slug': 'example-app', 'name': 'Example App', 'aliases': []}], [{'slug': 'sample-implementation', 'original': 'example-app'}], [], [], [])
+    collect_mock.return_value = ([{'slug': 'example-app', 'name': 'Example App', 'aliases': []}], [{'slug': 'sample-implementation', 'originals': ['example-app']}], [], [], [])
     result = analyze(request_event())
     assert any(('already indexed' in item['message'] for item in result['findings']))
 
 
 def test_request_warns_when_additional_target_already_exists(monkeypatch: pytest.MonkeyPatch) -> None:
-    collect_mock = Mock(return_value=([{'slug': 'example-app', 'name': 'Example App'}], [{'slug': 'multi', 'original': 'another-app', 'additional_originals': ['example-app']}], [], [], []))
+    collect_mock = Mock(return_value=([{'slug': 'example-app', 'name': 'Example App'}], [{'slug': 'multi', 'originals': ['another-app', 'example-app']}], [], [], []))
     monkeypatch.setattr('review_submission.collect', collect_mock)
     result = analyze(request_event())
     assert any('already indexed' in item['message'] for item in result['findings'])

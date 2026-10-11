@@ -4,7 +4,7 @@ slug: animationcraft
 name: AnimationCraft
 authors: [kmsdax]
 repository: https://github.com/KMSDax/AnimationCraft
-original: adobe-animate
+originals: [adobe-animate]
 category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows]

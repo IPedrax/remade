@@ -72,15 +72,12 @@ export const projectSchema = v.strictObject({
 	slug,
 	name: text(2, 100),
 	repository,
-	original: slug,
-	additional_originals: v.optional(
-		v.pipe(
-			v.array(slug),
-			v.minLength(1),
-			v.check(
-				(values) => new Set(values).size === values.length,
-				"Additional originals must be unique.",
-			),
+	originals: v.pipe(
+		v.array(slug),
+		v.minLength(1),
+		v.check(
+			(values) => new Set(values).size === values.length,
+			"Originals must be unique.",
 		),
 	),
 	mirrors: v.optional(
@@ -139,11 +136,6 @@ export const requestSchema = v.strictObject({
 export const featuredSchema = v.array(slug);
 export type Original = v.InferOutput<typeof originalSchema>;
 export type Project = v.InferOutput<typeof projectSchema>;
-export function projectOriginals(
-	project: Pick<Project, "original" | "additional_originals">,
-): string[] {
-	return [project.original, ...(project.additional_originals ?? [])];
-}
 export type Tool = v.InferOutput<typeof toolSchema>;
 export type Request = v.InferOutput<typeof requestSchema>;
 export type Catalog = {
@@ -193,7 +185,7 @@ export function validateRelationships(catalog: Catalog): void {
 		"request",
 	);
 	for (const p of catalog.projects) {
-		const targets = projectOriginals(p);
+		const targets = p.originals;
 		unique(targets, "project original");
 		for (const target of targets)
 			if (!catalog.originals.some((o) => o.slug === target))
@@ -206,7 +198,7 @@ export function validateRelationships(catalog: Catalog): void {
 	for (const r of catalog.requests) {
 		if (!catalog.originals.some((o) => o.slug === r.original))
 			throw new Error(`Unknown request original: ${r.original}`);
-		if (catalog.projects.some((p) => projectOriginals(p).includes(r.original)))
+		if (catalog.projects.some((p) => p.originals.includes(r.original)))
 			throw new Error(`Fulfilled request: ${r.original}`);
 	}
 	for (const slug of catalog.featured)

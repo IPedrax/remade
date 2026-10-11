@@ -55,7 +55,7 @@ The trusted daily metadata job fetches data using a **short-lived organization-o
 Addition dates come from the first Git commit adding each YAML entry, so builds need full Git history. For Cloudflare's shallow checkout, set the build command in the dashboard to `git fetch --unshallow && pnpm build`. This fetch preserves the checked-out commit. Local builds use `pnpm build`; GitHub Actions already checks out full history with `fetch-depth: 0`.
 
 1. Load and validate original records, projects, supporting tools, requests, and `featured.yaml`. Tools are a separate collection joined to existing project slugs; they do not count as implementations or fulfill requests. Featured selections may include tools labeled Tool.
-2. Join each project with its primary canonical original and optional `additional_originals` by slug. Index it once; software pages, search, related projects and request fulfillment consider all targets. Repository statistics remain keyed to the single project repository.
+2. Join each project with all canonical targets in its required `originals` array by slug. Index it once; software pages, search, related projects and request fulfillment consider all targets. Repository statistics remain keyed to the single project repository.
    Read explicit project/tool `authors` GitHub handles directly from entry YAML; group all indexed entries for static author pages independently of featured selection. Never fetch GitHub repositories from visitors or infer attribution from repository owners.
 3. Merge cached GitHub metadata (optional/null-safe).
 4. Generate static detail, grouping, browse, and unfulfilled request pages.
@@ -67,7 +67,7 @@ Addition dates come from the first Git commit adding each YAML entry, so builds 
 
 Astro prerenders `/data/catalog.json` and `/data/requests.json` into static files during the frontend build. Project, tool and request records come from Astro content collections; canonical originals, featured selections and addition dates come from the same validated YAML catalog loader used by the site. YAML and content collections remain authoritative. Generated JSON is a public output, never a separate database or an editable source. Serving these files requires no server execution, database queries or runtime API calls.
 
-`src/lib/catalog-export.ts` defines explicit public field allowlists using Valibot. Unknown source fields, collection IDs and future editorial metadata are stripped before serialization. Both documents have `schemaVersion: 1` and `site`; records are sorted by slug for deterministic output. Breaking changes to the public contract require a schema version change and documentation update.
+`src/lib/catalog-export.ts` defines explicit public field allowlists using Valibot. Unknown source fields, collection IDs and future editorial metadata are stripped before serialization. Both documents have `schemaVersion: 1` and `site`; records are sorted by slug for deterministic output. Once exports are in use, breaking changes to the public contract require a schema version change and documentation update.
 
 The response helper declares JSON content type, one-hour public caching and `Access-Control-Allow-Origin: *`. Static response headers are configured separately in `public/_headers` for Cloudflare Pages, because build-time Response headers are not embedded in the JSON files. Other static hosts should apply equivalent headers. JSON updates when the site rebuilds, and clients may cache it for an hour.
 

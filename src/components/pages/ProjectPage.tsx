@@ -5,7 +5,7 @@ import {
 	label,
 	metadataFor,
 } from "../../lib/presentation";
-import { type Project, projectOriginals } from "../../lib/schemas";
+import type { Project } from "../../lib/schemas";
 import Authors from "../Authors";
 import EntryCard from "../EntryCard";
 import OriginalLinks from "../OriginalLinks";
@@ -17,14 +17,11 @@ interface Props {
 	metadata: Record<string, Metadata>;
 }
 export default function ProjectPage({ project, catalog, metadata }: Props) {
-	const original = findBySlug(catalog.originals, project.original);
 	const entry = findBySlug(catalog.entries, project.slug);
 	const related = catalog.entries.filter(
 		(e) =>
 			e.kind === "project" &&
-			projectOriginals(e).some((slug) =>
-				projectOriginals(project).includes(slug),
-			) &&
+			e.originals.some((slug) => project.originals.includes(slug)) &&
 			e.slug !== project.slug,
 	);
 	const tools = catalog.entries.filter(
@@ -165,9 +162,12 @@ export default function ProjectPage({ project, catalog, metadata }: Props) {
 			{related.length > 0 && (
 				<section>
 					<h2>
-						{project.additional_originals?.length
+						{project.originals.length > 1
 							? "More implementations of these targets"
-							: `More implementations of ${original.name}`}
+							: `More implementations of ${catalog.originals
+									.filter((o) => project.originals.includes(o.slug))
+									.map((o) => o.name)
+									.join(", ")}`}
 					</h2>
 					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{related.map((entry) => (

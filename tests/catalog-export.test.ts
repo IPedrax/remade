@@ -42,7 +42,13 @@ test("exports preserve public relationships and strip unlisted fields at every l
 	assert.equal(requests.requests.length, catalog.requests.length);
 	assert.deepEqual(output.featured, catalog.featured);
 	for (const project of output.projects) {
-		assert.ok(output.originals.some((o) => o.slug === project.original));
+		assert.ok(
+			project.originals.every((slug) =>
+				output.originals.some((o) => o.slug === slug),
+			),
+		);
+		assert.ok(!("original" in project));
+		assert.ok(!("additional_originals" in project));
 		assert.equal(project.pageUrl, `${site}projects/${project.slug}/`);
 	}
 	for (const tool of output.tools) {
@@ -59,7 +65,9 @@ test("exports preserve public relationships and strip unlisted fields at every l
 			request.software.pageUrl,
 			`${site}software/${request.original}/`,
 		);
-		assert.ok(!output.projects.some((p) => p.original === request.original));
+		assert.ok(
+			!output.projects.some((p) => p.originals.includes(request.original)),
+		);
 	}
 	assert.deepEqual(
 		output.projects.map((p) => p.slug),

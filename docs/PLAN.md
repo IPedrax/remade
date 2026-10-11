@@ -36,7 +36,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 - Browse categories; Recently added; **Project Requests**; an unintrusive disclaimer link in footer.
 
 ### Catalog and details
-- Link an implementation to a primary canonical original software record and optional additional targets, using one project listing per repository.
+- Link an implementation to one or more canonical original software records through the required `originals` array, using one project listing per repository.
 - Search originals and implementation names/technical descriptions.
 - Project cards: name, concise purpose, original target, primary language, category, optional stars and status.
 - Attributed entries, including featured tabs, show **View More by Author** linked to `/authors/[github-user]`. Display GitHub handles; group all indexed entries independently of Featured. Author pages keep tools labeled Tool and support multiple credited authors.

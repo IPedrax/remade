@@ -32,7 +32,7 @@ def project_catalog(original_catalog: Path) -> Path:
 slug: impl-a
 name: Implementation A
 repository: https://github.com/example/impl-a
-original: product-a
+originals: [product-a]
 category: other
 languages: [Rust]
 status: experimental

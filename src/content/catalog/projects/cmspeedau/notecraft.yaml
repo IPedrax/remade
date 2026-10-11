@@ -3,7 +3,7 @@ slug: notecraft
 name: NoteCraft
 authors: [cmspeedau]
 repository: https://github.com/cmspeedau/NoteCraft
-original: windows-notepad
+originals: [windows-notepad]
 category: productivity
 languages: [Rust]
 platforms: [Windows]

@@ -10,24 +10,31 @@ def test_empty_catalog_valid(catalog_root: Path) -> None:
     assert not collect(catalog_root)[-1]
 
 
-@pytest.mark.parametrize('additional, valid', [
+@pytest.mark.parametrize('targets, valid', [
     ('[product-b]', True), ('[]', False), ('product-b', False),
-    ('[product-b, product-b]', False), ('[product-a]', False), ('[missing]', False),
-    ('[null]', False),
+    ('[product-b, product-b]', False), ('[product-a]', True), ('[missing]', False),
+    ('[null]', False), ('null', False), ('[product-a, product-b]', True),
 ])
-def test_additional_originals_validation(project_catalog: Path, additional: str, valid: bool) -> None:
+def test_project_originals_validation(project_catalog: Path, targets: str, valid: bool) -> None:
     originals = project_catalog / 'src/content/catalog/originals.yaml'
     originals.write_text(originals.read_text() + '\n- slug: product-b\n  name: Product B\n  url: https://example.com/product-b\n  category: other\n')
     project = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
-    project.write_text(project.read_text() + f'additional_originals: {additional}\n')
+    project.write_text(project.read_text().replace('originals: [product-a]', f'originals: {targets}'))
     assert (not collect(project_catalog)[-1]) == valid
+
+
+@pytest.mark.parametrize('replacement', ['', 'original: product-a', 'originals: [product-a]\noriginal: product-a', 'originals: [product-a]\nadditional_originals: [product-b]'])
+def test_legacy_project_target_fields_rejected(project_catalog: Path, replacement: str) -> None:
+    project = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
+    project.write_text(project.read_text().replace('originals: [product-a]', replacement))
+    assert collect(project_catalog)[-1]
 
 
 def test_additional_target_fulfills_request(project_catalog: Path) -> None:
     originals = project_catalog / 'src/content/catalog/originals.yaml'
     originals.write_text(originals.read_text() + '\n- slug: product-b\n  name: Product B\n  url: https://example.com/product-b\n  category: other\n')
     project = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
-    project.write_text(project.read_text() + 'additional_originals: [product-b]\n')
+    project.write_text(project.read_text().replace('originals: [product-a]', 'originals: [product-a, product-b]'))
     request = project_catalog / 'src/content/catalog/requests/product-b.yaml'
     request.write_text('original: product-b\nreason: Please faithfully recreate this software.\n')
     assert any('already fulfilled' in error for error in collect(project_catalog)[-1])

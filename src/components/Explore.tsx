@@ -8,7 +8,6 @@ import {
 	defaultRequestFilters,
 	filterRequest,
 } from "../lib/request-browse";
-import { projectOriginals } from "../lib/schemas";
 import EntryCard from "./EntryCard";
 import RequestCard from "./RequestCard";
 import { SearchField } from "./Search";
@@ -53,9 +52,7 @@ function browseData(
 ): BrowseEntry {
 	const originals =
 		entry.kind === "project"
-			? catalog.originals.filter((o) =>
-					projectOriginals(entry).includes(o.slug),
-				)
+			? catalog.originals.filter((o) => entry.originals.includes(o.slug))
 			: [];
 	return {
 		name: entry.name,

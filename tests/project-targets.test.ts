@@ -9,11 +9,7 @@ import SoftwarePage from "../src/components/pages/SoftwarePage";
 import { loadCatalog } from "../src/lib/catalog";
 import { catalogExport } from "../src/lib/catalog-export";
 import { matchingImplementations } from "../src/lib/request-browse";
-import {
-	projectOriginals,
-	projectSchema,
-	validateRelationships,
-} from "../src/lib/schemas";
+import { projectSchema, validateRelationships } from "../src/lib/schemas";
 
 test("Plane appears once in the catalog and under all four targets, with searchable links", async () => {
 	const catalog = await loadCatalog();
@@ -23,12 +19,7 @@ test("Plane appears once in the catalog and under all four targets, with searcha
 		catalog.projects.filter((p) => p.repository === project.repository).length,
 		1,
 	);
-	assert.deepEqual(projectOriginals(project), [
-		"jira",
-		"linear",
-		"monday",
-		"clickup",
-	]);
+	assert.deepEqual(project.originals, ["jira", "linear", "monday", "clickup"]);
 	const entry = catalog.entries.find((e) => e.slug === project.slug);
 	assert.ok(entry);
 	const card = renderToStaticMarkup(
@@ -37,7 +28,7 @@ test("Plane appears once in the catalog and under all four targets, with searcha
 	const page = renderToStaticMarkup(
 		createElement(ProjectPage, { project, catalog, metadata: {} }),
 	);
-	for (const slug of projectOriginals(project)) {
+	for (const slug of project.originals) {
 		const original = catalog.originals.find((o) => o.slug === slug);
 		assert.ok(original);
 		assert.ok(card.includes(`/software/${slug}/`));
@@ -68,24 +59,33 @@ test("Plane appears once in the catalog and under all four targets, with searcha
 	}
 	const exported = catalogExport(catalog, "https://remade.wiki/");
 	assert.deepEqual(
-		exported.projects.find((p) => p.slug === "plane")?.additional_originals,
-		project.additional_originals,
+		exported.projects.find((p) => p.slug === "plane")?.originals,
+		project.originals,
 	);
-	for (const additional_originals of [
+	for (const originals of [
 		[],
 		"linear",
+		null,
+		[null],
 		["linear", "linear"],
 		["bad slug"],
 	]) {
-		assert.throws(() =>
-			v.parse(projectSchema, { ...project, additional_originals }),
-		);
+		assert.throws(() => v.parse(projectSchema, { ...project, originals }));
 	}
-	for (const additional_originals of [["missing"], [project.original]]) {
+	const { originals, ...withoutTargets } = project;
+	for (const invalid of [
+		withoutTargets,
+		{ ...withoutTargets, original: originals[0] },
+		{ ...project, original: originals[0] },
+		{ ...project, additional_originals: ["linear"] },
+	]) {
+		assert.throws(() => v.parse(projectSchema, invalid));
+	}
+	for (const originals of [["missing"], ["jira", "jira"]]) {
 		assert.throws(() =>
 			validateRelationships({
 				...catalog,
-				projects: [{ ...project, additional_originals }],
+				projects: [{ ...project, originals }],
 			}),
 		);
 	}

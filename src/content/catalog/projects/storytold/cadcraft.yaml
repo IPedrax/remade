@@ -3,7 +3,7 @@ slug: cadcraft
 name: CADCraft
 authors: [storytold]
 repository: https://github.com/storytold/cadcraft
-original: autodesk-autocad
+originals: [autodesk-autocad]
 category: engineering
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]

@@ -21,7 +21,7 @@ Show software and interfaces that community members want faithfully reimplemente
 - A request must target one canonical original slug and must be original-specific and factual.
 - Search existing project records and request records before submitting.
 - When a request or additional details come from a GitHub issue, preserve its URL in a YAML comment above the request record. Link each relevant issue without implying it originated a request that already existed.
-- Validator rejects requests for originals with a project already indexed, whether the original is its primary target or an `additional_originals` target.
+- Validator rejects requests for originals with a project already indexed, across every target in the project's `originals` list.
 - When the first qualifying project is accepted, remove the request record in that same PR; the implementation then appears under the original's software page.
 - Maintainers have editorial discretion to decline/remove requests. Avoid invitations to copy code, redistribute copyrighted assets or circumvent access controls.
 

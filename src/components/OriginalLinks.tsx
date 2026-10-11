@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { type Original, type Project, projectOriginals } from "../lib/schemas";
+import type { Original, Project } from "../lib/schemas";
 
 export default function OriginalLinks({
 	project,
@@ -10,7 +10,7 @@ export default function OriginalLinks({
 	originals: Original[];
 	className?: string;
 }) {
-	return projectOriginals(project).map((slug, index) => {
+	return project.originals.map((slug, index) => {
 		const original = originals.find((o) => o.slug === slug);
 		if (!original) throw new Error(`Missing original: ${slug}`);
 		return (

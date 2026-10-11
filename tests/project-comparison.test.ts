@@ -10,7 +10,7 @@ const project: Extract<Entry, { kind: "project" }> = {
 	slug: "alpha",
 	name: "Alpha",
 	repository: "https://github.com/example/alpha",
-	original: "target",
+	originals: ["target"],
 	category: "creative",
 	languages: ["Rust"],
 	platforms: ["Linux", "Windows"],

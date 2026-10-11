@@ -80,7 +80,7 @@ test("relationships reject duplicates, dangling references and fulfilled request
 			...c,
 			requests: [
 				{
-					original: c.projects[0].original,
+					original: c.projects[0].originals[0],
 					reason: "A compatible implementation would be useful.",
 				},
 			],

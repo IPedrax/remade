@@ -4,7 +4,7 @@ name: PdfCraft
 authors: [storytold]
 repository: https://github.com/storytold/pdfcraft
 website: https://getartcraft.com/apps/printcraft
-original: adobe-acrobat
+originals: [adobe-acrobat]
 category: productivity
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
