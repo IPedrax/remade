@@ -348,6 +348,10 @@
   url: https://www.adobe.com/products/bridge.html
   category: creative
   aliases: [Bridge]
+- slug: quixel-bridge
+  name: Quixel Bridge
+  url: https://dev.epicgames.com/documentation/en-us/unreal-engine/quixel-bridge-plugin-for-unreal-engine
+  category: creative
 - slug: kontakt
   name: Kontakt
   url: https://www.native-instruments.com/products/kontakt
