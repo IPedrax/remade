@@ -54,6 +54,15 @@
       "pushedAt": "2026-10-10T03:52:13Z",
       "stars": 4608
     },
+    "monkeysaint/mailcraft": {
+      "fetchedAt": "2026-10-11T06:24:27Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-11T06:21:50Z",
+      "stars": 0
+    },
     "opencut-app/opencut": {
       "fetchedAt": "2026-10-11T02:28:24Z",
       "forks": 9179,
