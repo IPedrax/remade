@@ -578,3 +578,8 @@
   url: https://altair.com/altair-one
   category: engineering
   aliases: [Altair One, Altair HyperWorks, Altair RapidMiner, Altair HPCWorks]
+- slug: casio-fx-991cw
+  name: Casio fx-991CW ClassWiz
+  url: https://edu.casio.com/intl/calculators/scientific/fx991cw/
+  category: engineering
+  aliases: [Casio scientific calculator, fx-991CW]

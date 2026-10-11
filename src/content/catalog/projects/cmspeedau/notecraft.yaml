@@ -1,0 +1,15 @@
+# Scope and development status are maintainer-reported in ROADMAP.md.
+slug: notecraft
+name: NoteCraft
+authors: [cmspeedau]
+repository: https://github.com/cmspeedau/NoteCraft
+original: windows-notepad
+category: productivity
+languages: [Rust]
+platforms: [Windows]
+status: experimental
+compatibility: targeting
+description: NoteCraft is a newly started Rust implementation targeting Windows 11 Notepad's familiar interface and observable editing behavior, including file handling, encodings, search, tabs and session restoration.
+license: MIT
+docs: https://github.com/cmspeedau/NoteCraft/blob/main/ROADMAP.md
+limitations: Repository created on October 11, 2026. Specification and application foundation are in progress; listed workflows are goals rather than completed features. The reference Notepad version is not yet pinned, and the parity report has no measurements.
