@@ -1,11 +1,13 @@
+import type { ReactNode } from "react";
 import remadeMark from "../assets/logos/remade-mark.svg?url";
 import { contributeUrl, repositoryUrl } from "../lib/presentation";
 
 interface Props {
 	pathname: string;
+	children?: ReactNode;
 }
 
-export default function Header({ pathname }: Props) {
+export default function Header({ pathname, children }: Props) {
 	return (
 		<header className="border-b border-line" data-pagefind-ignore>
 			<div className="mx-auto flex min-h-[88px] max-w-[1180px] flex-wrap items-center justify-between gap-5 px-[18px] py-[18px] sm:px-6 sm:py-0">
@@ -55,6 +57,8 @@ export default function Header({ pathname }: Props) {
 					>
 						Submit a project
 					</a>
+
+					{children}
 				</nav>
 			</div>
 		</header>

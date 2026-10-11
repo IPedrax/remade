@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import AuthMenu from "../components/AuthMenu";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -49,7 +50,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		>
 			Skip to content
 		</a>
-		<Header pathname={Astro.url.pathname} />
+		<Header pathname={Astro.url.pathname}>
+			<AuthMenu client:load />
+		</Header>
 		<main
 			class="mx-auto min-h-[65vh] max-w-[1180px] px-[18px] pb-[72px] sm:px-6"
 			data-pagefind-body={index ? "" : undefined}

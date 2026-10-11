@@ -161,3 +161,108 @@ test("static catalog exports and discovery files are served by the production bu
 
 	expect((await request.get("/sitemap-index.xml")).ok()).toBe(true);
 });
+
+test("anonymous browsing never contacts the authentication API", async ({
+	page,
+}) => {
+	const authRequests: string[] = [];
+	page.on("request", (request) => {
+		if (request.url().includes("/api/v1/auth/"))
+			authRequests.push(request.url());
+	});
+	await page.goto("/");
+	const login = page.getByRole("link", { name: "Login", exact: true });
+	await expect(login).toBeVisible();
+	await expect(login).toHaveAttribute(
+		"href",
+		"https://api.remade.wiki/api/v1/auth/github",
+	);
+	await page.getByRole("link", { name: "Explore", exact: true }).click();
+	await expect(
+		page.getByRole("link", { name: "Login", exact: true }),
+	).toBeVisible();
+	expect(authRequests).toEqual([]);
+});
+
+test("invalid returning sessions clear the login hint", async ({
+	page,
+	context,
+}) => {
+	await context.addCookies([
+		{ name: "remade_login_hint", value: "1", url: "http://127.0.0.1:4377" },
+	]);
+	await page.route("**/api/v1/auth/me", async (route) => {
+		await route.fulfill({
+			status: 401,
+			body: "Unauthorized",
+			headers: {
+				"Access-Control-Allow-Origin": "http://127.0.0.1:4377",
+				"Access-Control-Allow-Credentials": "true",
+			},
+		});
+	});
+	const response = page.waitForResponse("**/api/v1/auth/me");
+	await page.goto("/");
+	await response;
+	await expect
+		.poll(async () =>
+			(await context.cookies()).some(
+				(cookie) => cookie.name === "remade_login_hint",
+			),
+		)
+		.toBe(false);
+	await expect(
+		page.getByRole("link", { name: "Login", exact: true }),
+	).toBeVisible();
+});
+
+test("a returning account can log out from the mobile header", async ({
+	page,
+	context,
+}) => {
+	await page.setViewportSize({ width: 320, height: 720 });
+	await context.addCookies([
+		{ name: "remade_login_hint", value: "1", url: "http://127.0.0.1:4377" },
+	]);
+	let lookups = 0;
+	const cors = {
+		"Access-Control-Allow-Origin": "http://127.0.0.1:4377",
+		"Access-Control-Allow-Credentials": "true",
+	};
+	await page.route("**/api/v1/auth/me", async (route) => {
+		lookups++;
+		await route.fulfill({
+			status: 200,
+			headers: cors,
+			json: {
+				id: "0199c128-5d8f-7a26-b1e8-40c906f33871",
+				displayName: "Example User",
+				avatarUrl: null,
+				identities: [{ provider: "github", username: "example" }],
+			},
+		});
+	});
+	await page.route("**/api/v1/auth/logout", async (route) => {
+		expect(route.request().method()).toBe("POST");
+		await route.fulfill({ status: 204, headers: cors });
+	});
+	await page.goto("/");
+	await page
+		.getByRole("combobox", { name: "Account menu for Example User" })
+		.click();
+	await expect(page.getByText("Example User", { exact: true })).toBeVisible();
+	const logout = page.getByRole("option", { name: "Logout", exact: true });
+	const bounds = await logout.boundingBox();
+	expect(bounds?.x).toBeGreaterThanOrEqual(0);
+	expect((bounds?.x || 0) + (bounds?.width || 0)).toBeLessThanOrEqual(320);
+	await logout.click();
+	await expect(
+		page.getByRole("link", { name: "Login", exact: true }),
+	).toBeVisible();
+	expect(lookups).toBe(1);
+	expect(
+		(await context.cookies()).some(
+			(cookie) => cookie.name === "remade_login_hint",
+		),
+	).toBe(false);
+});
