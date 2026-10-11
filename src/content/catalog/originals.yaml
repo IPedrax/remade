@@ -443,3 +443,13 @@
   url: https://helpx.adobe.com/adobe-character-animator/desktop.html
   category: creative
   aliases: [Character Animator]
+- slug: microsoft-visio
+  name: Microsoft Visio
+  url: https://www.microsoft.com/en-us/microsoft-365/visio
+  category: productivity
+  aliases: [Visio]
+- slug: adobe-fresco
+  name: Adobe Fresco
+  url: https://www.adobe.com/products/fresco.html
+  category: creative
+  aliases: [Fresco]
