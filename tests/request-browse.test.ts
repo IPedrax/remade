@@ -6,9 +6,27 @@ import {
 	compareRequests,
 	defaultRequestFilters,
 	filterRequest,
+	matchingImplementations,
 } from "../src/lib/request-browse";
 
 const now = new Date("2026-10-10T12:00:00Z");
+
+test("request search fallback finds implementations by target, name, author and features", async () => {
+	const catalog = await loadCatalog();
+	for (const query of ["Outlook", "mailcraft", "MonkeySaint", "calendar"])
+		assert.ok(
+			matchingImplementations(catalog, query).some(
+				(entry) => entry.slug === "mailcraft",
+			),
+		);
+	assert.deepEqual(matchingImplementations(catalog, "  "), []);
+	assert.deepEqual(matchingImplementations(catalog, "nonexistent-xyz123"), []);
+	assert.ok(
+		matchingImplementations(catalog, "Rust").every(
+			(entry) => entry.kind === "project",
+		),
+	);
+});
 const request: BrowseRequest = {
 	original: "example",
 	name: "Example",

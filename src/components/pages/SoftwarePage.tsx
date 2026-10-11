@@ -2,6 +2,7 @@ import type { CatalogData, Metadata } from "../../lib/catalog";
 import { contributeUrl, label, metadataFor } from "../../lib/presentation";
 import type { Original } from "../../lib/schemas";
 import EntryCard from "../EntryCard";
+import ProjectComparison from "../ProjectComparison";
 
 interface Props {
 	original: Original;
@@ -9,9 +10,9 @@ interface Props {
 	metadata: Record<string, Metadata>;
 }
 export default function SoftwarePage({ original, catalog, metadata }: Props) {
-	const entries = catalog.entries.filter(
-		(e) => e.kind === "project" && e.original === original.slug,
-	);
+	const entries = catalog.entries
+		.filter((entry) => entry.kind === "project")
+		.filter((entry) => entry.original === original.slug);
 	const request = catalog.requests.find((r) => r.original === original.slug);
 	return (
 		<>
@@ -34,10 +35,17 @@ export default function SoftwarePage({ original, catalog, metadata }: Props) {
 					Original software reference ↗
 				</a>
 			</div>
-			<section>
-				<h2>
+			<section className="relative">
+				<h2
+					className={entries.length > 1 ? "min-h-[50px] pr-[160px]" : undefined}
+				>
 					Reimplementations <span className="text-lime">{entries.length}</span>
 				</h2>
+				<ProjectComparison
+					metadata={metadata}
+					originalName={original.name}
+					projects={entries}
+				/>
 				{entries.length ? (
 					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 						{entries.map((entry) => (

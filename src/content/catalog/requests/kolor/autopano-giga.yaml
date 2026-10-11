@@ -1,3 +1,4 @@
+# Requested in https://github.com/replicraft/remade/issues/2.
 original: autopano-giga
 reason: Reproduce Autopano Giga's panorama stitching, including image grouping, control-point alignment, projection selection, masking, exposure and color correction, blending and high-resolution panorama export.
 suggested_names:

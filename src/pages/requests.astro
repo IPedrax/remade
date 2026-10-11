@@ -1,11 +1,12 @@
 ---
 import RequestsPage from "../components/pages/RequestsPage";
 import Layout from "../layouts/Layout.astro";
-import { loadCatalog } from "../lib/catalog";
+import { loadCatalog, loadMetadata } from "../lib/catalog";
 
 const catalog = await loadCatalog();
+const metadata = await loadMetadata();
 ---
 
 <Layout title="Project Requests">
-	<RequestsPage catalog={{ originals: catalog.originals, requests: catalog.requests }} client:load />
+	<RequestsPage catalog={{ originals: catalog.originals, requests: catalog.requests, entries: catalog.entries }} metadata={metadata} client:load />
 </Layout>

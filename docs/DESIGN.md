@@ -87,6 +87,7 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 - Original name and official/reliable reference URL.
 - Brief factual synopsis, original software category.
 - All approved reimplementations targeting that original.
+- When there are multiple reimplementations, show a prominent Compare button beside the listing heading. Expand a static side-by-side table of languages, platforms, maintainer-reported compatibility and maturity, license, scope, limitations and cached development activity. Show missing activity as unavailable, include cache freshness, and allow keyboard-accessible horizontal scrolling on small screens. Comparison works without JavaScript.
 - Never display a logo or mark in a way that implies an official partnership.
 
 ## Accessibility

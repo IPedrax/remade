@@ -122,6 +122,7 @@ suggested_names: [ExampleCraft] # optional
 ```
 
 - Filename must match its `original` slug (which must exist in `src/content/catalog/originals.yaml`).
+- For entries or details sourced from a GitHub issue, add a YAML comment above the record linking to the source, such as `# Requested in https://github.com/replicraft/remade/issues/14.` Use `# Additional request details in ...` when an issue expands an existing request. Apply this convention to project and tool suggestions too; comments are contributor references, not schema fields or public UI content.
 - `reason` is plain text, 20–400 characters, factual and non-promotional.
 - Optional `suggested_names` is a nonempty list of plain-text names, each 2–100 characters. Names must be unique after case folding and whitespace normalization. These are naming ideas, not existing implementations or reserved names.
 - No repository, popularity count, bounty, fundraising, deadline, ownership claim, or invented implementation status.
@@ -131,6 +132,13 @@ suggested_names: [ExampleCraft] # optional
 - Requests are distinct from projects and are never mixed into featured listings or project counts.
 - Request vendor filters derive their grouping from the first folder below `requests/`; root-level files are Unassigned. Vendor and Git addition dates are computed browsing metadata, not editable YAML fields, and do not affect public routes.
 - Request targets do not prescribe application boundaries: one implementation may cover related targets such as the Substance 3D apps, or separate applications may share an engine. Capture these possibilities in the request reason without claiming that an implementation already covers them.
+
+## Public machine-readable exports
+
+- `https://remade.wiki/data/catalog.json`: `{ schemaVersion, site, originals, projects, tools, featured }`. Originals include `slug`, `name`, reference `url`, `category`, optional `aliases` and absolute `pageUrl`. Projects expose the documented public project fields plus optional Git-derived `addedAt` and absolute `pageUrl`. Tools expose their public fields, optional `addedAt` and absolute `pageUrl`. `featured` preserves the curated list of entry slugs. Cached GitHub statistics are not part of this contract.
+- `https://remade.wiki/data/requests.json`: `{ schemaVersion, site, requests }`. Each open request includes `original`, `reason`, optional `suggested_names`, derived `vendor`, optional `addedAt` and a `software` object containing the original's public fields and absolute software `pageUrl`.
+
+Both files use schema version `1`, ISO timestamps when addition dates are available, and slug order independent of UI sorting. Optional fields are omitted when unavailable. Fields are explicitly allowlisted; source comments and internal editorial fields are not exported. Generate these files through Astro builds, not by editing or committing generated JSON. Anyone can read them cross-origin; see [Architecture](ARCHITECTURE.md#public-json-exports) for caching and serving headers.
 
 ## Supporting tool record
 

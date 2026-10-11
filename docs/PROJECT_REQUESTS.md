@@ -11,6 +11,7 @@ Show software and interfaces that community members want faithfully reimplemente
 - Navigate to `/requests` from the homepage section.
 - Browse requested originals, their reference links, the reason for a remake and any suggested names.
 - Search `/requests` by software name, aliases, suggested names, vendor or requested features. Title matches rank first, with the selected sort breaking ties. Filter by vendor, category and addition date (past 7, 30 or 90 days, or the past year). Sort newest first, oldest first or alphabetically. Search and filters are reflected in the URL and can be cleared; browsing remains available without JavaScript.
+- If a nonempty search finds no matching requests, show matching implementation cards and a link to Explore. Search original names and aliases, project names, descriptions, authors and languages independently of request-specific filters. Explain that listed implementations replace requests even during early development, and point readers to their status and limitations.
 - Select **Submit a request** to open `.github/ISSUE_TEMPLATE/project-request.yml` for a link-free suggestion; maintainers review it and accepted catalog entries still require a PR adding `src/content/catalog/requests/<vendor>/<original-slug>.yaml`; create an original in `src/content/catalog/originals.yaml` if needed.
 - Select **Know an implementation?** to submit `src/content/catalog/projects/<github-user>/<slug>.yaml` by PR instead.
 - No login on Remade, runtime comments, upvotes, or status claims. GitHub account required to open an Issue or PR.
@@ -19,6 +20,7 @@ Show software and interfaces that community members want faithfully reimplemente
 
 - A request must target one canonical original slug and must be original-specific and factual.
 - Search existing project records and request records before submitting.
+- When a request or additional details come from a GitHub issue, preserve its URL in a YAML comment above the request record. Link each relevant issue without implying it originated a request that already existed.
 - Validator rejects requests for originals with a project already indexed.
 - When the first qualifying project is accepted, remove the request record in that same PR; the implementation then appears under the original's software page.
 - Maintainers have editorial discretion to decline/remove requests. Avoid invitations to copy code, redistribute copyrighted assets or circumvent access controls.

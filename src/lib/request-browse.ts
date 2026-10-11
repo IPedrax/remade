@@ -1,4 +1,5 @@
 import { isValid, isWithinInterval, parseISO, subDays } from "date-fns";
+import type { CatalogData } from "./catalog";
 
 export interface RequestFilters {
 	q: string;
@@ -25,6 +26,35 @@ export const defaultRequestFilters: RequestFilters = {
 	sort: "recent",
 };
 export const addedPeriods = ["7", "30", "90", "365"] as const;
+
+export function matchingImplementations(
+	catalog: Pick<CatalogData, "originals" | "entries">,
+	query: string,
+) {
+	if (!query.trim()) return [];
+	return catalog.entries
+		.filter((entry) => entry.kind === "project")
+		.map((entry) => {
+			const original = catalog.originals.find(
+				(item) => item.slug === entry.original,
+			);
+			return {
+				entry,
+				original: entry.original,
+				name: original?.name ?? entry.name,
+				vendor: entry.authors?.join(" ") ?? "",
+				category: entry.category,
+				addedAt: entry.addedAt,
+				aliases: [entry.name, ...(original?.aliases ?? []), ...entry.languages],
+				reason: entry.description,
+			};
+		})
+		.filter((item) =>
+			filterRequest(item, { ...defaultRequestFilters, q: query }, new Date()),
+		)
+		.sort((a, b) => compareRequests(a, b, "recent", query))
+		.map((item) => item.entry);
+}
 
 export function filterRequest(
 	request: BrowseRequest,

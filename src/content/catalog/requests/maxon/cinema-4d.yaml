@@ -1,3 +1,4 @@
+# Requested in https://github.com/replicraft/remade/issues/12.
 original: cinema-4d
 reason: Reproduce Cinema 4D's motion graphics workflow, including cloners, effectors, fields and procedural animation.
 suggested_names: [MotionCraft]

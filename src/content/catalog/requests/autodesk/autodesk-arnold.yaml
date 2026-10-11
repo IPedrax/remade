@@ -1,0 +1,4 @@
+# Requested in https://github.com/replicraft/remade/issues/13.
+original: autodesk-arnold
+reason: Reproduce Arnold's Monte Carlo ray tracing, material and lighting controls and interactive rendering workflows, including previews within Maya and 3ds Max, with compatible scene interchange and CPU/GPU rendering.
+suggested_names: [RenderCraft]

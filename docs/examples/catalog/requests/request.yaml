@@ -1,5 +1,6 @@
 # Documentation example only; never publish as a real request.
 # A request is for an original with NO indexed qualifying implementation.
+# If sourced from an issue, add: # Requested in https://github.com/OWNER/REPO/issues/NUMBER.
 original: example-software
 reason: A faithful, independently written implementation of the program's public behavior would support compatibility and historical preservation.
 # Optional naming ideas; not reserved names or existing implementations.

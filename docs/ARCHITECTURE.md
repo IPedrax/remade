@@ -26,6 +26,8 @@ Git-tracked project YAML + original records + featured selections
            ├── /projects/[slug]        individual project
            ├── /authors/[github-user] attributed indexed projects and tools
            ├── /requests              unfulfilled community requests
+           ├── /data/catalog.json     public machine-readable catalog
+           ├── /data/requests.json    public machine-readable requests
            ├── /disclaimer            approved text
            └── Pagefind index         no hosted search service
 
@@ -60,6 +62,14 @@ Addition dates come from the first Git commit adding each YAML entry, so builds 
 5. Build Pagefind search index against generated HTML.
 6. Use Lychee to check generated internal/local links and outbound URLs.
 7. Keep last successful static output if any critical build input cannot be validated.
+
+## Public JSON exports
+
+Astro prerenders `/data/catalog.json` and `/data/requests.json` into static files during the frontend build. Project, tool and request records come from Astro content collections; canonical originals, featured selections and addition dates come from the same validated YAML catalog loader used by the site. YAML and content collections remain authoritative. Generated JSON is a public output, never a separate database or an editable source. Serving these files requires no server execution, database queries or runtime API calls.
+
+`src/lib/catalog-export.ts` defines explicit public field allowlists using Valibot. Unknown source fields, collection IDs and future editorial metadata are stripped before serialization. Both documents have `schemaVersion: 1` and `site`; records are sorted by slug for deterministic output. Breaking changes to the public contract require a schema version change and documentation update.
+
+The response helper declares JSON content type, one-hour public caching and `Access-Control-Allow-Origin: *`. Static response headers are configured separately in `public/_headers` for Cloudflare Pages, because build-time Response headers are not embedded in the JSON files. Other static hosts should apply equivalent headers. JSON updates when the site rebuilds, and clients may cache it for an hour.
 
 ## CI security
 

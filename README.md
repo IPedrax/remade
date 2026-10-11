@@ -18,6 +18,10 @@ Submissions are reviewed by maintainers. Merged pull requests appear in the dire
 
 **No reimplementation exists yet?** [Open a Project Request issue](../../issues/new?template=project-request.yml) with the software name and why you want it remade. No links are required, or see [CONTRIBUTING.md](CONTRIBUTING.md) to submit one by PR.
 
+## Public catalog data
+
+Agents and other tools can read the build-generated [catalog JSON](https://remade.wiki/data/catalog.json) and [open project requests JSON](https://remade.wiki/data/requests.json). Both allow cross-origin access from anywhere. See the [export format](docs/CATALOG.md#public-machine-readable-exports) for fields and versioning.
+
 **Special Thanks:**
 - ArtCraft and its Discord server
 - @lumpypotato4764 for the idea of aggregating all of the various initiatives going on within the server

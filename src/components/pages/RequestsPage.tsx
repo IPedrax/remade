@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import type { CatalogData } from "../../lib/catalog";
+import type { CatalogData, Metadata } from "../../lib/catalog";
 import {
 	contributeUrl,
 	findBySlug,
 	label,
+	metadataFor,
 	repositoryUrl,
 } from "../../lib/presentation";
 import {
@@ -11,14 +12,17 @@ import {
 	compareRequests,
 	defaultRequestFilters,
 	filterRequest,
+	matchingImplementations,
 	type RequestFilters,
 } from "../../lib/request-browse";
+import EntryCard from "../EntryCard";
 import RequestCard from "../RequestCard";
 
 interface Props {
-	catalog: Pick<CatalogData, "originals" | "requests">;
+	catalog: Pick<CatalogData, "originals" | "requests" | "entries">;
+	metadata: Record<string, Metadata>;
 }
-export default function RequestsPage({ catalog }: Props) {
+export default function RequestsPage({ catalog, metadata }: Props) {
 	const [filters, setFilters] = useState<RequestFilters>(defaultRequestFilters);
 	const [ready, setReady] = useState(false);
 	useEffect(() => {
@@ -91,6 +95,9 @@ export default function RequestsPage({ catalog }: Props) {
 				filters.q,
 			),
 		);
+	const implementations = requests.length
+		? []
+		: matchingImplementations(catalog, filters.q);
 	const change = (key: keyof RequestFilters, value: string) =>
 		setFilters((previous) => ({ ...previous, [key]: value }));
 	const select = (
@@ -238,6 +245,32 @@ export default function RequestsPage({ catalog }: Props) {
 						There are no open requests. Suggest a software target using the
 						request form.
 					</p>
+				)}
+				{implementations.length > 0 && (
+					<section aria-labelledby="matching-implementations" className="mt-8">
+						<h2 id="matching-implementations">Matching implementations</h2>
+						<p>
+							Your search matches these indexed projects. Requests are removed
+							when an implementation is listed, even if it is still in early
+							development. Check each project's status and limitations.
+						</p>
+						<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+							{implementations.map((entry) => (
+								<EntryCard
+									entry={entry}
+									key={entry.slug}
+									metadata={metadataFor(entry, metadata)}
+									originals={catalog.originals}
+								/>
+							))}
+						</div>
+						<a
+							className="mt-4 inline-block text-sm text-lime hover:underline"
+							href={`/explore/?${new URLSearchParams({ q: filters.q })}`}
+						>
+							Search implementations →
+						</a>
+					</section>
 				)}
 			</section>
 		</>

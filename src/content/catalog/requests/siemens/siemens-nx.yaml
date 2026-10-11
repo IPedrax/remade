@@ -1,0 +1,3 @@
+original: siemens-nx
+reason: Reproduce Siemens NX's integrated CAD/CAM workflows, including parametric parts and assemblies, precision surfacing, engineering drawings, CNC toolpaths and machining simulation, with compatible model interchange. Could extend SolveCraft (https://github.com/bherbruck/solvecraft), or be a separate application sharing a 3D engine with other CAD projects.
+suggested_names: [EngineerCraft]

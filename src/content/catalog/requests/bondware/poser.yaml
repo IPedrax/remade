@@ -1,3 +1,4 @@
+# Requested in https://github.com/replicraft/remade/issues/1.
 original: poser
 reason: Reproduce Poser's character posing, morph controls, figure libraries, scene setup and animation workflows with independently licensed assets.
 suggested_names: [PoseCraft]

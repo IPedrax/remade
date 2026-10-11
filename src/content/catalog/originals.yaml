@@ -8,6 +8,7 @@
   url: https://www.adobe.com/products/illustrator.html
   category: creative
   aliases: [Illustrator]
+# Requested in https://github.com/replicraft/remade/issues/5; fulfilled by SolveCraft.
 - slug: autodesk-fusion
   name: Autodesk Fusion
   url: https://www.autodesk.com/products/fusion-360/overview
@@ -551,7 +552,7 @@
   aliases: [Interactive Disassembler]
 - slug: archicad
   name: Archicad
-  url: https://myarchicad.graphisoft.com/
+  url: https://www.graphisoft.com/en-us/plans-and-products/archicad/
   category: engineering
   aliases: [Graphisoft Archicad]
 - slug: nomad-sculpt
@@ -583,3 +584,48 @@
   url: https://edu.casio.com/intl/calculators/scientific/fx991cw/
   category: engineering
   aliases: [Casio scientific calculator, fx-991CW]
+- slug: tiermaker
+  name: TierMaker
+  url: https://tiermaker.com/
+  category: productivity
+  aliases: [Tier Maker]
+- slug: octanerender
+  name: OctaneRender
+  url: https://home.otoy.com/render/octane-render/overview/
+  category: creative
+  aliases: [Octane Renderer, Octane Render]
+- slug: autodesk-arnold
+  name: Autodesk Arnold
+  url: https://www.autodesk.com/products/arnold/overview
+  category: creative
+  aliases: [Arnold, Arnold Renderer]
+- slug: catia
+  name: CATIA
+  url: https://www.3ds.com/products/catia
+  category: engineering
+  aliases: [Dassault Systemes CATIA, CATIA V5, 3DEXPERIENCE CATIA]
+- slug: bentley-suite
+  name: Bentley Engineering Software Suite
+  url: https://www.bentley.com/products/
+  category: engineering
+  aliases: [Bentley Systems, Bentley MicroStation, Bentley OpenRoads Designer, Bentley STAAD.Pro, Bentley ProjectWise]
+- slug: intergraph-smart-3d
+  name: Intergraph Smart 3D
+  url: https://aliresources.hexagon.com/design-visualization/intergraph-smart-3d-3
+  category: engineering
+  aliases: [Smart 3D, SmartPlant 3D, Hexagon Smart 3D]
+- slug: mocha-pro
+  name: Mocha Pro
+  url: https://borisfx.com/products/mocha-pro/
+  category: creative
+  aliases: [Mocha, Boris FX Mocha Pro]
+- slug: siemens-nx
+  name: Siemens NX
+  url: https://www.siemens.com/en-us/products/cad-cam-software/offerings/
+  category: engineering
+  aliases: [NX, Unigraphics, NX CAD, NX CAM, Designcenter NX]
+- slug: chitubox
+  name: CHITUBOX
+  url: https://www.chitubox.com/
+  category: engineering
+  aliases: [CHITUBOX Basic, CHITUBOX Pro]
