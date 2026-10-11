@@ -554,3 +554,7 @@
   url: https://myarchicad.graphisoft.com/
   category: engineering
   aliases: [Graphisoft Archicad]
+- slug: nomad-sculpt
+  name: Nomad Sculpt
+  url: https://nomadsculpt.com/
+  category: creative

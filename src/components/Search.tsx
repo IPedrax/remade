@@ -1,9 +1,14 @@
 interface SearchFieldProps {
 	value?: string;
 	onChange?: (value: string) => void;
+	placeholder?: string;
 }
 
-export function SearchField({ value, onChange }: SearchFieldProps) {
+export function SearchField({
+	value,
+	onChange,
+	placeholder = "Search",
+}: SearchFieldProps) {
 	return (
 		<div className="flex min-w-0 items-center gap-3 rounded-xl bg-[#111116] px-4 py-3 text-muted focus-within:ring-2 focus-within:ring-lime">
 			<label className="sr-only" htmlFor="site-search">
@@ -27,7 +32,7 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
 				onChange={
 					onChange ? (event) => onChange(event.target.value) : undefined
 				}
-				placeholder="Search"
+				placeholder={placeholder}
 				type="search"
 				value={value}
 			/>
@@ -42,7 +47,7 @@ export default function Search() {
 	return (
 		<search className="max-w-[440px]">
 			<form action="/explore/">
-				<SearchField />
+				<SearchField placeholder="Search reimplemented projects" />
 			</form>
 		</search>
 	);
