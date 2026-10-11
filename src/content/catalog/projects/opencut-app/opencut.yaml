@@ -2,6 +2,7 @@ slug: opencut
 name: OpenCut
 authors: [opencut-app]
 repository: https://github.com/OpenCut-app/OpenCut
+website: https://opencut.app
 original: capcut
 category: creative
 languages: [TypeScript, Rust]

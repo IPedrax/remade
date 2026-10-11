@@ -142,7 +142,7 @@ def collect(root=ROOT):
         loc = str(path.relative_to(root))
         project = checked_load(path, errors)
         required = {"slug", "name", "repository", "original", "category", "languages", "status", "compatibility", "description", "license"}
-        optional = {"platforms", "docs", "limitations", "authors"}
+        optional = {"platforms", "docs", "website", "mirrors", "limitations", "authors"}
         if not fields(project, required, optional, loc, errors):
             continue
         slug = project["slug"]
@@ -194,7 +194,30 @@ def collect(root=ROOT):
             errors.append(f"{loc}: invalid limitations text")
         if "docs" in project and not is_https(project["docs"]):
             errors.append(f"{loc}: docs must be a public HTTPS URL")
+        if "website" in project and not is_https(project["website"]):
+            errors.append(f"{loc}: website must be a public HTTPS URL")
         validate_authors(project, loc, errors)
+        if "mirrors" in project:
+            mirrors = project["mirrors"]
+            if not isinstance(mirrors, list) or not mirrors:
+                errors.append(f"{loc}: mirrors must be a nonempty list of repository URLs")
+            else:
+                seen_mirrors = set()
+                for mirror in mirrors:
+                    if not is_https(mirror):
+                        errors.append(f"{loc}: mirror must be a public HTTPS URL")
+                        continue
+                    parts = urlsplit(mirror)
+                    segments = parts.path.removeprefix('/').split('/')
+                    if (parts.query or parts.fragment or len(segments) < 2 or
+                            any(not segment for segment in segments) or
+                            (parts.hostname == 'github.com' and
+                             (len(segments) != 2 or parts.path.endswith('.git')))):
+                        errors.append(f"{loc}: mirror must be a canonical repository root")
+                    normalized = mirror.casefold().removesuffix('.git')
+                    if normalized in seen_mirrors:
+                        errors.append(f"{loc}: duplicate mirror repository")
+                    seen_mirrors.add(normalized)
 
     request_by_original = {}
     for path in sorted((root / "src/content/catalog/requests").rglob("*.yaml")):

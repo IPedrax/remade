@@ -3,6 +3,7 @@ slug: photocraft
 name: PhotoCraft
 authors: [storytold]
 repository: https://github.com/storytold/photocraft
+website: https://getartcraft.com/apps/photocraft
 original: adobe-photoshop
 category: creative
 languages: [Rust]

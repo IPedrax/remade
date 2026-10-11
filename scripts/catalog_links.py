@@ -15,10 +15,15 @@ def url_values(path: Path) -> Iterator[str]:
     obj = load_yaml(path)
     for record in obj if isinstance(obj, list) else [obj]:
         if isinstance(record, dict):
-            for key in ('url', 'repository', 'docs'):
+            for key in ('url', 'repository', 'docs', 'website'):
                 value = record.get(key)
                 if is_https(value):
                     yield value
+            mirrors = record.get('mirrors', [])
+            if isinstance(mirrors, list):
+                for value in mirrors:
+                    if is_https(value):
+                        yield value
 
 
 def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:

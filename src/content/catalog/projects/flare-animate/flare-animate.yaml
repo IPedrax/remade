@@ -3,6 +3,7 @@ slug: flare-animate
 name: Flare
 authors: [flare-animate]
 repository: https://github.com/Flare-Animate/Flare
+website: https://flare-animate.github.io/website/
 original: adobe-animate
 category: creative
 languages: [C++]

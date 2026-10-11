@@ -10,6 +10,31 @@ def test_empty_catalog_valid(catalog_root: Path) -> None:
     assert not collect(catalog_root)[-1]
 
 
+@pytest.mark.parametrize('mirrors, valid', [
+    ('[https://codeberg.org/example/project]', True),
+    ('[]', False),
+    ('https://codeberg.org/example/project', False),
+    ('[http://codeberg.org/example/project]', False),
+    ('[https://github.com/example/project/issues]', False),
+    ('[https://codeberg.org/example/project, https://codeberg.org/example/project.git]', False),
+])
+def test_project_mirrors_validation(project_catalog: Path, mirrors: str, valid: bool) -> None:
+    path = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
+    path.write_text(path.read_text() + f'mirrors: {mirrors}\n')
+    assert (not collect(project_catalog)[-1]) == valid
+
+
+@pytest.mark.parametrize('website, valid', [
+    ('https://example.org/project/', True),
+    ('http://example.org/project/', False),
+    ('https://localhost/project/', False),
+])
+def test_project_website_validation(project_catalog: Path, website: str, valid: bool) -> None:
+    path = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
+    path.write_text(path.read_text() + f'website: {website}\n')
+    assert (not collect(project_catalog)[-1]) == valid
+
+
 def test_author_folders_load_projects_tools_and_featured(project_catalog: Path, tool_factory: Callable[[], Path]) -> None:
     project = project_catalog / 'src/content/catalog/projects/impl-a.yaml'
     project.parent.joinpath('storytold').mkdir()

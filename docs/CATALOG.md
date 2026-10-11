@@ -64,6 +64,8 @@ compatibility: partial
 description: Independent implementation targeting the original program's behavior.
 license: MIT
 # docs: https://example.org/docs       # optional
+# website: https://example.org         # optional official project website
+# mirrors: [https://codeberg.org/example/example-implementation] # optional
 # limitations: Not all formats are currently supported. # optional
 ```
 
@@ -83,6 +85,8 @@ license: MIT
 | `description` | Yes | Plain text, factual, no user-supplied HTML |
 | `license` | Yes | SPDX-style identifier or e.g. `LicenseRef-custom` for review |
 | `docs` | No | HTTPS URL |
+| `website` | No | Public HTTPS URL for the implementation's official website. Displays an Official website button on its implementation page, opening in a new tab. Omit when no official website is documented. |
+| `mirrors` | No | Nonempty list of distinct public HTTPS repository root URLs, following the `repository` URL rules. Supply documented mirrors of the same implementation, not forks or competing projects. Shown on the implementation page as Repository mirrors, opening in new tabs. |
 | `limitations` | No | Short plain text |
 | `authors` | No | Nonempty, duplicate-free list of lowercase GitHub handles |
 
@@ -104,7 +108,7 @@ The remaining groups cover operating systems, games, developer tools, protocols,
 - `slug` and filename must agree.
 - No duplicate normalized repository URLs, using host and namespace/repository identity.
 - No duplicate original slugs. A corrected name should use `aliases` instead of creating a second original.
-- Prefer stable slugs; maintain redirects for intentional renames in a future Astro implementation.
+- Prefer stable slugs. A display-name change or author-folder move does not require a new slug or public URL. If a project slug changes, add a temporary redirect from `/projects/<old-slug>/` to `/projects/<new-slug>/` in the same PR, unless maintainers explicitly approve an exception under `POLICY.md`. Update featured selections, supporting-tool references and any earlier redirects to the current slug; do not reuse old slugs for another project unless maintainers approve an exception.
 - Reject unknown fields (to catch typos) and malformed URLs.
 
 ## Project Request record

@@ -3,6 +3,7 @@ slug: wordcraft
 name: WordCraft
 authors: [storytold]
 repository: https://github.com/storytold/wordcraft
+website: https://getartcraft.com/apps/wordcraft
 original: microsoft-word
 category: productivity
 languages: [Rust]

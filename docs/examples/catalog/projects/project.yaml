@@ -6,6 +6,8 @@ name: Example Implementation
 # Optional: explicitly credited GitHub user or organization handles.
 # authors: [example]
 repository: https://github.com/example/example-implementation
+# website: https://example.org        # optional official project website
+# mirrors: [https://codeberg.org/example/example-implementation] # optional
 original: example-software
 category: other
 languages:

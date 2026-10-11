@@ -73,6 +73,18 @@ export const projectSchema = v.strictObject({
 	name: text(2, 100),
 	repository,
 	original: slug,
+	mirrors: v.optional(
+		v.pipe(
+			v.array(repository),
+			v.minLength(1),
+			v.check(
+				(urls) =>
+					new Set(urls.map((url) => url.toLowerCase().replace(/\.git$/, "")))
+						.size === urls.length,
+				"Mirror repositories must be unique.",
+			),
+		),
+	),
 	category: v.picklist(categories),
 	languages: v.pipe(v.array(text(1, 40)), v.minLength(1)),
 	platforms,
@@ -82,6 +94,7 @@ export const projectSchema = v.strictObject({
 	description: text(20, 400),
 	license: text(2, 80),
 	docs: v.optional(https),
+	website: v.optional(https),
 	limitations: v.optional(text(2, 400)),
 });
 export const toolSchema = v.strictObject({

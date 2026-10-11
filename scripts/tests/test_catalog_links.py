@@ -6,6 +6,21 @@ import pytest
 from catalog_links import paths_for_mode, url_values
 
 
+def test_mirror_repository_links_are_checked(tmp_path: Path) -> None:
+    path = tmp_path / 'project.yaml'
+    path.write_text('mirrors: [https://codeberg.org/example/project, https://gitlab.com/example/project]\n')
+    assert set(url_values(path)) == {
+        'https://codeberg.org/example/project',
+        'https://gitlab.com/example/project',
+    }
+
+
+def test_official_website_is_checked(tmp_path: Path) -> None:
+    path = tmp_path / 'project.yaml'
+    path.write_text('website: https://example.org/project/\n')
+    assert list(url_values(path)) == ['https://example.org/project/']
+
+
 def test_tools_included_in_full_and_changed_catalog_checks(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
 ) -> None:

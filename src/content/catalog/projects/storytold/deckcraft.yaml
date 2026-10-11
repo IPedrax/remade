@@ -3,6 +3,7 @@ slug: deckcraft
 name: DeckCraft
 authors: [storytold]
 repository: https://github.com/storytold/deckcraft
+website: https://getartcraft.com/apps/slidecraft
 original: microsoft-powerpoint
 category: productivity
 languages: [Rust]

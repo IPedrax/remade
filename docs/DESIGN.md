@@ -75,6 +75,8 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 - Project title and original-software link.
 - Neutral statement of compatibility aims; clearly mark *maintainer-reported* information.
 - Primary repository CTA and optional docs link, language/license/category/status tags.
+- Show an Official website button beside the repository CTA when a project supplies a documented website; open that link in a new tab.
+- Show a Repository Mirrors header below the primary links. When mirrors exist, show a collapsed View Mirrors accordion with bordered links identifying each mirror by host and repository path and opening in new tabs. When none are listed, display “No mirrors found” and a contribution link directly beneath the header, without an accordion. Metadata continues to come from the primary repository.
 - GitHub stats (stars, forks, last push and archive status when available).
 - Small note: **GitHub statistics are refreshed approximately every 24 hours.**
 - Focus/hover timestamp from `fetchedAt` when present; if absent, state `Statistics currently unavailable` instead of implying freshness.

@@ -3,6 +3,7 @@ slug: solvecraft
 name: SolveCraft
 authors: [bherbruck]
 repository: https://github.com/bherbruck/solvecraft
+website: https://bherbruck.github.io/solvecraft/
 original: autodesk-fusion
 category: engineering
 languages: [Rust]

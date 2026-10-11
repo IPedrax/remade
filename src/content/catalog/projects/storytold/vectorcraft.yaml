@@ -3,6 +3,7 @@ slug: vectorcraft
 name: VectorCraft
 authors: [storytold]
 repository: https://github.com/storytold/vectorcraft
+website: https://getartcraft.com/apps/vectorcraft
 original: adobe-illustrator
 category: creative
 languages: [Rust]

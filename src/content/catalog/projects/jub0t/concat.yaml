@@ -3,6 +3,7 @@ slug: concat
 name: Concat
 authors: [jub0t]
 repository: https://github.com/jub0t/concat
+website: https://concatenate.pages.dev
 original: capcut
 category: creative
 languages: [Rust]

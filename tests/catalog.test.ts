@@ -37,11 +37,34 @@ test("strict schemas reject unknown fields, markup, bad URLs and malformed platf
 		{ unknown: true },
 		{ description: "<script>alert(1)</script>" },
 		{ repository: "https://localhost/x/y" },
+		{ website: "http://example.org" },
+		{ website: "https://localhost/" },
+		{ mirrors: [] },
+		{ mirrors: "https://codeberg.org/example/project" },
+		{ mirrors: ["http://codeberg.org/example/project"] },
+		{ mirrors: ["https://github.com/example/project/issues"] },
+		{
+			mirrors: [
+				"https://codeberg.org/example/project",
+				"https://codeberg.org/example/project.git",
+			],
+		},
 		{ platforms: "Web" },
 		{ authors: ["invalid--handle"] },
 	])
 		assert.throws(() => v.parse(projectSchema, { ...p, ...extra }));
 	assert.throws(() => v.parse(toolSchema, { ...t, platforms: [null] }));
+	assert.deepEqual(
+		v.parse(projectSchema, {
+			...p,
+			mirrors: ["https://codeberg.org/example/project"],
+		}).mirrors,
+		["https://codeberg.org/example/project"],
+	);
+	assert.equal(
+		v.parse(projectSchema, { ...p, website: "https://example.org/" }).website,
+		"https://example.org/",
+	);
 	assert.equal(
 		v.parse(toolSchema, { ...t, platforms: ["Web"] }).platforms?.[0],
 		"Web",
