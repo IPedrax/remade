@@ -50,6 +50,8 @@ The trusted daily metadata job fetches data using a **short-lived organization-o
 
 ## Static build stages
 
+Addition dates come from the first Git commit adding each YAML entry, so builds need full Git history. For Cloudflare's shallow checkout, set the build command in the dashboard to `git fetch --unshallow && pnpm build`. This fetch preserves the checked-out commit. Local builds use `pnpm build`; GitHub Actions already checks out full history with `fetch-depth: 0`.
+
 1. Load and validate original records, projects, supporting tools, requests, and `featured.yaml`. Tools are a separate collection joined to existing project slugs; they do not count as implementations or fulfill requests. Featured selections may include tools labeled Tool.
 2. Join each project with one canonical original by slug.
    Read explicit project/tool `authors` GitHub handles directly from entry YAML; group all indexed entries for static author pages independently of featured selection. Never fetch GitHub repositories from visitors or infer attribution from repository owners.

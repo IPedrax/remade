@@ -1,3 +1,3 @@
 original: microsoft-outlook
-reason: Reproduce Outlook's familiar mail, calendar, contacts, tasks and mailbox organization workflows with standard protocol support.
+reason: Reproduce Outlook's familiar mail, calendar, contacts, tasks and mailbox organization workflows, with SMTP, POP3 and IMAP support and a webmail interface. Could integrate with JobCraft's client records and job scheduling, with optional AI assistance for drafting, organizing mail and coordinating appointments.
 suggested_names: [MailCraft]

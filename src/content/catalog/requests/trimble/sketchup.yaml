@@ -1,3 +1,0 @@
-original: sketchup
-reason: Reproduce SketchUp's approachable push-pull modeling, components, groups and architectural sketching workflows. Could extend SolveCraft (https://github.com/bherbruck/solvecraft), or be separate projects sharing one 3D engine.
-suggested_names: [SketchCraft]

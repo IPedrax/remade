@@ -1,3 +1,3 @@
 original: matlab
 reason: Reproduce MATLAB's numerical computing language, array operations, plotting and script compatibility, together with Simulink's block-diagram modeling, simulation and control-system workflows in one application.
-suggested_names: [MathCraft]
+suggested_names: [MathCraft, LabCraft]

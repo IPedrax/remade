@@ -477,3 +477,11 @@
   url: https://quickbooks.intuit.com/accounting/
   category: productivity
   aliases: [Intuit QuickBooks]
+- slug: ninite
+  name: Ninite
+  url: https://ninite.com/
+  category: other
+- slug: jobber
+  name: Jobber
+  url: https://www.getjobber.com/features/
+  category: productivity
