@@ -71,6 +71,8 @@ The project URL must link to the actual implementation, not merely a marketing p
 
 **Do not add `featured` to your own project entry.** Featured selections are maintained separately by Remade's maintainers.
 
+Keep published `/projects/<slug>/` URLs stable when changing a project's display name or author folder. If a project slug must change, the same pull request must add a temporary redirect from the old URL to the new URL so existing links continue to work. Keep earlier renamed URLs pointing directly to the current page, avoid redirect chains and loops, and do not reuse an old slug for a different project. Maintainers may explicitly approve exceptions to these URL stability requirements, including omitting or removing a redirect.
+
 ## 6. Review and moderation
 
 Submitting a pull request does not guarantee publication. Maintainers may request corrections, reject, close, hide, or remove entries at their discretion, including for eligibility concerns, misleading information, legal complaints, or directory quality. Decisions are editorial and do not represent legal findings.

@@ -12,6 +12,8 @@ Remade is a community-curated directory. You can contribute by proposing a new l
 
 Please keep submissions factual and concise. Only the project's external links and basic metadata are needed; do not add original executable files or assets.
 
+When renaming a listed project, keep its slug unless the public URL needs to change. Unless maintainers explicitly approve an exception, a slug change must include a temporary redirect from the old `/projects/<slug>/` URL to the new page in the same PR, update catalog references and earlier redirects, and verify that existing links still reach the current implementation page. See the URL stability requirement in [POLICY.md](POLICY.md).
+
 ## Suggest an existing project via an issue
 
 If you know of an eligible reimplementation but do not want to prepare a YAML entry, [open a Catalog Suggestion issue](../../issues/new?template=catalog-suggestion.yml) with the repository URL and the software it reimplements. The form automatically triggers link validation and available repository metadata checks. The bot posts or updates one CI-style findings comment with any warnings at the top, including a caution for unrecognized Git hosts. A Catalog Suggestion is not a published listing and must still be reviewed and added through a pull request.
