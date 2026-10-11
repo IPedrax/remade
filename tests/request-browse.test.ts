@@ -120,6 +120,28 @@ test("request sorts compare actual instants and keep unknown dates last in eithe
 	);
 });
 
+test("search ranks title matches first and uses selected sorting for equal relevance", () => {
+	const title = { ...request, name: "Brush", addedAt: "2026-09-01T00:00:00Z" };
+	const phrase = { ...request, name: "Brush Studio" };
+	const description = { ...request, name: "Alpha", reason: "Brush workflows" };
+	for (const sort of ["recent", "oldest", "name"]) {
+		assert.ok(compareRequests(title, phrase, sort, " brush ") < 0);
+		assert.ok(compareRequests(phrase, description, sort, "brush") < 0);
+	}
+	assert.ok(compareRequests(title, description, "recent", "") > 0);
+	assert.ok(
+		compareRequests(
+			description,
+			{ ...description, name: "Zebra" },
+			"name",
+			"brush",
+		) < 0,
+	);
+	assert.ok(
+		filterRequest(description, { ...defaultRequestFilters, q: "brush" }, now),
+	);
+});
+
 test("catalog exposes vendors from nested request paths without changing original identities", async () => {
 	const catalog = await loadCatalog();
 	assert.equal(

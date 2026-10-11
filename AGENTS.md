@@ -29,7 +29,7 @@ When requirements conflict, make the inconsistency explicit and update the relev
 
 ## Engineering rules
 
-- Before every local commit, run `git pull --ff-only` to include upstream changes, including automated metadata updates. If it fails, resolve the issue before committing; do not automatically rebase, reset, or discard local work. Run `git add` with explicit file paths and `git commit` together in the same command.
+- Run every local commit as one command: `git pull --ff-only && git add <explicit file paths> && git commit -m "<message>"`. This includes upstream changes, including automated metadata updates, before staging and committing. If pulling fails, resolve the issue before committing; do not automatically rebase, reset, or discard local work.
 - **Astro + React + strict TypeScript + Tailwind**, statically generated pages. Use Pagefind for static search and the generated catalog for local filtering/sorting.
 - **pnpm only** for JavaScript dependencies and scripts. Commit `pnpm-lock.yaml` and specify an exact `packageManager` in `package.json`. Do not introduce npm or Yarn lockfiles, npm commands, or deployment-specific setup.
 - Keep JavaScript optional for core browsing. Astro and React components are both suitable for static UI: React components render to static HTML by default in Astro, without sending the React runtime to the browser. Use React for shared UI and page content, with Tailwind utility classes for styling. Keep Astro for document layouts, static routing, and build-time data loading; add `client:*` hydration only when browser interaction requires it, and keep hydrated components focused.

@@ -88,6 +88,7 @@ export default function RequestsPage({ catalog }: Props) {
 				{ ...a, original: a.original.slug },
 				{ ...b, original: b.original.slug },
 				filters.sort,
+				filters.q,
 			),
 		);
 	const change = (key: keyof RequestFilters, value: string) =>

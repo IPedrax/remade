@@ -64,7 +64,19 @@ export function compareRequests(
 	a: BrowseRequest,
 	b: BrowseRequest,
 	sort: string,
+	query = "",
 ) {
+	const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+	if (terms.length) {
+		const titleScore = (name: string) => {
+			const title = name.toLocaleLowerCase();
+			if (title === terms.join(" ")) return terms.length + 2;
+			if (title.includes(terms.join(" "))) return terms.length + 1;
+			return terms.filter((term) => title.includes(term)).length;
+		};
+		const relevance = titleScore(b.name) - titleScore(a.name);
+		if (relevance) return relevance;
+	}
 	if (sort === "name") return a.name.localeCompare(b.name);
 	const aTime = a.addedAt ? Date.parse(a.addedAt) : Number.NaN;
 	const bTime = b.addedAt ? Date.parse(b.addedAt) : Number.NaN;
