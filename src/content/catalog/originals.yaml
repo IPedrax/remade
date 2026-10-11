@@ -676,3 +676,23 @@
   url: https://support.microsoft.com/en-us/windows/apps/stickynotes/get-started-with-sticky-notes
   category: productivity
   aliases: [Sticky Notes]
+- slug: adobe-media-encoder
+  name: Adobe Media Encoder
+  url: https://www.adobe.com/products/media-encoder.html
+  category: creative
+  aliases: [Media Encoder]
+- slug: instamat
+  name: Abstract InstaMAT
+  url: https://instamaterial.com/
+  category: creative
+  aliases: [InstaMAT, InstaMAT Studio]
+- slug: foundry-mari
+  name: Foundry Mari
+  url: https://www.foundry.com/products/mari
+  category: creative
+  aliases: [Mari, The Foundry Mari]
+- slug: rizomuv-virtual-spaces
+  name: RizomUV Virtual Spaces
+  url: https://www.rizomuv.com/virtual-spaces/
+  category: creative
+  aliases: [RizomUV VS]
