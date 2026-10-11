@@ -1,7 +1,6 @@
 import {
 	badgeLanguages,
 	type Entry,
-	entryCategories,
 	entryUrl,
 	formatStars,
 	label,
@@ -39,16 +38,6 @@ export default function EntryCard({
 						{label(entry.status)}
 					</span>
 				)}
-
-				{entry.kind === "tool" &&
-					entryCategories(entry, projects).map((category) => (
-						<span
-							className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted"
-							key={category}
-						>
-							{label(category)}
-						</span>
-					))}
 
 				{entry.languages.length > 0 && (
 					<span className="rounded border border-line bg-panel px-2 py-0.5 text-xs text-muted">

@@ -40,7 +40,7 @@ describe("supporting tools", () => {
 
 		await expect
 			.element(screen.getByText("Creative", { exact: true }))
-			.toBeVisible();
+			.not.toBeInTheDocument();
 
 		await expect
 			.element(screen.getByRole("link", { name: "EffectCraft", exact: true }))

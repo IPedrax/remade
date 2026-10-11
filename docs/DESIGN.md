@@ -81,6 +81,7 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 - Compact category, language, and platform filters beneath the search field; expandable additional filters for compatibility and development status. Filters apply immediately. Keep sorting beside the result count.
 - Sorting: recent, alphabetical, stars. `stars: null` sorts after known counts.
 - Cards expose original → implementation relationship at a glance.
+- Tool cards use the same badge layout as projects, with Tool first, followed by documented Status, Language and Stars when available. Do not add category badges to entry cards.
 - Empty state proposes clearing filters or contributing a new project.
 - When a nonempty search has no matching entries, show matching Project Request cards and a link to the requests search. Match names, aliases, suggested names, vendors and requested features, prioritizing title matches. Project-specific filters do not restrict this fallback; clearly label requests as wishes rather than existing implementations.
 - Use local data and Pagefind index (no hosted query endpoint).
