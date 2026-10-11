@@ -94,9 +94,9 @@ export default function BadgeShare({ projectUrl }: Props) {
 
 	return (
 		<div>
-			<div className="inline-flex items-stretch text-sm font-semibold">
+			<div className="relative inline-flex w-full max-w-xs items-stretch text-sm font-semibold sm:w-auto">
 				<button
-					className="rounded-l-lg border border-lime bg-lime px-4 py-3 text-canvas hover:bg-lime-light"
+					className="min-w-0 flex-1 rounded-l-lg border border-lime bg-lime px-4 py-3 text-canvas hover:bg-lime-light"
 					onClick={() => void copy("markdown")}
 					type="button"
 				>
@@ -108,12 +108,12 @@ export default function BadgeShare({ projectUrl }: Props) {
 					arrowClosed={chevron}
 					arrowOpen={chevron}
 					baseClassName="BadgeDropdown"
-					className="relative flex"
+					className="static flex shrink-0"
 					controlClassName="flex items-center justify-center rounded-r-lg border border-lime border-l-canvas/30 bg-lime px-3 text-canvas hover:bg-lime-light"
-					menuClassName="absolute right-0 top-full z-20 mt-2 w-60 max-w-[calc(100vw-36px)] rounded-lg border border-line bg-panel p-1 shadow-lg"
+					menuClassName="absolute left-0 top-full z-20 mt-2 max-h-[60dvh] w-72 max-w-full overflow-y-auto rounded-lg border border-line bg-panel p-1 shadow-lg"
 					onChange={select}
 					optionClassName={(_option, { active }) =>
-						`cursor-pointer rounded px-3 py-2 hover:bg-surface ${active ? "bg-surface text-lime" : "text-ink"}`
+						`cursor-pointer whitespace-normal break-words rounded px-3 py-2 hover:bg-surface ${active ? "bg-surface text-lime" : "text-ink"}`
 					}
 					options={options}
 					placeholder={null}

@@ -32,13 +32,34 @@ export default function BadgeShareSection({
 				</a>
 			</div>
 
-			<img
-				alt="Listed on Remade"
-				className="mb-5 h-5 w-[127px] max-w-none"
-				height={20}
-				src={badgePath()}
-				width={127}
-			/>
+			<h3 className="mb-3 text-base font-semibold">Badges</h3>
+
+			<details className="mb-5">
+				<summary className="w-fit cursor-pointer text-sm text-lime hover:underline">
+					<span className="ml-1">View Badges</span>
+				</summary>
+
+				<div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+					{(["dark", "light", "classic"] as const).map((variant) => (
+						<figure
+							className="m-0 rounded-lg border border-line bg-panel p-4"
+							key={variant}
+						>
+							<figcaption className="mb-4 text-sm font-semibold capitalize text-ink">
+								{variant === "dark" ? "Dark (Default)" : variant}
+							</figcaption>
+
+							<img
+								alt={`Listed on Remade (${variant})`}
+								className="h-5 w-auto"
+								height={20}
+								src={badgePath(variant)}
+								width={variant === "classic" ? 115 : 127}
+							/>
+						</figure>
+					))}
+				</div>
+			</details>
 
 			{children}
 
