@@ -62,8 +62,15 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 - `/about` presents Remade's story, mission, engineering philosophy, and community contribution links in well-spaced editorial sections, with narrow reading columns.
 - Lead with **Everything can be remade.** and preserve **“An implementation is one way to solve a problem, not necessarily the only way.”**
 - Celebrate independent engineering, interoperability and preservation without framing the directory as hostile to proprietary software or implying Remade builds the listed projects. Credit their developers and communities.
-- Provide secondary navigation to the GitHub repository, contribution guidelines, Project Requests and Disclaimer. External resource links open in new tabs. Badge documentation is not included.
+- Provide secondary navigation to the GitHub repository, contribution guidelines, Project Requests, Badges and Disclaimer. External resource links open in new tabs.
 - Render statically without React hydration; include the page in the sitemap and Pagefind index.
+
+### Listed on Remade badges
+
+- `/about/badges` documents the existing dark and light SVG badges, displayed at their native 127 × 20 size. Preserve the SVG assets unchanged.
+- Individual project and tool detail pages include a Share this project or Share this tool section, a dark badge preview and an About Remade badges link beside the heading and beneath the controls. Reuse `BadgeShareSection` for the static layout. Hydrate only `BadgeShare` for the split Copy Markdown button and `react-dropdown` commands: HTML, BBCode, separator, then light Markdown, HTML and BBCode. Keep the trigger unchanged after selecting a command.
+- Generate snippets from the page's canonical URL, escape HTML attributes, announce clipboard success or failure, and offer a selectable snippet if copying fails. Support keyboard navigation, Escape dismissal and visible focus.
+- Badges indicate a directory listing, not an audit, certification or endorsement. Link project badges to their canonical `/projects/...` URL and tool badges to their canonical `/tools/...` URL. Do not add sharing controls to cards, software pages or requests.
 
 ## Project Requests page
 

@@ -1,4 +1,5 @@
 ---
+import BadgeShare from "../../components/BadgeShare";
 import ToolPage from "../../components/pages/ToolPage";
 import Layout from "../../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../../lib/catalog";
@@ -14,8 +15,11 @@ export async function getStaticPaths() {
 
 const { tool, catalog } = Astro.props;
 const metadata = await loadMetadata();
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <Layout description={tool.description} index title={tool.name}>
-	<ToolPage catalog={catalog} metadata={metadata} tool={tool} />
+	<ToolPage catalog={catalog} metadata={metadata} tool={tool}>
+		<BadgeShare projectUrl={canonical} client:load />
+	</ToolPage>
 </Layout>

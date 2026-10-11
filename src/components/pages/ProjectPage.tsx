@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import { findBySlug, label, metadataFor } from "../../lib/presentation";
 import type { Project } from "../../lib/schemas";
 import Authors from "../Authors";
+import BadgeShareSection from "../BadgeShareSection";
 import EntryCard from "../EntryCard";
 import OriginalLinks from "../OriginalLinks";
 import RepositoryMirrors from "../RepositoryMirrors";
@@ -11,9 +13,15 @@ interface Props {
 	project: Project;
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
+	children?: ReactNode;
 }
 
-export default function ProjectPage({ project, catalog, metadata }: Props) {
+export default function ProjectPage({
+	project,
+	catalog,
+	metadata,
+	children,
+}: Props) {
 	const entry = findBySlug(catalog.entries, project.slug);
 	const related = catalog.entries.filter(
 		(e) =>
@@ -130,6 +138,8 @@ export default function ProjectPage({ project, catalog, metadata }: Props) {
 			</section>
 
 			<Stats metadata={metadataFor(entry, metadata)} />
+
+			<BadgeShareSection>{children}</BadgeShareSection>
 
 			{tools.length > 0 && (
 				<section>

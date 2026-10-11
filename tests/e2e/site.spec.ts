@@ -1,5 +1,34 @@
 import { expect, test } from "@playwright/test";
 
+test("project badge sharing copies the canonical listing and links to badge documentation", async ({
+	page,
+}) => {
+	await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
+	await page.goto("/projects/solvecraft/");
+
+	const canonical = await page
+		.locator('link[rel="canonical"]')
+		.getAttribute("href");
+
+	await page
+		.getByRole("button", { name: "Copy Markdown", exact: true })
+		.click();
+
+	await expect(page.getByRole("status")).toHaveText("Copied!");
+
+	expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+		`[![Listed on Remade](https://remade.wiki/badges/listed-on-remade.svg)](${canonical})`,
+	);
+
+	await page.getByRole("link", { name: "About Remade badges" }).last().click();
+
+	await expect(page).toHaveURL(/\/about\/badges\/$/);
+
+	await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+		"Remade Badges",
+	);
+});
+
 test("home navigation opens the implementation directory", async ({ page }) => {
 	await page.goto("/");
 

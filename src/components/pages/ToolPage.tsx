@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import {
 	entryCategories,
@@ -7,6 +8,7 @@ import {
 } from "../../lib/presentation";
 import type { Tool } from "../../lib/schemas";
 import Authors from "../Authors";
+import BadgeShareSection from "../BadgeShareSection";
 import EntryCard from "../EntryCard";
 import RepositoryMirrors from "../RepositoryMirrors";
 import Stats from "../Stats";
@@ -15,9 +17,10 @@ interface Props {
 	tool: Tool;
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
+	children?: ReactNode;
 }
 
-export default function ToolPage({ tool, catalog, metadata }: Props) {
+export default function ToolPage({ tool, catalog, metadata, children }: Props) {
 	const entry = findBySlug(catalog.entries, tool.slug);
 
 	return (
@@ -156,6 +159,8 @@ export default function ToolPage({ tool, catalog, metadata }: Props) {
 			</section>
 
 			<Stats metadata={metadataFor(entry, metadata)} />
+
+			<BadgeShareSection title="Share this tool">{children}</BadgeShareSection>
 		</>
 	);
 }

@@ -204,6 +204,10 @@ export default function AboutPage() {
 							Project Requests
 						</a>
 
+						<a className="text-lime hover:underline" href="/about/badges/">
+							Badges
+						</a>
+
 						<a className="text-lime hover:underline" href="/disclaimer/">
 							Disclaimer
 						</a>
