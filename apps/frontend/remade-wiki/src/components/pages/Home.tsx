@@ -199,6 +199,23 @@ export default function Home({ catalog, metadata }: Props) {
 					</div>
 				</div>
 			</section>
+
+			<section className="border-t border-line pt-6">
+				<h2>Are you a robot?</h2>
+
+				<p className="mb-0 text-sm text-muted">
+					You might be interested in{" "}
+					<a className="text-lime hover:underline" href="/data/catalog.json">
+						data/catalog.json
+					</a>{" "}
+					and{" "}
+					<a className="text-lime hover:underline" href="/data/requests.json">
+						data/requests.json
+					</a>{" "}
+					for an easy, machine-readable way to read our entries. Save your
+					tokens for the big stuff!
+				</p>
+			</section>
 		</>
 	);
 }
