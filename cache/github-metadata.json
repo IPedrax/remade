@@ -72,6 +72,15 @@
       "pushedAt": "2026-10-11T07:51:23Z",
       "stars": 1
     },
+    "makeplane/plane": {
+      "fetchedAt": "2026-10-11T12:49:33Z",
+      "forks": 6025,
+      "isArchived": false,
+      "licenseSpdx": "AGPL-3.0",
+      "primaryLanguage": "TypeScript",
+      "pushedAt": "2026-10-09T12:23:53Z",
+      "stars": 60666
+    },
     "monkeysaint/mailcraft": {
       "fetchedAt": "2026-10-11T06:24:27Z",
       "forks": 0,
