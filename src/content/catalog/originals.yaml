@@ -494,3 +494,12 @@
   url: https://serato.com/dj/pro
   category: creative
   aliases: [Serato DJ]
+- slug: algodoo
+  name: Algodoo
+  url: https://www.algodoo.com/
+  category: engineering
+- slug: ptc-creo
+  name: PTC Creo
+  url: https://www.ptc.com/en/products/creo
+  category: engineering
+  aliases: [Creo, Creo Parametric, Creo 3D]
