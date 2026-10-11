@@ -834,3 +834,20 @@
   url: https://support.microsoft.com/en-us/windows/ai/ai-features/retrace-your-steps-with-recall
   category: productivity
   aliases: [Microsoft Recall, Recall]
+
+- slug: marmoset-toolbag
+  name: Marmoset Toolbag
+  url: https://marmoset.co/toolbag/
+  category: creative
+  aliases: [Toolbag]
+
+- slug: topogun
+  name: TopoGun
+  url: https://www.topogun.com/
+  category: creative
+
+- slug: autodesk-mudbox
+  name: Autodesk Mudbox
+  url: https://www.autodesk.com/products/mudbox/overview/
+  category: creative
+  aliases: [Mudbox]
