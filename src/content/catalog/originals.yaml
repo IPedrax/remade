@@ -128,6 +128,7 @@
   name: Autodesk Inventor
   url: https://www.autodesk.com/products/inventor/overview
   category: engineering
+  aliases: [Inventor, Inventor Professional, Autodesk Inventor Professional]
 - slug: autodesk-maya
   name: Autodesk Maya
   url: https://www.autodesk.com/products/maya/overview
@@ -696,3 +697,18 @@
   url: https://www.rizomuv.com/virtual-spaces/
   category: creative
   aliases: [RizomUV VS]
+- slug: rizomuv-real-space
+  name: RizomUV Real Space
+  url: https://www.rizomuv.com/real-space/
+  category: engineering
+  aliases: [RizomUV RS, RizomUV Real Spaces]
+- slug: siemens-solid-edge
+  name: Siemens Solid Edge
+  url: https://solidedge.siemens.com/en/
+  category: engineering
+  aliases: [Solid Edge, Designcenter Solid Edge]
+- slug: powerworld-simulator
+  name: PowerWorld Simulator
+  url: https://www.powerworld.com/products/simulator/overview
+  category: engineering
+  aliases: [PowerWorld]
