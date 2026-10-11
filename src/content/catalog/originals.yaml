@@ -479,6 +479,10 @@
   url: https://quickbooks.intuit.com/accounting/
   category: productivity
   aliases: [Intuit QuickBooks]
+- slug: xero
+  name: Xero
+  url: https://www.xero.com/
+  category: productivity
 - slug: ninite
   name: Ninite
   url: https://ninite.com/
