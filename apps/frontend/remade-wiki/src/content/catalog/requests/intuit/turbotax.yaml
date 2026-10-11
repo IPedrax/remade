@@ -1,0 +1,3 @@
+original: turbotax
+reason: Reproduce TurboTax's guided tax-preparation workflow, including income-document import, deductions and credits, federal and state return preparation, calculation checks and printable forms. Prioritize transparent calculations, tax-year-specific rules and independent accuracy review before supporting real filings.
+suggested_names: [TaxCraft]

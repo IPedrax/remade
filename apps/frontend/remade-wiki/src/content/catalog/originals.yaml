@@ -8,7 +8,7 @@
   url: https://www.adobe.com/products/illustrator.html
   category: creative
   aliases: [Illustrator]
-# Requested in https://github.com/replicraft/remade/issues/5; fulfilled by SolveCraft.
+# Requested in https://github.com/replicraft/remade/issues/5; fulfilled by SolidCraft.
 - slug: autodesk-fusion
   name: Autodesk Fusion
   url: https://www.autodesk.com/products/fusion-360/overview
@@ -493,6 +493,11 @@
   url: https://quickbooks.intuit.com/accounting/
   category: productivity
   aliases: [Intuit QuickBooks]
+- slug: turbotax
+  name: TurboTax
+  url: https://turbotax.intuit.com/
+  category: productivity
+  aliases: [Intuit TurboTax]
 - slug: xero
   name: Xero
   url: https://www.xero.com/
