@@ -29,10 +29,10 @@ def url_values(path: Path) -> Iterator[str]:
 def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
     if all_files:
         return [
-            ROOT / "src/content/catalog/originals.yaml",
-            *(ROOT / "src/content/catalog/projects").rglob("*.yaml"),
-            *(ROOT / "src/content/catalog/tools").rglob("*.yaml"),
-            *(ROOT / "src/content/catalog/requests").rglob("*.yaml"),
+            ROOT / "apps/frontend/remade-wiki/src/content/catalog/originals.yaml",
+            *(ROOT / "apps/frontend/remade-wiki/src/content/catalog/projects").rglob("*.yaml"),
+            *(ROOT / "apps/frontend/remade-wiki/src/content/catalog/tools").rglob("*.yaml"),
+            *(ROOT / "apps/frontend/remade-wiki/src/content/catalog/requests").rglob("*.yaml"),
         ]
     if changed_from is None:
         raise typer.BadParameter("A base revision is required when not reading all files")
@@ -46,7 +46,7 @@ def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
             changed_from,
             "HEAD",
             "--",
-            "src/content/catalog/",
+            "apps/frontend/remade-wiki/src/content/catalog/",
         ],
         cwd=ROOT,
         text=True,
@@ -55,12 +55,12 @@ def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
     )
     paths = []
     for name in result.stdout.splitlines():
-        if name == "src/content/catalog/originals.yaml" or (
+        if name == "apps/frontend/remade-wiki/src/content/catalog/originals.yaml" or (
             name.startswith(
                 (
-                    "src/content/catalog/projects/",
-                    "src/content/catalog/requests/",
-                    "src/content/catalog/tools/",
+                    "apps/frontend/remade-wiki/src/content/catalog/projects/",
+                    "apps/frontend/remade-wiki/src/content/catalog/requests/",
+                    "apps/frontend/remade-wiki/src/content/catalog/tools/",
                 )
             )
             and name.endswith(".yaml")

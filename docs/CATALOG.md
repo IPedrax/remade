@@ -3,7 +3,7 @@
 ## Canonical sources
 
 ```text
-src/content/catalog/
+apps/frontend/remade-wiki/src/content/catalog/
   originals.yaml           Canonical original programs/interfaces
   featured.yaml            Maintainer-selected project slugs in display order
   projects/<github-user>/<slug>.yaml     One community-submitted reimplementation each
@@ -18,11 +18,11 @@ Use **stable, URL-friendly slugs**; names may change, but slugs should remain st
 
 ## Astro content integration
 
-The source files live under `src/content/catalog/`, matching the Astro app's content layout. `src/content.config.ts` defines separate project, tool, and request loaders. They use the recursive YAML loader in `src/lib/catalog.ts` and strict Valibot schemas in `src/lib/schemas.ts`; validation runs inside the loaders because Astro’s schema option expects Zod. `originals.yaml` and `featured.yaml` remain shared reference/curation files. The static build and Python CI both enforce cross-file relationships and duplicate rules. Documentation examples are never indexed.
+The source files live under `apps/frontend/remade-wiki/src/content/catalog/`, matching the Astro app's content layout. `apps/frontend/remade-wiki/src/content.config.ts` defines separate project, tool, and request loaders. They use the recursive YAML loader in `apps/frontend/remade-wiki/src/lib/catalog.ts` and strict Valibot schemas in `apps/frontend/remade-wiki/src/lib/schemas.ts`; validation runs inside the loaders because Astro’s schema option expects Zod. `originals.yaml` and `featured.yaml` remain shared reference/curation files. The static build and Python CI both enforce cross-file relationships and duplicate rules. Documentation examples are never indexed.
 
 ## Canonical original record
 
-`src/content/catalog/originals.yaml` contains a list (empty `[]` until seeded):
+`apps/frontend/remade-wiki/src/content/catalog/originals.yaml` contains a list (empty `[]` until seeded):
 
 ```yaml
 - slug: example-software
@@ -49,7 +49,7 @@ Entry cards, detail pages and featured cards show **View More by Author**, label
 
 ## Project record
 
-`src/content/catalog/projects/<github-user>/<slug>.yaml` has the fields below:
+`apps/frontend/remade-wiki/src/content/catalog/projects/<github-user>/<slug>.yaml` has the fields below:
 
 ```yaml
 slug: example-implementation
@@ -113,7 +113,7 @@ The remaining groups cover operating systems, games, developer tools, protocols,
 
 ## Project Request record
 
-`src/content/catalog/requests/<vendor>/<original-slug>.yaml` describes a **desired reimplementation**, not an existing project:
+`apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml` describes a **desired reimplementation**, not an existing project:
 
 ```yaml
 original: example-software
@@ -121,7 +121,7 @@ reason: A faithful and independently developed alternative implementation would 
 suggested_names: [ExampleCraft] # optional
 ```
 
-- Filename must match its `original` slug (which must exist in `src/content/catalog/originals.yaml`).
+- Filename must match its `original` slug (which must exist in `apps/frontend/remade-wiki/src/content/catalog/originals.yaml`).
 - For entries or details sourced from a GitHub issue, add a YAML comment above the record linking to the source, such as `# Requested in https://github.com/replicraft/remade/issues/14.` Use `# Additional request details in ...` when an issue expands an existing request. Apply this convention to project and tool suggestions too; comments are contributor references, not schema fields or public UI content.
 - `reason` is plain text, 20–400 characters, factual and non-promotional.
 - Optional `suggested_names` is a nonempty list of plain-text names, each 2–100 characters. Names must be unique after case folding and whitespace normalization. These are naming ideas, not existing implementations or reserved names.
@@ -145,7 +145,7 @@ Only language badges hide JavaScript when TypeScript is also recorded, including
 
 ## Supporting tool record
 
-`src/content/catalog/tools/<github-user>/<slug>.yaml` describes an add-on to existing indexed projects:
+`apps/frontend/remade-wiki/src/content/catalog/tools/<github-user>/<slug>.yaml` describes an add-on to existing indexed projects:
 
 ```yaml
 slug: example-tool
@@ -169,7 +169,7 @@ Tools accept optional `license`, a 2–80 character plain-text license identifie
 
 ## Featured manifest
 
-`src/content/catalog/featured.yaml` contains just project slugs, in editorial order:
+`apps/frontend/remade-wiki/src/content/catalog/featured.yaml` contains just project slugs, in editorial order:
 
 ```yaml
 # Maintainer-curated; independent of contributor project metadata.

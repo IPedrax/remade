@@ -9,10 +9,14 @@
 5. Failure to refresh metadata must never delete a valid listing.
 6. Editorial curation and accepted contributions are reproducible in Git history.
 
+## Workspace layout
+
+The Astro app, public assets and frontend tests live in `apps/frontend/remade-wiki/`. The root pnpm package delegates its existing commands to that workspace and owns shared Biome/Lefthook tooling. Python stays in `scripts/`, documentation and workflows stay at the root, and the metadata cache remains `cache/github-metadata.json`. Catalog addition dates and targeted metadata refreshes read both current and pre-migration Git paths.
+
 ## Data pipeline
 
 ```text
-Contributor PR (src/content/catalog/projects/<github-user>/<slug>.yaml OR src/content/catalog/requests/<vendor>/<original-slug>.yaml)
+Contributor PR (apps/frontend/remade-wiki/src/content/catalog/projects/<github-user>/<slug>.yaml OR apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml)
     ↓  read-only validation + Lychee + policy acknowledgment
 Maintainer reviews → merges
     ↓
@@ -53,7 +57,7 @@ The trusted daily metadata job fetches data using a **short-lived organization-o
 
 ## Static build stages
 
-Addition dates come from the first Git commit adding each YAML entry, so builds need full Git history. For Cloudflare's shallow checkout, set the build command in the dashboard to `git fetch --unshallow && pnpm build`. This fetch preserves the checked-out commit. Local builds use `pnpm build`; GitHub Actions already checks out full history with `fetch-depth: 0`.
+Addition dates come from the first Git commit adding each YAML entry, so builds need full Git history. For Cloudflare's shallow checkout, set the build command in the dashboard to `git fetch --unshallow && pnpm build`. This fetch preserves the checked-out commit. The Pages root directory stays at the repository root, using the shared lockfile and root build command; set its output directory to `apps/frontend/remade-wiki/dist`. Local builds use `pnpm build`; GitHub Actions already checks out full history with `fetch-depth: 0`.
 
 1. Load and validate original records, projects, supporting tools, requests, and `featured.yaml`. Tools are a separate collection joined to existing project slugs; they do not count as implementations or fulfill requests. Featured selections may include tools labeled Tool.
 2. Join each project with all canonical targets in its required `originals` array by slug. Index it once; software pages, search, related projects and request fulfillment consider all targets. Repository statistics remain keyed to the single project repository.
@@ -68,15 +72,15 @@ Addition dates come from the first Git commit adding each YAML entry, so builds 
 
 Astro prerenders `/data/catalog.json` and `/data/requests.json` into static files during the frontend build. Project, tool and request records come from Astro content collections; canonical originals, featured selections and addition dates come from the same validated YAML catalog loader used by the site. YAML and content collections remain authoritative. Generated JSON is a public output, never a separate database or an editable source. Serving these files requires no server execution, database queries or runtime API calls.
 
-`src/lib/catalog-export.ts` defines explicit public field allowlists using Valibot. Unknown source fields, collection IDs and future editorial metadata are stripped before serialization. Both documents have `schemaVersion: 1` and `site`; records are sorted by slug for deterministic output. Once exports are in use, breaking changes to the public contract require a schema version change and documentation update.
+`apps/frontend/remade-wiki/src/lib/catalog-export.ts` defines explicit public field allowlists using Valibot. Unknown source fields, collection IDs and future editorial metadata are stripped before serialization. Both documents have `schemaVersion: 1` and `site`; records are sorted by slug for deterministic output. Once exports are in use, breaking changes to the public contract require a schema version change and documentation update.
 
-The response helper declares JSON content type, one-hour public caching and `Access-Control-Allow-Origin: *`. Static response headers are configured separately in `public/_headers` for Cloudflare Pages, because build-time Response headers are not embedded in the JSON files. Other static hosts should apply equivalent headers. JSON updates when the site rebuilds, and clients may cache it for an hour.
+The response helper declares JSON content type, one-hour public caching and `Access-Control-Allow-Origin: *`. Static response headers are configured separately in `apps/frontend/remade-wiki/public/_headers` for Cloudflare Pages, because build-time Response headers are not embedded in the JSON files. Other static hosts should apply equivalent headers. JSON updates when the site rebuilds, and clients may cache it for an hour.
 
 ## CI security
 
 - On forked PRs, use `pull_request` with minimal read permissions; never run arbitrary repo scripts with elevated secrets under `pull_request_target`.
 - PRs are untrusted: validate YAML with safe parsing, reject credential-like URLs and file paths, and render all submitted text as escaped/plain text (not arbitrary HTML).
-- Restrict contributor PRs from editing `src/content/catalog/featured.yaml` without maintainer review; editorial approval cannot be inferred from their submission.
+- Restrict contributor PRs from editing `apps/frontend/remade-wiki/src/content/catalog/featured.yaml` without maintainer review; editorial approval cannot be inferred from their submission.
 - Keep secrets out of catalog and PR logs. Only the trusted scheduled workflow can access the App private key and mint a short-lived installation token. PR checks continue with minimal built-in `GITHUB_TOKEN` permissions.
 - Static build should not fetch from URLs submitted by users except tightly controlled link check/metadata requests. No arbitrary executable download or code execution.
 - Avoid dangerous `yaml.load`; use `safe_load` and validate types. Check domain and URL structure to reduce SSRF or unexpected hosts.

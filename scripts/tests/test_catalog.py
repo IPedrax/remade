@@ -25,12 +25,12 @@ def test_empty_catalog_valid(catalog_root: Path) -> None:
     ],
 )
 def test_project_originals_validation(project_catalog: Path, targets: str, valid: bool) -> None:
-    originals = project_catalog / "src/content/catalog/originals.yaml"
+    originals = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/originals.yaml"
     originals.write_text(
         originals.read_text()
         + "\n- slug: product-b\n  name: Product B\n  url: https://example.com/product-b\n  category: other\n"
     )
-    project = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    project = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     project.write_text(
         project.read_text().replace("originals: [product-a]", f"originals: {targets}")
     )
@@ -47,22 +47,24 @@ def test_project_originals_validation(project_catalog: Path, targets: str, valid
     ],
 )
 def test_legacy_project_target_fields_rejected(project_catalog: Path, replacement: str) -> None:
-    project = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    project = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     project.write_text(project.read_text().replace("originals: [product-a]", replacement))
     assert collect(project_catalog)[-1]
 
 
 def test_additional_target_fulfills_request(project_catalog: Path) -> None:
-    originals = project_catalog / "src/content/catalog/originals.yaml"
+    originals = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/originals.yaml"
     originals.write_text(
         originals.read_text()
         + "\n- slug: product-b\n  name: Product B\n  url: https://example.com/product-b\n  category: other\n"
     )
-    project = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    project = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     project.write_text(
         project.read_text().replace("originals: [product-a]", "originals: [product-a, product-b]")
     )
-    request = project_catalog / "src/content/catalog/requests/product-b.yaml"
+    request = (
+        project_catalog / "apps/frontend/remade-wiki/src/content/catalog/requests/product-b.yaml"
+    )
     request.write_text("original: product-b\nreason: Please faithfully recreate this software.\n")
     assert any("already fulfilled" in error for error in collect(project_catalog)[-1])
 
@@ -79,7 +81,7 @@ def test_additional_target_fulfills_request(project_catalog: Path) -> None:
     ],
 )
 def test_project_mirrors_validation(project_catalog: Path, mirrors: str, valid: bool) -> None:
-    path = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    path = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     path.write_text(path.read_text() + f"mirrors: {mirrors}\n")
     assert (not collect(project_catalog)[-1]) == valid
 
@@ -93,7 +95,7 @@ def test_project_mirrors_validation(project_catalog: Path, mirrors: str, valid: 
     ],
 )
 def test_project_website_validation(project_catalog: Path, website: str, valid: bool) -> None:
-    path = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    path = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     path.write_text(path.read_text() + f"website: {website}\n")
     assert (not collect(project_catalog)[-1]) == valid
 
@@ -101,13 +103,15 @@ def test_project_website_validation(project_catalog: Path, website: str, valid: 
 def test_author_folders_load_projects_tools_and_featured(
     project_catalog: Path, tool_factory: Callable[[], Path]
 ) -> None:
-    project = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    project = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     project.parent.joinpath("storytold").mkdir()
     project.rename(project.parent / "storytold" / project.name)
     tool = tool_factory()
     tool.parent.joinpath("daijro").mkdir()
     tool.rename(tool.parent / "daijro" / tool.name)
-    (project_catalog / "src/content/catalog/featured.yaml").write_text("- impl-a\n- example-tool\n")
+    (project_catalog / "apps/frontend/remade-wiki/src/content/catalog/featured.yaml").write_text(
+        "- impl-a\n- example-tool\n"
+    )
     _, projects, _, featured, errors = collect(project_catalog)
     assert not errors
     assert [entry["slug"] for entry in projects] == ["impl-a"]
@@ -116,7 +120,7 @@ def test_author_folders_load_projects_tools_and_featured(
 
 
 def test_duplicate_projects_across_author_folders_rejected(project_catalog: Path) -> None:
-    project = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    project = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     other = project.parent / "another-user"
     other.mkdir()
     (other / project.name).write_text(project.read_text())
@@ -144,7 +148,7 @@ def test_duplicate_projects_across_author_folders_rejected(project_catalog: Path
     ],
 )
 def test_project_github_authors_validation(project_catalog: Path, value: str, valid: bool) -> None:
-    path = project_catalog / "src/content/catalog/projects/impl-a.yaml"
+    path = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/projects/impl-a.yaml"
     content = path.read_text()
     path.write_text(
         content
@@ -193,7 +197,9 @@ def test_author_grouping_uses_explicit_credit_and_all_indexed_entries() -> None:
 
 
 def test_request_valid_when_no_project(original_catalog: Path) -> None:
-    (original_catalog / "src/content/catalog/requests/product-a.yaml").write_text("""
+    (
+        original_catalog / "apps/frontend/remade-wiki/src/content/catalog/requests/product-a.yaml"
+    ).write_text("""
 original: product-a
 reason: An independently authored compatible implementation would be useful.
 """)
@@ -203,7 +209,7 @@ reason: An independently authored compatible implementation would be useful.
 def test_requests_load_recursively_and_reject_duplicates_across_vendors(
     original_catalog: Path,
 ) -> None:
-    directory = original_catalog / "src/content/catalog/requests/vendor"
+    directory = original_catalog / "apps/frontend/remade-wiki/src/content/catalog/requests/vendor"
     directory.mkdir()
     path = directory / "product-a.yaml"
     path.write_text("original: product-a\nreason: Reproduce the original application workflows.\n")
@@ -217,7 +223,7 @@ def test_requests_load_recursively_and_reject_duplicates_across_vendors(
 
 
 def test_nested_request_is_rejected_when_fulfilled(project_catalog: Path) -> None:
-    directory = project_catalog / "src/content/catalog/requests/vendor"
+    directory = project_catalog / "apps/frontend/remade-wiki/src/content/catalog/requests/vendor"
     directory.mkdir()
     (directory / "product-a.yaml").write_text(
         "original: product-a\nreason: Reproduce the original application workflows.\n"
@@ -241,7 +247,9 @@ def test_nested_request_is_rejected_when_fulfilled(project_catalog: Path) -> Non
 def test_request_suggested_names_validation(
     original_catalog: Path, names: str, valid: bool
 ) -> None:
-    path = original_catalog / "src/content/catalog/requests/product-a.yaml"
+    path = (
+        original_catalog / "apps/frontend/remade-wiki/src/content/catalog/requests/product-a.yaml"
+    )
     path.write_text(
         "original: product-a\nreason: A faithful implementation would be useful.\nsuggested_names: "
         + names
@@ -255,7 +263,9 @@ def test_tool_can_be_featured_without_counting_as_project(
     project_catalog: Path, tool_factory: Callable[[], Path]
 ) -> None:
     tool_factory()
-    (project_catalog / "src/content/catalog/featured.yaml").write_text("- example-tool\n")
+    (project_catalog / "apps/frontend/remade-wiki/src/content/catalog/featured.yaml").write_text(
+        "- example-tool\n"
+    )
     _, projects, _, featured, errors = collect(project_catalog)
     assert not errors
     assert [project["slug"] for project in projects] == ["impl-a"]
@@ -353,7 +363,9 @@ def test_duplicate_tool_repositories_rejected(
 
 
 def test_request_cannot_coexist_with_project(project_catalog: Path) -> None:
-    (project_catalog / "src/content/catalog/requests/product-a.yaml").write_text("""
+    (
+        project_catalog / "apps/frontend/remade-wiki/src/content/catalog/requests/product-a.yaml"
+    ).write_text("""
 original: product-a
 reason: An independently authored compatible implementation would be useful.
 """)
@@ -361,13 +373,15 @@ reason: An independently authored compatible implementation would be useful.
 
 
 def test_project_and_featured_valid(project_catalog: Path) -> None:
-    (project_catalog / "src/content/catalog/featured.yaml").write_text("- impl-a\n")
+    (project_catalog / "apps/frontend/remade-wiki/src/content/catalog/featured.yaml").write_text(
+        "- impl-a\n"
+    )
     assert not collect(project_catalog)[-1]
 
 
 def test_disallow_untrusted_private_url(original_catalog: Path) -> None:
-    (original_catalog / "src/content/catalog/originals.yaml").write_text(
-        (original_catalog / "src/content/catalog/originals.yaml")
+    (original_catalog / "apps/frontend/remade-wiki/src/content/catalog/originals.yaml").write_text(
+        (original_catalog / "apps/frontend/remade-wiki/src/content/catalog/originals.yaml")
         .read_text()
         .replace("https://example.com/product-a", "https://127.0.0.1/api")
     )
@@ -375,7 +389,9 @@ def test_disallow_untrusted_private_url(original_catalog: Path) -> None:
 
 
 def test_duplicate_yaml_keys_rejected(original_catalog: Path) -> None:
-    (original_catalog / "src/content/catalog/requests/product-a.yaml").write_text("""
+    (
+        original_catalog / "apps/frontend/remade-wiki/src/content/catalog/requests/product-a.yaml"
+    ).write_text("""
 original: product-a
 original: product-b
 reason: An independent compatible implementation would be useful.

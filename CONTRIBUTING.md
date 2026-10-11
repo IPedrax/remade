@@ -5,8 +5,8 @@ Remade is a community-curated directory. You can contribute by proposing a new l
 ## Add a project
 
 1. Read [POLICY.md](POLICY.md) to confirm the project is eligible. Broader alternatives require maintainer approval.
-2. Search `src/content/catalog/projects/` to make sure it has not already been listed.
-3. Reuse the original record in `src/content/catalog/originals.yaml` (or add it if missing), then fork the repository and add one YAML file at `src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Use `examples/project.yaml` as a template, but replace all placeholder values.
+2. Search `apps/frontend/remade-wiki/src/content/catalog/projects/` to make sure it has not already been listed.
+3. Reuse the original record in `apps/frontend/remade-wiki/src/content/catalog/originals.yaml` (or add it if missing), then fork the repository and add one YAML file at `apps/frontend/remade-wiki/src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Use `examples/project.yaml` as a template, but replace all placeholder values.
 4. Open a pull request. Complete the description and check the policy acknowledgment in the PR template.
 5. Automated validation and link checks will run. A maintainer can merge, request changes, or close the pull request.
 
@@ -24,9 +24,9 @@ If you cannot find an eligible reimplementation of a specific software product, 
 
 You can also submit an approved, published Project Request through a pull request:
 
-1. Read `POLICY.md` and search both `src/content/catalog/projects/` and `src/content/catalog/requests/`.
-2. Ensure the target has an entry in `src/content/catalog/originals.yaml` (add one in the PR if necessary).
-3. Add `src/content/catalog/requests/<vendor>/<original-slug>.yaml` using `examples/request.yaml`. Explain the desired behavior or interface without copying protected code/assets. If the request or its details came from an issue, include its URL in a YAML comment above the record. Keep source issue comments on project and tool suggestions too.
+1. Read `POLICY.md` and search both `apps/frontend/remade-wiki/src/content/catalog/projects/` and `apps/frontend/remade-wiki/src/content/catalog/requests/`.
+2. Ensure the target has an entry in `apps/frontend/remade-wiki/src/content/catalog/originals.yaml` (add one in the PR if necessary).
+3. Add `apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml` using `examples/request.yaml`. Explain the desired behavior or interface without copying protected code/assets. If the request or its details came from an issue, include its URL in a YAML comment above the record. Keep source issue comments on project and tool suggestions too.
 4. Open a PR and check the `POLICY.md` acknowledgment. Maintainers can merge, request edits, or close it.
 5. When a matching project gets indexed, requests for every target in its `originals` list should be deleted in the same PR. Multi-target projects use one listing with a required nonempty `originals` list; see [the catalog schema](docs/CATALOG.md).
 
@@ -34,7 +34,7 @@ Requests have no votes, bounty promises, or claim/assignment system. They are di
 
 ## Add a supporting tool
 
-Tools that add on to indexed projects are welcome under `src/content/catalog/tools/<github-user>/<slug>.yaml`. Read the supporting-tools section of `POLICY.md` and copy `docs/examples/catalog/tools/tool.yaml`. Link the source repository and tool, describe the added functionality, and reference at least one existing project slug in `projects`. Disclose dependencies and licensing accurately. Tools are reviewed through the same PR flow and may be featured with a Tool label; they do not fulfill Project Requests.
+Tools that add on to indexed projects are welcome under `apps/frontend/remade-wiki/src/content/catalog/tools/<github-user>/<slug>.yaml`. Read the supporting-tools section of `POLICY.md` and copy `docs/examples/catalog/tools/tool.yaml`. Link the source repository and tool, describe the added functionality, and reference at least one existing project slug in `projects`. Disclose dependencies and licensing accurately. Tools are reviewed through the same PR flow and may be featured with a Tool label; they do not fulfill Project Requests.
 
 Requests may also include optional `suggested_names`, such as `[MusicCraft]`. These are naming ideas, not existing implementations or reserved names. Choose names distinct from existing software brands, without implying affiliation; see the naming requirement in [POLICY.md](POLICY.md#5-submission-requirements).
 
@@ -48,7 +48,7 @@ Open a pull request modifying the existing YAML. Explain the correction and link
 
 ## Featured listings
 
-Featured listings are an editorial selection curated by maintainers, not a field contributors need to set in their own submissions. To feature a project, a maintainer adds its `slug` to the ordered list in `src/content/catalog/featured.yaml` (the first slug is the primary Featured card). The catalog validator requires each slug to reference an existing project or supporting tool.
+Featured listings are an editorial selection curated by maintainers, not a field contributors need to set in their own submissions. To feature a project, a maintainer adds its `slug` to the ordered list in `apps/frontend/remade-wiki/src/content/catalog/featured.yaml` (the first slug is the primary Featured card). The catalog validator requires each slug to reference an existing project or supporting tool.
 
 ## Reporting legal concerns
 

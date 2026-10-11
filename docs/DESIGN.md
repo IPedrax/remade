@@ -10,7 +10,7 @@ A modern reference library for developers: precise, understated, inviting. Inspi
 - Hero: **Everything can be remade.**
 - Supporting copy: *Discover independently developed software reimplementations.*
 - Icon: two overlapping squares; outline = first implementation, solid = second; small charcoal void at intersection.
-- Favicons: `public/favicon.svg`, `public/favicon-16.png`, `public/favicon-32.png`, `public/apple-touch-icon.png`; a 512px visual reference at `assets/branding/favicon-preview.png`.
+- Favicons: `apps/frontend/remade-wiki/public/favicon.svg`, `apps/frontend/remade-wiki/public/favicon-16.png`, `apps/frontend/remade-wiki/public/favicon-32.png`, `apps/frontend/remade-wiki/public/apple-touch-icon.png`; a 512px visual reference at `assets/branding/favicon-preview.png`.
 
 ## Colors
 

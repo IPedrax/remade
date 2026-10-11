@@ -7,14 +7,14 @@ This file is the fast-start guide for coding agents and human contributors. Read
 - **Name / site:** Remade: `remade.wiki`
 - **Tagline:** **Everything can be remade.**
 - **Purpose:** A polished, community-maintained directory of open-source, independently authored reimplementations aiming for faithful behavior or compatibility with existing software.
-- **Tools:** Add-ons to indexed projects are allowed under `src/content/catalog/tools/`; see `POLICY.md` and `docs/CATALOG.md`. They may be featured with a Tool label but do not count as reimplementations or fulfill requests.
+- **Tools:** Add-ons to indexed projects are allowed under `apps/frontend/remade-wiki/src/content/catalog/tools/`; see `POLICY.md` and `docs/CATALOG.md`. They may be featured with a Tool label but do not count as reimplementations or fulfill requests.
 - **Initial editorial scope:** Reimplementations of software whose *original implementation* is not open source. This belongs in `POLICY.md`, not necessarily in the marketing hero.
 - **Not:** An alternatives marketplace, clone generator, file host, project certifier, or an implementation of the indexed software.
-- **Brand:** `#15191F` charcoal, `#C4F477` lime, white; overlapping-squares icon in `public/favicon.svg`.
+- **Brand:** `#15191F` charcoal, `#C4F477` lime, white; overlapping-squares icon in `apps/frontend/remade-wiki/public/favicon.svg`.
 - **Home:** Hero → search → Featured → categories → recent entries → **Project Requests** → footer.
 - **Editorial/legal:** `POLICY.md` is authoritative on eligibility. `/disclaimer` uses `content/DISCLAIMER.md`; footer links to `/disclaimer` but must **not** display `admin@remade.wiki`. The email belongs on the disclaimer page only.
 
-This repository includes a runnable static Astro application. Run `pnpm dev` for development and `pnpm build` to generate the site and Pagefind index. Catalog validation uses strict Valibot schemas in the TypeScript loaders and the existing Python checks.
+This repository includes a runnable static Astro application in `apps/frontend/remade-wiki/`. Root pnpm commands delegate to that workspace. Run `pnpm dev` for development and `pnpm build` to generate the site and Pagefind index. Catalog validation uses strict Valibot schemas in the TypeScript loaders and the existing Python checks.
 
 ## Source of truth / reading order
 
@@ -37,7 +37,7 @@ When requirements conflict, make the inconsistency explicit and update the relev
 - Follow the source readability rules in `docs/DESIGN.md`: add natural blank lines between logical code blocks and test cases, keep Astro/HTML tag brackets intact, and keep app-wide formatting in a separate commit. Use Biome; do not add another formatter.
 - Implement single-purpose modules and components. Prefer explicit types, schema validation, predictable pure functions, and readable naming over clever abstractions. Avoid `any`, hidden global state, and premature plugins.
 - No live visitor requests to GitHub, runtime database, user accounts, or custom CMS. Approved **pull requests**, not issues or labels, are the publishing workflow: **merge = publish; close = decline**.
-- Keep catalog data separate from computed metadata. Community files under `src/content/catalog/` are source of truth. `cache/github-metadata.json` is a replaceable best-effort cache, refreshed approximately every 24 hours by trusted CI.
+- Keep catalog data separate from computed metadata. Community files under `apps/frontend/remade-wiki/src/content/catalog/` are source of truth. `cache/github-metadata.json` is a replaceable best-effort cache, refreshed approximately every 24 hours by trusted CI.
 - Stats authentication: the trusted daily workflow creates an installation token with `actions/create-github-app-token@v3` from `REMADE_GH_APP_CLIENT_ID` and `REMADE_GH_APP_PRIVATE_KEY`, passes it as `GH_METADATA_APP_TOKEN` to the collector, and uses that App token to push the refreshed cache. The App needs Contents: Write and bypass permission for the rules protecting main. Keep App secrets out of pull-request workflows; see `docs/CI.md`.
 - Treat contributions as untrusted input: parse YAML safely, reject unknown fields and duplicate keys, validate identifiers/URLs, escape user-authored text, and never execute code from a listed repository. Don't place elevated secrets in workflows that run PR code.
 - Avoid guessed stars, fabricated compatibility claims, fabricated activity, or inferred legality. Clearly distinguish maintainer-reported compatibility from independently verified facts.
@@ -51,11 +51,11 @@ When requirements conflict, make the inconsistency explicit and update the relev
 ## Add a reimplementation entry (pull request)
 
 1. Read `POLICY.md` and check that the implementation is independently authored, has meaningful open-source code, and aims at specific observable compatibility. Broader alternatives may be included with maintainer approval, subject to the other eligibility requirements. A port, fork, or wrapper of the original implementation is not sufficient.
-2. Search `src/content/catalog/projects/**/*.yaml` for duplicate project/repository entries. Search `src/content/catalog/originals.yaml` for the target and its aliases; **reuse its canonical slug** if it exists.
-3. If the original is not in `src/content/catalog/originals.yaml`, add a record with `slug`, `name`, `url`, `category`, and optional `aliases`; use an official or credible HTTPS reference. Do not create a second record because of alternate spellings.
-4. Copy `examples/project.yaml` into `src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Replace **all** example values. Ensure `slug` matches its filename and the required nonempty `originals` list contains distinct canonical target slugs; supply truthful language, license, status, compatibility target, description, and optional limitations/docs.
-5. If this is the first published implementation of a target, **delete** its `src/content/catalog/requests/<vendor>/<original-slug>.yaml` in the **same PR**. Apply this to every target in the project's `originals` list. Use one project record for multi-target implementations; a request and an indexed project cannot coexist for any of its targets.
-6. Do not modify `src/content/catalog/featured.yaml` to feature your own submission; that file is maintainer-curated.
+2. Search `apps/frontend/remade-wiki/src/content/catalog/projects/**/*.yaml` for duplicate project/repository entries. Search `apps/frontend/remade-wiki/src/content/catalog/originals.yaml` for the target and its aliases; **reuse its canonical slug** if it exists.
+3. If the original is not in `apps/frontend/remade-wiki/src/content/catalog/originals.yaml`, add a record with `slug`, `name`, `url`, `category`, and optional `aliases`; use an official or credible HTTPS reference. Do not create a second record because of alternate spellings.
+4. Copy `examples/project.yaml` into `apps/frontend/remade-wiki/src/content/catalog/projects/<github-user>/<project-slug>.yaml`. Replace **all** example values. Ensure `slug` matches its filename and the required nonempty `originals` list contains distinct canonical target slugs; supply truthful language, license, status, compatibility target, description, and optional limitations/docs.
+5. If this is the first published implementation of a target, **delete** its `apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml` in the **same PR**. Apply this to every target in the project's `originals` list. Use one project record for multi-target implementations; a request and an indexed project cannot coexist for any of its targets.
+6. Do not modify `apps/frontend/remade-wiki/src/content/catalog/featured.yaml` to feature your own submission; that file is maintainer-curated.
 7. Automated CI validates YAML, references, tests and links. Address any failures; do not silence Lychee for convenience.
 8. Open a PR using `.github/PULL_REQUEST_TEMPLATE.md`, summarize the compatibility target and sources, and tick: **“I have read and will adhere to POLICY.md.”** Maintainers may merge, request changes, or close the PR.
 
@@ -73,8 +73,8 @@ When requirements conflict, make the inconsistency explicit and update the relev
 ## Add a Project Request (pull request)
 
 1. Confirm the target has **no indexed qualifying project** and no existing request. Requests are wanted implementations, **not announcements of existing work**.
-2. Reuse or add the canonical original in `src/content/catalog/originals.yaml`.
-3. Copy `examples/request.yaml` into `src/content/catalog/requests/<vendor>/<original-slug>.yaml`; set `original` to that slug and write a short, specific `reason` explaining the compatibility behavior wanted.
+2. Reuse or add the canonical original in `apps/frontend/remade-wiki/src/content/catalog/originals.yaml`.
+3. Copy `examples/request.yaml` into `apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml`; set `original` to that slug and write a short, specific `reason` explaining the compatibility behavior wanted.
 4. Submit a PR with the required policy acknowledgment. Automated checks run on the pull request.
 5. Request cards render under **Project Requests** and `/requests`; remove the request when an implementation is accepted.
 

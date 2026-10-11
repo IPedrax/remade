@@ -123,13 +123,15 @@ def test_no_new_repositories_leaves_cache_untouched(
     api.assert_not_called()
 
 
+@pytest.mark.parametrize("prefix", ["src", "apps/frontend/remade-wiki/src"])
 def test_previous_catalog_reads_only_project_and_tool_repositories(
+    prefix: str,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     run = Mock(
         side_effect=[
             Mock(
-                stdout="src/content/catalog/projects/owner/old.yaml\0src/content/catalog/tools/tool.yaml\0README.md\0"
+                stdout=f"{prefix}/content/catalog/projects/owner/old.yaml\0{prefix}/content/catalog/tools/tool.yaml\0README.md\0"
             ),
             Mock(stdout="repository: https://github.com/Example/Existing\n"),
             Mock(stdout="repository: https://codeberg.org/example/tool\n"),
@@ -137,7 +139,9 @@ def test_previous_catalog_reads_only_project_and_tool_repositories(
     )
     monkeypatch.setattr(stats.subprocess, "run", run)
     assert stats.repositories_at_revision("a" * 40) == {"example/existing"}
-    assert run.call_args_list[0].args[0][-2:] == [
+    assert run.call_args_list[0].args[0][-4:] == [
+        "apps/frontend/remade-wiki/src/content/catalog/projects/",
+        "apps/frontend/remade-wiki/src/content/catalog/tools/",
         "src/content/catalog/projects/",
         "src/content/catalog/tools/",
     ]

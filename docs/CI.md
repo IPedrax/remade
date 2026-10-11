@@ -14,7 +14,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 
 1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
 2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Link-check failures are advisory and do not fail the workflow; setup and build failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
-3. `build.yml` (**App Build + Unit Tests**) independently runs the frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup.
+3. `build.yml` (**App Build + Unit Tests**) always reports its required check, conditionally running Biome linting, frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup. Frontend, workspace, metadata-cache, Biome and build-workflow changes trigger validation; unrelated changes skip expensive steps without leaving a required check pending.
 4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
 
 ## Issue suggestion and request checks
@@ -34,7 +34,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 
 ## Local task commands
 
-The root `justfile` is the common entry point for frontend and Python tasks. Run `just` to list recipes. Frontend recipes delegate to pnpm (`just dev`, `just build`, `just check`, `just format`, `just test`, `just test-unit`, `just test-react`, `just test-e2e`, `just preview`, `just astro`); Python recipes live in `scripts/justfile`, exposed through the root `mod py`, and use the existing uv project (`just py::lint`, `just py::format`, `just py::check`, `just py::test`, `just py::validate-catalog`, `just py::metadata-refresh`). Python recipes run from `scripts/`; the metadata recipe loads `../.env` from the repository root. `package.json` contains frontend scripts only. CI can invoke pnpm and uv directly without requiring just on the runner.
+The root `justfile` is the common entry point for frontend and Python tasks. Run `just` to list recipes. Frontend recipes delegate to pnpm (`just dev`, `just build`, `just check`, `just format`, `just test`, `just test-unit`, `just test-react`, `just test-e2e`, `just preview`, `just astro`); Python recipes live in `scripts/justfile`, exposed through the root `mod py`, and use the existing uv project (`just py::lint`, `just py::format`, `just py::check`, `just py::test`, `just py::validate-catalog`, `just py::metadata-refresh`). Python recipes run from `scripts/`; the metadata recipe loads `../.env` from the repository root. The root `package.json` delegates frontend commands to `apps/frontend/remade-wiki/` and installs shared Biome/Lefthook tooling; the frontend package owns its application dependencies and scripts. CI can invoke pnpm and uv directly without requiring just on the runner.
 
 `types-pyyaml` and `types-requests` are development-only typing stubs for ty; they are not runtime dependencies. Keep them so calls into these libraries are type-checked.
 
@@ -81,7 +81,7 @@ Arguments pass through to the collector. `just py::metadata-refresh --list-only`
 - Extract catalog URLs from validated YAML; do not depend on Lychee's best-effort YAML parsing.
 - PR check checks changed catalog files only to avoid blocking unrelated PRs on old broken links.
 - Weekly check checks all catalog links.
-- Once `dist/` exists, Lychee checks generated pages and internal links after the Astro build.
+- Once `apps/frontend/remade-wiki/dist/` exists, Lychee checks generated pages and internal links after the Astro build.
 - Lychee accepts HTTP 403 responses globally. HTTP 429 rate limits and other errors are reported, but link-check failures do not fail the workflow. `.lycheeignore` is for documented, temporary exceptions.
 
 ## Security
@@ -99,11 +99,11 @@ The initial package intentionally has no `scripts/uv.lock` because its dependenc
 
 ## Frontend tests
 
-Vitest configuration lives in `tests/vitest.config.ts` and `tests/vitest.react.config.ts`. The package scripts select each config explicitly; both keep the repository root as their working root for test and fixture paths.
+Vitest configuration lives in `apps/frontend/remade-wiki/tests/vitest.config.ts` and `apps/frontend/remade-wiki/tests/vitest.react.config.ts`. The frontend package scripts select each config explicitly; both use `apps/frontend/remade-wiki/` as their working root for test and fixture paths. Root pnpm commands delegate to that workspace, so the existing just recipes still work.
 
 - `pnpm test`: runs the unit, React component and E2E suites in sequence.
 - `pnpm test:unit`: Vitest in Node for schemas, catalog relationships, exports, filtering and sorting.
 - `pnpm test:react`: `vitest-browser-react` component tests in headless Chromium through Vitest's Playwright provider. These mount components directly and use browser locators and interactions; they do not start the Astro site.
 - `pnpm test:e2e`: builds Astro and Pagefind, then runs Playwright against the production preview server. It covers navigation, hydrated filtering, search fallbacks, static comparisons and generated data/discovery files.
 
-Install the local browser once with `pnpm exec playwright install chromium`. The two browser suites are separate from each other and from CI. Neither uses React Testing Library. React tests receive a serializable catalog loaded by the test configuration; frontend content collections remain the source of truth. Python tests continue to use pytest.
+Install the local browser once with `pnpm --filter ./apps/frontend/remade-wiki exec playwright install chromium`. The two browser suites are separate from each other and from CI. Neither uses React Testing Library. React tests receive a serializable catalog loaded by the test configuration; frontend content collections remain the source of truth. Python tests continue to use pytest.

@@ -33,7 +33,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 - Hero heading: **Everything can be remade.**
 - Supporting sentence: *Discover independently developed software reimplementations.*
 - Accessible site search with `⌘K`/`Ctrl+K` shortcut (enhancement, not a prerequisite).
-- **Featured** section immediately after search: one highlighted listing + supporting cards; driven by `src/content/catalog/featured.yaml` and stable editorial order.
+- **Featured** section immediately after search: one highlighted listing + supporting cards; driven by `apps/frontend/remade-wiki/src/content/catalog/featured.yaml` and stable editorial order.
 - Browse categories; Recently added; **Project Requests**; an unintrusive disclaimer link in footer.
 
 ### Catalog and details
@@ -48,7 +48,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 
 ### Project Requests
 - A separate, static wishlist of specific software/interfaces people want faithfully reimplemented; not a list of existing projects.
-- Published source files: `src/content/catalog/requests/<vendor>/<original-slug>.yaml`, added through PR. Community members can also submit an unlisted request proposal using the link-optional GitHub Issue Form.
+- Published source files: `apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml`, added through PR. Community members can also submit an unlisted request proposal using the link-optional GitHub Issue Form.
 - Link to the original software page; show target name, category, short reason and contribution CTA.
 - Display only requests with **no currently indexed qualifying implementation**; validator rejects a request once a matching implementation exists.
 - When accepting the first matching project PR, remove its request entry in that same PR.

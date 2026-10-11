@@ -1,6 +1,6 @@
 # Python tooling (uv)
 
-Remade's Python tooling is a standalone uv project rooted at `scripts/`. The Astro application and pnpm files remain at the repository root.
+Remade's Python tooling is a standalone uv project rooted at `scripts/`. The Astro application lives in `apps/frontend/remade-wiki/`; the shared pnpm workspace and lockfile stay at the repository root.
 
 - Runtime: Python 3.14 pinned in `scripts/.python-version`.
 - Manifest: `scripts/pyproject.toml` is the only Python dependency source. There is no `requirements.txt`.

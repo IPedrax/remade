@@ -7,9 +7,9 @@
 ## Submit a project
 
 1. Read the [submission policy](POLICY.md) and [contribution guide](CONTRIBUTING.md).
-2. Check `src/content/catalog/projects/` to make sure the project isn't already listed.
-3. Fork this repository and add `src/content/catalog/projects/<github-user>/<project-slug>.yaml`, following [`docs/examples/catalog/projects/project.yaml`](docs/examples/catalog/projects/project.yaml).
-4. Reference the original software in `src/content/catalog/originals.yaml`, adding it there if necessary.
+2. Check `apps/frontend/remade-wiki/src/content/catalog/projects/` to make sure the project isn't already listed.
+3. Fork this repository and add `apps/frontend/remade-wiki/src/content/catalog/projects/<github-user>/<project-slug>.yaml`, following [`docs/examples/catalog/projects/project.yaml`](docs/examples/catalog/projects/project.yaml).
+4. Reference the original software in `apps/frontend/remade-wiki/src/content/catalog/originals.yaml`, adding it there if necessary.
 5. Open a pull request and confirm you've read and agree to follow `POLICY.md` in the PR checklist.
 
 Submissions are reviewed by maintainers. Merged pull requests appear in the directory.

@@ -1,6 +1,6 @@
 # Microsoft Project request
 
-Target Microsoft Project Desktop, including the desktop capabilities associated with Planner and Project Plan 3 and Plan 5. Suggested names: **ProjectCraft** and **GanttCraft**. The catalog request lives at `src/content/catalog/requests/microsoft/microsoft-project.yaml`.
+Target Microsoft Project Desktop, including the desktop capabilities associated with Planner and Project Plan 3 and Plan 5. Suggested names: **ProjectCraft** and **GanttCraft**. The catalog request lives at `apps/frontend/remade-wiki/src/content/catalog/requests/microsoft/microsoft-project.yaml`.
 
 ## Requested compatibility
 

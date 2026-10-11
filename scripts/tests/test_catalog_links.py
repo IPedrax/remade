@@ -27,7 +27,7 @@ def test_tools_included_in_full_and_changed_catalog_checks(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    directory = tmp_path / "src/content/catalog/tools/daijro"
+    directory = tmp_path / "apps/frontend/remade-wiki/src/content/catalog/tools/daijro"
     directory.mkdir(parents=True)
     path = directory / "launcher.yaml"
     path.write_text(
@@ -35,7 +35,11 @@ def test_tools_included_in_full_and_changed_catalog_checks(
     )
     monkeypatch.setattr("catalog_links.ROOT", tmp_path)
     assert path in paths_for_mode(all_files=True, changed_from=None)
-    run = Mock(return_value=Mock(stdout="src/content/catalog/tools/daijro/launcher.yaml\n"))
+    run = Mock(
+        return_value=Mock(
+            stdout="apps/frontend/remade-wiki/src/content/catalog/tools/daijro/launcher.yaml\n"
+        )
+    )
     monkeypatch.setattr("catalog_links.subprocess.run", run)
     assert paths_for_mode(all_files=False, changed_from="base") == [path]
     assert set(url_values(path)) == {
@@ -48,11 +52,15 @@ def test_vendor_request_files_are_discovered_in_both_modes(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    path = tmp_path / "src/content/catalog/requests/adobe/product.yaml"
+    path = tmp_path / "apps/frontend/remade-wiki/src/content/catalog/requests/adobe/product.yaml"
     path.parent.mkdir(parents=True)
     path.write_text("original: product\nreason: Reproduce the original workflows.\n")
     monkeypatch.setattr("catalog_links.ROOT", tmp_path)
     assert path in paths_for_mode(all_files=True, changed_from=None)
-    run = Mock(return_value=Mock(stdout="src/content/catalog/requests/adobe/product.yaml\n"))
+    run = Mock(
+        return_value=Mock(
+            stdout="apps/frontend/remade-wiki/src/content/catalog/requests/adobe/product.yaml\n"
+        )
+    )
     monkeypatch.setattr("catalog_links.subprocess.run", run)
     assert paths_for_mode(all_files=False, changed_from="base") == [path]

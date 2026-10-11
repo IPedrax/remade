@@ -114,8 +114,8 @@ def checked_load(path, errors):
 
 def collect(root=ROOT):
     errors = []
-    originals_file = root / "src/content/catalog/originals.yaml"
-    featured_file = root / "src/content/catalog/featured.yaml"
+    originals_file = root / "apps/frontend/remade-wiki/src/content/catalog/originals.yaml"
+    featured_file = root / "apps/frontend/remade-wiki/src/content/catalog/featured.yaml"
     originals = checked_load(originals_file, errors)
     featured = checked_load(featured_file, errors)
     originals = originals if isinstance(originals, list) else []
@@ -123,7 +123,7 @@ def collect(root=ROOT):
     original_by_slug = {}
     names = set()
     for i, original in enumerate(originals):
-        loc = f"src/content/catalog/originals.yaml entry #{i + 1}"
+        loc = f"apps/frontend/remade-wiki/src/content/catalog/originals.yaml entry #{i + 1}"
         if not fields(original, {"slug", "name", "url", "category"}, {"aliases"}, loc, errors):
             continue
         slug = original["slug"]
@@ -153,7 +153,9 @@ def collect(root=ROOT):
     project_by_slug = {}
     seen_repos = set()
     project_originals = set()
-    for path in sorted((root / "src/content/catalog/projects").rglob("*.yaml")):
+    for path in sorted(
+        (root / "apps/frontend/remade-wiki/src/content/catalog/projects").rglob("*.yaml")
+    ):
         loc = str(path.relative_to(root))
         project = checked_load(path, errors)
         required = {
@@ -251,7 +253,9 @@ def collect(root=ROOT):
         validate_mirrors(project, loc, errors)
 
     request_by_original = {}
-    for path in sorted((root / "src/content/catalog/requests").rglob("*.yaml")):
+    for path in sorted(
+        (root / "apps/frontend/remade-wiki/src/content/catalog/requests").rglob("*.yaml")
+    ):
         loc = str(path.relative_to(root))
         req = checked_load(path, errors)
         if not fields(req, {"original", "reason"}, {"suggested_names"}, loc, errors):
@@ -305,14 +309,16 @@ def collect(root=ROOT):
     featured_slugs = set()
     for i, slug in enumerate(featured):
         if not is_slug(slug):
-            errors.append(f"src/content/catalog/featured.yaml entry #{i + 1}: invalid slug")
+            errors.append(
+                f"apps/frontend/remade-wiki/src/content/catalog/featured.yaml entry #{i + 1}: invalid slug"
+            )
         elif slug in featured_slugs:
             errors.append(
-                f"src/content/catalog/featured.yaml entry #{i + 1}: duplicate featured slug {slug}"
+                f"apps/frontend/remade-wiki/src/content/catalog/featured.yaml entry #{i + 1}: duplicate featured slug {slug}"
             )
         elif slug not in project_by_slug and slug not in tool_slugs:
             errors.append(
-                f"src/content/catalog/featured.yaml entry #{i + 1}: unknown project or tool {slug}"
+                f"apps/frontend/remade-wiki/src/content/catalog/featured.yaml entry #{i + 1}: unknown project or tool {slug}"
             )
         featured_slugs.add(slug)
     return (
@@ -358,7 +364,9 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     tools: list[dict] = []
     errors: list[str] = []
     seen_repositories: set[str] = set()
-    for path in sorted((root / "src/content/catalog/tools").rglob("*.yaml")):
+    for path in sorted(
+        (root / "apps/frontend/remade-wiki/src/content/catalog/tools").rglob("*.yaml")
+    ):
         loc = str(path.relative_to(root))
         tool = checked_load(path, errors)
         if not fields(

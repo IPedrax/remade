@@ -1,3 +1,6 @@
+packages:
+  - apps/frontend/remade-wiki
+
 allowBuilds:
   esbuild: true
   lefthook: true

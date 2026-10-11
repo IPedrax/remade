@@ -20,9 +20,9 @@ yarn-error.log*
 pnpm-debug.log*
 
 # test artifacts
-/test-results/
-/playwright-report/
-/.vitest/
+test-results/
+playwright-report/
+.vitest/
 .pytest_cache
 .ruff_cache/
 .lycheecache

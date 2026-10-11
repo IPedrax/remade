@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/content/catalog/projects/**/*.yaml'
-      - 'src/content/catalog/tools/**/*.yaml'
+      - 'apps/frontend/remade-wiki/src/content/catalog/projects/**/*.yaml'
+      - 'apps/frontend/remade-wiki/src/content/catalog/tools/**/*.yaml'
   schedule:
     - cron: '41 7 * * *' # approximately once a day; scheduling can be delayed
   workflow_dispatch:

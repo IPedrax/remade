@@ -87,7 +87,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2.9.0
         with:
           output: lychee/site-report.md
-          args: --config lychee.toml --cache --verbose --no-progress --root-dir dist './dist/**/*.html'
+          args: --config lychee.toml --cache --verbose --no-progress --root-dir apps/frontend/remade-wiki/dist './apps/frontend/remade-wiki/dist/**/*.html'
           fail: true
         env:
           GITHUB_TOKEN: ${{ github.token }}

@@ -61,6 +61,9 @@ def repositories_at_revision(revision: str) -> set[str]:
             "--name-only",
             revision,
             "--",
+            "apps/frontend/remade-wiki/src/content/catalog/projects/",
+            "apps/frontend/remade-wiki/src/content/catalog/tools/",
+            # Read pre-migration commits too, so moves don't trigger a full refresh.
             "src/content/catalog/projects/",
             "src/content/catalog/tools/",
         ],

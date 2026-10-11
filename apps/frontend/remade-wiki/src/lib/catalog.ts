@@ -21,6 +21,7 @@ export type Entry =
 	| (Tool & { kind: "tool"; addedAt?: string });
 
 const root = pathToFileURL(`${process.cwd()}/`);
+const repositoryRoot = new URL("../../../", root);
 
 async function files(directory: string): Promise<string[]> {
 	const entries = await readdir(directory, { withFileTypes: true });
@@ -69,10 +70,16 @@ function addedAt(folder: string, slug: string): string | undefined {
 				"--diff-filter=A",
 				"--format=%aI",
 				"--",
+				`:(glob)apps/frontend/remade-wiki/src/content/catalog/${folder}/**/${slug}.yaml`,
+				`apps/frontend/remade-wiki/src/content/catalog/${folder}/${slug}.yaml`,
 				`:(glob)src/content/catalog/${folder}/**/${slug}.yaml`,
 				`src/content/catalog/${folder}/${slug}.yaml`,
 			],
-			{ cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
+			{
+				cwd: repositoryRoot,
+				encoding: "utf8",
+				stdio: ["ignore", "pipe", "ignore"],
+			},
 		);
 
 		return output.trim().split("\n").filter(Boolean).sort()[0];
@@ -149,7 +156,10 @@ export type Metadata = v.InferOutput<typeof metadataSchema>;
 export async function loadMetadata(): Promise<Record<string, Metadata>> {
 	try {
 		const raw: unknown = JSON.parse(
-			await readFile(new URL("cache/github-metadata.json", root), "utf8"),
+			await readFile(
+				new URL("cache/github-metadata.json", repositoryRoot),
+				"utf8",
+			),
 		);
 		const result = v.safeParse(
 			v.object({ repositories: v.record(v.string(), v.unknown()) }),

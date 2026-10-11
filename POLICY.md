@@ -34,7 +34,7 @@ Remade does not accept the following as reimplementation listings:
 
 ### Supporting tools
 
-Remade also accepts tools that add functionality to one or more indexed projects, including browser launchers, integrations, extensions and workflow helpers. Publish these separately under `src/content/catalog/tools/`, with links to the source repository and tool, a factual description, and references to the indexed projects they extend. A tool does not need to reimplement an original itself. It must have substantive, publicly accessible source and accurately describe its dependencies and licensing; do not infer an open-source license when none is stated.
+Remade also accepts tools that add functionality to one or more indexed projects, including browser launchers, integrations, extensions and workflow helpers. Publish these separately under `apps/frontend/remade-wiki/src/content/catalog/tools/`, with links to the source repository and tool, a factual description, and references to the indexed projects they extend. A tool does not need to reimplement an original itself. It must have substantive, publicly accessible source and accurately describe its dependencies and licensing; do not infer an open-source license when none is stated.
 
 Tools may be featured with a clear **Tool** label, but do not count as reimplementations or fulfill Project Requests. They follow the same PR review, link checks, correction process and prohibition on unauthorized original code or assets. This does not expand the directory to unrelated alternatives.
 
@@ -50,7 +50,7 @@ Reverse engineering and compatibility can raise different legal issues depending
 
 Remade also accepts **requests for software that people would like to see independently reimplemented**. These appear under **Project Requests** and must not imply that a project already exists.
 
-You may suggest a request through the Project Request GitHub Issue Form without providing links. To add an approved request to the public catalog, submit a pull request adding `src/content/catalog/requests/<vendor>/<original-slug>.yaml` and, if needed, a canonical original entry in `src/content/catalog/originals.yaml`. Requests must identify a specific existing software target, cite a reliable reference, and explain which behavior or interface a faithful implementation should reproduce. Search existing directory entries first; **requests are only for originals with no currently indexed qualifying project**.
+You may suggest a request through the Project Request GitHub Issue Form without providing links. To add an approved request to the public catalog, submit a pull request adding `apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml` and, if needed, a canonical original entry in `apps/frontend/remade-wiki/src/content/catalog/originals.yaml`. Requests must identify a specific existing software target, cite a reliable reference, and explain which behavior or interface a faithful implementation should reproduce. Search existing directory entries first; **requests are only for originals with no currently indexed qualifying project**.
 
 Requests are not assignments, endorsements, authorizations from rights holders, solicitations to copy protected code, or promises that Remade will build the software. The independent-development and no-unauthorized-assets standards still apply to any eventual implementation. Maintainers may decline vague, redundant, misleading, or unsuitable requests. When a matching implementation is accepted, the request entry is removed.
 
@@ -58,7 +58,7 @@ Requests are not assignments, endorsements, authorizations from rights holders, 
 
 **Suggested names must be distinct from existing brands.** Naming ideas for requested implementations must not be confusingly similar to the original software's brand or another existing software brand, or imply affiliation, endorsement, or an official successor. Do not reuse a brand name, use a close spelling variant, or simply append “Craft” to it. Choose an independently recognizable name. This is an editorial requirement, not trademark clearance or a guarantee of legal availability.
 
-Contributions should be made by pull request, adding **one project file per project** under `src/content/catalog/projects/`.
+Contributions should be made by pull request, adding **one project file per project** under `apps/frontend/remade-wiki/src/content/catalog/projects/`.
 
 Each submission must include:
 
