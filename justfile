@@ -3,6 +3,7 @@
 set positional-arguments := true
 
 mod py "scripts/justfile"
+mod backend "apps/backend/justfile"
 
 # Show available commands.
 default:

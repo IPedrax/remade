@@ -1,0 +1,25 @@
+set positional-arguments := true
+
+# Start the local Worker (local D1 migrations must be applied first).
+dev *args:
+    pnpm exec wrangler dev --config wrangler.toml "$@"
+
+# Apply migrations only to local persistent D1.
+migrate-local:
+    pnpm exec wrangler d1 migrations apply DB --local --config wrangler.toml
+
+# Build the official JavaScript/Wasm entrypoint.
+build:
+    worker-build --release
+
+# Check Rust formatting and linting.
+check:
+    cargo fmt --check
+    cargo clippy --all-targets -- -D warnings
+    cargo clippy --target wasm32-unknown-unknown -- -D warnings
+
+# Native security tests and actual Worker/D1 integration tests.
+test:
+    cargo test --locked
+    worker-build --release
+    pnpm exec vitest run --config tests/vitest.config.ts

@@ -24,7 +24,7 @@ Remade is not an open-source-alternatives marketplace, generic rewrite index, pa
 | `/disclaimer` | Independently developed projects, qualified legal history, contact |
 | `/404` | Custom not-found state and search/explore navigation |
 
-**Submit:** link to `CONTRIBUTING.md` for pull requests, plus GitHub Issue Forms for suggesting existing projects or requesting missing reimplementations. No on-site submission forms, user accounts, or runtime backend.
+**Submit:** link to `CONTRIBUTING.md` for pull requests, plus GitHub Issue Forms for suggesting existing projects or requesting missing reimplementations. GitHub login provides identity only; it does not grant publishing rights or add on-site submission forms. See `docs/AUTH.md` for the isolated authentication Worker.
 
 ## 3. MVP features
 
@@ -66,8 +66,8 @@ Use **Astro + React + strict TypeScript + Tailwind CSS**, with React UI componen
 
 ## 5. Explicit non-goals for launch
 
-- No user accounts, dashboards, comments, ratings, votes, or personalized bookmarks.
-- No issue-label CMS, runtime database, server APIs, votes, or real-time GitHub statistics.
+- No account settings, dashboards, comments, ratings, votes, or personalized bookmarks. Minimal GitHub login is the only account functionality.
+- No issue-label CMS, runtime catalog database, catalog server APIs, votes, or real-time GitHub statistics. Authentication alone uses the separate Worker and D1.
 - No automatically inferred compatibility claims, formal clean-room certification, execution/testing of submitted code, or redistribution of the projects themselves.
 - No hosting operations or deployment work included in this bundle.
 

@@ -3,17 +3,19 @@
 ## Principles
 
 1. Entire user-facing site generated as static Astro HTML/assets.
-2. Git repo is the only canonical catalog datastore; no runtime backend.
+2. Git repo is the only canonical catalog datastore. The separate authentication Worker stores accounts and sessions only; catalog browsing stays static.
 3. No user-provided code is executed during validation, indexing, or compilation.
-4. No GitHub API calls from visitors; GitHub metadata is a **cached build input**.
+4. No GitHub metadata API calls from visitors; metadata is a **cached build input**. Explicit login uses server-side GitHub OAuth through the separate Worker.
 5. Failure to refresh metadata must never delete a valid listing.
 6. Editorial curation and accepted contributions are reproducible in Git history.
 
 ## Workspace layout
 
-The Astro app, public assets and frontend tests live in `apps/frontend/remade-wiki/`. The root pnpm package delegates its existing commands to that workspace and owns shared Biome/Lefthook tooling. Python stays in `scripts/`, documentation and workflows stay at the root, and the metadata cache remains `cache/github-metadata.json`. Catalog addition dates and targeted metadata refreshes read both current and pre-migration Git paths.
+The Astro app, public assets and frontend tests live in `apps/frontend/remade-wiki/`. The Rust authentication Worker lives in `apps/backend/`. The root pnpm package delegates frontend commands to that workspace and owns shared Biome/Lefthook and Wrangler/Vitest tooling. Python stays in `scripts/`, documentation and workflows stay at the root, and the metadata cache remains `cache/github-metadata.json`. Catalog addition dates and targeted metadata refreshes read both current and pre-migration Git paths.
 
 ## Data pipeline
+
+Authentication lives separately in `apps/backend/` at `api.remade.wiki`, with D1 for provider-independent UUIDv7 accounts and hashed opaque sessions. The header's small React island fetches a session only when a non-secret returning-user hint exists. Anonymous browsing never invokes the Worker. See [Authentication](AUTH.md) for local development, security boundaries and manual production setup. It does not change catalog publishing or public JSON exports.
 
 ```text
 Contributor PR (apps/frontend/remade-wiki/src/content/catalog/projects/<github-user>/<slug>.yaml OR apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml)

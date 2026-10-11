@@ -39,3 +39,10 @@ playwright-report/
 
 # misc
 /docs/other
+
+# Rust Worker output and local credentials/state
+apps/backend/target/
+apps/backend/build/
+.wrangler/
+.dev.vars*
+!.dev.vars.example

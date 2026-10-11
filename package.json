@@ -21,6 +21,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.15",
-		"lefthook": "^2.2.1"
+		"lefthook": "^2.2.1",
+		"miniflare": "5.20261006.1-alpha",
+		"vitest": "5.0.3",
+		"wrangler": "4.149.0"
 	}
 }
