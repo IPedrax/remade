@@ -1,0 +1,15 @@
+# Requested in https://github.com/replicraft/remade/issues/18.
+slug: precall
+name: PreCall
+authors: [erkinalp]
+repository: https://github.com/erkinalp/PreCall
+originals: [windows-recall]
+category: productivity
+languages: [Rust, Python, TypeScript]
+platforms: [Windows, Linux, Web]
+status: experimental
+compatibility: targeting
+description: A client-server reimplementation targeting Windows Recall's API and database compatibility. A Rust Windows capture client sends desktop frames and metadata to a configurable server for OCR, inference, indexing and storage, with a web interface for timeline browsing, search and relaunch workflows.
+license: GPL-2.0-only
+docs: https://github.com/erkinalp/PreCall#readme
+limitations: Compatibility is maintainer-reported and not independently verified. Capture requires Windows; Linux hosts the server and Web refers to its interface. Unlike on-device Recall, desktop captures are uploaded to a server for processing and storage.

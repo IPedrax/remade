@@ -818,3 +818,14 @@
   name: vMix
   url: https://www.vmix.com/software/
   category: creative
+
+- slug: discord
+  name: Discord
+  url: https://discord.com/
+  category: productivity
+
+- slug: windows-recall
+  name: Windows Recall
+  url: https://support.microsoft.com/en-us/windows/ai/ai-features/retrace-your-steps-with-recall
+  category: productivity
+  aliases: [Microsoft Recall, Recall]
