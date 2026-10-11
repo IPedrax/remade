@@ -67,6 +67,7 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 - Sorting: recent, alphabetical, stars. `stars: null` sorts after known counts.
 - Cards expose original → implementation relationship at a glance.
 - Empty state proposes clearing filters or contributing a new project.
+- When a nonempty search has no matching entries, show matching Project Request cards and a link to the requests search. Match names, aliases, suggested names, vendors and requested features, prioritizing title matches. Project-specific filters do not restrict this fallback; clearly label requests as wishes rather than existing implementations.
 - Use local data and Pagefind index (no hosted query endpoint).
 
 ## Project detail page

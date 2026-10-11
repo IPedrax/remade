@@ -20,12 +20,10 @@ export default function Home({ catalog, metadata }: Props) {
 	const featured = catalog.featured.map((slug) =>
 		findBySlug(catalog.entries, slug),
 	);
-	const requests = catalog.requests
-		.map((request) => ({
-			request,
-			original: findBySlug(catalog.originals, request.original),
-		}))
-		.sort((a, b) => a.original.name.localeCompare(b.original.name, "en"));
+	const requests = catalog.requests.map((request) => ({
+		request,
+		original: findBySlug(catalog.originals, request.original),
+	}));
 	return (
 		<>
 			<div className="max-w-[780px] pb-10 pt-14 sm:pt-[90px] [&_h1]:text-[clamp(2.4rem,6vw,4.8rem)] [&_p]:text-lg">

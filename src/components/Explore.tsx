@@ -3,7 +3,13 @@ import { type BrowseEntry, compareEntries, filterEntries } from "../lib/browse";
 import type { CatalogData, Entry, Metadata } from "../lib/catalog";
 import { categories, compatibility, statuses } from "../lib/constants";
 import { contributeUrl, label, metadataFor, recent } from "../lib/presentation";
+import {
+	compareRequests,
+	defaultRequestFilters,
+	filterRequest,
+} from "../lib/request-browse";
 import EntryCard from "./EntryCard";
+import RequestCard from "./RequestCard";
 import { SearchField } from "./Search";
 import SiteSearchResults from "./SiteSearchResults";
 
@@ -122,6 +128,37 @@ export default function Explore({ catalog, metadata }: Props) {
 				),
 		[catalog, metadata, filters],
 	);
+	const matchingRequests = useMemo(() => {
+		if (entries.length || !filters.q.trim()) return [];
+		return catalog.requests
+			.map((request) => {
+				const original = catalog.originals.find(
+					(item) => item.slug === request.original,
+				);
+				if (!original) return undefined;
+				return {
+					request,
+					original: request.original,
+					target: original,
+					name: original.name,
+					category: original.category,
+					vendor: request.vendor,
+					addedAt: request.addedAt,
+					aliases: original.aliases,
+					suggestedNames: request.suggested_names,
+					reason: request.reason,
+				};
+			})
+			.filter((request) => request !== undefined)
+			.filter((request) =>
+				filterRequest(
+					request,
+					{ ...defaultRequestFilters, q: filters.q },
+					new Date(),
+				),
+			)
+			.sort((a, b) => compareRequests(a, b, "recent", filters.q));
+	}, [catalog, entries.length, filters.q]);
 	const change = (key: keyof Filters, value: string) =>
 		setFilters((previous) => ({ ...previous, [key]: value }));
 	const select = (
@@ -288,6 +325,30 @@ export default function Explore({ catalog, metadata }: Props) {
 						Clear filters
 					</button>
 				</div>
+			)}
+			{matchingRequests.length > 0 && (
+				<section aria-labelledby="matching-requests" className="mt-8">
+					<h2 id="matching-requests">Matching Project Requests</h2>
+					<p>
+						Your search matches these community requests. These are wishes, not
+						existing implementations.
+					</p>
+					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+						{matchingRequests.map(({ request, target }) => (
+							<RequestCard
+								key={request.original}
+								original={target}
+								request={request}
+							/>
+						))}
+					</div>
+					<a
+						className="mt-4 inline-block text-sm text-lime hover:underline"
+						href={`/requests/?${new URLSearchParams({ q: filters.q })}`}
+					>
+						Search Project Requests →
+					</a>
+				</section>
 			)}
 			<SiteSearchResults query={filters.q} />
 			<div className="mt-8 flex flex-wrap items-center justify-between gap-4">

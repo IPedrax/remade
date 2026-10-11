@@ -25,7 +25,7 @@ Show software and interfaces that community members want faithfully reimplemente
 
 ## Layout
 
-- Homepage below Recently added: **Project Requests**: the first three open requests alphabetically by software name, **View all requests** link.
+- Homepage below Recently added: **Project Requests**: the three most recently added open requests, using catalog addition dates recorded in Git, **View all requests** link.
 - `/requests`: compact card grid with original target name, category, plain-text reason, optional suggested names labeled as naming ideas, reference URL, and contribution CTA.
 - `/software/[slug]`: when an open request exists, display a gentle **No implementation listed yet** state with **Help make it happen** pointing to contribution instructions.
 - When no requests exist, show a friendly empty state instead of fabricated cards.
