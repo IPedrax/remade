@@ -173,7 +173,7 @@ test("static catalog exports and discovery files are served by the production bu
 	expect((await request.get("/sitemap-index.xml")).ok()).toBe(true);
 });
 
-test("anonymous browsing never contacts the authentication API", async ({
+test("production browsing hides login and never contacts the authentication API", async ({
 	page,
 }) => {
 	const authRequests: string[] = [];
@@ -183,19 +183,16 @@ test("anonymous browsing never contacts the authentication API", async ({
 	});
 	await page.goto("/");
 	const login = page.getByRole("link", { name: "Login", exact: true });
-	await expect(login).toBeVisible();
-	await expect(login).toHaveAttribute(
-		"href",
-		"https://api.remade.wiki/api/v1/auth/github",
-	);
+	await expect(login).toHaveCount(0);
 	await page.getByRole("link", { name: "Explore", exact: true }).click();
 	await expect(
 		page.getByRole("link", { name: "Login", exact: true }),
-	).toBeVisible();
+	).toHaveCount(0);
 	expect(authRequests).toEqual([]);
 });
 
-test("invalid returning sessions clear the login hint", async ({
+// Restore production account flows when authentication is enabled in the header.
+test.fixme("invalid returning sessions clear the login hint", async ({
 	page,
 	context,
 }) => {
@@ -227,7 +224,7 @@ test("invalid returning sessions clear the login hint", async ({
 	).toBeVisible();
 });
 
-test("a returning account can log out from the mobile header", async ({
+test.fixme("a returning account can log out from the mobile header", async ({
 	page,
 	context,
 }) => {

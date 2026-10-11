@@ -1,7 +1,7 @@
 import * as v from "valibot";
 
 export const apiUrl = (
-	import.meta.env.PUBLIC_API_URL || "https://api.remade.wiki/api/v1"
+	import.meta.env.PUBLIC_REMADE_API_BASE_URL || "https://api.remade.wiki/api/v1"
 ).replace(/\/$/, "");
 
 const accountSchema = v.object({

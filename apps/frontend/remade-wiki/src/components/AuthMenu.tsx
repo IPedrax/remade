@@ -1,3 +1,4 @@
+import { LogIn } from "lucide-react";
 import { useEffect, useState } from "react";
 import Dropdown from "react-dropdown";
 import {
@@ -46,9 +47,10 @@ export default function AuthMenu() {
 	if (!account) {
 		return (
 			<a
-				className="inline-flex rounded-lg border border-line px-4 py-2 font-semibold hover:border-lime"
+				className="inline-flex items-center gap-2 rounded-lg border border-line px-4 py-3 font-semibold hover:border-lime"
 				href={`${apiUrl}/auth/github`}
 			>
+				<LogIn aria-hidden="true" size={16} />
 				Login
 			</a>
 		);

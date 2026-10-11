@@ -51,7 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 			Skip to content
 		</a>
 		<Header pathname={Astro.url.pathname}>
-			<AuthMenu client:load />
+			{import.meta.env.DEV && <AuthMenu client:load />}
 		</Header>
 		<main
 			class="mx-auto min-h-[65vh] max-w-[1180px] px-[18px] pb-[72px] sm:px-6"
