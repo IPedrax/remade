@@ -1,0 +1,80 @@
+name: Auth Worker Validation
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Auth Worker Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      # Always report the required check, even when backend work is unnecessary.
+      - name: Check backend inputs
+        id: changes
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ "$EVENT_NAME" = 'workflow_dispatch' ] || ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null; then
+            echo 'backend=true' >> "$GITHUB_OUTPUT"
+          elif [ -n "$(git diff --name-only "$BASE_SHA" HEAD -- apps/backend package.json pnpm-lock.yaml pnpm-workspace.yaml .github/workflows/backend.yml)" ]; then
+            echo 'backend=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'backend=false' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: pnpm/action-setup@v6.1.0
+        if: steps.changes.outputs.backend == 'true'
+      - uses: actions/setup-node@v7.1.0
+        if: steps.changes.outputs.backend == 'true'
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+        if: steps.changes.outputs.backend == 'true'
+      - uses: actions/cache@v6.1.0
+        if: steps.changes.outputs.backend == 'true'
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            ~/.cargo/bin/worker-build
+            ~/.cargo/.crates.toml
+            ~/.cargo/.crates2.json
+            apps/backend/target
+          key: auth-rust-${{ runner.os }}-1.99.0-worker-build-0.8.7-${{ hashFiles('apps/backend/Cargo.lock') }}-${{ github.sha }}
+          restore-keys: |
+            auth-rust-${{ runner.os }}-1.99.0-worker-build-0.8.7-${{ hashFiles('apps/backend/Cargo.lock') }}-
+      - name: Install Rust toolchain
+        if: steps.changes.outputs.backend == 'true'
+        run: rustup toolchain install 1.99.0 --profile minimal --component rustfmt --component clippy --target wasm32-unknown-unknown
+      - name: Rust formatting, lint and security tests
+        if: steps.changes.outputs.backend == 'true'
+        working-directory: apps/backend
+        run: |
+          cargo fmt --check
+          cargo clippy --locked --all-targets -- -D warnings
+          cargo clippy --locked --target wasm32-unknown-unknown -- -D warnings
+          cargo test --locked
+      - name: Build Wasm entrypoint
+        if: steps.changes.outputs.backend == 'true'
+        working-directory: apps/backend
+        run: |
+          cargo install worker-build --version 0.8.7 --locked
+          worker-build --release
+      - name: Fresh local D1 migration and Worker integration tests
+        if: steps.changes.outputs.backend == 'true'
+        run: |
+          pnpm exec biome check apps/backend/tests
+          pnpm exec wrangler d1 migrations apply DB --local --config apps/backend/wrangler.toml
+          pnpm exec vitest run --config apps/backend/tests/vitest.config.ts

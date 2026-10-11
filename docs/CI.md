@@ -1,6 +1,6 @@
 # Continuous Integration / Maintenance Plan
 
-No hosting, deployment, DNS, email-provider, or runtime service configuration is included in this project bundle.
+Catalog CI remains independent of deployment. Authentication Worker validation and manual Cloudflare setup are documented in [AUTH.md](AUTH.md); GitHub Actions never deploys the Worker or applies production migrations. Email-provider setup remains outside this project.
 
 For GitHub Issue Forms, create the labels `catalog-suggestion` and `project-request` before enabling submissions. These labels select the appropriate review rules.
 
@@ -16,6 +16,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Link-check failures are advisory and do not fail the workflow; setup and build failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
 3. `build.yml` (**App Build + Unit Tests**) always reports its required check, conditionally running Biome linting, frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup. Frontend, workspace, metadata-cache, Biome and build-workflow changes trigger validation; unrelated changes skip expensive steps without leaving a required check pending.
 4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
+5. `backend.yml` (**Auth Worker Validation**) always reports its check and conditionally validates changed backend/shared-tooling inputs. It runs Rust formatting, native and Wasm clippy, security tests, the official Wasm build, a fresh local D1 migration and Vitest tests against the compiled Worker with mocked GitHub. It needs no OAuth or production Cloudflare secrets.
 
 ## Issue suggestion and request checks
 
