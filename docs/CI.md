@@ -91,6 +91,8 @@ The initial package intentionally has no `scripts/uv.lock` because its dependenc
 
 ## Frontend tests
 
+Vitest configuration lives in `tests/vitest.config.ts` and `tests/vitest.react.config.ts`. The package scripts select each config explicitly; both keep the repository root as their working root for test and fixture paths.
+
 - `pnpm test`: runs the unit, React component and E2E suites in sequence.
 - `pnpm test:unit`: Vitest in Node for schemas, catalog relationships, exports, filtering and sorting.
 - `pnpm test:react`: `vitest-browser-react` component tests in headless Chromium through Vitest's Playwright provider. These mount components directly and use browser locators and interactions; they do not start the Astro site.
