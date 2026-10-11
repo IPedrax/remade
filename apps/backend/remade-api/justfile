@@ -18,8 +18,10 @@ check:
     cargo clippy --all-targets -- -D warnings
     cargo clippy --target wasm32-unknown-unknown -- -D warnings
 
-# Native security tests and actual Worker/D1 integration tests.
+# Generate deployment configuration from exported variables or an ignored .env file.
+configure:
+    node --env-file-if-exists=.env configure-wrangler.mjs
+
+# Native Rust security tests. Auth integration tests live in the frontend.
 test:
     cargo test --locked
-    worker-build --release
-    pnpm exec vitest run --config tests/vitest.config.ts

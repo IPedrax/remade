@@ -1,3 +1,5 @@
+# Local Worker runtime variables. Local D1 uses the DB binding in wrangler.toml.
+# Deployment database settings (D1_DATABASE_NAME and D1_DATABASE_ID) are in .env.example.
 GITHUB_CLIENT_ID=YOUR_DEVELOPMENT_OAUTH_APP_CLIENT_ID
 GITHUB_CLIENT_SECRET=YOUR_DEVELOPMENT_OAUTH_APP_CLIENT_SECRET
 FRONTEND_ORIGIN=http://localhost:4321

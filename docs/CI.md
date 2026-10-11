@@ -16,7 +16,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Link-check failures are advisory and do not fail the workflow; setup and build failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
 3. `frontend-test.yml` (**App Build + Unit Tests**) always reports its required check, conditionally running advisory Biome linting, required frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup. Frontend, workspace, metadata-cache, Biome and build-workflow changes trigger validation; unrelated changes skip expensive steps without leaving a required check pending.
 4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
-5. `backend.yml` (**Auth Worker Validation**) always reports its check and conditionally validates changed backend/shared-tooling inputs. It runs Rust formatting, native and Wasm clippy, security tests, the official Wasm build, a fresh local D1 migration and Vitest tests against the compiled Worker with mocked GitHub. It needs no OAuth or production Cloudflare secrets.
+5. `backend.yml` (**Auth Worker Validation**) always reports its check and conditionally validates changed backend/shared-tooling inputs. It runs Rust formatting, native and Wasm clippy, security tests, the official Wasm build and a fresh local D1 migration. Frontend-owned Worker/D1 integration tests run locally with `pnpm test:auth`. It needs no OAuth or production Cloudflare secrets.
 
 ## Issue suggestion and request checks
 
@@ -100,11 +100,12 @@ The initial package intentionally has no `scripts/uv.lock` because its dependenc
 
 ## Frontend tests
 
-Vitest configuration lives in `apps/frontend/remade-wiki/tests/vitest.config.ts` and `apps/frontend/remade-wiki/tests/vitest.react.config.ts`. The frontend package scripts select each config explicitly; both use `apps/frontend/remade-wiki/` as their working root for test and fixture paths. Root pnpm commands delegate to that workspace, so the existing just recipes still work.
+Vitest configuration lives in `apps/frontend/remade-wiki/tests/vitest.config.ts`, `apps/frontend/remade-wiki/tests/vitest.react.config.ts` and `apps/frontend/remade-wiki/tests/vitest.auth.config.ts`. The frontend package scripts select each config explicitly; all use `apps/frontend/remade-wiki/` as their working root for test and fixture paths. Root pnpm commands delegate to that workspace, so the existing just recipes still work.
 
-- `pnpm test`: runs the unit, React component and E2E suites in sequence.
+- `pnpm test`: runs the unit, React component, E2E and auth integration suites in sequence.
 - `pnpm test:unit`: Vitest in Node for schemas, catalog relationships, exports, filtering and sorting.
 - `pnpm test:react`: `vitest-browser-react` component tests in headless Chromium through Vitest's Playwright provider. These mount components directly and use browser locators and interactions; they do not start the Astro site.
+- `pnpm test:auth`: builds the Rust Worker, then runs frontend-owned Vitest auth integration tests against local workerd and D1 with mocked GitHub responses. Requires the backend toolchain; this suite runs locally.
 - `pnpm test:e2e`: builds Astro and Pagefind, then runs Playwright against the production preview server. It covers navigation, hydrated filtering, search fallbacks, static comparisons and generated data/discovery files.
 
 Install the local browser once with `pnpm --filter ./apps/frontend/remade-wiki exec playwright install chromium`. The two browser suites are separate from each other and from CI. Neither uses React Testing Library. React tests receive a serializable catalog loaded by the test configuration; frontend content collections remain the source of truth. Python tests continue to use pytest.

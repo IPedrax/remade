@@ -27,7 +27,7 @@ jobs:
         run: |
           if [ "$EVENT_NAME" = 'workflow_dispatch' ] || ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null; then
             echo 'backend=true' >> "$GITHUB_OUTPUT"
-          elif [ -n "$(git diff --name-only "$BASE_SHA" HEAD -- apps/backend package.json pnpm-lock.yaml pnpm-workspace.yaml .github/workflows/backend.yml)" ]; then
+          elif [ -n "$(git diff --name-only "$BASE_SHA" HEAD -- apps/backend/remade-api package.json pnpm-lock.yaml pnpm-workspace.yaml .github/workflows/backend.yml)" ]; then
             echo 'backend=true' >> "$GITHUB_OUTPUT"
           else
             echo 'backend=false' >> "$GITHUB_OUTPUT"
@@ -51,16 +51,16 @@ jobs:
             ~/.cargo/bin/worker-build
             ~/.cargo/.crates.toml
             ~/.cargo/.crates2.json
-            apps/backend/target
-          key: auth-rust-${{ runner.os }}-1.99.0-worker-build-0.8.7-${{ hashFiles('apps/backend/Cargo.lock') }}-${{ github.sha }}
+            apps/backend/remade-api/target
+          key: auth-rust-${{ runner.os }}-1.99.0-worker-build-0.8.7-${{ hashFiles('apps/backend/remade-api/Cargo.lock') }}-${{ github.sha }}
           restore-keys: |
-            auth-rust-${{ runner.os }}-1.99.0-worker-build-0.8.7-${{ hashFiles('apps/backend/Cargo.lock') }}-
+            auth-rust-${{ runner.os }}-1.99.0-worker-build-0.8.7-${{ hashFiles('apps/backend/remade-api/Cargo.lock') }}-
       - name: Install Rust toolchain
         if: steps.changes.outputs.backend == 'true'
         run: rustup toolchain install 1.99.0 --profile minimal --component rustfmt --component clippy --target wasm32-unknown-unknown
       - name: Rust formatting, lint and security tests
         if: steps.changes.outputs.backend == 'true'
-        working-directory: apps/backend
+        working-directory: apps/backend/remade-api
         run: |
           cargo fmt --check
           cargo clippy --locked --all-targets -- -D warnings
@@ -68,13 +68,11 @@ jobs:
           cargo test --locked
       - name: Build Wasm entrypoint
         if: steps.changes.outputs.backend == 'true'
-        working-directory: apps/backend
+        working-directory: apps/backend/remade-api
         run: |
           cargo install worker-build --version 0.8.7 --locked
           worker-build --release
-      - name: Fresh local D1 migration and Worker integration tests
+      - name: Fresh local D1 migration
         if: steps.changes.outputs.backend == 'true'
         run: |
-          pnpm exec biome check apps/backend/tests
-          pnpm exec wrangler d1 migrations apply DB --local --config apps/backend/wrangler.toml
-          pnpm exec vitest run --config apps/backend/tests/vitest.config.ts
+          pnpm exec wrangler d1 migrations apply DB --local --config apps/backend/remade-api/wrangler.toml

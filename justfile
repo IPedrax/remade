@@ -3,7 +3,7 @@
 set positional-arguments := true
 
 mod py "scripts/justfile"
-mod backend "apps/backend/justfile"
+mod backend "apps/backend/remade-api/justfile"
 
 # Show available commands.
 default:
@@ -33,7 +33,7 @@ check *args:
 format *args:
     pnpm format "$@"
 
-# Run all frontend suites (unit, component and E2E).
+# Run all frontend suites (unit, component, E2E and auth integration).
 test *args:
     pnpm test "$@"
 
@@ -48,6 +48,10 @@ test-react *args:
 # Build and run production E2E tests.
 test-e2e *args:
     pnpm test:e2e "$@"
+
+# Build the Worker and run local auth integration tests from the frontend.
+test-auth *args:
+    pnpm test:auth "$@"
 
 # Install or refresh local commit hooks.
 hooks-install:

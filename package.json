@@ -17,6 +17,7 @@
 		"test:unit": "pnpm --filter ./apps/frontend/remade-wiki test:unit",
 		"test:react": "pnpm --filter ./apps/frontend/remade-wiki test:react",
 		"test:e2e": "pnpm --filter ./apps/frontend/remade-wiki test:e2e",
+		"test:auth": "pnpm --filter ./apps/frontend/remade-wiki test:auth",
 		"prepare": "lefthook install"
 	},
 	"devDependencies": {

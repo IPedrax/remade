@@ -1,5 +1,5 @@
 import { createHash, createHmac } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 
@@ -27,7 +27,10 @@ beforeAll(async () => {
 							"index.js": {
 								type: "esm",
 								contents: await readFile(
-									new URL("../build/index.js", import.meta.url),
+									new URL(
+										"../../../../backend/remade-api/build/index.js",
+										import.meta.url,
+									),
 									"utf8",
 								),
 							},
@@ -35,7 +38,10 @@ beforeAll(async () => {
 								type: "wasm",
 								contents: new Uint8Array(
 									await readFile(
-										new URL("../build/index_bg.wasm", import.meta.url),
+										new URL(
+											"../../../../backend/remade-api/build/index_bg.wasm",
+											import.meta.url,
+										),
 									),
 								),
 							},
@@ -97,11 +103,19 @@ beforeAll(async () => {
 		],
 	});
 	const db = await worker.getD1Database("DB");
-	const sql = await readFile(
-		new URL("../migrations/0001_init_auth.sql", import.meta.url),
-		"utf8",
+	const migrations = new URL(
+		"../../../../backend/remade-api/migrations/",
+		import.meta.url,
 	);
-	await db.exec(sql.replaceAll(/--[^\n]*/g, "").replaceAll("\n", " "));
+	const filenames = (await readdir(migrations))
+		.filter((filename) => /^\d+_.+\.sql$/.test(filename))
+		.sort();
+
+	for (const filename of filenames) {
+		const sql = await readFile(new URL(filename, migrations), "utf8");
+
+		await db.exec(sql.replaceAll(/--[^\n]*/g, "").replaceAll("\n", " "));
+	}
 });
 
 beforeEach(async () => {
@@ -114,7 +128,7 @@ beforeEach(async () => {
 	});
 	const db = await worker.getD1Database("DB");
 	await db.batch([
-		db.prepare("DELETE FROM sessions"),
+		db.prepare("DELETE FROM user_sessions"),
 		db.prepare("DELETE FROM user_identities"),
 		db.prepare("DELETE FROM users"),
 	]);
@@ -242,7 +256,7 @@ describe("Worker OAuth and sessions", () => {
 		expect(replay.headers.getSetCookie()[0]).toContain("Max-Age=0");
 		const db = await worker.getD1Database("DB");
 		expect(
-			await db.prepare("SELECT count(*) FROM sessions").first("count(*)"),
+			await db.prepare("SELECT count(*) FROM user_sessions").first("count(*)"),
 		).toBe(1);
 	});
 
@@ -255,7 +269,7 @@ describe("Worker OAuth and sessions", () => {
 		const token = cookie.split("=")[1];
 		const db = await worker.getD1Database("DB");
 		const session = await db
-			.prepare("SELECT * FROM sessions")
+			.prepare("SELECT * FROM user_sessions")
 			.first<{ id: string; user_id: string; token_hash: string }>();
 		expect(session?.token_hash).toBe(
 			createHash("sha256").update(token).digest("hex"),
@@ -306,11 +320,11 @@ describe("Worker OAuth and sessions", () => {
 		).toBe(1);
 		expect(
 			await db
-				.prepare("SELECT count(DISTINCT user_id) FROM sessions")
+				.prepare("SELECT count(DISTINCT user_id) FROM user_sessions")
 				.first("count(DISTINCT user_id)"),
 		).toBe(1);
 		expect(
-			await db.prepare("SELECT count(*) FROM sessions").first("count(*)"),
+			await db.prepare("SELECT count(*) FROM user_sessions").first("count(*)"),
 		).toBe(2);
 	});
 
@@ -331,7 +345,7 @@ describe("Worker OAuth and sessions", () => {
 			).toBe(401);
 		}
 		await (await worker.getD1Database("DB"))
-			.prepare("UPDATE sessions SET expires_at = 1")
+			.prepare("UPDATE user_sessions SET expires_at = 1")
 			.run();
 		expect(
 			(

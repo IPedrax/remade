@@ -5,14 +5,13 @@ workers_dev = false
 routes = [{ pattern = "api.remade.wiki", custom_domain = true }]
 
 [vars]
-GITHUB_CLIENT_ID = "REPLACE_WITH_OAUTH_CLIENT_ID"
 FRONTEND_ORIGIN = "https://remade.wiki"
 API_ORIGIN = "https://api.remade.wiki"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "remade-auth"
-# Replace after explicitly creating the production database; local D1 needs no remote resource.
+database_name = "remade-db"
+# Local-only placeholder. Generated deployment config replaces this with D1_DATABASE_ID.
 database_id = "00000000-0000-0000-0000-000000000000"
 migrations_dir = "migrations"
 
