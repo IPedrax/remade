@@ -544,3 +544,13 @@
   url: https://www.ptc.com/en/products/mathcad/
   category: engineering
   aliases: [Mathcad, Mathcad Prime]
+- slug: ida-pro
+  name: IDA Pro
+  url: https://hex-rays.com/ida-pro
+  category: developer-tools
+  aliases: [Interactive Disassembler]
+- slug: archicad
+  name: Archicad
+  url: https://myarchicad.graphisoft.com/
+  category: engineering
+  aliases: [Graphisoft Archicad]

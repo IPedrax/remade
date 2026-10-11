@@ -1,0 +1,3 @@
+original: ida-pro
+reason: Reproduce IDA Pro's familiar interactive disassembly, decompilation, control-flow graphs, cross-references, type recovery, annotations, debugging and scripting workflows, with compatible analysis databases and extensibility for multiple processor architectures.
+suggested_names: [ReverseCraft]
