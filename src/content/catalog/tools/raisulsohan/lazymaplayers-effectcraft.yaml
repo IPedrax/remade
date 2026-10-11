@@ -1,0 +1,8 @@
+slug: lazymaplayers-effectcraft
+name: LazyMapLayers for EffectCraft
+authors: [raisulsohan]
+repository: https://github.com/raisulsohan/lazymaplayers-effectcraft
+url: https://github.com/raisulsohan/lazymaplayers-effectcraft
+platforms: [Windows, macOS, Linux]
+description: Adds LazyMapLayers' map design and animation panel to EffectCraft, with maps, routes, pins, labels, globe views and imagery. Uses a browser panel, a local Node.js companion and a scripting compatibility layer. Requires EffectCraft 0.8.0 or newer, Node.js 22 or newer, Edge or Chrome, and a separate LazyMapLayers checkout.
+projects: [effectcraft]
