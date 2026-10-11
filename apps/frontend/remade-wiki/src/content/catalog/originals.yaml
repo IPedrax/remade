@@ -771,3 +771,15 @@
   url: https://lightburnsoftware.com/collections/lightburn
   category: engineering
   aliases: [LightBurn Software]
+
+- slug: tmpgenc-mpeg-smart-renderer
+  name: TMPGEnc MPEG Smart Renderer
+  url: https://tmpgenc.pegasys-inc.com/en/product/tmsr6.html
+  category: creative
+  aliases: [TMPGEnc MPEG Smart Renderer 6]
+
+- slug: videoredo
+  name: VideoReDo
+  url: https://www.videoredo.com/
+  category: creative
+  aliases: [VideoReDo TVSuite, VideoReDo Plus]
