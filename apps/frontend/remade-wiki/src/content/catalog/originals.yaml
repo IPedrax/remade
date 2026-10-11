@@ -783,3 +783,33 @@
   url: https://www.videoredo.com/
   category: creative
   aliases: [VideoReDo TVSuite, VideoReDo Plus]
+
+- slug: ibm-spss-statistics
+  name: IBM SPSS Statistics
+  url: https://www.ibm.com/products/spss-statistics
+  category: engineering
+  aliases: [SPSS, SPSS Statistics]
+
+- slug: microsoft-sql-server
+  name: Microsoft SQL Server
+  url: https://www.microsoft.com/en-us/sql-server
+  category: developer-tools
+  aliases: [SQL Server, MSSQL]
+
+- slug: sql-server-management-studio
+  name: SQL Server Management Studio
+  url: https://learn.microsoft.com/en-us/ssms/sql-server-management-studio-ssms
+  category: developer-tools
+  aliases: [SSMS, Microsoft SQL Server Management Studio]
+
+- slug: eplan-electric-p8
+  name: EPLAN Electric P8
+  url: https://www.eplan.com/us-en/products/eplan-electric-p8/
+  category: engineering
+  aliases: [EPLAN P8]
+
+- slug: grandma3
+  name: grandMA3
+  url: https://www.malighting.com/special/grandma3-software/
+  category: creative
+  aliases: [Grand MA3, grandMA3 onPC]
