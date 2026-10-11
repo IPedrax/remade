@@ -10,7 +10,7 @@ Show software and interfaces that community members want faithfully reimplemente
 
 - Navigate to `/requests` from the homepage section.
 - Browse requested originals, their reference links, the reason for a remake and any suggested names.
-- Filter `/requests` by vendor, category and addition date (past 7, 30 or 90 days, or the past year). Sort newest first, oldest first or alphabetically. Filters are reflected in the URL and can be cleared; browsing remains available without JavaScript.
+- Search `/requests` by software name, aliases, suggested names, vendor or requested features. Filter by vendor, category and addition date (past 7, 30 or 90 days, or the past year). Sort newest first, oldest first or alphabetically. Search and filters are reflected in the URL and can be cleared; browsing remains available without JavaScript.
 - Select **Submit a request** to open `.github/ISSUE_TEMPLATE/project-request.yml` for a link-free suggestion; maintainers review it and accepted catalog entries still require a PR adding `src/content/catalog/requests/<vendor>/<original-slug>.yaml`; create an original in `src/content/catalog/originals.yaml` if needed.
 - Select **Know an implementation?** to submit `src/content/catalog/projects/<github-user>/<slug>.yaml` by PR instead.
 - No login on Remade, runtime comments, upvotes, or status claims. GitHub account required to open an Issue or PR.

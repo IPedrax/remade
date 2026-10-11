@@ -1,6 +1,7 @@
 import { isValid, isWithinInterval, parseISO, subDays } from "date-fns";
 
 export interface RequestFilters {
+	q: string;
 	vendor: string;
 	category: string;
 	added: string;
@@ -12,8 +13,12 @@ export interface BrowseRequest {
 	vendor: string;
 	category: string;
 	addedAt?: string;
+	aliases?: string[];
+	suggestedNames?: string[];
+	reason?: string;
 }
 export const defaultRequestFilters: RequestFilters = {
+	q: "",
 	vendor: "",
 	category: "",
 	added: "",
@@ -26,6 +31,22 @@ export function filterRequest(
 	filters: RequestFilters,
 	now: Date,
 ): boolean {
+	const terms = filters.q
+		.trim()
+		.toLocaleLowerCase()
+		.split(/\s+/)
+		.filter(Boolean);
+	const searchable = [
+		request.name,
+		request.original,
+		request.vendor.replaceAll("-", " "),
+		request.reason ?? "",
+		...(request.aliases ?? []),
+		...(request.suggestedNames ?? []),
+	]
+		.join(" ")
+		.toLocaleLowerCase();
+	if (!terms.every((term) => searchable.includes(term))) return false;
 	if (filters.vendor && request.vendor !== filters.vendor) return false;
 	if (filters.category && request.category !== filters.category) return false;
 	if (filters.added) {

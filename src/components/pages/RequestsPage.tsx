@@ -29,6 +29,7 @@ export default function RequestsPage({ catalog }: Props) {
 			const added = params.get("added") ?? "";
 			const sort = params.get("sort") ?? "recent";
 			setFilters({
+				q: params.get("q") ?? "",
 				vendor,
 				category,
 				added: addedPeriods.some((period) => period === added) ? added : "",
@@ -43,7 +44,7 @@ export default function RequestsPage({ catalog }: Props) {
 	useEffect(() => {
 		if (!ready) return;
 		const params = new URLSearchParams();
-		for (const key of ["vendor", "category", "added", "sort"] as const)
+		for (const key of ["q", "vendor", "category", "added", "sort"] as const)
 			if (filters[key] && filters[key] !== defaultRequestFilters[key])
 				params.set(key, filters[key]);
 		history.replaceState(
@@ -63,6 +64,9 @@ export default function RequestsPage({ catalog }: Props) {
 					category: original.category,
 					vendor: request.vendor,
 					addedAt: request.addedAt,
+					aliases: original.aliases,
+					suggestedNames: request.suggested_names,
+					reason: request.reason,
 				};
 			}),
 		[catalog],
@@ -154,6 +158,17 @@ export default function RequestsPage({ catalog }: Props) {
 							className="mb-6 border-b border-line pb-6"
 							onSubmit={(event) => event.preventDefault()}
 						>
+							<label className="mb-4 block text-xs">
+								Search requests
+								<input
+									className="mt-1.5 w-full bg-canvas px-3 py-2 text-sm"
+									name="q"
+									onChange={(event) => change("q", event.target.value)}
+									placeholder="Software, suggested name, vendor or features"
+									type="search"
+									value={filters.q}
+								/>
+							</label>
 							<div className="grid grid-cols-1 gap-3 min-[600px]:grid-cols-3">
 								{select("vendor", "Vendor", [
 									{ value: "", text: "All vendors" },

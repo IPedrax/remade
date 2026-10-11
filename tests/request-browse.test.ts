@@ -17,6 +17,29 @@ const request: BrowseRequest = {
 	addedAt: "2026-10-05T12:00:00Z",
 };
 
+test("request search matches names, aliases, suggestions and features while combining filters", () => {
+	const item = {
+		...request,
+		aliases: ["Legacy Title"],
+		suggestedNames: ["ExampleCraft"],
+		reason: "Compatible brush workflows",
+	};
+	for (const q of [" EXAMPLE ", "legacy title", "examplecraft", "adobe brush"])
+		assert.ok(filterRequest(item, { ...defaultRequestFilters, q }, now));
+	assert.equal(
+		filterRequest(item, { ...defaultRequestFilters, q: "missing" }, now),
+		false,
+	);
+	assert.equal(
+		filterRequest(
+			item,
+			{ ...defaultRequestFilters, q: "Example", vendor: "apple" },
+			now,
+		),
+		false,
+	);
+});
+
 test("request filters combine vendor, category and addition period", () => {
 	assert.ok(
 		filterRequest(
