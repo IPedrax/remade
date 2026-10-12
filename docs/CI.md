@@ -108,4 +108,6 @@ Vitest configuration lives in `apps/frontend/remade-wiki/tests/vitest.config.ts`
 - `pnpm test:auth`: builds the Rust Worker, then runs frontend-owned Vitest auth integration tests against local workerd and D1 with mocked GitHub responses. Requires the backend toolchain; this suite runs locally.
 - `pnpm test:e2e`: builds Astro and Pagefind, then runs Playwright using `apps/frontend/remade-wiki/tests/playwright.config.ts` against the production preview server. It covers navigation, hydrated filtering, search fallbacks, static comparisons and generated data/discovery files.
 
+The frontend `astro check` excludes `tests/auth/**`. Worker integration tests run separately from frontend application checks; the frontend CI workflow does not build or run the Worker.
+
 Install the local browser once with `pnpm --filter ./apps/frontend/remade-wiki exec playwright install chromium`. The two browser suites are separate from each other and from CI. Neither uses React Testing Library. React tests receive a serializable catalog loaded by the test configuration; frontend content collections remain the source of truth. Python tests continue to use pytest.
