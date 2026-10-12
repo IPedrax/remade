@@ -1,5 +1,14 @@
 {
   "repositories": {
+    "automattic/harper": {
+      "fetchedAt": "2026-10-12T05:52:30Z",
+      "forks": 712,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-11T11:56:38Z",
+      "stars": 16302
+    },
     "bherbruck/solidcraft": {
       "fetchedAt": "2026-10-11T21:58:07Z",
       "forks": 40,
