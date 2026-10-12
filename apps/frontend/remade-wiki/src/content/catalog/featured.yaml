@@ -2,7 +2,7 @@
 # Use project or tool slugs already defined in their respective catalog directories.
 # Contributors should not add themselves here; entries are selected by maintainers.
 - photocraft
-- vectorcraft
 - solidcraft
 - openplayground
 - flare-animate
+- markupcraft
