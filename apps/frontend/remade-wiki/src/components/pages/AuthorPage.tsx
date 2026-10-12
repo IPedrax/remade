@@ -1,7 +1,7 @@
 import type { CatalogData, Metadata } from "../../lib/catalog";
 
 import { metadataFor } from "../../lib/presentation";
-import EntryCard from "../EntryCard";
+import EntryCard from "../catalog/EntryCard";
 
 interface Props {
 	user: string;

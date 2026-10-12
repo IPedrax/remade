@@ -1,4 +1,4 @@
-import { contributeUrl, repositoryUrl } from "../lib/presentation";
+import { contributeUrl, repositoryUrl } from "../../lib/presentation";
 
 export default function Footer() {
 	return (

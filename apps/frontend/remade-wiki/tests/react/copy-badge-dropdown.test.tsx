@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
-import BadgeShare from "../../src/components/BadgeShare";
+import CopyBadgeDropdown from "../../src/components/badges/CopyBadgeDropdown";
 import { badgeSnippets } from "../../src/lib/badges";
 
 const projectUrl = "https://remade.wiki/projects/solidcraft/";
@@ -16,7 +16,7 @@ afterEach(() => {
 
 describe("badge sharing", () => {
 	it("copies dark Markdown and announces success", async () => {
-		const screen = await render(<BadgeShare projectUrl={projectUrl} />);
+		const screen = await render(<CopyBadgeDropdown projectUrl={projectUrl} />);
 
 		await screen
 			.getByRole("button", { name: "Copy Markdown", exact: true })
@@ -36,7 +36,7 @@ describe("badge sharing", () => {
 			new Error("Clipboard denied"),
 		);
 
-		const screen = await render(<BadgeShare projectUrl={projectUrl} />);
+		const screen = await render(<CopyBadgeDropdown projectUrl={projectUrl} />);
 
 		await screen
 			.getByRole("button", { name: "Copy Markdown", exact: true })
@@ -54,7 +54,7 @@ describe("badge sharing", () => {
 	});
 
 	it("keeps command order, separates variants and resets after selection", async () => {
-		const screen = await render(<BadgeShare projectUrl={projectUrl} />);
+		const screen = await render(<CopyBadgeDropdown projectUrl={projectUrl} />);
 		const trigger = screen.getByRole("combobox", {
 			name: "More badge copy options",
 		});
@@ -111,7 +111,9 @@ describe("badge sharing", () => {
 	] as const)(
 		"copies %s while keeping dark Markdown as the primary action",
 		async (label, format) => {
-			const screen = await render(<BadgeShare projectUrl={projectUrl} />);
+			const screen = await render(
+				<CopyBadgeDropdown projectUrl={projectUrl} />,
+			);
 
 			await screen
 				.getByRole("combobox", { name: "More badge copy options" })
@@ -134,7 +136,7 @@ describe("badge sharing", () => {
 	);
 
 	it("supports keyboard selection and Escape dismissal", async () => {
-		const screen = await render(<BadgeShare projectUrl={projectUrl} />);
+		const screen = await render(<CopyBadgeDropdown projectUrl={projectUrl} />);
 		const trigger = screen.getByRole("combobox", {
 			name: "More badge copy options",
 		});

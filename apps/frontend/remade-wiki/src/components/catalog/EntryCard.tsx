@@ -7,8 +7,8 @@ import {
 	type Metadata,
 	relativeDate,
 	shortDate,
-} from "../lib/presentation";
-import type { Original, Project } from "../lib/schemas";
+} from "../../lib/presentation";
+import type { Original, Project } from "../../lib/schemas";
 import Authors from "./Authors";
 import CardDescription from "./CardDescription";
 import OriginalLinks from "./OriginalLinks";

@@ -30,7 +30,7 @@ Implement focus and hover states, ensure accessible contrast, and make the inter
 
 Use React components for the UI and Tailwind utility classes for layout, spacing, typography, responsive behavior, and component states. Keep global CSS to theme tokens and base defaults. Astro owns static routes and document metadata. Hydrate React only for browser interactions; static React components do not send a React runtime to visitors. Format source with Biome.
 
-Authentication sits at the far right of the header: a compact **Login** link when signed out, or an avatar dropdown with the account name and **Logout** when signed in. Hydrate only this small island; anonymous browsing makes no auth API calls. Keep the account dropdown in `UserDropdown`: an avatar and chevron trigger, a separated identity section with display name and GitHub handle, and a Logout button with a Lucide icon. Support outside-click dismissal, Escape with focus restoration, and keyboard navigation. Preserve keyboard focus and mobile wrapping. See `AUTH.md` for the authentication boundary.
+Authentication sits at the far right of the header: a compact **Login** link when signed out, or an initial-based dropdown with the account name and **Logout** when signed in. Hydrate only this small island; anonymous browsing makes no auth API calls. Keep the account dropdown in `UserDropdown`: an uppercase account initial in a circle and a chevron trigger, a separated identity section with display name and GitHub handle, and a Logout button with a Lucide icon. Use `react-dropdown` for open state, outside-click dismissal, Escape and keyboard navigation; customize its trigger, group heading and Logout option. Preserve keyboard focus and mobile wrapping. See `AUTH.md` for the authentication boundary.
 
 ### Source readability
 
@@ -46,7 +46,7 @@ Authentication sits at the far right of the header: a compact **Login** link whe
 - Max content width approximately 1100–1200px; reading sections narrower.
 - Responsive project cards: 1 column small screens, 2 on tablets, 3 on desktop.
 - Usable down to 320px width; cards should not truncate vital project names.
-- Keep card rows equal in height, allowing enough room for six description lines when needed even when headings or author links wrap. Show descriptions in full when they fit the available space; truncate only at the card boundary and show a subtle “Read more…” link only for overflowing descriptions. Preserve full project names and keep author links or suggested names at the bottom.
+- Keep card rows equal in height, allowing enough room for six description lines when needed even when headings or author links wrap. Bound the description preview to six lines plus room for its link so long text cannot expand automatically sized grid rows. Show descriptions in full when they fit the preview boundary; truncate overflowing descriptions and show a subtle “Read more…” link only when there is more text. Preserve full project names and keep author links or suggested names at the bottom.
 
 ## Home page sections (ordered)
 
@@ -70,7 +70,7 @@ Authentication sits at the far right of the header: a compact **Login** link whe
 ### Listed on Remade badges
 
 - The dark and light SVG badges are 127 × 20; the single Classic variant at `/badges/listed-on-remade-classic.svg` is 115 × 20. Preserve the SVG assets unchanged and use their native dimensions in HTML snippets. `/about/badges` previews all three variants and documents badge usage.
-- Individual project and tool detail pages include a Share this project or Share this tool section, a dark badge preview and an About Remade badges link beside the heading and beneath the controls. Reuse `BadgeShareSection` for the static layout. Hydrate only `BadgeShare` for the split Copy Markdown button and `react-dropdown` commands: HTML, BBCode, separator, light Markdown, HTML and BBCode, then another separator and Classic Markdown, HTML and BBCode. The primary button always copies dark Markdown. Keep the trigger unchanged after selecting a command.
+- Individual project and tool detail pages include a Share this project or Share this tool section, a dark badge preview and an About Remade badges link beside the heading and beneath the controls. Reuse `BadgeShareSection` for the static layout. Hydrate only `CopyBadgeDropdown` for the split Copy Markdown button and `react-dropdown` commands: HTML, BBCode, separator, light Markdown, HTML and BBCode, then another separator and Classic Markdown, HTML and BBCode. The primary button always copies dark Markdown. Keep the trigger unchanged after selecting a command.
 - Generate snippets from the page's canonical URL, escape HTML attributes, announce clipboard success or failure, and offer a selectable snippet if copying fails. Support keyboard navigation, Escape dismissal and visible focus.
 - Badges indicate a directory listing, not an audit, certification or endorsement. Link project badges to their canonical `/projects/...` URL and tool badges to their canonical `/tools/...` URL. Do not add sharing controls to cards, software pages or requests.
 

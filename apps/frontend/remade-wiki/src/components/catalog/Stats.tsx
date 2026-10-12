@@ -3,7 +3,7 @@ import {
 	type Metadata,
 	relativeDate,
 	shortDate,
-} from "../lib/presentation";
+} from "../../lib/presentation";
 
 interface Props {
 	metadata?: Metadata;

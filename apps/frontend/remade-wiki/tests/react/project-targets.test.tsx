@@ -1,6 +1,6 @@
 import { describe, expect, inject, it } from "vitest";
 import { render } from "vitest-browser-react";
-import EntryCard from "../../src/components/EntryCard";
+import EntryCard from "../../src/components/catalog/EntryCard";
 import ProjectPage from "../../src/components/pages/ProjectPage";
 import SoftwarePage from "../../src/components/pages/SoftwarePage";
 import { findBySlug } from "../../src/lib/presentation";

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import ProjectComparison from "../../src/components/ProjectComparison";
+import ProjectComparison from "../../src/components/catalog/ProjectComparison";
 import { shortDate } from "../../src/lib/presentation";
 import { project, second, stats } from "../fixtures/comparison";
 

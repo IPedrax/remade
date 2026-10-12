@@ -15,8 +15,8 @@ import {
 	matchingImplementations,
 	type RequestFilters,
 } from "../../lib/request-browse";
-import EntryCard from "../EntryCard";
-import RequestCard from "../RequestCard";
+import EntryCard from "../catalog/EntryCard";
+import RequestCard from "../catalog/RequestCard";
 
 interface Props {
 	catalog: Pick<CatalogData, "originals" | "requests" | "entries">;

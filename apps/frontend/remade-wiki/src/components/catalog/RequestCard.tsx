@@ -1,4 +1,4 @@
-import type { Original, Request } from "../lib/schemas";
+import type { Original, Request } from "../../lib/schemas";
 import CardDescription from "./CardDescription";
 
 interface Props {

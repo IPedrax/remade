@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import type { Entry, Metadata } from "../lib/catalog";
+import type { Entry, Metadata } from "../../lib/catalog";
 import {
 	formatStars,
 	label,
 	metadataFor,
 	relativeDate,
 	shortDate,
-} from "../lib/presentation";
+} from "../../lib/presentation";
 
 type ProjectEntry = Extract<Entry, { kind: "project" }>;
 

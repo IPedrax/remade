@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import type { Original, Project } from "../lib/schemas";
+import type { Original, Project } from "../../lib/schemas";
 
 export default function OriginalLinks({
 	project,

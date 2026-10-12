@@ -1,5 +1,5 @@
 ---
-import BadgeShare from "../../components/BadgeShare";
+import CopyBadgeDropdown from "../../components/badges/CopyBadgeDropdown";
 import ProjectPage from "../../components/pages/ProjectPage";
 import Layout from "../../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../../lib/catalog";
@@ -20,6 +20,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
 <Layout description={project.description} index title={project.name}>
 	<ProjectPage catalog={catalog} metadata={metadata} project={project}>
-		<BadgeShare projectUrl={canonical} client:load />
+		<CopyBadgeDropdown projectUrl={canonical} client:load />
 	</ProjectPage>
 </Layout>

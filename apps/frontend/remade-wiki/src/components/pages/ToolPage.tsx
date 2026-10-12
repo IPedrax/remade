@@ -7,11 +7,11 @@ import {
 	metadataFor,
 } from "../../lib/presentation";
 import type { Tool } from "../../lib/schemas";
-import Authors from "../Authors";
-import BadgeShareSection from "../BadgeShareSection";
-import EntryCard from "../EntryCard";
-import RepositoryMirrors from "../RepositoryMirrors";
-import Stats from "../Stats";
+import BadgeShareSection from "../badges/BadgeShareSection";
+import Authors from "../catalog/Authors";
+import EntryCard from "../catalog/EntryCard";
+import RepositoryMirrors from "../catalog/RepositoryMirrors";
+import Stats from "../catalog/Stats";
 
 interface Props {
 	tool: Tool;

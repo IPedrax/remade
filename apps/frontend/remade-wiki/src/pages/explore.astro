@@ -1,5 +1,5 @@
 ---
-import Explore from "../components/Explore";
+import ExplorePage from "../components/pages/ExplorePage";
 import Layout from "../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../lib/catalog";
 
@@ -8,5 +8,5 @@ const metadata = await loadMetadata();
 ---
 
 <Layout title="Explore">
-	<Explore catalog={catalog} metadata={metadata} client:load />
+	<ExplorePage catalog={catalog} metadata={metadata} client:load />
 </Layout>

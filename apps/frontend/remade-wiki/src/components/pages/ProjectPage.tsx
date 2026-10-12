@@ -2,12 +2,12 @@ import type { ReactNode } from "react";
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import { findBySlug, label, metadataFor } from "../../lib/presentation";
 import type { Project } from "../../lib/schemas";
-import Authors from "../Authors";
-import BadgeShareSection from "../BadgeShareSection";
-import EntryCard from "../EntryCard";
-import OriginalLinks from "../OriginalLinks";
-import RepositoryMirrors from "../RepositoryMirrors";
-import Stats from "../Stats";
+import BadgeShareSection from "../badges/BadgeShareSection";
+import Authors from "../catalog/Authors";
+import EntryCard from "../catalog/EntryCard";
+import OriginalLinks from "../catalog/OriginalLinks";
+import RepositoryMirrors from "../catalog/RepositoryMirrors";
+import Stats from "../catalog/Stats";
 
 interface Props {
 	project: Project;

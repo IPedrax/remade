@@ -37,7 +37,7 @@
 	p {
 		@apply mb-4 text-muted;
 	}
-	section {
+	main section {
 		@apply mt-16;
 	}
 	dt {

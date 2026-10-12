@@ -8,16 +8,16 @@ import {
 	recent,
 	repositoryUrl,
 } from "../../lib/presentation";
-import EntryCard from "../EntryCard";
-import RequestCard from "../RequestCard";
-import Search from "../Search";
+import EntryCard from "../catalog/EntryCard";
+import RequestCard from "../catalog/RequestCard";
+import Search from "../search/Search";
 
 interface Props {
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
 }
 
-export default function Home({ catalog, metadata }: Props) {
+export default function HomePage({ catalog, metadata }: Props) {
 	const featured = catalog.featured.map((slug) =>
 		findBySlug(catalog.entries, slug),
 	);

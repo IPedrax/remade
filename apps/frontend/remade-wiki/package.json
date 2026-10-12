@@ -16,7 +16,7 @@
 		"test": "pnpm test:unit && pnpm test:react && pnpm test:e2e && pnpm test:auth",
 		"test:unit": "vitest run --config tests/vitest.config.ts",
 		"test:react": "vitest run --config tests/vitest.react.config.ts",
-		"test:e2e": "pnpm build && playwright test",
+		"test:e2e": "pnpm build && playwright test --config tests/playwright.config.ts",
 		"test:auth": "vitest run --config tests/vitest.auth.config.ts"
 	},
 	"dependencies": {
@@ -35,7 +35,8 @@
 		"sonner": "^2.0.8",
 		"tailwindcss": "^4.3.3",
 		"valibot": "^1.5.0",
-		"yaml": "^2.9.1"
+		"yaml": "^2.9.1",
+		"zustand": "^5.0.15"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.10",

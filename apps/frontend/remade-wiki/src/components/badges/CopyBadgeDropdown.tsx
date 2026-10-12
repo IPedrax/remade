@@ -4,7 +4,7 @@ import {
 	type BadgeFormat,
 	type BadgeVariant,
 	badgeSnippets,
-} from "../lib/badges";
+} from "../../lib/badges";
 
 const options: DropdownEntry[] = [
 	{ value: "dark:html", label: "Copy HTML" },
@@ -57,7 +57,7 @@ interface Props {
 	projectUrl: string;
 }
 
-export default function BadgeShare({ projectUrl }: Props) {
+export default function CopyBadgeDropdown({ projectUrl }: Props) {
 	const [message, setMessage] = useState("");
 	const [failedSnippet, setFailedSnippet] = useState("");
 	const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);

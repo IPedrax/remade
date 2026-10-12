@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
-import AuthMenu from "../components/AuthMenu";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import AuthMenu from "../components/auth/AuthMenu";
+import Footer from "../components/navigation/Footer";
+import Header from "../components/navigation/Header";
 
 interface Props {
 	title: string;
@@ -51,7 +51,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 			Skip to content
 		</a>
 		<Header pathname={Astro.url.pathname}>
-			{import.meta.env.DEV && <AuthMenu client:load />}
+			{import.meta.env.DEV && (
+				<div class="h-[46px] w-[104px] shrink-0" data-auth-host>
+					<AuthMenu client:load />
+				</div>
+			)}
 		</Header>
 		<main
 			class="mx-auto min-h-[65vh] max-w-[1180px] px-[18px] pb-[72px] sm:px-6"

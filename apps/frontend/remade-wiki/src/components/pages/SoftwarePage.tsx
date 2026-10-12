@@ -1,8 +1,8 @@
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import { contributeUrl, label, metadataFor } from "../../lib/presentation";
 import type { Original } from "../../lib/schemas";
-import EntryCard from "../EntryCard";
-import ProjectComparison from "../ProjectComparison";
+import EntryCard from "../catalog/EntryCard";
+import ProjectComparison from "../catalog/ProjectComparison";
 
 interface Props {
 	original: Original;

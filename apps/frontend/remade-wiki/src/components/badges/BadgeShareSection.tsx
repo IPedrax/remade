@@ -1,6 +1,6 @@
 import { Info } from "lucide-react";
 import type { ReactNode } from "react";
-import { badgePath } from "../lib/badges";
+import { badgePath } from "../../lib/badges";
 
 interface Props {
 	title?: string;

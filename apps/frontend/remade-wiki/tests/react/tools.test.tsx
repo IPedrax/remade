@@ -1,8 +1,8 @@
 import { describe, expect, inject, it } from "vitest";
 import { render } from "vitest-browser-react";
-import EntryCard from "../../src/components/EntryCard";
+import EntryCard from "../../src/components/catalog/EntryCard";
+import RepositoryMirrors from "../../src/components/catalog/RepositoryMirrors";
 import ToolPage from "../../src/components/pages/ToolPage";
-import RepositoryMirrors from "../../src/components/RepositoryMirrors";
 import { findBySlug } from "../../src/lib/presentation";
 
 const catalog = inject("catalog");

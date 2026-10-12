@@ -2,7 +2,7 @@ import { toast } from "sonner";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
-import AuthMenu from "../../src/components/AuthMenu";
+import AuthMenu from "../../src/components/auth/AuthMenu";
 import * as auth from "../../src/lib/auth";
 
 vi.mock("../../src/lib/auth", { spy: true });
@@ -37,7 +37,7 @@ describe("header authentication", () => {
 		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
 		const screen = await render(<AuthMenu />);
 		await screen
-			.getByRole("button", { name: "Account menu for Example User" })
+			.getByRole("combobox", { name: "Account menu for Example User" })
 			.click();
 		await expect
 			.element(screen.getByText("Example User", { exact: true }))
@@ -80,19 +80,47 @@ describe("header authentication", () => {
 		expect(toast.success).not.toHaveBeenCalled();
 	});
 
-	it("leaves public navigation usable when the API is unavailable", async () => {
+	it("does not show Login while a returning session is being checked", async () => {
 		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
-		vi.mocked(auth.resolveAccount).mockRejectedValue(new Error("Offline"));
+		let confirmAccount: (account: auth.Account | null) => void = () => {};
+		vi.mocked(auth.resolveAccount).mockReturnValue(
+			new Promise((resolve) => {
+				confirmAccount = resolve;
+			}),
+		);
+
 		const screen = await render(<AuthMenu />);
 		await expect
 			.element(screen.getByRole("link", { name: "Login" }))
+			.not.toBeInTheDocument();
+
+		confirmAccount(account);
+
+		await expect
+			.element(
+				screen.getByRole("combobox", { name: "Account menu for Example User" }),
+			)
 			.toBeVisible();
+		await expect
+			.element(screen.getByRole("link", { name: "Login" }))
+			.not.toBeInTheDocument();
+	});
+
+	it("does not treat an unavailable API as a signed-out session", async () => {
+		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
+		vi.mocked(auth.resolveAccount).mockRejectedValue(new Error("Offline"));
+		const screen = await render(<AuthMenu />);
+
+		await expect.poll(() => auth.resolveAccount).toHaveBeenCalledOnce();
+		await expect
+			.element(screen.getByRole("link", { name: "Login" }))
+			.not.toBeInTheDocument();
 	});
 
 	it("opens and dismisses the account menu with the keyboard", async () => {
 		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
 		const screen = await render(<AuthMenu />);
-		const trigger = screen.getByRole("button", {
+		const trigger = screen.getByRole("combobox", {
 			name: "Account menu for Example User",
 		});
 		await expect.element(trigger).toBeVisible();
@@ -109,7 +137,7 @@ describe("header authentication", () => {
 		vi.mocked(auth.logout).mockRejectedValue(new Error("Offline"));
 		const screen = await render(<AuthMenu />);
 		await screen
-			.getByRole("button", { name: "Account menu for Example User" })
+			.getByRole("combobox", { name: "Account menu for Example User" })
 			.click();
 		await screen.getByText("Logout", { exact: true }).click();
 		await expect
@@ -118,7 +146,7 @@ describe("header authentication", () => {
 		expect(toast.success).not.toHaveBeenCalled();
 		await expect
 			.element(
-				screen.getByRole("button", { name: "Account menu for Example User" }),
+				screen.getByRole("combobox", { name: "Account menu for Example User" }),
 			)
 			.toBeVisible();
 	});

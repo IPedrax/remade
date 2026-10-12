@@ -22,6 +22,11 @@ function fitDescription(container: HTMLElement) {
 	const lineHeight = Number.parseFloat(getComputedStyle(text).lineHeight);
 	const linkSpace =
 		link.offsetHeight + Number.parseFloat(getComputedStyle(link).marginTop);
+	// Bound the preview before measuring overflow; auto-sized grid rows otherwise
+	// grow to fit the entire description and never trigger Read more.
+	const maximumPreviewHeight = lineHeight * 6 + linkSpace;
+	container.style.maxHeight = `${maximumPreviewHeight}px`;
+
 	const fullHeight = text.scrollHeight;
 	const card = container.closest("article");
 

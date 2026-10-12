@@ -1,5 +1,5 @@
 ---
-import Home from "../components/pages/Home";
+import HomePage from "../components/pages/HomePage";
 import Layout from "../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../lib/catalog";
 
@@ -8,5 +8,5 @@ const metadata = await loadMetadata();
 ---
 
 <Layout title="Remade Directory">
-	<Home catalog={catalog} metadata={metadata} />
+	<HomePage catalog={catalog} metadata={metadata} />
 </Layout>

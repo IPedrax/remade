@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import remadeMark from "../assets/logos/remade-mark.svg?url";
-import { contributeUrl, repositoryUrl } from "../lib/presentation";
+import remadeMark from "../../assets/logos/remade-mark.svg?url";
+import { contributeUrl, repositoryUrl } from "../../lib/presentation";
 
 interface Props {
 	pathname: string;

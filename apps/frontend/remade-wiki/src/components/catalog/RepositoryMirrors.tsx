@@ -1,4 +1,4 @@
-import { contributeUrl } from "../lib/presentation";
+import { contributeUrl } from "../../lib/presentation";
 
 export default function RepositoryMirrors({ mirrors }: { mirrors?: string[] }) {
 	return (
