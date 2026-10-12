@@ -20,6 +20,7 @@ async fn fetch(req: Request, env: Env, _ctx: Context) -> Result<Response> {
     };
     let origin = req.headers().get("Origin")?;
     let result = if config.local && req.url()?.origin().ascii_serialization() != config.api {
+        console_error!("Auth configuration: request origin does not match API_ORIGIN");
         Response::error("Authentication unavailable", 503)
     } else {
         route(&req, &env, &config).await

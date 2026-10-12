@@ -10,10 +10,20 @@ pub struct Config {
 
 impl Config {
     pub fn load(env: &Env) -> Result<Self> {
-        Self::parse(
-            &env.var("FRONTEND_ORIGIN")?.to_string(),
-            &env.var("API_ORIGIN")?.to_string(),
-        )
+        let frontend = env.var("FRONTEND_ORIGIN").map_err(|_| {
+            worker::console_error!(
+                "Auth configuration: FRONTEND_ORIGIN binding is missing or invalid"
+            );
+            unavailable()
+        })?;
+        let api = env.var("API_ORIGIN").map_err(|_| {
+            worker::console_error!("Auth configuration: API_ORIGIN binding is missing or invalid");
+            unavailable()
+        })?;
+        Self::parse(&frontend.to_string(), &api.to_string()).map_err(|error| {
+            worker::console_error!("Auth configuration: expected paired HTTP localhost origins or the production HTTPS origins, without paths");
+            error
+        })
     }
 
     pub fn parse(frontend: &str, api: &str) -> Result<Self> {
