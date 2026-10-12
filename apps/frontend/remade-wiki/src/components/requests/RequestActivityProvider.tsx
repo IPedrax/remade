@@ -13,8 +13,6 @@ export default function RequestActivityProvider({
 	const [store] = useState(createRequestActivityStore);
 
 	useEffect(() => {
-		if (!import.meta.env.DEV) return;
-
 		const controller = new AbortController();
 		const load = () => void store.getState().load(controller.signal);
 		load();
@@ -39,7 +37,7 @@ function ActivityNotice() {
 		state.messageOriginal ? "" : state.message,
 	);
 
-	if (!import.meta.env.DEV || !message) return null;
+	if (!message) return null;
 
 	return (
 		<p className="rounded-lg border border-line p-3 text-sm" role="status">

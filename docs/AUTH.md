@@ -8,7 +8,7 @@ The header uses a provider-scoped Zustand store in `src/stores/auth-store.ts` fo
 
 The header uses Sonner to confirm successful sign-in with “Logged in as [GitHub username]” and successful sign-out with “Logged out”. A short-lived session-storage marker survives the OAuth redirect so returning page loads do not repeat the sign-in toast. Toasts appear only after the API confirms success; unavailable browser storage does not block login.
 
-The header authentication controls are currently enabled only during development (`import.meta.env.DEV`). Production builds hide them until the login rollout is enabled. Local React and Worker integration tests remain available; production E2E account flows are temporarily marked pending.
+Header login and account controls, request upvotes and builder indications are enabled in development and production. Local React and Worker integration tests remain available; production acceptance still requires a real OAuth login and logout against the deployed Worker.
 
 ## Local development
 
@@ -58,6 +58,6 @@ GitHub Actions validates the backend; it does not deploy, access production auth
 - The non-secret `remade_login_hint` cookie is readable by the frontend across remade.wiki subdomains, but never grants access. Without it, anonymous page loads make **zero** auth API requests. With it, the small header island resolves the current account once on mount. The server-rendered header starts in a checking state and reserves an invisible fixed-size header slot until the browser determines session state. Without a hint it shows Login immediately after hydration; with a hint it waits for account lookup. Only a confirmed signed-out state shows Login, and lookup failures leave the controls hidden rather than flashing Login. An invalid session clears the hint. There is no polling or health check; API failure leaves the directory usable.
 - Credentialed CORS allows only the configured frontend origin. Public catalog JSON retains its separate static export and wildcard CORS rules.
 
-Production acceptance remains manual: test a real OAuth login and logout after DNS, Worker deployment, D1 migration and runtime credentials are configured. Check cookies, `/me`, CORS, the mobile header and zero authentication API requests from a fresh anonymous browser (development request counters use their own public totals endpoint). Local mocked-provider tests cannot prove production OAuth configuration works.
+Production acceptance remains manual: test a real OAuth login and logout after DNS, Worker deployment, D1 migration and runtime credentials are configured. Check cookies, `/me`, CORS, the mobile header and zero authentication API requests from a fresh anonymous browser (request counters use their own public totals endpoint). Local mocked-provider tests cannot prove production OAuth configuration works.
 
 Request activity adds `0004_create_request_upvotes.sql` and `0005_create_request_builders.sql`, one table per migration. Apply locally with `just backend::migrate-local` before trying the development controls. Existing user tables are preserved. Remote migration and deployment remain manual operator steps; neither has been performed by this implementation.

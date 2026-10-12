@@ -14,8 +14,6 @@ export default function RequestActions({ original }: { original: string }) {
 		state.messageOriginal === original ? state.message : "",
 	);
 
-	if (!import.meta.env.DEV) return null;
-
 	const button =
 		"inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-colors disabled:cursor-default disabled:opacity-60";
 	const inactive = "border-line hover:border-lime hover:text-lime";

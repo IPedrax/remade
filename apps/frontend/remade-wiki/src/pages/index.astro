@@ -10,17 +10,13 @@ const metadata = await loadMetadata();
 ---
 
 <Layout title="Remade Directory">
-	{import.meta.env.DEV ? (
-		<HomePage catalog={catalog} metadata={metadata}>
-			<RequestPreview
-				client:load
-				items={catalog.requests.slice(0, 3).map((request) => ({
-					request,
-					original: findBySlug(catalog.originals, request.original),
-				}))}
-			/>
-		</HomePage>
-	) : (
-		<HomePage catalog={catalog} metadata={metadata} />
-	)}
+	<HomePage catalog={catalog} metadata={metadata}>
+		<RequestPreview
+			items={catalog.requests.slice(0, 3).map((request) => ({
+				request,
+				original: findBySlug(catalog.originals, request.original),
+			}))}
+			client:load
+		/>
+	</HomePage>
 </Layout>
