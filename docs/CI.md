@@ -13,8 +13,8 @@ Python tooling uses Ruff for linting and formatting and ty for type checking, co
 Python tests use pytest, with temporary catalog fixtures, parametrized validation cases, and mocked HTTP calls. Run them locally with `uv run --project scripts pytest scripts/tests -v`; pytest discovers only `scripts/tests/` using the configuration in `scripts/pyproject.toml`.
 
 1. `checks.yml` validates all catalog YAML (projects, supporting tools, originals, **requests**, featured), confirms PR checkbox, and catches duplicate repositories, duplicate slugs, unknown tool project references and fulfilled requests. Tools never fulfill requests.
-2. `links.yml` (**Dead Link Checker**) scans newly changed catalog URLs on PRs and generated site HTML after `pnpm build`. Link-check failures are advisory and do not fail the workflow; setup and build failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
-3. `frontend-test.yml` (**App Build + Unit Tests**) always reports its required check, conditionally running advisory Biome linting, required frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Browser component and E2E tests run locally, keeping CI free of browser installation and startup. Frontend, workspace, metadata-cache, Biome and build-workflow changes trigger validation; unrelated changes skip expensive steps without leaving a required check pending.
+2. `links.yml` (**Dead Link Checker**) checks only newly introduced URL values in changed catalog files on PRs and pushes. Existing URLs in edited files, including `originals.yaml`, are subtracted using the base revision. This workflow does not install frontend dependencies or build Astro. Link-check failures are advisory and do not fail the workflow; setup failures still do. Each Lychee step logs individual results, has a 10-minute limit, and saves its Markdown report as an artifact when available. TLS certificate verification remains enabled. Pass generated URL lists as local text-file inputs, not `--files-from`: the latter treats each URL as a page to scan and can crawl unrelated external links.
+3. `frontend-test.yml` (**App Build + Unit Tests**) always reports its required check, conditionally running advisory Biome linting, required frontend type checks, Vitest unit tests (`pnpm test:unit`), and production build. Lychee then checks local/internal links offline against that same build output, without another build or external requests, and saves an advisory report. Browser component and E2E tests run locally, keeping CI free of browser installation and startup. Frontend, workspace, metadata-cache, Biome and build-workflow changes trigger validation; unrelated changes skip expensive steps without leaving a required check pending.
 4. All PR workflows run read-only, on untrusted forks, using `pull_request` (not `pull_request_target`). Do not execute scripts from submitted repositories.
 5. `backend.yml` (**Auth Worker Validation**) always reports its check and conditionally validates changed backend/shared-tooling inputs. It runs Rust formatting, native and Wasm clippy, security tests, the official Wasm build and a fresh local D1 migration. Frontend-owned Worker/D1 integration tests run locally with `pnpm test:auth`. It needs no OAuth or production Cloudflare secrets.
 
@@ -29,7 +29,7 @@ Python tests use pytest, with temporary catalog fixtures, parametrized validatio
 
 ## Scheduled checks
 
-- `links.yml` weekly full catalog audit; a failed run is a maintenance alert, not a public deletion.
+- `links-weekly.yml` (**Weekly Catalog Link Audit**) checks the full catalog every Sunday at 08:17 UTC; manual dispatch is supported. It runs no frontend build. Findings are advisory maintenance reports, not public deletions.
 - `stats.yml` daily GraphQL metadata refresh on trusted default branch (manual dispatch supported). It uses an **organization-owned GitHub App installation token** for GraphQL reads and pushes of the metadata snapshot. Updates cached JSON if some repositories succeed, preserving older records for failed lookups.
 - Pushes to `main` that change project or tool YAML also trigger metadata collection. This mode compares GitHub repository identities with the catalog at the push's previous commit and queries only newly introduced repositories. Existing repositories, renamed entries, original records and request files do not cause additional API queries. When none are new, token creation and cache writes are skipped. Scheduled and manual runs continue to refresh the full catalog; App secrets are never used on pull requests.
 
@@ -80,9 +80,9 @@ Arguments pass through to the collector. `just py::metadata-refresh --list-only`
 ## Link checking
 
 - Extract catalog URLs from validated YAML; do not depend on Lychee's best-effort YAML parsing.
-- PR check checks changed catalog files only to avoid blocking unrelated PRs on old broken links.
+- PR and push checks examine added URL values only, including replacement URLs and newly added mirrors; unchanged URLs are not rechecked.
 - Weekly check checks all catalog links.
-- Once `apps/frontend/remade-wiki/dist/` exists, Lychee checks generated pages and internal links after the Astro build.
+- `frontend-test.yml` runs Lychee with `--offline` on generated pages after its existing Astro build. External catalog URLs belong to the additions check and weekly audit, avoiding duplicate builds and external scans.
 - Lychee accepts HTTP 403 responses globally. HTTP 429 rate limits and other errors are reported, but link-check failures do not fail the workflow. `.lycheeignore` is for documented, temporary exceptions.
 
 ## Security

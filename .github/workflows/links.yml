@@ -5,9 +5,6 @@ on:
     types: [opened, reopened, synchronize]
   push:
     branches: [main]
-  schedule:
-    - cron: '17 8 * * 0' # weekly catalog link audit
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -33,14 +30,14 @@ jobs:
       - name: Generate explicit URL list from catalog files
         id: url_list
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
           mkdir -p .generated
-          if [ "$EVENT_NAME" = 'pull_request' ]; then
+          if [ -n "$BASE_SHA" ] && git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null; then
             uv run --project scripts python scripts/catalog_links.py --changed-from "$BASE_SHA" > .generated/catalog-urls.txt
           else
-            uv run --project scripts python scripts/catalog_links.py --all > .generated/catalog-urls.txt
+            echo "::error::The base revision is unavailable; use Weekly Catalog Link Audit for a full audit."
+            exit 1
           fi
           if [ -s .generated/catalog-urls.txt ]; then
             echo 'has_urls=true' >> "$GITHUB_OUTPUT"
@@ -54,7 +51,7 @@ jobs:
           key: lychee-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
             lychee-${{ runner.os }}-
-      - name: Check changed URLs (full catalog weekly)
+      - name: Check newly added catalog URLs
         timeout-minutes: 10
         continue-on-error: true
         if: steps.url_list.outputs.has_urls == 'true'
@@ -62,32 +59,6 @@ jobs:
         with:
           output: lychee/catalog-report.md
           args: --config lychee.toml --cache --verbose --no-progress .generated/catalog-urls.txt
-          fail: true
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - uses: pnpm/action-setup@v6.1.0
-        if: hashFiles('pnpm-lock.yaml') != ''
-        with:
-          run_install: false
-      - uses: actions/setup-node@v7.1.0
-        if: hashFiles('pnpm-lock.yaml') != ''
-        with:
-          node-version: '22'
-          cache: pnpm
-      - name: Install Astro dependencies
-        if: hashFiles('pnpm-lock.yaml') != ''
-        run: pnpm install --frozen-lockfile
-      - name: Build static site
-        if: hashFiles('pnpm-lock.yaml') != ''
-        run: pnpm build
-      - name: Check generated HTML and internal links
-        timeout-minutes: 10
-        continue-on-error: true
-        if: hashFiles('pnpm-lock.yaml') != ''
-        uses: lycheeverse/lychee-action@v2.9.0
-        with:
-          output: lychee/site-report.md
-          args: --config lychee.toml --cache --verbose --no-progress --root-dir apps/frontend/remade-wiki/dist './apps/frontend/remade-wiki/dist/**/*.html'
           fail: true
         env:
           GITHUB_TOKEN: ${{ github.token }}

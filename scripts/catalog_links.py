@@ -5,14 +5,18 @@ from collections.abc import Iterator
 from pathlib import Path
 
 import typer
+import yaml
 
-from catalog import ROOT, is_https, load_yaml
+from catalog import ROOT, DuplicateKeySafeLoader, is_https, load_yaml
 
 app = typer.Typer(add_completion=False)
 
 
 def url_values(path: Path) -> Iterator[str]:
-    obj = load_yaml(path)
+    yield from urls_in_record(load_yaml(path))
+
+
+def urls_in_record(obj: object) -> Iterator[str]:
     for record in obj if isinstance(obj, list) else [obj]:
         if isinstance(record, dict):
             for key in ("url", "repository", "docs", "website"):
@@ -24,6 +28,32 @@ def url_values(path: Path) -> Iterator[str]:
                 for value in mirrors:
                     if is_https(value):
                         yield value
+
+
+def added_urls(paths: list[Path], revision: str) -> set[str]:
+    current = {url for path in paths for url in url_values(path)}
+    previous: set[str] = set()
+    for path in paths:
+        result = subprocess.run(
+            ["git", "show", f"{revision}:{path.relative_to(ROOT).as_posix()}"],
+            cwd=ROOT,
+            text=True,
+            check=False,
+            capture_output=True,
+        )
+        if result.returncode == 0:
+            previous.update(urls_in_record(yaml.load(result.stdout, Loader=DuplicateKeySafeLoader)))
+        elif (
+            subprocess.run(
+                ["git", "cat-file", "-e", f"{revision}^{{commit}}"],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+            ).returncode
+            != 0
+        ):
+            raise typer.BadParameter("The base revision is not available")
+    return current - previous
 
 
 def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
@@ -75,16 +105,17 @@ def paths_for_mode(*, all_files: bool, changed_from: str | None) -> list[Path]:
 def main(
     all_files: bool = typer.Option(False, "--all", help="Read all catalog entries"),
     changed_from: str | None = typer.Option(
-        None, "--changed-from", help="Check changed entries only"
+        None, "--changed-from", help="Check URLs added in changed entries only"
     ),
 ) -> None:
     if all_files == (changed_from is not None):
         raise typer.BadParameter("Choose exactly one of --all or --changed-from")
-    values = {
-        url
-        for path in paths_for_mode(all_files=all_files, changed_from=changed_from)
-        for url in url_values(path)
-    }
+    paths = paths_for_mode(all_files=all_files, changed_from=changed_from)
+    values = (
+        added_urls(paths, changed_from)
+        if changed_from is not None
+        else {url for path in paths for url in url_values(path)}
+    )
     for url in sorted(values):
         typer.echo(url)
 

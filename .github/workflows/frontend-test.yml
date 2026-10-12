@@ -51,3 +51,20 @@ jobs:
         if: steps.changes.outputs.frontend == 'true'
       - run: pnpm build
         if: steps.changes.outputs.frontend == 'true'
+      - name: Check generated internal links (advisory)
+        if: steps.changes.outputs.frontend == 'true'
+        continue-on-error: true
+        timeout-minutes: 2
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          output: lychee/internal-report.md
+          args: --config lychee.toml --offline --verbose --no-progress --root-dir apps/frontend/remade-wiki/dist './apps/frontend/remade-wiki/dist/**/*.html'
+          fail: true
+      - name: Save internal link report
+        if: always() && steps.changes.outputs.frontend == 'true'
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: internal-link-report
+          path: lychee/internal-report.md
+          if-no-files-found: ignore
+          retention-days: 7
