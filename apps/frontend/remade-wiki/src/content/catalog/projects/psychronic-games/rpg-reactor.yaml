@@ -1,0 +1,16 @@
+# XP import and MV/MZ compatibility are maintainer-reported in the repository docs.
+slug: rpg-reactor
+name: RPG Reactor
+authors: [psychronic-games]
+repository: https://github.com/Psychronic-Games/RPGReactor
+originals: [rpg-maker-xp, rpg-maker-mv, rpg-maker-mz]
+category: developer-tools
+languages: [JavaScript]
+platforms: [Windows, macOS, Linux, Web]
+status: experimental
+compatibility: partial
+description: RPG Reactor provides an RPG Maker-style map, event and database editor with a PixiJS and Three.js runtime. It targets MV/MZ project and plugin compatibility and imports XP projects into new Reactor projects, converting data and assets and adapting supported legacy behavior.
+license: MIT
+website: https://psychronic.itch.io/rpg-reactor
+docs: https://github.com/Psychronic-Games/RPGReactor/blob/main/docs/IMPORTING-LEGACY-PROJECTS.md
+limitations: XP support is a conversion workflow rather than a drop-in RGSS runtime or identical XP editor. Plugin and Ruby-script compatibility is maintainer-reported and incomplete; imported projects require appropriate rights to their assets. Bundled third-party components have separate licenses.

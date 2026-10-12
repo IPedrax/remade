@@ -851,3 +851,24 @@
   url: https://www.autodesk.com/products/mudbox/overview/
   category: creative
   aliases: [Mudbox]
+
+- slug: microsoft-windows
+  name: Microsoft Windows
+  url: https://www.microsoft.com/windows
+  category: operating-systems
+  aliases: [Windows]
+
+- slug: rpg-maker-xp
+  name: RPG Maker XP
+  url: https://www.rpgmakerweb.com/products/rpg-maker-xp
+  category: developer-tools
+
+- slug: rpg-maker-mv
+  name: RPG Maker MV
+  url: https://www.rpgmakerweb.com/products/rpg-maker-mv
+  category: developer-tools
+
+- slug: rpg-maker-mz
+  name: RPG Maker MZ
+  url: https://www.rpgmakerweb.com/products/rpg-maker-mz
+  category: developer-tools
