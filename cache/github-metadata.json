@@ -45,6 +45,15 @@
       "pushedAt": "2026-10-11T12:16:32Z",
       "stars": 7
     },
+    "engr-software/markupcraft": {
+      "fetchedAt": "2026-10-12T04:21:07Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-12T03:16:32Z",
+      "stars": 2
+    },
     "erkinalp/anticensor": {
       "fetchedAt": "2026-10-11T21:58:07Z",
       "forks": 0,
