@@ -930,3 +930,21 @@
   name: MultiDeco
   url: https://www.hhssoftware.com/multideco/
   category: other
+
+- slug: microsoft-frontpage
+  name: Microsoft Office FrontPage
+  url: https://learn.microsoft.com/en-us/lifecycle/products/microsoft-office-frontpage-2003
+  category: developer-tools
+  aliases: [Microsoft FrontPage, FrontPage]
+
+- slug: chemdraw
+  name: ChemDraw
+  url: https://revvitysignals.com/products/research/signals-chemdraw
+  category: engineering
+  aliases: [Signals ChemDraw]
+
+- slug: maxon-autograph
+  name: Maxon Autograph
+  url: https://www.maxon.net/en/autograph
+  category: creative
+  aliases: [Autograph, Left Angle Autograph]

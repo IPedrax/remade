@@ -1,0 +1,3 @@
+original: chemdraw
+reason: Reproduce ChemDraw's chemical structure and reaction drawing workflows, including stereochemistry, bond and ring tools, structure cleanup, chemical labels and publication-ready diagrams. Support editable CDX/CDXML documents and interchange with SMILES, MOL and SDF formats.
+suggested_names: [MoleculeCraft]
