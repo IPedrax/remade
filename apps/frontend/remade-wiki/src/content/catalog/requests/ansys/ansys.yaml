@@ -1,3 +1,3 @@
 original: ansys
-reason: Reproduce Ansys' Workbench-style engineering simulation workflows, including geometry preparation, meshing, material properties, boundary conditions, structural and thermal analysis, fluid dynamics, electromagnetics and coupled multiphysics, with parametric studies, result visualization and compatible model interchange.
+reason: Reproduce Ansys Workbench simulation workflows, including geometry preparation, meshing, materials, structural and thermal analysis, fluid dynamics, electromagnetics and coupled multiphysics. Include modal and harmonic acoustics, acoustic-structure coupling, sound-pressure visualization, parametric studies and model interchange.
 suggested_names: [SimCraft]

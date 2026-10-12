@@ -1,0 +1,3 @@
+original: odeon
+reason: Reproduce ODEON's room-acoustics modeling, simulation and measurement workflows, including source and receiver placement, surface absorption and scattering, impulse responses, reverberation, speech intelligibility and auralization.
+suggested_names: [RoomSoundCraft]

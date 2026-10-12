@@ -852,11 +852,27 @@
   category: creative
   aliases: [Mudbox]
 
+- slug: naturalmotion-euphoria
+  name: NaturalMotion Euphoria
+  url: https://en.wikipedia.org/wiki/Euphoria_(software)
+  category: games
+  aliases: [Euphoria]
+
 - slug: microsoft-windows
   name: Microsoft Windows
   url: https://www.microsoft.com/windows
   category: operating-systems
   aliases: [Windows]
+
+- slug: phprunner
+  name: PHPRunner
+  url: https://xlinesoft.com/phprunner/index.htm
+  category: developer-tools
+
+- slug: asprunner-net
+  name: ASPRunner.NET
+  url: https://xlinesoft.com/asprunnernet/index.htm
+  category: developer-tools
 
 - slug: rpg-maker-xp
   name: RPG Maker XP
@@ -872,3 +888,40 @@
   name: RPG Maker MZ
   url: https://www.rpgmakerweb.com/products/rpg-maker-mz
   category: developer-tools
+
+- slug: fibershop
+  name: FiberShop
+  url: https://cgpal.com/fibershop/
+  category: creative
+
+- slug: odeon
+  name: ODEON Room Acoustics Software
+  url: https://odeon.dk/product/
+  category: engineering
+
+- slug: radioboss
+  name: RadioBOSS
+  url: https://www.djsoft.net/enu/radioboss.htm
+  category: creative
+
+- slug: abaqus
+  name: Abaqus
+  url: https://www.3ds.com/products/simulia/abaqus
+  category: engineering
+
+- slug: mastercam
+  name: Mastercam
+  url: https://www.mastercam.com/
+  category: engineering
+
+- slug: autodesk-powermill
+  name: Autodesk PowerMill
+  url: https://www.autodesk.com/products/powermill/overview
+  category: engineering
+  aliases: [PowerMill]
+
+- slug: vegas-pro
+  name: VEGAS Pro
+  url: https://www.vegascreativesoftware.com/vegas-pro/
+  category: creative
+  aliases: [Sony Vegas]
