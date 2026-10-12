@@ -1,0 +1,4 @@
+original: adobe-muse
+reason: >-
+  Reproduce Adobe Muse's visual website design without hand-coding: page layouts, master pages, responsive breakpoints, widgets, navigation and local previews. Support static HTML/CSS export and compatible migration of existing Muse projects, prioritizing editable designs and accessible output.
+suggested_names: [SiteCraft]

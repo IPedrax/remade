@@ -1,0 +1,8 @@
+original: motionmixes
+reason: >-
+  Reproduce MotionMixes' live radio jingle and music-bed workflows: intro, loop,
+  drop and outro buttons, real-time dynamics, seamless transitions, arrangement
+  recording and microphone input. Include audio import, network synchronization,
+  external controllers and royalty-report logging. Use original or appropriately
+  licensed audio rather than redistributing its bundled music library.
+suggested_names: [JingleCraft]

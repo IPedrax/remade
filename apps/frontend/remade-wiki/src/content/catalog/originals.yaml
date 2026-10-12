@@ -963,3 +963,94 @@
   name: Grammarly
   url: https://www.grammarly.com/
   category: productivity
+- slug: synopsys-eda
+  name: Synopsys EDA
+  url: https://www.synopsys.com/silicon-design.html
+  category: engineering
+  aliases: [Synopsys electronic design automation]
+- slug: cadence-eda
+  name: Cadence EDA
+  url: https://www.cadence.com/en_US/home/tools.html
+  category: engineering
+  aliases: [Cadence Design Systems, Cadence electronic design automation]
+
+- slug: hypercard
+  name: HyperCard
+  url: https://hypercard.org/
+  category: developer-tools
+  aliases: ["Apple HyperCard"]
+
+- slug: deluxe-paint
+  name: Deluxe Paint
+  url: https://computerhistory.org/blog/electronic-arts-deluxepaint-early-source-code/
+  category: creative
+  aliases: ["DeluxePaint", "DPaint"]
+
+- slug: freehand-mx
+  name: FreeHand MX
+  url: https://en.wikipedia.org/wiki/Adobe_FreeHand
+  category: creative
+  aliases: ["Macromedia FreeHand", "Adobe FreeHand", "FreeHand"]
+
+- slug: windows-live-writer
+  name: Windows Live Writer
+  url: https://en.wikipedia.org/wiki/Windows_Live_Writer
+  category: productivity
+  aliases: ["Live Writer"]
+
+- slug: norton-commander
+  name: Norton Commander
+  url: https://en.wikipedia.org/wiki/Norton_Commander
+  category: productivity
+
+- slug: paint-shop-pro
+  name: Paint Shop Pro
+  url: https://www.paintshoppro.com/en/
+  category: creative
+  aliases: ["PaintShop Pro", "Corel PaintShop Pro", "Jasc Paint Shop Pro"]
+
+- slug: microsoft-money
+  name: Microsoft Money
+  url: https://en.wikipedia.org/wiki/Microsoft_Money
+  category: productivity
+  aliases: ["Money Plus Sunset"]
+
+- slug: picasa
+  name: Picasa
+  url: https://picasa.google.com/
+  category: creative
+  aliases: ["Google Picasa"]
+
+- slug: lotus-organizer
+  name: Lotus Organizer
+  url: https://en.wikipedia.org/wiki/Lotus_Organizer
+  category: productivity
+  aliases: ["IBM Lotus Organizer"]
+
+- slug: adobe-muse
+  name: Adobe Muse
+  url: https://www.adobe.com/products/muse.html
+  category: developer-tools
+  aliases: ["Muse"]
+
+- slug: adobe-fuse
+  name: Adobe Fuse
+  url: https://en.wikipedia.org/wiki/Adobe_Fuse
+  category: creative
+  aliases: ["Fuse CC", "Mixamo Fuse"]
+
+- slug: wunderlist
+  name: Wunderlist
+  url: https://learn.microsoft.com/en-us/lifecycle/products/wunderlist
+  category: productivity
+
+- slug: springpad
+  name: Springpad
+  url: https://en.wikipedia.org/wiki/Springpad
+  category: productivity
+
+- slug: motionmixes
+  name: MotionMixes
+  url: https://fosterkent.com/motionmixes/
+  category: creative
+  aliases: ["Foster Kent MotionMixes"]
