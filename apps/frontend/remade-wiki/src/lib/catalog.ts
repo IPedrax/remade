@@ -1,8 +1,8 @@
-import { execFileSync } from "node:child_process";
 import { readdir, readFile } from "node:fs/promises";
 import { basename, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import * as v from "valibot";
+import { catalogAddedAt, loadAdditionDates } from "./catalog-history";
 import {
 	type Catalog,
 	featuredSchema,
@@ -61,51 +61,21 @@ async function records<S extends v.GenericSchema>(
 	);
 }
 
-function addedAt(
-	folder: string,
-	slug: string,
-	previousSlugs: string[] = [],
-): string | undefined {
-	try {
-		const output = execFileSync(
-			"git",
-			[
-				"log",
-				"--diff-filter=A",
-				"--format=%aI",
-				"--",
-				...[slug, ...previousSlugs].flatMap((name) => [
-					`:(glob)apps/frontend/remade-wiki/src/content/catalog/${folder}/**/${name}.yaml`,
-					`apps/frontend/remade-wiki/src/content/catalog/${folder}/${name}.yaml`,
-					`:(glob)src/content/catalog/${folder}/**/${name}.yaml`,
-					`src/content/catalog/${folder}/${name}.yaml`,
-				]),
-			],
-			{
-				cwd: repositoryRoot,
-				encoding: "utf8",
-				stdio: ["ignore", "pipe", "ignore"],
-			},
-		);
-
-		return output.trim().split("\n").filter(Boolean).sort()[0];
-	} catch {
-		return undefined;
-	}
-}
-
 export async function loadCatalog() {
-	const [originals, projects, tools, requests, featured] = await Promise.all([
-		readFile(new URL("src/content/catalog/originals.yaml", root), "utf8").then(
-			(s) => v.parse(v.array(originalSchema), parseYaml(s)),
-		),
-		records("projects", projectSchema, "slug"),
-		records("tools", toolSchema, "slug"),
-		records("requests", requestSchema, "original"),
-		readFile(new URL("src/content/catalog/featured.yaml", root), "utf8").then(
-			(s) => v.parse(featuredSchema, parseYaml(s)),
-		),
-	]);
+	const [originals, projects, tools, requests, featured, additionDates] =
+		await Promise.all([
+			readFile(
+				new URL("src/content/catalog/originals.yaml", root),
+				"utf8",
+			).then((s) => v.parse(v.array(originalSchema), parseYaml(s))),
+			records("projects", projectSchema, "slug"),
+			records("tools", toolSchema, "slug"),
+			records("requests", requestSchema, "original"),
+			readFile(new URL("src/content/catalog/featured.yaml", root), "utf8").then(
+				(s) => v.parse(featuredSchema, parseYaml(s)),
+			),
+			loadAdditionDates(repositoryRoot),
+		]);
 	const catalog: Catalog = { originals, projects, tools, requests, featured };
 
 	validateRelationships(catalog);
@@ -128,12 +98,17 @@ export async function loadCatalog() {
 		...projects.map((p) => ({
 			...p,
 			kind: "project" as const,
-			addedAt: addedAt("projects", p.slug, previousSlugs(p.slug)),
+			addedAt: catalogAddedAt(
+				additionDates,
+				"projects",
+				p.slug,
+				previousSlugs(p.slug),
+			),
 		})),
 		...tools.map((t) => ({
 			...t,
 			kind: "tool" as const,
-			addedAt: addedAt("tools", t.slug),
+			addedAt: catalogAddedAt(additionDates, "tools", t.slug),
 		})),
 	];
 	const requestDirectory = new URL("src/content/catalog/requests/", root)
@@ -151,7 +126,7 @@ export async function loadCatalog() {
 	const recentRequests = requests
 		.map((request) => ({
 			...request,
-			addedAt: addedAt("requests", request.original),
+			addedAt: catalogAddedAt(additionDates, "requests", request.original),
 			vendor: requestVendors.get(request.original) ?? "unassigned",
 		}))
 		.sort(
