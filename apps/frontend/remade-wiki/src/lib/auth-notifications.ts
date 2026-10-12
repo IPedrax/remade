@@ -1,7 +1,20 @@
 import { toast } from "sonner";
-import type { Account } from "./auth";
+import { type Account, apiUrl } from "./auth";
 
 const loginToastKey = "remade-pending-login-toast";
+
+export function promptLoginToVote() {
+	toast.info("Login with github to vote", {
+		id: "request-login-required",
+		action: {
+			label: "Login",
+			onClick: () => {
+				rememberLogin();
+				window.location.assign(`${apiUrl}/auth/github`);
+			},
+		},
+	});
+}
 
 export function rememberLogin() {
 	try {

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import { contributeUrl, label, metadataFor } from "../../lib/presentation";
 import type { Original } from "../../lib/schemas";
@@ -8,9 +9,15 @@ interface Props {
 	original: Original;
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
+	children?: ReactNode;
 }
 
-export default function SoftwarePage({ original, catalog, metadata }: Props) {
+export default function SoftwarePage({
+	original,
+	catalog,
+	metadata,
+	children,
+}: Props) {
 	const entries = catalog.entries
 		.filter((entry) => entry.kind === "project")
 		.filter((entry) => entry.originals.includes(original.slug));
@@ -93,6 +100,8 @@ export default function SoftwarePage({ original, catalog, metadata }: Props) {
 						These are community wishes, not active implementation projects or
 						reserved names.
 					</p>
+
+					{children}
 
 					<a
 						className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-lime bg-lime px-4 py-3 text-sm font-semibold text-canvas hover:bg-lime-light hover:text-canvas"

@@ -1,6 +1,6 @@
 import { createHash, createHmac } from "node:crypto";
 import { readdir, readFile } from "node:fs/promises";
-import { Miniflare } from "miniflare";
+import { Miniflare, Response } from "miniflare";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 
 const origin = "https://remade.wiki";
@@ -12,8 +12,23 @@ let userCalls = 0;
 let releaseRace: (() => void) | undefined;
 let barrier: Promise<void>;
 let username = "example";
+let requestOriginal: string;
 
 beforeAll(async () => {
+	const requestFiles = await readdir(
+		new URL("../../src/content/catalog/requests/", import.meta.url),
+		{ recursive: true },
+	);
+	const requestFile = requestFiles.find((filename) =>
+		filename.endsWith(".yaml"),
+	);
+	if (!requestFile)
+		throw new Error("Request engagement requires a catalog request fixture");
+	requestOriginal =
+		requestFile
+			.split("/")
+			.at(-1)
+			?.replace(/\.yaml$/, "") ?? "";
 	worker = new Miniflare({
 		cf: false,
 		workers: [
@@ -116,6 +131,98 @@ beforeAll(async () => {
 
 		await db.exec(sql.replaceAll(/--[^\n]*/g, "").replaceAll("\n", " "));
 	}
+});
+
+describe("request upvotes and builders", () => {
+	const read = async (cookie = "") => {
+		const response = await worker.dispatchFetch(
+			`${api}/api/v1/requests/activity`,
+			{ headers: { Cookie: cookie } },
+		);
+		expect(response.status).toBe(200);
+		return response.json() as Promise<{
+			requests: {
+				original: string;
+				upvotes: number;
+				builders: number;
+				upvoted: boolean;
+				building: boolean;
+			}[];
+		}>;
+	};
+
+	const act = (cookie: string, action: string, requestOrigin = origin) =>
+		worker.dispatchFetch(
+			`${api}/api/v1/requests/${requestOriginal}/${action}`,
+			{ method: "POST", headers: { Cookie: cookie, Origin: requestOrigin } },
+		);
+
+	it("allows public totals without contacting GitHub", async () => {
+		const payload = await read();
+		expect(
+			payload.requests.find((request) => request.original === requestOriginal),
+		).toMatchObject({
+			upvotes: 0,
+			builders: 0,
+			upvoted: false,
+			building: false,
+		});
+		expect(providerCalls).toBe(0);
+	});
+
+	it("rejects unauthenticated writes, cross-origin writes and unknown requests", async () => {
+		expect((await act("", "upvote")).status).toBe(401);
+		const cookie = sessionCookie(await login());
+		expect((await act(cookie, "build", "https://evil.example")).status).toBe(
+			403,
+		);
+		expect(
+			(
+				await worker.dispatchFetch(
+					`${api}/api/v1/requests/not-in-the-catalog/upvote`,
+					{ method: "POST", headers: { Origin: origin, Cookie: cookie } },
+				)
+			).status,
+		).toBe(404);
+	});
+
+	it("counts each account once and lets it withdraw either indication", async () => {
+		const cookie = sessionCookie(await login());
+		const votes = await Promise.all([
+			act(cookie, "upvote"),
+			act(cookie, "upvote"),
+		]);
+		expect(votes.every((response) => response.status === 204)).toBe(true);
+		expect((await act(cookie, "build")).status).toBe(204);
+		expect(
+			(await read(cookie)).requests.find(
+				(request) => request.original === requestOriginal,
+			),
+		).toMatchObject({ upvotes: 1, builders: 1, upvoted: true, building: true });
+		expect(
+			(await read()).requests.find(
+				(request) => request.original === requestOriginal,
+			),
+		).toMatchObject({
+			upvotes: 1,
+			builders: 1,
+			upvoted: false,
+			building: false,
+		});
+
+		expect((await act(cookie, "unvote")).status).toBe(204);
+		expect((await act(cookie, "unbuild")).status).toBe(204);
+		expect(
+			(await read(cookie)).requests.find(
+				(request) => request.original === requestOriginal,
+			),
+		).toMatchObject({
+			upvotes: 0,
+			builders: 0,
+			upvoted: false,
+			building: false,
+		});
+	});
 });
 
 beforeEach(async () => {

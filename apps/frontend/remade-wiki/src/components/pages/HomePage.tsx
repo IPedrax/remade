@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import { categories } from "../../lib/constants";
 import {
@@ -15,9 +16,10 @@ import Search from "../search/Search";
 interface Props {
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
+	children?: ReactNode;
 }
 
-export default function HomePage({ catalog, metadata }: Props) {
+export default function HomePage({ catalog, metadata, children }: Props) {
 	const featured = catalog.featured.map((slug) =>
 		findBySlug(catalog.entries, slug),
 	);
@@ -165,15 +167,17 @@ export default function HomePage({ catalog, metadata }: Props) {
 				</div>
 
 				{requests.length ? (
-					<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
-						{requests.slice(0, 3).map(({ request, original }) => (
-							<RequestCard
-								key={request.original}
-								original={original}
-								request={request}
-							/>
-						))}
-					</div>
+					(children ?? (
+						<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
+							{requests.slice(0, 3).map(({ request, original }) => (
+								<RequestCard
+									key={request.original}
+									original={original}
+									request={request}
+								/>
+							))}
+						</div>
+					))
 				) : (
 					<p className="rounded-xl border border-dashed border-line p-8">
 						No open requests.{" "}

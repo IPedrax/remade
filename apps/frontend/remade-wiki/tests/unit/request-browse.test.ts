@@ -141,6 +141,10 @@ describe("request facets and dates", () => {
 });
 
 describe("request sorting", () => {
+	it("defaults to most upvoted", () => {
+		expect(defaultRequestFilters.sort).toBe("upvotes");
+	});
+
 	const newer = {
 		...request,
 		original: "newer",
@@ -151,6 +155,28 @@ describe("request sorting", () => {
 		original: "older",
 		addedAt: "2026-10-05T22:00:00Z",
 	};
+
+	it("orders by descending votes before dates or search relevance", () => {
+		expect(
+			compareRequests(
+				{ ...older, name: "Other", upvotes: 10 },
+				{ ...newer, name: "Exact", upvotes: 2 },
+				"upvotes",
+				"Exact",
+			),
+		).toBeLessThan(0);
+	});
+
+	it("falls back to recent additions for equal or unavailable totals", () => {
+		expect(
+			compareRequests(
+				{ ...newer, upvotes: 3 },
+				{ ...older, upvotes: 3 },
+				"upvotes",
+			),
+		).toBeLessThan(0);
+		expect(compareRequests(newer, older, "upvotes")).toBeLessThan(0);
+	});
 
 	it("compares actual instants instead of timestamp strings", () => {
 		expect(compareRequests(newer, older, "recent")).toBeLessThan(0);

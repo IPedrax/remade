@@ -38,6 +38,7 @@ export function createAuthStore() {
 				if (signal.aborted) return;
 
 				set({ account, status: account ? "signed-in" : "signed-out" });
+				document.dispatchEvent(new Event("remade-auth-changed"));
 				announceLogin(account);
 			} catch {
 				// An unavailable API does not confirm the user is signed out.
@@ -52,6 +53,7 @@ export function createAuthStore() {
 			try {
 				await logout();
 				set({ account: null, status: "signed-out" });
+				document.dispatchEvent(new Event("remade-auth-changed"));
 				toast.success("Logged out");
 			} catch {
 				set({ message: "Couldn’t log out. Please try again." });

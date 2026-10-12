@@ -1,5 +1,6 @@
 ---
 import SoftwarePage from "../../components/pages/SoftwarePage";
+import RequestEngagement from "../../components/requests/RequestEngagement";
 import Layout from "../../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../../lib/catalog";
 
@@ -17,5 +18,10 @@ const metadata = await loadMetadata();
 ---
 
 <Layout index title={original.name}>
-	<SoftwarePage catalog={catalog} metadata={metadata} original={original} />
+	<SoftwarePage catalog={catalog} metadata={metadata} original={original}>
+		{import.meta.env.DEV &&
+			catalog.requests.some(
+				(request) => request.original === original.slug,
+			) && <RequestEngagement client:load original={original.slug} />}
+	</SoftwarePage>
 </Layout>

@@ -15,8 +15,11 @@ import {
 	matchingImplementations,
 	type RequestFilters,
 } from "../../lib/request-browse";
+import { useRequestActivity } from "../../stores/request-activity-store";
 import EntryCard from "../catalog/EntryCard";
 import RequestCard from "../catalog/RequestCard";
+import RequestActions from "../requests/RequestActions";
+import RequestActivityProvider from "../requests/RequestActivityProvider";
 
 interface Props {
 	catalog: Pick<CatalogData, "originals" | "requests" | "entries">;
@@ -24,6 +27,15 @@ interface Props {
 }
 
 export default function RequestsPage({ catalog, metadata }: Props) {
+	return (
+		<RequestActivityProvider>
+			<RequestList catalog={catalog} metadata={metadata} />
+		</RequestActivityProvider>
+	);
+}
+
+function RequestList({ catalog, metadata }: Props) {
+	const activity = useRequestActivity((state) => state.activity);
 	const [filters, setFilters] = useState<RequestFilters>(defaultRequestFilters);
 	const [ready, setReady] = useState(false);
 
@@ -33,14 +45,16 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 			const vendor = params.get("vendor") ?? "";
 			const category = params.get("category") ?? "";
 			const added = params.get("added") ?? "";
-			const sort = params.get("sort") ?? "recent";
+			const sort = params.get("sort") ?? defaultRequestFilters.sort;
 
 			setFilters({
 				q: params.get("q") ?? "",
 				vendor,
 				category,
 				added: addedPeriods.some((period) => period === added) ? added : "",
-				sort: ["recent", "oldest", "name"].includes(sort) ? sort : "recent",
+				sort: ["upvotes", "recent", "oldest", "name"].includes(sort)
+					? sort
+					: defaultRequestFilters.sort,
 			});
 			setReady(true);
 		};
@@ -99,8 +113,16 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 		)
 		.sort((a, b) =>
 			compareRequests(
-				{ ...a, original: a.original.slug },
-				{ ...b, original: b.original.slug },
+				{
+					...a,
+					original: a.original.slug,
+					upvotes: activity[a.original.slug]?.upvotes,
+				},
+				{
+					...b,
+					original: b.original.slug,
+					upvotes: activity[b.original.slug]?.upvotes,
+				},
 				filters.sort,
 				filters.q,
 			),
@@ -221,6 +243,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 
 							<div className="mt-4 flex flex-wrap items-end justify-between gap-4">
 								{select("sort", "Sort by", [
+									{ value: "upvotes", text: "Most upvoted" },
 									{ value: "recent", text: "Recently added" },
 									{ value: "oldest", text: "Oldest first" },
 									{ value: "name", text: "Alphabetical" },
@@ -254,6 +277,7 @@ export default function RequestsPage({ catalog, metadata }: Props) {
 						<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 							{requests.map(({ request, original }) => (
 								<RequestCard
+									actions={<RequestActions original={original.slug} />}
 									key={request.original}
 									original={original}
 									request={request}

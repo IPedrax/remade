@@ -130,7 +130,7 @@ suggested_names: [ExampleCraft] # optional
 - Exactly one open request per original.
 - **Do not list requests for any original with an indexed project, across its entire `originals` list.** The catalog validator enforces this; remove requests for every covered target in the same PR that first adds its implementation.
 - A request has a stable link to `/software/<original-slug>` and is displayed on `/requests` and under **Project Requests** on the homepage.
-- Requests are distinct from projects and are never mixed into featured listings or project counts.
+- Requests are distinct from projects and are never mixed into featured listings or project counts. Upvote and builder totals are separate runtime enhancements documented in `PROJECT_REQUESTS.md`; never add them to request YAML or the static JSON exports.
 - Request vendor filters derive their grouping from the first folder below `requests/`; root-level files are Unassigned. Vendor and Git addition dates are computed browsing metadata, not editable YAML fields, and do not affect public routes.
 - Request targets do not prescribe application boundaries: one implementation may cover related targets such as the Substance 3D apps, or separate applications may share an engine. Capture these possibilities in the request reason without claiming that an implementation already covers them.
 

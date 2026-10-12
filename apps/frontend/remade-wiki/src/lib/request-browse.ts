@@ -15,6 +15,7 @@ export interface BrowseRequest {
 	vendor: string;
 	category: string;
 	addedAt?: string;
+	upvotes?: number;
 	aliases?: string[];
 	suggestedNames?: string[];
 	reason?: string;
@@ -25,7 +26,7 @@ export const defaultRequestFilters: RequestFilters = {
 	vendor: "",
 	category: "",
 	added: "",
-	sort: "recent",
+	sort: "upvotes",
 };
 export const addedPeriods = ["7", "30", "90", "365"] as const;
 
@@ -112,6 +113,11 @@ export function compareRequests(
 	sort: string,
 	query = "",
 ) {
+	if (sort === "upvotes") {
+		const votes = (b.upvotes ?? 0) - (a.upvotes ?? 0);
+		if (votes) return votes;
+	}
+
 	const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
 
 	if (terms.length) {

@@ -12,6 +12,23 @@ fn session_token(req: &Request, config: &Config) -> Result<Option<String>> {
         .map(str::to_owned))
 }
 
+pub async fn user_id(req: &Request, env: &worker::Env, config: &Config) -> Result<Option<String>> {
+    let Some(raw_token) = session_token(req, config)? else {
+        return Ok(None);
+    };
+    #[derive(serde::Deserialize)]
+    struct SessionUser {
+        user_id: String,
+    }
+    let row = env
+        .d1("DB")?
+        .prepare("SELECT user_id FROM user_sessions WHERE token_hash = ? AND expires_at > ?")
+        .bind(&[token_hash(&raw_token).into(), (now() as f64).into()])?
+        .first::<SessionUser>(None)
+        .await?;
+    Ok(row.map(|row| row.user_id))
+}
+
 pub async fn create(db: &D1Database, user_id: &str) -> Result<String> {
     let raw_token = token()?;
     db.prepare(

@@ -17,7 +17,7 @@ Frontend components live under `apps/frontend/remade-wiki/src/components/`, grou
 
 ## Data pipeline
 
-Authentication lives separately in `apps/backend/remade-api/` at `api.remade.wiki`, with D1 for provider-independent UUIDv7 accounts and hashed opaque sessions. The header's small React island fetches a session only when a non-secret returning-user hint exists. Anonymous browsing never invokes the Worker. See [Authentication](AUTH.md) for local development, security boundaries and manual production setup. It does not change catalog publishing or public JSON exports.
+Authentication lives separately in `apps/backend/remade-api/` at `api.remade.wiki`, with D1 for provider-independent UUIDv7 accounts, hashed opaque sessions and separate request upvote/builder records. Request counters are runtime enhancements and never become catalog source data; see `PROJECT_REQUESTS.md`. The header's small React island fetches a session only when a non-secret returning-user hint exists. Anonymous browsing never invokes the Worker. See [Authentication](AUTH.md) for local development, security boundaries and manual production setup. It does not change catalog publishing or public JSON exports.
 
 ```text
 Contributor PR (apps/frontend/remade-wiki/src/content/catalog/projects/<github-user>/<slug>.yaml OR apps/frontend/remade-wiki/src/content/catalog/requests/<vendor>/<original-slug>.yaml)

@@ -1,12 +1,14 @@
+import type { ReactNode } from "react";
 import type { Original, Request } from "../../lib/schemas";
 import CardDescription from "./CardDescription";
 
 interface Props {
 	request: Request;
 	original: Original;
+	actions?: ReactNode;
 }
 
-export default function RequestCard({ request, original }: Props) {
+export default function RequestCard({ request, original, actions }: Props) {
 	return (
 		<article className="relative isolate flex h-full min-h-[360px] min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 focus-within:border-lime sm:p-[26px]">
 			<div className="mb-3.5 flex shrink-0 flex-wrap gap-2">
@@ -38,6 +40,7 @@ export default function RequestCard({ request, original }: Props) {
 					</span>
 				</p>
 			)}
+			{actions}
 		</article>
 	);
 }

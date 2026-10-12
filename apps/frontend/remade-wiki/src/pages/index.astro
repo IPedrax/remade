@@ -1,12 +1,26 @@
 ---
 import HomePage from "../components/pages/HomePage";
+import RequestPreview from "../components/requests/RequestPreview";
 import Layout from "../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../lib/catalog";
+import { findBySlug } from "../lib/presentation";
 
 const catalog = await loadCatalog();
 const metadata = await loadMetadata();
 ---
 
 <Layout title="Remade Directory">
-	<HomePage catalog={catalog} metadata={metadata} />
+	{import.meta.env.DEV ? (
+		<HomePage catalog={catalog} metadata={metadata}>
+			<RequestPreview
+				client:load
+				items={catalog.requests.slice(0, 3).map((request) => ({
+					request,
+					original: findBySlug(catalog.originals, request.original),
+				}))}
+			/>
+		</HomePage>
+	) : (
+		<HomePage catalog={catalog} metadata={metadata} />
+	)}
 </Layout>

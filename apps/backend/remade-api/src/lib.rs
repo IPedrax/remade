@@ -1,6 +1,7 @@
 mod auth;
 mod config;
 mod db;
+mod requests;
 mod security;
 mod session;
 
@@ -62,6 +63,8 @@ async fn route(req: &Request, env: &Env, config: &Config) -> Result<Response> {
     let allowed = match path.as_str() {
         "/api/v1/auth/github" | "/api/v1/auth/github/callback" | "/api/v1/auth/me" => "GET",
         "/api/v1/auth/logout" => "POST",
+        "/api/v1/requests/activity" => "GET",
+        _ if requests::action_path(&path).is_some() => "POST",
         _ => return Response::error("Not found", 404),
     };
     if req.url()?.as_str().len() > 4096
@@ -130,6 +133,8 @@ async fn route(req: &Request, env: &Env, config: &Config) -> Result<Response> {
         "/api/v1/auth/github/callback" => auth::callback(req, env, config).await,
         "/api/v1/auth/me" => session::me(req, env, config).await,
         "/api/v1/auth/logout" => session::logout(req, env, config).await,
+        "/api/v1/requests/activity" => requests::activity(req, env, config).await,
+        _ if requests::action_path(&path).is_some() => requests::change(req, env, config).await,
         _ => unreachable!(),
     }
 }
