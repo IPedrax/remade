@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
@@ -5,6 +6,7 @@ import AuthMenu from "../../src/components/AuthMenu";
 import * as auth from "../../src/lib/auth";
 
 vi.mock("../../src/lib/auth", { spy: true });
+vi.mock("sonner", { spy: true });
 
 const account: auth.Account = {
 	id: "0199c128-5d8f-7a26-b1e8-40c906f33871",
@@ -15,6 +17,8 @@ const account: auth.Account = {
 
 beforeEach(() => {
 	vi.clearAllMocks();
+	sessionStorage.removeItem("remade-pending-login-toast");
+	toast.dismiss();
 	vi.mocked(auth.hasLoginHint).mockReturnValue(false);
 	vi.mocked(auth.resolveAccount).mockResolvedValue(account);
 	vi.mocked(auth.logout).mockResolvedValue();
@@ -33,7 +37,7 @@ describe("header authentication", () => {
 		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
 		const screen = await render(<AuthMenu />);
 		await screen
-			.getByRole("combobox", { name: "Account menu for Example User" })
+			.getByRole("button", { name: "Account menu for Example User" })
 			.click();
 		await expect
 			.element(screen.getByText("Example User", { exact: true }))
@@ -42,8 +46,38 @@ describe("header authentication", () => {
 		await expect
 			.element(screen.getByRole("link", { name: "Login" }))
 			.toBeVisible();
+		expect(toast.success).toHaveBeenCalledWith("Logged out");
+		expect(toast.success).not.toHaveBeenCalledWith("Logged in as example");
 		expect(auth.logout).toHaveBeenCalledOnce();
 		expect(auth.resolveAccount).toHaveBeenCalledOnce();
+	});
+
+	it("announces a confirmed OAuth return using the GitHub username only once", async () => {
+		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
+		sessionStorage.setItem("remade-pending-login-toast", String(Date.now()));
+
+		const screen = await render(<AuthMenu />);
+		await expect
+			.poll(() => vi.mocked(toast.success).mock.calls)
+			.toEqual([["Logged in as example"]]);
+		expect(sessionStorage.getItem("remade-pending-login-toast")).toBeNull();
+
+		await screen.unmount();
+		await render(<AuthMenu />);
+		await expect.poll(() => auth.resolveAccount).toHaveBeenCalledTimes(2);
+		expect(toast.success).toHaveBeenCalledOnce();
+	});
+
+	it("does not announce an unsuccessful OAuth return", async () => {
+		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
+		vi.mocked(auth.resolveAccount).mockResolvedValue(null);
+		sessionStorage.setItem("remade-pending-login-toast", String(Date.now()));
+
+		await render(<AuthMenu />);
+		await expect
+			.poll(() => sessionStorage.getItem("remade-pending-login-toast"))
+			.toBeNull();
+		expect(toast.success).not.toHaveBeenCalled();
 	});
 
 	it("leaves public navigation usable when the API is unavailable", async () => {
@@ -58,7 +92,7 @@ describe("header authentication", () => {
 	it("opens and dismisses the account menu with the keyboard", async () => {
 		vi.mocked(auth.hasLoginHint).mockReturnValue(true);
 		const screen = await render(<AuthMenu />);
-		const trigger = screen.getByRole("combobox", {
+		const trigger = screen.getByRole("button", {
 			name: "Account menu for Example User",
 		});
 		await expect.element(trigger).toBeVisible();
@@ -75,15 +109,16 @@ describe("header authentication", () => {
 		vi.mocked(auth.logout).mockRejectedValue(new Error("Offline"));
 		const screen = await render(<AuthMenu />);
 		await screen
-			.getByRole("combobox", { name: "Account menu for Example User" })
+			.getByRole("button", { name: "Account menu for Example User" })
 			.click();
 		await screen.getByText("Logout", { exact: true }).click();
 		await expect
 			.element(screen.getByRole("status"))
 			.toHaveTextContent("Couldn’t log out. Please try again.");
+		expect(toast.success).not.toHaveBeenCalled();
 		await expect
 			.element(
-				screen.getByRole("combobox", { name: "Account menu for Example User" }),
+				screen.getByRole("button", { name: "Account menu for Example User" }),
 			)
 			.toBeVisible();
 	});

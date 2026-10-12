@@ -4,6 +4,8 @@ Remade's directory stays static at `https://remade.wiki`. The Rust Worker in `ap
 
 The backend comes from Cloudflare's official workers-rs `templates/hello-world` template. It uses worker 0.8.7, worker-build 0.8.7, Rust 1.99.0 and root pnpm-managed Wrangler 4.149.0. Commit the backend Cargo.lock and root pnpm-lock.yaml. See [Cloudflare's Rust guide](https://developers.cloudflare.com/workers/languages/rust/) and [GitHub's OAuth flow](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps).
 
+The header uses Sonner to confirm successful sign-in with “Logged in as [GitHub username]” and successful sign-out with “Logged out”. A short-lived session-storage marker survives the OAuth redirect so returning page loads do not repeat the sign-in toast. Toasts appear only after the API confirms success; unavailable browser storage does not block login.
+
 The header authentication controls are currently enabled only during development (`import.meta.env.DEV`). Production builds hide them until the login rollout is enabled. Local React and Worker integration tests remain available; production E2E account flows are temporarily marked pending.
 
 ## Local development

@@ -1,6 +1,6 @@
 import { LogIn } from "lucide-react";
 import { useEffect, useState } from "react";
-import Dropdown from "react-dropdown";
+import { Toaster, toast } from "sonner";
 import {
 	type Account,
 	apiUrl,
@@ -8,6 +8,36 @@ import {
 	logout,
 	resolveAccount,
 } from "../lib/auth";
+
+import UserDropdown from "./UserDropdown";
+
+const loginToastKey = "remade-pending-login-toast";
+
+function rememberLogin() {
+	try {
+		sessionStorage.setItem(loginToastKey, String(Date.now()));
+	} catch {
+		// Login still works when browser storage is unavailable.
+	}
+}
+
+function announceLogin(account: Account | null) {
+	try {
+		const pending = sessionStorage.getItem(loginToastKey);
+		sessionStorage.removeItem(loginToastKey);
+
+		const username = account?.identities.find(
+			(identity) => identity.provider === "github",
+		)?.username;
+		const elapsed = Date.now() - Number(pending);
+
+		if (pending && username && elapsed >= 0 && elapsed < 10 * 60 * 1000) {
+			toast.success(`Logged in as ${username}`);
+		}
+	} catch {
+		// Storage is only used to avoid announcing login on every page load.
+	}
+}
 
 export default function AuthMenu() {
 	const [account, setAccount] = useState<Account | null>(null);
@@ -21,7 +51,10 @@ export default function AuthMenu() {
 
 		void resolveAccount(controller.signal)
 			.then((user) => {
-				if (!controller.signal.aborted) setAccount(user);
+				if (controller.signal.aborted) return;
+
+				setAccount(user);
+				announceLogin(user);
 			})
 			.catch(() => {});
 
@@ -37,6 +70,7 @@ export default function AuthMenu() {
 		try {
 			await logout();
 			setAccount(null);
+			toast.success("Logged out");
 		} catch {
 			setMessage("Couldn’t log out. Please try again.");
 		} finally {
@@ -44,67 +78,35 @@ export default function AuthMenu() {
 		}
 	}
 
+	const toaster = <Toaster closeButton position="bottom-right" theme="dark" />;
+
 	if (!account) {
 		return (
-			<a
-				className="inline-flex items-center gap-2 rounded-lg border border-line px-4 py-3 font-semibold hover:border-lime"
-				href={`${apiUrl}/auth/github`}
-			>
-				<LogIn aria-hidden="true" size={16} />
-				Login
-			</a>
+			<>
+				{toaster}
+
+				<a
+					className="inline-flex items-center gap-2 rounded-lg border border-line px-4 py-3 font-semibold hover:border-lime"
+					href={`${apiUrl}/auth/github`}
+					onClick={rememberLogin}
+				>
+					<LogIn aria-hidden="true" size={16} />
+					Login
+				</a>
+			</>
 		);
 	}
 
-	const name =
-		account.displayName || account.identities[0]?.username || "Account";
-
 	return (
-		<div className="relative">
-			<Dropdown
-				aria-label={`Account menu for ${name}`}
-				baseClassName="AuthDropdown"
-				className="relative"
-				controlClassName="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-line hover:border-lime"
-				menuClassName="absolute right-0 top-full z-30 mt-2 w-56 max-w-[calc(100vw-36px)] break-words rounded-lg border border-line bg-panel p-3 shadow-lg"
-				onChange={() => void signOut()}
-				optionClassName={() =>
-					"mt-2 cursor-pointer rounded px-3 py-2 text-lime hover:bg-surface"
-				}
-				options={[
-					{
-						type: "group",
-						name,
-						items: [
-							{ value: "logout", label: busy ? "Logging out…" : "Logout" },
-						],
-					},
-				]}
-				placeholder={
-					account.avatarUrl ? (
-						<img
-							alt=""
-							className="size-10"
-							height={40}
-							src={account.avatarUrl}
-							width={40}
-						/>
-					) : (
-						<span>{name.slice(0, 1)}</span>
-					)
-				}
-				value={null}
-			/>
+		<>
+			{toaster}
 
-			{message && (
-				<p
-					aria-live="polite"
-					className="absolute right-0 top-full z-30 mt-2 w-56 rounded-lg border border-line bg-panel p-3 text-sm"
-					role="status"
-				>
-					{message}
-				</p>
-			)}
-		</div>
+			<UserDropdown
+				account={account}
+				busy={busy}
+				message={message}
+				onLogout={() => void signOut()}
+			/>
+		</>
 	);
 }

@@ -30,7 +30,7 @@ Implement focus and hover states, ensure accessible contrast, and make the inter
 
 Use React components for the UI and Tailwind utility classes for layout, spacing, typography, responsive behavior, and component states. Keep global CSS to theme tokens and base defaults. Astro owns static routes and document metadata. Hydrate React only for browser interactions; static React components do not send a React runtime to visitors. Format source with Biome.
 
-Authentication sits at the far right of the header: a compact **Login** link when signed out, or an avatar dropdown with the account name and **Logout** when signed in. Hydrate only this small island; anonymous browsing makes no auth API calls. Preserve keyboard focus and mobile wrapping. See `AUTH.md` for the authentication boundary.
+Authentication sits at the far right of the header: a compact **Login** link when signed out, or an avatar dropdown with the account name and **Logout** when signed in. Hydrate only this small island; anonymous browsing makes no auth API calls. Keep the account dropdown in `UserDropdown`: an avatar and chevron trigger, a separated identity section with display name and GitHub handle, and a Logout button with a Lucide icon. Support outside-click dismissal, Escape with focus restoration, and keyboard navigation. Preserve keyboard focus and mobile wrapping. See `AUTH.md` for the authentication boundary.
 
 ### Source readability
 
