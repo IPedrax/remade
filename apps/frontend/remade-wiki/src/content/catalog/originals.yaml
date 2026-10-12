@@ -925,3 +925,8 @@
   url: https://www.vegascreativesoftware.com/vegas-pro/
   category: creative
   aliases: [Sony Vegas]
+
+- slug: multideco
+  name: MultiDeco
+  url: https://www.hhssoftware.com/multideco/
+  category: other
