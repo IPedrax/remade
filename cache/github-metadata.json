@@ -162,6 +162,15 @@
       "pushedAt": "2026-10-11T06:26:41Z",
       "stars": 12
     },
+    "n-delic/kadar": {
+      "fetchedAt": "2026-10-13T01:40:50Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Kotlin",
+      "pushedAt": "2026-10-12T23:08:34Z",
+      "stars": 0
+    },
     "next2d/tool.next2d.app": {
       "fetchedAt": "2026-10-12T17:00:05Z",
       "forks": 11,
