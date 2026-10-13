@@ -314,6 +314,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-12T16:22:14Z",
       "stars": 8377
+    },
+    "therichronicles/earthcraft": {
+      "fetchedAt": "2026-10-13T00:52:31Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": null,
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-13T00:49:01Z",
+      "stars": 0
     }
   }
 }
