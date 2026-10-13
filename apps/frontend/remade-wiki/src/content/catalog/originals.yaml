@@ -1069,6 +1069,17 @@
   category: operating-systems
   aliases: [MS-DOS, MS-DOS 5, MS-DOS 6, MS-DOS 6.22]
 
+- slug: picsart
+  name: Picsart
+  url: https://picsart.com/
+  category: creative
+  aliases: [Picsart Photo Editor]
+- slug: inshot
+  name: InShot
+  url: https://inshot.com/
+  category: creative
+  aliases: [InShot Video Editor]
+
 - slug: final-draft
   name: Final Draft
   url: https://www.finaldraft.com/
