@@ -8,7 +8,7 @@ originals: [adobe-illustrator]
 category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
-status: experimental
+status: alpha
 compatibility: partial
 description: VectorCraft by ArtCraft independently implements Illustrator-style vector illustration, including paths, artboards, typography, SVG, PDF and PDF-compatible AI files.
 license: MIT OR Apache-2.0

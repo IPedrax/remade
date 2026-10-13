@@ -8,7 +8,7 @@ originals: [microsoft-word]
 category: productivity
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
-status: experimental
+status: alpha
 compatibility: partial
 description: An independent Word-style document editor by ArtCraft with ribbon workflows, paragraph styles, tables, review tools, DOCX reading and writing, and PDF export.
 license: MIT OR Apache-2.0

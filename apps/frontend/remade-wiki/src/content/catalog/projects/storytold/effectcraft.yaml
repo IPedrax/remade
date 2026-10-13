@@ -7,7 +7,7 @@ originals: [adobe-after-effects]
 category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
-status: experimental
+status: alpha
 compatibility: partial
 description: An independent After Effects-style compositor by ArtCraft with compositions, layered animation, keyframes, expressions, effects and rendering.
 license: MIT OR Apache-2.0

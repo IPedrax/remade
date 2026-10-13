@@ -12,6 +12,7 @@ projects:
   - vectorcraft
   - designcraft
   - lightcraft
+  - lightcraft-classic
   - filmcraft
   - effectcraft
   - pdfcraft
@@ -21,3 +22,6 @@ projects:
   - cadcraft
   - solidcraft
   - soundcraft
+  - mailcraft
+  - figcraft
+  - markupcraft

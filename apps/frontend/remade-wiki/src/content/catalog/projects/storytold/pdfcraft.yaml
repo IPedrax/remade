@@ -3,12 +3,12 @@ slug: pdfcraft
 name: PdfCraft
 authors: [storytold]
 repository: https://github.com/storytold/pdfcraft
-website: https://getartcraft.com/apps/printcraft
+website: https://getartcraft.com/apps/pdfcraft
 originals: [adobe-acrobat]
 category: productivity
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
-status: experimental
+status: alpha
 compatibility: partial
 description: An independent Acrobat-style PDF workbench by ArtCraft for viewing, organizing, annotating, filling and protecting PDF documents.
 license: MIT OR Apache-2.0

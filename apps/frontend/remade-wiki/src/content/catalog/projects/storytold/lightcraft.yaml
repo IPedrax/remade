@@ -8,7 +8,7 @@ originals: [adobe-lightroom]
 category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
-status: experimental
+status: alpha
 compatibility: partial
 description: An independent Lightroom-style photography application by ArtCraft with a photo library, non-destructive adjustments, RAW development and masking.
 license: MIT OR Apache-2.0

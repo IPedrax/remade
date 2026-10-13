@@ -635,7 +635,7 @@
   aliases: [Bentley Systems, Bentley MicroStation, Bentley OpenRoads Designer, Bentley STAAD.Pro, Bentley ProjectWise]
 - slug: intergraph-smart-3d
   name: Intergraph Smart 3D
-  url: https://aliresources.hexagon.com/design-visualization/intergraph-smart-3d-3
+  url: https://aliresources.hexagon.com/design-visualization/smart-3d-product-sheet
   category: engineering
   aliases: [Smart 3D, SmartPlant 3D, Hexagon Smart 3D]
 - slug: mocha-pro
@@ -738,7 +738,7 @@
 
 - slug: materialise-magics
   name: Materialise Magics
-  url: https://www.materialise.com/en/industrial/software/materialise-magics
+  url: https://www.materialise.com/en/industrial/software/magics-data-build-preparation
   category: engineering
   aliases: [Magics]
 

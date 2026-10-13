@@ -7,8 +7,8 @@ originals: [microsoft-excel]
 category: productivity
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
-status: experimental
+status: alpha
 compatibility: partial
 description: An independent Excel-style spreadsheet application by ArtCraft with formulas, workbook recalculation, formatting, tables, charts and XLSX reading and writing.
 license: MIT OR Apache-2.0
-limitations: Maintainers describe it as pre-alpha. XLSX fidelity, very large sheets and features such as Solver and slicers still need work.
+limitations: Alpha; compatibility is maintainer-reported. XLSX fidelity on real-world files, very large workbooks, multithreaded recalculation, chart depth, multilingual text and legacy XLS import still need work.

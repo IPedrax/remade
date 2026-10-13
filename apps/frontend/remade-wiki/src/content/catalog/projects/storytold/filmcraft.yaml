@@ -8,7 +8,7 @@ originals: [adobe-premiere-pro]
 category: creative
 languages: [Rust]
 platforms: [Linux, macOS, Windows, FreeBSD, Web]
-status: experimental
+status: alpha
 compatibility: partial
 description: An independent Premiere-style video editor by ArtCraft with multitrack timelines, editing workspaces, color adjustments, audio, titles and media export.
 license: MIT OR Apache-2.0
