@@ -1068,3 +1068,9 @@
   url: https://github.com/microsoft/MS-DOS
   category: operating-systems
   aliases: [MS-DOS, MS-DOS 5, MS-DOS 6, MS-DOS 6.22]
+
+- slug: final-draft
+  name: Final Draft
+  url: https://www.finaldraft.com/
+  category: creative
+  aliases: [Final Draft 13]
