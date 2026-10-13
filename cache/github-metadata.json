@@ -117,6 +117,15 @@
       "pushedAt": "2026-10-13T11:37:24Z",
       "stars": 39
     },
+    "generalchad/markupcraft": {
+      "fetchedAt": "2026-10-13T20:57:59Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-12T03:16:32Z",
+      "stars": 0
+    },
     "grahamsz/rolltop": {
       "fetchedAt": "2026-10-13T15:16:18Z",
       "forks": 4,
@@ -152,6 +161,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-11T07:51:23Z",
       "stars": 7
+    },
+    "lyraedan/substancecraft": {
+      "fetchedAt": "2026-10-13T20:57:59Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-13T17:50:12Z",
+      "stars": 1
     },
     "makeplane/plane": {
       "fetchedAt": "2026-10-13T15:16:18Z",
