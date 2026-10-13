@@ -1091,3 +1091,10 @@
   url: https://www.finaldraft.com/
   category: creative
   aliases: [Final Draft 13]
+
+# Requested in https://github.com/replicraft/remade/issues/31.
+- slug: articulate-storyline-360
+  name: Articulate Storyline 360
+  url: https://www.articulate.com/360/storyline/
+  category: productivity
+  aliases: [Storyline 360, Articulate Storyline]
