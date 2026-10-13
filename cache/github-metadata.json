@@ -90,6 +90,15 @@
       "pushedAt": "2026-09-16T09:29:52Z",
       "stars": 0
     },
+    "fdos/kernel": {
+      "fetchedAt": "2026-10-13T00:15:45Z",
+      "forks": 179,
+      "isArchived": false,
+      "licenseSpdx": "GPL-2.0",
+      "primaryLanguage": "C",
+      "pushedAt": "2026-07-05T21:20:25Z",
+      "stars": 1055
+    },
     "flare-animate/flare": {
       "fetchedAt": "2026-10-12T17:00:05Z",
       "forks": 12,
