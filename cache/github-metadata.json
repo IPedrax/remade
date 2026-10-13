@@ -270,6 +270,15 @@
       "pushedAt": "2026-10-12T16:54:32Z",
       "stars": 5590
     },
+    "storytold/figcraft": {
+      "fetchedAt": "2026-10-13T09:48:58Z",
+      "forks": 21,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-13T06:39:41Z",
+      "stars": 52
+    },
     "storytold/filmcraft": {
       "fetchedAt": "2026-10-12T17:00:05Z",
       "forks": 4438,
