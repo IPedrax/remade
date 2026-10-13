@@ -1,0 +1,23 @@
+slug: rolltop
+name: Rolltop
+authors: [grahamsz]
+repository: https://github.com/grahamsz/rolltop
+originals: [gmail]
+category: productivity
+languages: [Go, TypeScript, Kotlin]
+platforms: [Web, Android]
+status: stable
+compatibility: partial
+description: >-
+  Self-hosted email client offering Gmail-style search operators, threaded
+  conversations, snooze, and keyboard shortcuts. Mirrors multiple IMAP accounts
+  into local storage with full-text search, a web UI, offline access to recently
+  viewed mail, and an Android app.
+license: AGPL-3.0-or-later
+website: https://rolltop.app/
+docs: https://github.com/grahamsz/rolltop#readme
+limitations: >-
+  Broader Gmail alternative included with maintainer approval.
+  Requires a self-hosted server and existing IMAP/SMTP accounts. Gmail API
+  compatibility and full feature parity are not claimed. Offline access is
+  limited to previously viewed mail.

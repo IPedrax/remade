@@ -1069,6 +1069,12 @@
   category: operating-systems
   aliases: [MS-DOS, MS-DOS 5, MS-DOS 6, MS-DOS 6.22]
 
+- slug: gmail
+  name: Gmail
+  url: https://workspace.google.com/products/gmail/
+  category: productivity
+  aliases: [Google Mail]
+
 - slug: picsart
   name: Picsart
   url: https://picsart.com/
