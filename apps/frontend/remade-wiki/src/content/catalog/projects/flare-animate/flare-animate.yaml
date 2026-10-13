@@ -6,10 +6,11 @@ repository: https://github.com/Flare-Animate/Flare
 website: https://flare-animate.github.io/website/
 originals: [adobe-animate]
 category: creative
-languages: [C++]
+languages: [C++, Rust, Python]
 platforms: [Linux, macOS, Windows]
 status: alpha
 compatibility: partial
-description: Flare by charlieduzstuf builds on OpenToonz with an Animate-style workspace and native import for Flash and Animate project formats.
+description: Flare builds on OpenToonz with an Animate-style workspace and native Flash and Animate import. It is absorbing AnimationCraft capabilities into its Rust subsystems and integrating Next2Flash's ActionScript tooling through an optional sidecar.
 license: BSD-3-Clause
-limitations: Very early alpha. FLA and XFL import is incomplete; SWF support includes headers and embedded bitmaps. Complex documents do not round-trip cleanly. OpenToonz-derived, not a from-scratch rewrite.
+docs: https://github.com/Flare-Animate/Flare#readme
+limitations: Very early alpha; Flash and Animate import fidelity is incomplete. Native SWF import extracts headers and bitmaps; ActionScript tooling uses an optional Next2Flash sidecar, with full SWF round-trip integration still pending. AnimationCraft absorption is ongoing. OpenToonz-derived; third-party components retain their own licenses.

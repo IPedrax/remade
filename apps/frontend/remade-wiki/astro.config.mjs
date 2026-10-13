@@ -6,6 +6,10 @@ export default defineConfig({
 	site: "https://remade.wiki",
 	output: "static",
 	redirects: {
+		"/projects/animationcraft": {
+			destination: "/projects/flare-animate/",
+			status: 302,
+		},
 		"/projects/solvecraft": {
 			destination: "/projects/solidcraft/",
 			status: 302,
