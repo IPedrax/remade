@@ -1098,3 +1098,14 @@
   url: https://www.articulate.com/360/storyline/
   category: productivity
   aliases: [Storyline 360, Articulate Storyline]
+
+- slug: mixmeister-studio
+  name: MixMeister Studio
+  url: https://www.numark.com/product/mixmeisterstudio
+  category: creative
+
+- slug: zmodeler-3
+  name: ZModeler 3
+  url: https://www.zmodeler3.com/
+  category: creative
+  aliases: [ZModeler3, Zanoza Modeler 3]
