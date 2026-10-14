@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: partcraft
+name: PartCraft
+authors: [getcadcraft]
+repository: https://github.com/getcadcraft/partcraft
+originals: [solidworks]
+category: engineering
+languages: [JavaScript]
+platforms: [Windows, Linux, Web]
+status: experimental
+compatibility: partial
+description: An independent SOLIDWORKS-style parametric modeler with constrained sketches, feature history, assemblies, drawings and STEP interchange. Can reconstruct supported features from an intermediate export generated inside SOLIDWORKS.
+license: Apache-2.0
+docs: https://github.com/getcadcraft/partcraft#readme
+website: https://getcadcraft.com/apps/partcraft
+limitations: In development; compatibility is maintainer-reported. SOLIDWORKS feature migration requires an export macro running in SOLIDWORKS; unsupported features are reported rather than reproduced. Full native project compatibility is not claimed. macOS and mobile builds are planned.

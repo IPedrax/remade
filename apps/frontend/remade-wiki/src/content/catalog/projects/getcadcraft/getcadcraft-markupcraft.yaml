@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the repository and official website.
+slug: getcadcraft-markupcraft
+name: MarkupCraft
+authors: [getcadcraft]
+repository: https://github.com/getcadcraft/markupcraft
+originals: [bluebeam-revu]
+category: engineering
+languages: [JavaScript]
+platforms: [Windows, Linux, Web]
+status: experimental
+compatibility: partial
+description: A Revu-style PDF drawing-review application with markup tools, a saved Tool Chest, document comparisons and punch lists. This JavaScript application belongs to the getcadcraft suite and is separate from engr-software's Rust MarkupCraft.
+license: Apache-2.0
+docs: https://github.com/getcadcraft/markupcraft#readme
+website: https://getcadcraft.com/apps/markupcraft
+limitations: In development; full Revu project, tool-set and collaboration-service compatibility is not documented. Some website content describes planned workflows. macOS and mobile editions are planned.

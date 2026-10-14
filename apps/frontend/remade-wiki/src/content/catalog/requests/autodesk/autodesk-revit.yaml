@@ -1,3 +1,0 @@
-original: autodesk-revit
-reason: Reproduce Revit's BIM, parametric families, coordinated views, schedules and documentation workflows. BIMCraft could combine Revit, Advance Steel and Tekla Structures workflows, with MCP support for AI-assisted model queries and edits. Could extend SolidCraft (https://github.com/bherbruck/solidcraft), or be separate projects sharing one 3D engine.
-suggested_names: [BIMCraft]

@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the repository and official website.
+slug: takeoffcraft
+name: TakeoffCraft
+authors: [getcadcraft]
+repository: https://github.com/getcadcraft/takeoffcraft
+originals: [planswift, bluebeam-revu]
+category: engineering
+languages: [JavaScript]
+platforms: [Windows, Linux, Web]
+status: experimental
+compatibility: partial
+description: A PlanSwift- and Revu-style quantity-takeoff application with calibrated linear, area and count measurements from PDF drawings, assemblies, cost columns and quantity exports for estimating.
+license: Apache-2.0
+docs: https://github.com/getcadcraft/takeoffcraft#readme
+website: https://getcadcraft.com/apps/takeoffcraft
+limitations: In development; compatibility is maintainer-reported. Full PlanSwift or Revu project-file and plugin compatibility is not documented. Some website content describes planned workflows. macOS and mobile editions are planned.

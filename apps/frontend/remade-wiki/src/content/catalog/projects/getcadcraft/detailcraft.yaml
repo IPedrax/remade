@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the repository and official website.
+slug: detailcraft
+name: DetailCraft
+authors: [getcadcraft]
+repository: https://github.com/getcadcraft/detailcraft
+originals: [tekla-structures]
+category: engineering
+languages: [JavaScript]
+platforms: [Windows, Linux, Web]
+status: experimental
+compatibility: partial
+description: A Tekla-style steel and rebar detailing application with structural members, connections, reinforcement, bending schedules and shop drawings. Supports IFC interchange and DSTV NC output for fabrication workflows.
+license: Apache-2.0
+docs: https://github.com/getcadcraft/detailcraft#readme
+website: https://getcadcraft.com/apps/detailcraft
+limitations: In development; compatibility is maintainer-reported. Native Tekla model and plugin compatibility is not documented. Fabrication output requires checking in the shop's own viewer. Some website content describes planned workflows. macOS and mobile editions are planned.

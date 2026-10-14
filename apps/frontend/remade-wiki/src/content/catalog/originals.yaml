@@ -1109,3 +1109,8 @@
   url: https://www.zmodeler3.com/
   category: creative
   aliases: [ZModeler3, Zanoza Modeler 3]
+
+- slug: planswift
+  name: PlanSwift
+  url: https://www.planswift.com/
+  category: engineering

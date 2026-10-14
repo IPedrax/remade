@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the repository and official website.
+slug: modelcraft
+name: ModelCraft
+authors: [getcadcraft]
+repository: https://github.com/getcadcraft/modelcraft
+originals: [sketchup]
+category: engineering
+languages: [JavaScript]
+platforms: [Windows, Linux, Web]
+status: experimental
+compatibility: partial
+description: A SketchUp-style design modeler with push/pull editing, groups, components, guides and inference snapping for architectural massing and early design. Shares geometry and drawing infrastructure with the other getcadcraft applications.
+license: Apache-2.0
+docs: https://github.com/getcadcraft/modelcraft#readme
+website: https://getcadcraft.com/apps/modelcraft
+limitations: In development; compatibility is maintainer-reported. Full SketchUp behavior, extension support and native SKP project fidelity are not claimed. Some website illustrations describe planned workflows. macOS and mobile editions are planned.

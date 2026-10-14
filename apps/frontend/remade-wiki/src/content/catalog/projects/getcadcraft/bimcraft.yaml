@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: bimcraft
+name: BimCraft
+authors: [getcadcraft]
+repository: https://github.com/getcadcraft/bimcraft
+originals: [autodesk-revit]
+category: engineering
+languages: [JavaScript]
+platforms: [Windows, Linux, Web]
+status: experimental
+compatibility: partial
+description: An independent Revit-style BIM application with parametric building elements, levels, grids, model-derived views, schedules, sheets and clash checks. Uses its own IFC engine and exposes limited Revit container information.
+license: Apache-2.0
+docs: https://github.com/getcadcraft/bimcraft#readme
+website: https://getcadcraft.com/apps/bimcraft
+limitations: In development; compatibility is maintainer-reported. RVT reading exposes container metadata, previews and links rather than model geometry. Worksharing and full Revit family or project compatibility are not claimed. macOS and mobile builds are planned.
