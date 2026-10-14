@@ -1110,17 +1110,23 @@
   category: creative
   aliases: [ZModeler3, Zanoza Modeler 3]
 
-- slug: planswift
-  name: PlanSwift
-  url: https://www.planswift.com/
-  category: engineering
-
 - slug: medal-tv
   name: Medal.tv
   url: https://medal.tv/
   category: creative
 
+- slug: planswift
+  name: PlanSwift
+  url: https://www.planswift.com/
+  category: engineering
+
 - slug: screen-studio
   name: Screen Studio
   url: https://screen.studio/
   category: creative
+
+- slug: apple-itunes
+  name: Apple iTunes
+  url: https://www.apple.com/itunes/
+  category: creative
+  aliases: [iTunes, iTunes 11]
