@@ -1,0 +1,15 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: openrevu
+name: OpenRevu
+authors: [vineetpadia]
+repository: https://github.com/vineetpadia/openrevu
+originals: [bluebeam-revu]
+category: engineering
+languages: [Python]
+platforms: [Linux, macOS, Windows]
+status: beta
+compatibility: partial
+description: A Revu-style PDF review and quantity-takeoff application with markup tools, calibrated measurements, a Tool Chest, Markups List, document comparisons and command-line batch operations. Supports partial Bluebeam tool-set import.
+license: AGPL-3.0-or-later
+docs: https://github.com/vineetpadia/openrevu#readme
+limitations: No live Studio collaboration or cross-file revision database. Tool-set import supports BTX but not BPX or BAX. Signature checks do not check revocation. OCR and PDF/A functions require external programs; macOS and Windows GUI usability has not been tested by hand.

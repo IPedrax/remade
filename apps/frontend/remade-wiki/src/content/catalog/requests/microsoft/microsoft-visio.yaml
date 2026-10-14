@@ -1,4 +1,0 @@
-# Requested in https://github.com/replicraft/remade/issues/6.
-original: microsoft-visio
-reason: Reproduce Visio's familiar diagramming workflow, including flowcharts, organization charts, network diagrams, reusable stencils, shape data and connector routing, with compatible Visio document import and export.
-suggested_names: [DiagramCraft]

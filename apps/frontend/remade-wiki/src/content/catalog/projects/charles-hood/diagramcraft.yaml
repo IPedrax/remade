@@ -1,0 +1,14 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: diagramcraft
+name: DiagramCraft
+authors: [charles-hood]
+repository: https://github.com/charles-hood/DiagramCraft
+originals: [microsoft-visio]
+category: productivity
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: A headless implementation of Visio's package formats and ShapeSheet formulas, reading diagrams, stencils and templates and rendering pages to PNG, SVG and PDF. Includes a writer and maintainer-reported comparisons with Visio outputs.
+license: MIT OR Apache-2.0
+docs: https://github.com/charles-hood/DiagramCraft#readme
+limitations: Pre-alpha; no GUI is provided or planned. Macro-enabled files discard VBA. Unrepaired Visio saving is not yet claimed; text wrapping, EMF+ images and compound line patterns have gaps. Authoring, connector routing and MCP support are still in progress.
