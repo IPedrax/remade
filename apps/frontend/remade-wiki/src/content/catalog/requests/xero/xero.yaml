@@ -1,3 +1,0 @@
-original: xero
-reason: Reproduce Xero's small-business bookkeeping, invoicing, bills, expenses, bank reconciliation and financial reporting workflows, with compatible data import/export. Could share an implementation with the QuickBooks request. Require validated calculations, audit trails and accountant review before production use.
-suggested_names: [LedgerCraft]

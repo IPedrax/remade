@@ -1142,3 +1142,14 @@
   url: https://www.zoom.com/en/products/virtual-meetings/
   category: productivity
   aliases: [Zoom]
+
+- slug: myob-acumatica
+  name: MYOB Acumatica
+  url: https://www.myob.com/au/erp-software/products/myob-acumatica
+  category: productivity
+  aliases: [MYOB Advanced]
+
+- slug: sage-accounting
+  name: Sage Accounting
+  url: https://www.sage.com/en-gb/sage-business-cloud/sage-accounting/
+  category: productivity

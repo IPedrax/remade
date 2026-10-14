@@ -1,0 +1,15 @@
+# Scope, layouts and limitations are maintainer-reported in the README.
+slug: ledgercraft
+name: LedgerCraft
+authors: [wr3nch98dev]
+repository: https://github.com/Wr3nch98DEV/LedgerCraft
+originals: [quickbooks, xero, myob-acumatica, sage-accounting]
+category: productivity
+languages: [Rust, TypeScript]
+platforms: [Windows, Linux, macOS, Web]
+status: experimental
+compatibility: partial
+description: A very early accounting project aiming to reproduce QuickBooks, Xero, MYOB Acumatica and Sage-style workflows through a shared Rust engine. Planned scope includes local company files, bookkeeping, invoicing, reconciliation, reporting and payroll.
+license: AGPL-3.0-or-later
+docs: https://github.com/Wr3nch98DEV/LedgerCraft#readme
+limitations: Very experimental; usable accounting workflows have not been verified, and the listed scope should be treated as development goals. Not ready for live business accounts. No complete behavioral, API or native project-file compatibility is established. Documented payroll calculations include approximations, and government submissions are not automatically lodged.
