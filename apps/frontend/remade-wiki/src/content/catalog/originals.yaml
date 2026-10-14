@@ -1130,3 +1130,9 @@
   url: https://www.apple.com/itunes/
   category: creative
   aliases: [iTunes, iTunes 11]
+
+# Requested in https://github.com/replicraft/remade/issues/40.
+- slug: lumion
+  name: Lumion
+  url: https://lumion.com/
+  category: creative
