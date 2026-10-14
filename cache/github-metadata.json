@@ -405,6 +405,15 @@
       "pushedAt": "2026-10-12T11:02:10Z",
       "stars": 2
     },
+    "rbr48/sotto": {
+      "fetchedAt": "2026-10-14T05:20:45Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "AGPL-3.0",
+      "primaryLanguage": "Dart",
+      "pushedAt": "2026-10-11T15:01:27Z",
+      "stars": 2
+    },
     "reactos/reactos": {
       "fetchedAt": "2026-10-13T15:16:18Z",
       "forks": 2242,
