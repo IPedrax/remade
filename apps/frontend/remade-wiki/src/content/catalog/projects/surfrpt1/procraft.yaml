@@ -1,0 +1,15 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: procraft
+name: ProCraft
+authors: [surfrpt1]
+repository: https://github.com/surfrpt1/procraft
+originals: [procreate]
+category: creative
+languages: [Rust]
+platforms: [Windows, iOS]
+status: experimental
+compatibility: partial
+description: An independent Procreate-style raster painting application with layered documents, brush dynamics, masks, selections, drawing guides and Animation Assist. Supports layered PSD interchange, sampled Procreate brush imports and a native iOS build.
+license: MIT
+docs: https://github.com/surfrpt1/procraft#readme
+limitations: Compatibility is maintainer-reported and incomplete. Procreate brush import targets shape tips; complete brush-engine and native Procreate document compatibility are not claimed. PSD masks and uncommon blend modes have gaps. The iOS build requires sideloading.
