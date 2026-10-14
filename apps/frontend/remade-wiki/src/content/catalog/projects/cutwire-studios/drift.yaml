@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: drift
+name: CutWire Drift
+authors: [cutwire-studios]
+repository: https://github.com/CutWire-Studios/Drift
+originals: [capcut]
+category: creative
+languages: [C++]
+platforms: [Linux, Windows, macOS, Android]
+status: experimental
+compatibility: partial
+description: An independent CapCut-style video editor built with Qt and FFmpeg, with multitrack editing, keyframes, captions, cutouts, effects, transitions, audio processing and local MCP automation.
+license: GPL-3.0
+docs: https://docs.cutwire.org/drift/
+website: https://cutwire.org/drift/
+limitations: Early software; full CapCut behavior and project-file compatibility are not documented. Android distribution is in closed testing. macOS builds are ad-hoc signed and are not notarized. Some local AI features depend on separately downloaded models.
