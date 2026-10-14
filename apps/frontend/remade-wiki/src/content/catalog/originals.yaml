@@ -1153,3 +1153,8 @@
   name: Sage Accounting
   url: https://www.sage.com/en-gb/sage-business-cloud/sage-accounting/
   category: productivity
+
+- slug: fl-studio-mobile
+  name: FL Studio Mobile
+  url: https://www.image-line.com/fl-studio-mobile
+  category: creative
