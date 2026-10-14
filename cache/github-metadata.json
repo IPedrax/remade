@@ -72,6 +72,15 @@
       "pushedAt": "2026-10-13T23:51:35Z",
       "stars": 1891
     },
+    "daijro/honeydew": {
+      "fetchedAt": "2026-10-14T17:25:42Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-14T16:19:01Z",
+      "stars": 3
+    },
     "daijro/openplayground": {
       "fetchedAt": "2026-10-14T13:05:01Z",
       "forks": 0,
@@ -252,6 +261,15 @@
       "pushedAt": "2026-10-11T04:28:27Z",
       "stars": 36
     },
+    "graphiteeditor/graphite": {
+      "fetchedAt": "2026-10-14T17:25:42Z",
+      "forks": 1288,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-14T16:51:01Z",
+      "stars": 27589
+    },
     "ingelibre/ingetrazo": {
       "fetchedAt": "2026-10-14T13:05:01Z",
       "forks": 145,
@@ -368,6 +386,15 @@
       "primaryLanguage": "TypeScript",
       "pushedAt": "2026-09-24T09:24:44Z",
       "stars": 94272
+    },
+    "opengeos/rustgis": {
+      "fetchedAt": "2026-10-14T17:25:42Z",
+      "forks": 133,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-14T16:51:18Z",
+      "stars": 989
     },
     "pijellypin/materialcraft": {
       "fetchedAt": "2026-10-14T13:05:01Z",
