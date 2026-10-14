@@ -1,0 +1,16 @@
+# The roadmap identifies Zoom-style professional calling as a competing workflow.
+slug: sotto
+name: Sotto
+authors: [rbr48]
+repository: https://github.com/rbr48/sotto
+originals: [zoom]
+category: productivity
+languages: [Dart, TypeScript]
+platforms: [Android, Windows, Linux, Web]
+status: beta
+compatibility: partial
+description: A self-hostable alternative for Zoom-style professional and client calls, with browser guest links, one-to-one voice and video, contact messaging and native apps. Uses WebRTC and a relay architecture; encryption and privacy claims are maintainer-reported.
+license: AGPL-3.0-or-later
+website: https://sottocall.com/
+docs: https://github.com/rbr48/sotto/blob/main/docs/SELF_HOSTING.md
+limitations: A broader alternative, not a Zoom-compatible client. Group calls and consent-based recording are planned; no native macOS or iOS apps. No independent security audit yet, and call/chat setup lacks forward secrecy. Browser security depends on server-delivered code; Windows installers are unsigned.

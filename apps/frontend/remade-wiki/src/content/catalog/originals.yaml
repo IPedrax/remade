@@ -1136,3 +1136,9 @@
   name: Lumion
   url: https://lumion.com/
   category: creative
+
+- slug: zoom
+  name: Zoom Meetings
+  url: https://www.zoom.com/en/products/virtual-meetings/
+  category: productivity
+  aliases: [Zoom]
