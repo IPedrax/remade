@@ -1,0 +1,16 @@
+# Scope and limitations are maintainer-reported in the README, roadmap and comparison guide.
+slug: rustgis
+name: RustGIS
+authors: [opengeos]
+repository: https://github.com/opengeos/RustGIS
+originals: [arcgis]
+category: engineering
+languages: [Rust]
+platforms: [Windows, macOS, Linux, Web]
+status: experimental
+compatibility: partial
+description: A native and browser GIS offering ArcGIS-style ribbon workflows for mapping, editing, spatial analysis, layouts and reporting. Reads common geospatial formats and ArcGIS REST services, with scriptable commands, CLI and Python interfaces, MCP automation and WebAssembly plugins.
+license: Apache-2.0
+website: https://rustgis.app/
+docs: https://rustgis.app/user-guide/
+limitations: A broader GIS alternative, not a full ArcGIS replacement. Many features are first implementations; full 3D scenes and enterprise portal sharing are unfinished. Native ArcGIS project and extension compatibility is not documented. Some data providers require GDAL or DuckDB; AI assistance sends selected data to the configured model.
