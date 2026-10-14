@@ -1,0 +1,14 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: lightfoundry
+name: LightFoundry
+authors: [sitesentrix]
+repository: https://github.com/SiteSentrix/lightfoundry
+originals: [lightburn]
+category: creative
+languages: [Rust]
+status: experimental
+compatibility: partial
+description: A LightBurn-style laser layout and control application with vector editing, SVG and DXF import, per-layer cut settings, raster dithering, toolpath preview and GRBL G-code streaming. Includes a simulated controller and headless commands.
+license: MIT OR Apache-2.0
+docs: https://github.com/SiteSentrix/lightfoundry#readme
+limitations: Early development; machine control has only been verified against a simulator. Marlin and Smoothieware output is untested on hardware. Many LightBurn workflows and controller families are missing; native LightBurn project compatibility is not documented.

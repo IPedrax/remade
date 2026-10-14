@@ -1,3 +1,0 @@
-original: lightburn
-reason: Reproduce LightBurn's laser cutting and engraving workflow, including vector and image import, node editing, layout, layer-based power/speed/pass settings, cut ordering, dithering, material presets, camera alignment and direct machine control, with compatible project interchange. Could share LaserCraft's design and controller support with an xTool Studio implementation.
-suggested_names: [LaserCraft]
