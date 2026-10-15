@@ -1,0 +1,18 @@
+# Broader Discord alternative accepted at the maintainer's request.
+# Scope and encryption claims are upstream-reported, not independently audited.
+slug: armada
+name: Armada
+authors: [soapbox-pub]
+repository: https://gitworkshop.dev/soapbox.pub/armada
+mirrors: [https://github.com/soapbox-pub/armada]
+originals: [discord]
+category: productivity
+languages: [TypeScript]
+platforms: [Web, Windows, macOS, Linux, Android]
+status: experimental
+compatibility: partial
+description: A broader Discord alternative with communities, channels, threads, moderation and voice, built on Nostr. Concord communities use end-to-end encrypted events over relays; NIP-29 groups are also supported. Offers a React web client, Electron desktop apps and an Android app, with Discord server-import and bridging workflows.
+license: AGPL-3.0 with additional app-store distribution permission
+website: https://soapbox.pub/armada
+docs: https://github.com/soapbox-pub/armada#readme
+limitations: Uses Nostr and Concord rather than Discord's service or API; imports and bridges do not establish full Discord compatibility. Relays and voice brokers remain infrastructure dependencies. Encryption properties vary by supported protocol and are upstream-reported. The iOS app is not yet released.
