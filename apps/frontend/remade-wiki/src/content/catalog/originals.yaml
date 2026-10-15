@@ -1190,3 +1190,9 @@
   url: https://www.tuhs.org/Archive/Documentation/Books/Life_with_Unix.pdf
   category: operating-systems
   aliases: [Version 7 Unix, UNIX V7, Research Unix V7]
+
+- slug: chaos-corona
+  name: Chaos Corona
+  url: https://www.chaos.com/corona
+  category: creative
+  aliases: [Corona Renderer]
