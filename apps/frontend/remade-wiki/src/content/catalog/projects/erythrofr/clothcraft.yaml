@@ -1,0 +1,15 @@
+# Scope, maturity and platform evidence are maintainer-reported in the README.
+slug: clothcraft
+name: ClothCraft
+authors: [erythrofr]
+repository: https://github.com/erythrofr/ClothCraft
+originals: [marvelous-designer]
+category: creative
+languages: [Rust]
+platforms: [Windows]
+status: alpha
+compatibility: targeting
+description: An early Rust prototype targeting Marvelous Designer's pattern-based garment workflow. Draw and edit 2D pieces, sew their boundaries, arrange them around an avatar and simulate the assembled cloth. Uses its own JSON documents and physics implementation, with avatar OBJ import and static garment OBJ export.
+license: MIT
+docs: https://github.com/erythrofr/ClothCraft/blob/main/docs/authoring.md
+limitations: Very early alpha with a French UI; only Windows has been locally exercised. Native Marvelous Designer and CLO files, industry pattern interchange, grading and print-to-scale output are unsupported. Fabric values are estimates; friction, animated avatars and robust multilayer workflows are missing. No autosave or recovery; export overwrites fixed filenames.
