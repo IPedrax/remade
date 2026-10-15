@@ -44,13 +44,25 @@ jobs:
         id: lychee
         uses: lycheeverse/lychee-action@v2.9.0
         with:
-          args: --config lychee.toml --exclude-all-private --no-progress .generated/submission-urls.txt
+          args: --config lychee.toml --exclude-all-private --no-progress --exclude '^https://(github\.com|api\.github\.com|raw\.githubusercontent\.com)(/|$)' .generated/submission-urls.txt
+          failIfEmpty: false
           fail: false
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Check submitted GitHub links strictly
+        if: steps.prepare.outputs.has_urls == 'true'
+        id: lychee_github
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          output: lychee/github-report.md
+          args: --config lychee.toml --cache=false --exclude-all-private --no-progress --exclude '.*' --include '^https://(github\.com|api\.github\.com|raw\.githubusercontent\.com)(/|$)' --accept '200..=299' .generated/submission-urls.txt
+          fail: false
+          failIfEmpty: false
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Publish or update review comment
         if: always() && hashFiles('.generated/submission.json') != ''
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          LYCHEE_EXIT: ${{ steps.lychee.outputs.exit_code }}
+          LYCHEE_EXIT: ${{ steps.lychee.outputs.exit_code == '0' && steps.lychee_github.outputs.exit_code == '0' && '0' || '1' }}
         run: uv run --project scripts python scripts/review_submission.py publish --report .generated/submission.json --lychee-exit "$LYCHEE_EXIT"

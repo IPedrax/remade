@@ -50,8 +50,21 @@ jobs:
         uses: lycheeverse/lychee-action@v2.9.0
         with:
           output: lychee/catalog-report.md
-          args: --config lychee.toml --cache --verbose --no-progress .generated/catalog-urls.txt
+          args: --config lychee.toml --cache --verbose --no-progress --exclude '^https://(github\.com|api\.github\.com|raw\.githubusercontent\.com)(/|$)' .generated/catalog-urls.txt
+          failIfEmpty: false
           fail: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Check GitHub URLs strictly
+        timeout-minutes: 10
+        continue-on-error: true
+        if: steps.url_list.outputs.has_urls == 'true'
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          output: lychee/github-report.md
+          args: --config lychee.toml --cache=false --verbose --no-progress --exclude '.*' --include '^https://(github\.com|api\.github\.com|raw\.githubusercontent\.com)(/|$)' --accept '200..=299' .generated/catalog-urls.txt
+          fail: true
+          failIfEmpty: false
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Save link-check reports

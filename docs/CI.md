@@ -83,7 +83,8 @@ Arguments pass through to the collector. `just py::metadata-refresh --list-only`
 - PR and push checks examine added URL values only, including replacement URLs and newly added mirrors; unchanged URLs are not rechecked.
 - Weekly check checks all catalog links.
 - `frontend-test.yml` runs Lychee with `--offline` on generated pages after its existing Astro build. External catalog URLs belong to the additions check and weekly audit, avoiding duplicate builds and external scans.
-- Lychee accepts HTTP 403 responses globally. HTTP 429 rate limits and other errors are reported, but link-check failures do not fail the workflow. `.lycheeignore` is for documented, temporary exceptions.
+- External checks use separate Lychee passes: general websites tolerate HTTP 403 bot blocking; github.com, api.github.com and raw.githubusercontent.com accept only 2xx responses. GitHub checks bypass the cache so previously accepted 403s cannot hide failures. This applies to additions, weekly audits and submission reviews. Empty passes are allowed.
+- GitHub normally hides inaccessible private repositories behind HTTP 404; HTTP 403 may indicate rate limiting or access restrictions. Failed checks flag unavailable or inconclusive links, rather than proving a repository is private. HTTP 429 and other errors are also reported. Link-check failures remain advisory and do not automatically remove listings or fail the workflow. `.lycheeignore` is for documented, temporary exceptions.
 
 ## Security
 
