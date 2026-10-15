@@ -1216,3 +1216,8 @@
   name: VirtualDJ
   url: https://virtualdj.com/
   category: creative
+
+- slug: obsidian
+  name: Obsidian
+  url: https://obsidian.md/
+  category: productivity
