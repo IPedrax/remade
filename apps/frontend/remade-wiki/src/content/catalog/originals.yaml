@@ -1249,3 +1249,9 @@
   name: Finale
   url: https://www.finalemusic.com/
   category: creative
+
+- slug: plaud-desktop
+  name: Plaud Desktop
+  url: https://www.plaud.ai/pages/plaud-desktop
+  category: productivity
+  aliases: [Plaud]
