@@ -163,8 +163,8 @@ export default function ProjectPage({
 				<section>
 					<h2>
 						{project.originals.length > 1
-							? "More implementations of these targets"
-							: `More implementations of ${catalog.originals
+							? "More re-implementations of these targets"
+							: `More re-implementations of ${catalog.originals
 									.filter((o) => project.originals.includes(o.slug))
 									.map((o) => o.name)
 									.join(", ")}`}
