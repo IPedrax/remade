@@ -1,0 +1,31 @@
+# Remade
+
+> Everything can be remade. Remade is a community-maintained directory of independently authored software reimplementations and supporting tools.
+
+The current editorial scope focuses on software whose original implementation is not open source. Remade links to third-party projects; it does not develop, host or certify the indexed software. Most listings are open source; maintainer-approved projects without a license grant are labeled Unlicensed, which does not grant reuse rights.
+
+Compatibility and maturity are maintainer-reported, not independently verified. Planned listings describe intended work, not working software. Supporting tools extend indexed projects and are separate from reimplementations. Project Requests describe wanted implementations, not existing projects, assignments or promises to build them. Listing does not certify clean-room provenance or legality.
+
+## Catalog data
+
+- [Catalog JSON](https://remade.wiki/data/catalog.json): Static public feed of original software, projects, supporting tools and featured selections. Projects reference canonical original-software slugs through their originals arrays. Includes public page URLs; optional fields are omitted when unavailable.
+- [Project Requests JSON](https://remade.wiki/data/requests.json): Static public feed of unfulfilled requests, their reasons and original-software references. Keep these separate from implemented projects.
+- [Catalog schema](https://raw.githubusercontent.com/replicraft/remade/main/docs/CATALOG.md): Field definitions, compatibility and maturity values, canonical identifiers and public feed contracts. Cached GitHub statistics are not part of these feeds.
+
+## Browse the directory
+
+- [Home](https://remade.wiki/): Featured projects, categories, recent entries and Project Requests.
+- [Explore](https://remade.wiki/explore/): Search and filter indexed projects and supporting tools.
+- [Project Requests](https://remade.wiki/requests/): Browse software the community would like to see reimplemented.
+- [About Remade](https://remade.wiki/about/): Mission, background and community contribution links.
+
+## Policy and contributions
+
+- [Submission policy](https://raw.githubusercontent.com/replicraft/remade/main/POLICY.md): Authoritative eligibility, independence, licensing and moderation rules.
+- [Contributing](https://raw.githubusercontent.com/replicraft/remade/main/CONTRIBUTING.md): How to submit or correct listings through pull requests. Accepted pull requests publish catalog changes.
+- [Disclaimer](https://remade.wiki/disclaimer/): Qualified legal context and the reporting contact.
+
+## Optional
+
+- [Repository](https://github.com/replicraft/remade): Catalog source, website code, issues and pull requests.
+- [Sitemap](https://remade.wiki/sitemap-index.xml): Discovery index for published pages, including individual project, original-software, tool and author pages.

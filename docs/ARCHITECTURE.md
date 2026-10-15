@@ -80,6 +80,10 @@ Astro prerenders `/data/catalog.json` and `/data/requests.json` into static file
 
 The response helper declares JSON content type, one-hour public caching and `Access-Control-Allow-Origin: *`. Static response headers are configured separately in `apps/frontend/remade-wiki/public/_headers` for Cloudflare Pages, because build-time Response headers are not embedded in the JSON files. Other static hosts should apply equivalent headers. JSON updates when the site rebuilds, and clients may cache it for an hour.
 
+## LLM discovery
+
+`apps/frontend/remade-wiki/public/llms.txt` is a maintained Markdown guide published unchanged at `/llms.txt`, following the [llms.txt proposal](https://llmstxt.org/). It summarizes the directory's scope and listing caveats, then links to the existing public JSON feeds, browsing pages, policy, catalog schema and contribution documentation. Keep it concise; catalog records remain in the generated feeds rather than a second manually maintained project list. Do not advertise unpublished features. The shared document layout links to it using `rel="describedby"`, and Cloudflare Pages serves it as UTF-8 plain text with one-hour public caching through `_headers`. It complements the sitemap and does not change `robots.txt` crawling rules.
+
 ## CI security
 
 - On forked PRs, use `pull_request` with minimal read permissions; never run arbitrary repo scripts with elevated secrets under `pull_request_target`.
