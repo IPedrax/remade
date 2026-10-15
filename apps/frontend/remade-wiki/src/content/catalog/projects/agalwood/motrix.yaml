@@ -1,0 +1,16 @@
+# Accepted with maintainer approval as a broader IDM alternative.
+slug: motrix
+name: Motrix
+authors: [agalwood]
+repository: https://github.com/agalwood/Motrix
+originals: [internet-download-manager]
+category: productivity
+languages: [TypeScript, JavaScript, Rust, Swift]
+platforms: [Windows, macOS, Linux, Web]
+status: beta
+compatibility: partial
+description: A broader Internet Download Manager alternative for HTTP, FTP, BitTorrent and magnet downloads. Uses a Motrix-maintained aria2 engine with queues, scheduling, speed limits, browser integration and persistent sessions. Provides an Electron desktop app and a headless server with a web interface, CLI access and plug-ins.
+license: MIT
+website: https://motrix.app/
+docs: https://github.com/agalwood/Motrix#readme
+limitations: The current rewrite is in beta. IDM settings, queue files and integration compatibility are not documented; browser integration uses Motrix's own extension and protocol. Migration from older Motrix imports selected tasks paused and requires a separate resume action; legacy progress import is unavailable on Windows. Third-party components retain separate licenses.
