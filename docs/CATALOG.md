@@ -45,7 +45,7 @@ Organize attributed files as `projects/<github-user>/<slug>.yaml` and `tools/<gi
 
 `entries_by_author` derives groups directly from validated project and tool YAML, sorts them deterministically, and keeps separate project/tool lists. Grouping includes every attributed indexed entry independently of Featured. The static `/authors/[github-user]` route uses the handle directly: ArtCraft entries with `authors: [storytold]` appear at `/authors/storytold`. This does not automatically import or publish other repositories.
 
-Entry cards, detail pages and featured cards show **View More by Author**, labeled with the GitHub handle and linked to that route. Multiple authors get separately labeled links. Omit links when no author is recorded. Author pages include every explicitly attributed entry, with separate reimplementation and supporting-tool sections.
+Entry cards, detail pages and featured cards show a white **Author:** label for one author or **Authors:** for multiple authors, followed on the next line by lime GitHub handles linked to their author routes. Separate multiple handles with middle dots and allow the links to wrap. Omit the entire author block when no author is recorded. Author pages include every explicitly attributed entry, with separate reimplementation and supporting-tool sections.
 
 ## Project record
 

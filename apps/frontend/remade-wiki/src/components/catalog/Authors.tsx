@@ -7,21 +7,27 @@ export default function Authors({ authors = [] }: Props) {
 		<>
 			{authors.length > 0 && (
 				<div
-					className="mt-auto flex shrink-0 flex-wrap gap-x-4 gap-y-2 pt-[18px] text-xs"
+					className="mt-auto flex shrink-0 flex-col gap-1 pt-[18px] text-sm"
 					data-pagefind-ignore
 				>
-					{authors.map((author) => (
-						<a
-							className="group/author relative z-10 text-sm text-lime hover:underline focus-visible:underline"
-							href={`/authors/${author}/`}
-							key={author}
-						>
-							View More by Author ·{" "}
-							<span className="inline-block whitespace-nowrap group-hover/author:underline group-focus-visible/author:underline">
-								@{author} ↗
+					<p className="font-semibold text-ink">
+						{authors.length === 1 ? "Author:" : "Authors:"}
+					</p>
+
+					<div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+						{authors.map((author, index) => (
+							<span className="inline-flex items-baseline gap-2" key={author}>
+								{index > 0 && <span aria-hidden="true">·</span>}
+
+								<a
+									className="relative z-10 whitespace-nowrap text-lime hover:underline focus-visible:underline"
+									href={`/authors/${author}/`}
+								>
+									@{author} ↗
+								</a>
 							</span>
-						</a>
-					))}
+						))}
+					</div>
 				</div>
 			)}
 		</>
