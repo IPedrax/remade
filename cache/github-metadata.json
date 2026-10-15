@@ -36,6 +36,15 @@
       "pushedAt": "2026-10-15T07:04:15Z",
       "stars": 1
     },
+    "alyssaxuu/motionity": {
+      "fetchedAt": "2026-10-15T17:53:15Z",
+      "forks": 366,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "JavaScript",
+      "pushedAt": "2022-09-12T02:06:50Z",
+      "stars": 4122
+    },
     "apibim-com/beamcraft": {
       "fetchedAt": "2026-10-15T12:51:49Z",
       "forks": 1,
@@ -71,6 +80,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-15T12:50:58Z",
       "stars": 2577
+    },
+    "calla-ji/materialcreator": {
+      "fetchedAt": "2026-10-15T17:53:15Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-13T23:06:15Z",
+      "stars": 6
     },
     "charles-hood/diagramcraft": {
       "fetchedAt": "2026-10-15T12:51:49Z",
@@ -719,6 +737,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-14T15:29:49Z",
       "stars": 5006
+    },
+    "storytold/craft-launcher": {
+      "fetchedAt": "2026-10-15T17:53:15Z",
+      "forks": 948,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-15T03:40:31Z",
+      "stars": 2818
     },
     "storytold/deckcraft": {
       "fetchedAt": "2026-10-15T12:51:49Z",
