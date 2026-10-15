@@ -11,6 +11,7 @@ import {
 import type { Original, Project, Suite } from "../../lib/schemas";
 import Authors from "./Authors";
 import CardDescription from "./CardDescription";
+import DiscordLinks from "./DiscordLinks";
 import OriginalLinks from "./OriginalLinks";
 import ToolTargets from "./ToolTargets";
 
@@ -106,6 +107,8 @@ export default function EntryCard({
 				label={`Read more about ${entry.name}`}
 				text={entry.description}
 			/>
+
+			{entry.kind === "project" && <DiscordLinks {...entry} />}
 
 			<Authors authors={entry.authors} />
 		</article>

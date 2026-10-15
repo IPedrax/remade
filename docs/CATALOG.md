@@ -136,6 +136,15 @@ suggested_names: [ExampleCraft] # optional
 - Request vendor filters derive their grouping from the first folder below `requests/`; root-level files are Unassigned. Vendor and Git addition dates are computed browsing metadata, not editable YAML fields, and do not affect public routes.
 - Request targets do not prescribe application boundaries: one implementation may cover related targets such as the Substance 3D apps, or separate applications may share an engine. Capture these possibilities in the request reason without claiming that an implementation already covers them.
 
+## Discord community links
+
+Project and Project Request records accept optional `discord_server` and `discord_thread` fields independently. Omit them when no reviewed link is available; do not insert placeholder links into real records.
+
+- `discord_server`: a canonical HTTPS invite using `https://discord.gg/<code>` or `https://discord.com/invite/<code>`.
+- `discord_thread`: a canonical `https://discord.com/channels/<server-id>/<thread-id>` link, optionally followed by `/<message-id>`; IDs must be numeric. A trailing slash is accepted. Query strings, fragments, alternate hosts, credentials and non-HTTPS URLs are rejected.
+
+These fields link to discussion, without implying affiliation or endorsement. Review that the destination is appropriate for the project or request. Discord may require membership or sign-in; invitations may expire. Links appear with the Discord logo and explicit server/thread labels on project cards and detail pages, request cards and the software page’s request section. They open in a new tab, use no embeds or Discord visitor API calls, and are included in the corresponding public JSON exports and catalog link checks. Records without either field show no Discord controls. Supporting tools and suites do not accept these fields.
+
 ## Public machine-readable exports
 
 - `https://remade.wiki/data/catalog.json`: `{ schemaVersion, site, originals, projects, tools, suites, featured }`. Originals include `slug`, `name`, reference `url`, `category`, optional `aliases` and absolute `pageUrl`. Catalog exports use `schemaVersion: 1`. Projects expose the required `originals` array and the other documented public project fields plus optional Git-derived `addedAt` and absolute `pageUrl`. Tools expose their public fields, optional `addedAt` and absolute `pageUrl`. `featured` preserves the curated list of entry slugs. The additive `suites` array exposes `slug`, `name`, `description`, member `projects` and an absolute `pageUrl`. Tools include optional `suites` references; their exported `projects` always expands and deduplicates all suite members alongside explicit projects, preserving compatibility for existing consumers. Cached GitHub statistics are not part of this contract.

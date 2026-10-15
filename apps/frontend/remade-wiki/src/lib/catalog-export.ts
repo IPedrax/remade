@@ -18,6 +18,8 @@ const publicOriginal = v.object({
 });
 const addedAt = v.optional(v.pipe(v.string(), v.isoTimestamp()));
 const publicProject = v.object({
+	discord_server: projectSchema.entries.discord_server,
+	discord_thread: projectSchema.entries.discord_thread,
 	slug: projectSchema.entries.slug,
 	name: projectSchema.entries.name,
 	originals: projectSchema.entries.originals,
@@ -62,6 +64,8 @@ const publicSuite = v.object({
 	projects: suiteSchema.entries.projects,
 });
 const publicRequest = v.object({
+	discord_server: requestSchema.entries.discord_server,
+	discord_thread: requestSchema.entries.discord_thread,
 	original: requestSchema.entries.original,
 	reason: requestSchema.entries.reason,
 	suggested_names: requestSchema.entries.suggested_names,

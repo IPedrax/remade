@@ -4,6 +4,7 @@ import { findBySlug, label, metadataFor } from "../../lib/presentation";
 import type { Project } from "../../lib/schemas";
 import BadgeShareSection from "../badges/BadgeShareSection";
 import Authors from "../catalog/Authors";
+import DiscordLinks from "../catalog/DiscordLinks";
 import EntryCard from "../catalog/EntryCard";
 import OriginalLinks from "../catalog/OriginalLinks";
 import RepositoryMirrors from "../catalog/RepositoryMirrors";
@@ -81,6 +82,12 @@ export default function ProjectPage({
 						</a>
 					)}
 				</div>
+
+				{(project.discord_server || project.discord_thread) && (
+					<div className="mt-6">
+						<DiscordLinks {...project} />
+					</div>
+				)}
 
 				<div className="mt-6">
 					<RepositoryMirrors mirrors={project.mirrors} />

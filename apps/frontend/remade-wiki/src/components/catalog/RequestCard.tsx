@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Original, Request } from "../../lib/schemas";
 import CardDescription from "./CardDescription";
+import DiscordLinks from "./DiscordLinks";
 
 interface Props {
 	request: Request;
@@ -40,6 +41,8 @@ export default function RequestCard({ request, original, actions }: Props) {
 					</span>
 				</p>
 			)}
+			<DiscordLinks {...request} />
+
 			{actions}
 		</article>
 	);

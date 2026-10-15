@@ -170,7 +170,16 @@ def collect(root=ROOT):
             "description",
             "license",
         }
-        optional = {"platforms", "docs", "website", "mirrors", "limitations", "authors"}
+        optional = {
+            "platforms",
+            "docs",
+            "website",
+            "mirrors",
+            "limitations",
+            "authors",
+            "discord_server",
+            "discord_thread",
+        }
         if not fields(project, required, optional, loc, errors):
             continue
         slug = project["slug"]
@@ -249,6 +258,7 @@ def collect(root=ROOT):
             errors.append(f"{loc}: docs must be a public HTTPS URL")
         if "website" in project and not is_https(project["website"]):
             errors.append(f"{loc}: website must be a public HTTPS URL")
+        validate_discord(project, loc, errors)
         validate_authors(project, loc, errors)
         validate_mirrors(project, loc, errors)
 
@@ -258,8 +268,15 @@ def collect(root=ROOT):
     ):
         loc = str(path.relative_to(root))
         req = checked_load(path, errors)
-        if not fields(req, {"original", "reason"}, {"suggested_names"}, loc, errors):
+        if not fields(
+            req,
+            {"original", "reason"},
+            {"suggested_names", "discord_server", "discord_thread"},
+            loc,
+            errors,
+        ):
             continue
+        validate_discord(req, loc, errors)
         original_slug = req["original"]
         if not is_slug(original_slug) or original_slug != path.stem:
             errors.append(f"{loc}: filename must match original slug")
@@ -534,3 +551,15 @@ def entries_by_author(projects: list[dict], tools: list[dict]) -> dict[str, dict
                     }
                 groups[slug][kind].append(entry)
     return dict(sorted(groups.items()))
+
+
+def validate_discord(record: dict, loc: str, errors: list[str]) -> None:
+    patterns = {
+        "discord_server": r"https://(?:discord\.gg/[A-Za-z0-9-]+|discord\.com/invite/[A-Za-z0-9-]+)/?",
+        "discord_thread": r"https://discord\.com/channels/[0-9]+/[0-9]+(?:/[0-9]+)?/?",
+    }
+    for field, pattern in patterns.items():
+        if field in record:
+            value = record[field]
+            if not is_https(value) or re.fullmatch(pattern, value) is None:
+                errors.append(f"{loc}: {field} must be a canonical Discord HTTPS link")

@@ -128,3 +128,7 @@ Authentication sits at the far right of the header: a compact **Login** link whe
 ## Suite browsing
 
 Tool cards and tool pages show a clickable suite name, such as ArtCraft Suite, instead of listing every member. Additional supported projects remain visible individually. `/suites/<slug>/` renders a static page with the suite name, description, responsive member project cards in curated order, and supporting tools that reference the suite. Use the existing card styles and grid breakpoints; suite links must remain keyboard accessible and work without JavaScript. Project cards show “Part of” followed by a link to each suite they belong to, using its recorded display name. Suite pages are included in Pagefind and the sitemap.
+
+## Discord community links
+
+Project and request cards show optional Discord server/thread links with the Discord logo and visible text labels. Project detail pages and request sections on software pages expose the same links. Use the existing lime link styling, keep icon shapes decorative for screen readers, and keep links above stretched card targets so pointer and keyboard navigation reach the intended destination. Omitted links render no controls. These are static links, with no Discord embeds or scripts.

@@ -39,6 +39,25 @@ const https = v.pipe(
 	v.string(),
 	v.check(publicHttps, "Expected a public HTTPS URL."),
 );
+const discordServer = v.pipe(
+	https,
+	v.regex(
+		/^https:\/\/(?:discord\.gg\/[A-Za-z0-9-]+|discord\.com\/invite\/[A-Za-z0-9-]+)\/?$/,
+		"Expected a Discord server invite.",
+	),
+);
+const discordThread = v.pipe(
+	https,
+	v.regex(
+		/^https:\/\/discord\.com\/channels\/[0-9]+\/[0-9]+(?:\/[0-9]+)?\/?$/,
+		"Expected a Discord thread or message link.",
+	),
+);
+const discordFields = {
+	discord_server: v.optional(discordServer),
+	discord_thread: v.optional(discordThread),
+};
+
 const repository = v.pipe(
 	https,
 	v.check((value) => {
@@ -73,6 +92,7 @@ export const originalSchema = v.strictObject({
 	aliases: v.optional(v.array(text(1, 100))),
 });
 export const projectSchema = v.strictObject({
+	...discordFields,
 	slug,
 	name: text(2, 100),
 	repository,
@@ -143,6 +163,7 @@ export const toolSchema = v.strictObject({
 	suites: v.optional(references),
 });
 export const requestSchema = v.strictObject({
+	...discordFields,
 	original: slug,
 	reason: text(20, 400),
 	suggested_names: v.optional(
