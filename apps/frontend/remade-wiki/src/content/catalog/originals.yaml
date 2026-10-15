@@ -1173,3 +1173,8 @@
   name: Canva
   url: https://www.canva.com/
   category: creative
+
+- slug: elevenlabs
+  name: ElevenLabs
+  url: https://elevenlabs.io/
+  category: creative
