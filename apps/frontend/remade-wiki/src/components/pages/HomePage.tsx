@@ -61,6 +61,7 @@ export default function HomePage({ catalog, metadata, children }: Props) {
 							metadata={metadataFor(featured[0], metadata)}
 							originals={catalog.originals}
 							projects={catalog.projects}
+							suites={catalog.suites}
 						/>
 
 						<div className="contents auto-rows-fr gap-[18px] min-[600px]:grid min-[600px]:grid-cols-2">
@@ -71,6 +72,7 @@ export default function HomePage({ catalog, metadata, children }: Props) {
 									metadata={metadataFor(entry, metadata)}
 									originals={catalog.originals}
 									projects={catalog.projects}
+									suites={catalog.suites}
 								/>
 							))}
 						</div>
@@ -138,6 +140,7 @@ export default function HomePage({ catalog, metadata, children }: Props) {
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 				</div>

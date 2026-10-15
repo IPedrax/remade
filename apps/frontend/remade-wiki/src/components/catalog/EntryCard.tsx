@@ -8,16 +8,18 @@ import {
 	relativeDate,
 	shortDate,
 } from "../../lib/presentation";
-import type { Original, Project } from "../../lib/schemas";
+import type { Original, Project, Suite } from "../../lib/schemas";
 import Authors from "./Authors";
 import CardDescription from "./CardDescription";
 import OriginalLinks from "./OriginalLinks";
+import ToolTargets from "./ToolTargets";
 
 interface Props {
 	entry: Entry;
 	originals: Original[];
 	projects: Project[];
 	metadata?: Metadata;
+	suites?: Suite[];
 }
 
 export default function EntryCard({
@@ -25,6 +27,7 @@ export default function EntryCard({
 	originals,
 	projects,
 	metadata,
+	suites = [],
 }: Props) {
 	return (
 		<article className="relative isolate flex h-full min-h-[360px] min-w-0 flex-col rounded-xl border border-line bg-surface p-[22px] text-sm hover:border-lime/50 focus-within:border-lime sm:p-[26px]">
@@ -78,23 +81,25 @@ export default function EntryCard({
 				) : (
 					<>
 						Tool for{" "}
-						{projects
-							.filter((project) => entry.projects.includes(project.slug))
-							.map((project, index) => (
-								<span key={project.slug}>
-									{index > 0 && ", "}
-
-									<a
-										className="relative z-10 text-lime hover:underline"
-										href={`/projects/${project.slug}/`}
-									>
-										{project.name}
-									</a>
-								</span>
-							))}
+						<ToolTargets projects={projects} suites={suites} tool={entry} />
 					</>
 				)}
 			</p>
+
+			{entry.kind === "project" &&
+				suites
+					.filter((suite) => suite.projects.includes(entry.slug))
+					.map((suite) => (
+						<p className="mb-3.5 shrink-0 text-xs" key={suite.slug}>
+							Part of{" "}
+							<a
+								className="relative z-10 text-lime hover:underline"
+								href={`/suites/${suite.slug}/`}
+							>
+								{suite.name}
+							</a>
+						</p>
+					))}
 
 			<CardDescription
 				href={entryUrl(entry)}

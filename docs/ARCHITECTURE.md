@@ -32,6 +32,7 @@ Git-tracked project YAML + original records + featured selections
            ├── /explore                filters/sort + search
            ├── /software/[slug]        one original → many projects
            ├── /projects/[slug]        individual project
+           ├── /suites/[slug]          suite member cards and supporting tools
            ├── /authors/[github-user] attributed indexed projects and tools
            ├── /requests              unfulfilled community requests
            ├── /about                 story, mission and community
@@ -46,6 +47,8 @@ GitHub GraphQL: batched repository aliases
     ↓
 Update cache snapshot → next static build consumes it
 ```
+
+Suite YAML is validated alongside projects and tools. The loader expands suite references into each tool’s resolved `projects` for category inheritance and backlinks while retaining `suites` for compact linked labels. Static suite pages and public JSON use the same validated membership; suites do not create repository statistics or request fulfillment.
 
 ## GitHub statistics and rate limits
 

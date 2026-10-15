@@ -8,7 +8,7 @@ Compatibility and maturity are maintainer-reported, not independently verified. 
 
 ## Catalog data
 
-- [Catalog JSON](https://remade.wiki/data/catalog.json): Static public feed of original software, projects, supporting tools and featured selections. Projects reference canonical original-software slugs through their originals arrays. Includes public page URLs; optional fields are omitted when unavailable.
+- [Catalog JSON](https://remade.wiki/data/catalog.json): Static public feed of original software, projects, supporting tools, suites and featured selections. Projects reference canonical original-software slugs through their originals arrays. Suites group indexed projects; tools may reference suites, with their projects arrays retaining all supported member projects. Includes public page URLs; optional fields are omitted when unavailable.
 - [Project Requests JSON](https://remade.wiki/data/requests.json): Static public feed of unfulfilled requests, their reasons and original-software references. Keep these separate from implemented projects.
 - [Catalog schema](https://raw.githubusercontent.com/replicraft/remade/main/docs/CATALOG.md): Field definitions, compatibility and maturity values, canonical identifiers and public feed contracts. Cached GitHub statistics are not part of these feeds.
 
@@ -28,4 +28,4 @@ Compatibility and maturity are maintainer-reported, not independently verified. 
 ## Optional
 
 - [Repository](https://github.com/replicraft/remade): Catalog source, website code, issues and pull requests.
-- [Sitemap](https://remade.wiki/sitemap-index.xml): Discovery index for published pages, including individual project, original-software, tool and author pages.
+- [Sitemap](https://remade.wiki/sitemap-index.xml): Discovery index for published pages, including individual project, original-software, tool, suite and author pages.

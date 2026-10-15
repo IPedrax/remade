@@ -153,6 +153,7 @@ export default function ProjectPage({
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 					</div>
@@ -178,6 +179,7 @@ export default function ProjectPage({
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 					</div>

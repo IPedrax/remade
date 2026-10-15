@@ -16,3 +16,5 @@ languages: [TypeScript]
 # limitations: Some host APIs are not yet supported.
 description: A browser launcher that adds access to an indexed implementation.
 projects: [example-implementation]
+# Alternatively, or alongside projects, reference a suite supported in full:
+# suites: [example-suite]

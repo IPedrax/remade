@@ -73,6 +73,7 @@ export default function SoftwarePage({
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 					</div>

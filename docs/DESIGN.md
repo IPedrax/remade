@@ -124,3 +124,7 @@ Authentication sits at the far right of the header: a compact **Login** link whe
 - Decorative branding icon may be empty-alt alongside explicit wordmark.
 - Keep each author handle and arrow together on one line; move the complete handle to the next line when needed.
 - Disclaimer citations use numbered references and a Sources section; external source links open in a new tab.
+
+## Suite browsing
+
+Tool cards and tool pages show a clickable suite name, such as ArtCraft Suite, instead of listing every member. Additional supported projects remain visible individually. `/suites/<slug>/` renders a static page with the suite name, description, responsive member project cards in curated order, and supporting tools that reference the suite. Use the existing card styles and grid breakpoints; suite links must remain keyboard accessible and work without JavaScript. Project cards show “Part of” followed by a link to each suite they belong to, using its recorded display name. Suite pages are included in Pagefind and the sitemap.

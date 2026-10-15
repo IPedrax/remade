@@ -31,6 +31,7 @@ it("exports preserve public relationships and strip unlisted fields at every lev
 					limitations: "Some host APIs are not supported.",
 				})),
 			featured: catalog.featured,
+			suites: catalog.suites,
 		},
 		site,
 	);

@@ -11,10 +11,12 @@ import {
 	parseYaml,
 	projectSchema,
 	requestSchema,
+	suiteSchema,
 	type Tool,
 	toolSchema,
 	validateRelationships,
 } from "./schemas";
+import { supportedProjectSlugs } from "./suites";
 
 export type Entry =
 	| (Project & { kind: "project"; addedAt?: string })
@@ -62,23 +64,42 @@ async function records<S extends v.GenericSchema>(
 }
 
 export async function loadCatalog() {
-	const [originals, projects, tools, requests, featured, additionDates] =
-		await Promise.all([
-			readFile(
-				new URL("src/content/catalog/originals.yaml", root),
-				"utf8",
-			).then((s) => v.parse(v.array(originalSchema), parseYaml(s))),
-			records("projects", projectSchema, "slug"),
-			records("tools", toolSchema, "slug"),
-			records("requests", requestSchema, "original"),
-			readFile(new URL("src/content/catalog/featured.yaml", root), "utf8").then(
-				(s) => v.parse(featuredSchema, parseYaml(s)),
-			),
-			loadAdditionDates(repositoryRoot),
-		]);
-	const catalog: Catalog = { originals, projects, tools, requests, featured };
+	const [
+		originals,
+		projects,
+		sourceTools,
+		requests,
+		featured,
+		additionDates,
+		suites,
+	] = await Promise.all([
+		readFile(new URL("src/content/catalog/originals.yaml", root), "utf8").then(
+			(s) => v.parse(v.array(originalSchema), parseYaml(s)),
+		),
+		records("projects", projectSchema, "slug"),
+		records("tools", toolSchema, "slug"),
+		records("requests", requestSchema, "original"),
+		readFile(new URL("src/content/catalog/featured.yaml", root), "utf8").then(
+			(s) => v.parse(featuredSchema, parseYaml(s)),
+		),
+		loadAdditionDates(repositoryRoot),
+		records("suites", suiteSchema, "slug"),
+	]);
+	const source: Catalog = {
+		originals,
+		projects,
+		tools: sourceTools,
+		requests,
+		featured,
+		suites,
+	};
 
-	validateRelationships(catalog);
+	validateRelationships(source);
+	const tools = sourceTools.map((tool) => ({
+		...tool,
+		projects: supportedProjectSlugs(tool, suites),
+	}));
+	const catalog = { ...source, tools, suites };
 
 	// Old slugs in project redirects preserve the original catalog addition date.
 	const redirects = await readFile(new URL("public/_redirects", root), "utf8");

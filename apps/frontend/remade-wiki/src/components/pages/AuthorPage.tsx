@@ -55,6 +55,7 @@ export default function AuthorPage({ user, catalog, metadata }: Props) {
 										metadata={metadataFor(entry, metadata)}
 										originals={catalog.originals}
 										projects={catalog.projects}
+										suites={catalog.suites}
 									/>
 								))}
 							</div>

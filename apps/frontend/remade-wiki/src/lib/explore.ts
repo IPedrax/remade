@@ -20,6 +20,11 @@ export function browseData(
 			...originals.flatMap((o) => [o.name, ...(o.aliases ?? [])]),
 			...(entry.authors ?? []),
 			...entry.languages,
+			...(entry.kind === "tool"
+				? catalog.suites
+						.filter((suite) => entry.suites?.includes(suite.slug))
+						.map((suite) => suite.name)
+				: []),
 		]
 			.filter(Boolean)
 			.join(" "),

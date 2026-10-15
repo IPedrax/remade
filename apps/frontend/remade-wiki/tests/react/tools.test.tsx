@@ -2,6 +2,7 @@ import { describe, expect, inject, it } from "vitest";
 import { render } from "vitest-browser-react";
 import EntryCard from "../../src/components/catalog/EntryCard";
 import RepositoryMirrors from "../../src/components/catalog/RepositoryMirrors";
+import SuitePage from "../../src/components/pages/SuitePage";
 import ToolPage from "../../src/components/pages/ToolPage";
 import { findBySlug } from "../../src/lib/presentation";
 
@@ -134,5 +135,51 @@ describe("repository mirrors", () => {
 		await screen.getByText("View Mirrors", { exact: true }).click();
 
 		await expect.element(link).not.toBeVisible();
+	});
+});
+
+describe("suite browsing", () => {
+	it("links a tool card to its suite without enumerating its members", async () => {
+		const launcher = findBySlug(catalog.entries, "artcraft-launcher");
+		const screen = await render(
+			<EntryCard
+				entry={launcher}
+				originals={catalog.originals}
+				projects={catalog.projects}
+				suites={catalog.suites}
+			/>,
+		);
+
+		await expect
+			.element(
+				screen.getByRole("link", { name: "ArtCraft Suite", exact: true }),
+			)
+			.toHaveAttribute("href", "/suites/artcraft/");
+		await expect
+			.element(screen.getByRole("link", { name: "PhotoCraft", exact: true }))
+			.not.toBeInTheDocument();
+	});
+
+	it("shows every suite product as a linked card", async () => {
+		const suite = findBySlug(catalog.suites, "artcraft");
+		const screen = await render(
+			<SuitePage catalog={catalog} metadata={{}} suite={suite} />,
+		);
+
+		await expect
+			.element(
+				screen.getByRole("heading", { name: "ArtCraft Suite", exact: true }),
+			)
+			.toBeVisible();
+
+		for (const slug of suite.projects) {
+			const project = findBySlug(catalog.projects, slug);
+
+			await expect
+				.element(
+					screen.getByRole("link", { name: `${project.name} ↗`, exact: true }),
+				)
+				.toHaveAttribute("href", `/projects/${slug}/`);
+		}
 	});
 });
