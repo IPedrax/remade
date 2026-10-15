@@ -4,6 +4,9 @@
 
 [remade.wiki](https://remade.wiki) is a community-maintained directory of independently developed, open-source software reimplementations.
 
+<img width="1727" height="611" alt="Remade.wiki website header" src="https://github.com/user-attachments/assets/a483cd7b-4912-451b-a2b7-ddfcc0dc5ccc" />
+
+
 ## Submit a project
 
 1. Read the [submission policy](POLICY.md) and [contribution guide](CONTRIBUTING.md).
@@ -31,3 +34,4 @@ Agents and other tools can read the build-generated [catalog JSON](https://remad
 **Special Thanks:**
 - ArtCraft and its Discord server
 - @lumpypotato4764 for the idea of aggregating all of the various initiatives going on within the server
+- @naz888z for lots of help curating
