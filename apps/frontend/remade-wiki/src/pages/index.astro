@@ -1,21 +1,18 @@
 ---
 import HomePage from "../components/pages/HomePage";
-import RequestPreview from "../components/requests/RequestPreview";
+import DirectorySearch from "../components/search/DirectorySearch";
 import Layout from "../layouts/Layout.astro";
 import { loadCatalog, loadMetadata } from "../lib/catalog";
-import { findBySlug } from "../lib/presentation";
+import { directoryRecords, searchIndex } from "../lib/directory";
 
 const catalog = await loadCatalog();
 const metadata = await loadMetadata();
 ---
 
-<Layout title="Remade Directory">
+<Layout title="Software reimplementations and project requests">
 	<HomePage catalog={catalog} metadata={metadata}>
-		<RequestPreview
-			items={catalog.requests.slice(0, 3).map((request) => ({
-				request,
-				original: findBySlug(catalog.originals, request.original),
-			}))}
+		<DirectorySearch
+			records={searchIndex(directoryRecords(catalog, metadata))}
 			client:load
 		/>
 	</HomePage>

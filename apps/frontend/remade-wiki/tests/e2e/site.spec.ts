@@ -55,7 +55,7 @@ test("home navigation opens the implementation directory", async ({ page }) => {
 	await expect(page).toHaveURL(/\/explore\/$/);
 
 	await expect(page.getByRole("heading", { level: 1 })).toContainText(
-		"Find what’s been remade.",
+		"Explore projects",
 	);
 });
 
@@ -64,13 +64,17 @@ test("JavaScript filters still find tools whose badges only show TypeScript", as
 }) => {
 	await page.goto("/explore/?q=lazymaplayers&language=JavaScript");
 
+	await page.getByRole("button", { name: "Filters (1)", exact: true }).click();
 	await expect(
-		page.getByRole("combobox", { name: "Language", exact: true }),
+		page
+			.getByRole("dialog")
+			.getByRole("combobox", { name: "Languages", exact: true }),
 	).toHaveValue("JavaScript");
+	await page.getByRole("button", { name: "Cancel", exact: true }).click();
 
 	const card = page.getByRole("article").filter({
 		has: page.getByRole("heading", {
-			name: "LazyMapLayers for EffectCraft ↗",
+			name: "LazyMapLayers for EffectCraft",
 		}),
 	});
 
@@ -91,7 +95,7 @@ test("Explore finds requests when the implementation search is empty", async ({
 	await page.goto("/explore/?q=Nomad%20Sculpt");
 
 	await expect(
-		page.getByRole("heading", { name: "No matching entries" }),
+		page.getByRole("heading", { name: "No matching project is listed yet." }),
 	).toBeVisible();
 
 	await expect(
@@ -105,10 +109,13 @@ test("request search points visitors to existing implementations", async ({
 	await page.goto("/requests/?q=Outlook");
 
 	await expect(
-		page.getByRole("heading", { name: "Matching implementations" }),
+		page.getByRole("heading", { name: "Related projects" }),
 	).toBeVisible();
 
-	await page.getByRole("link", { name: "MailCraft ↗", exact: true }).click();
+	await page
+		.getByRole("link", { name: "MailCraft", exact: true })
+		.first()
+		.click();
 
 	await expect(page).toHaveURL(/\/projects\/mailcraft\/$/);
 });
@@ -173,7 +180,7 @@ test("static catalog exports and discovery files are served by the production bu
 	expect((await request.get("/sitemap-index.xml")).ok()).toBe(true);
 });
 
-test("production browsing hides login and never contacts the authentication API", async ({
+test("anonymous browsing keeps account access reachable without an authentication lookup", async ({
 	page,
 }) => {
 	const authRequests: string[] = [];
@@ -183,7 +190,7 @@ test("production browsing hides login and never contacts the authentication API"
 	});
 	await page.goto("/");
 	const login = page.getByRole("link", { name: "Login", exact: true });
-	await expect(login).toHaveCount(0);
+	await expect(login).toHaveCount(1);
 	await page.getByRole("link", { name: "Explore", exact: true }).click();
 	await expect(
 		page.getByRole("link", { name: "Login", exact: true }),
@@ -273,4 +280,50 @@ test.fixme("a returning account can log out from the mobile header", async ({
 			(cookie) => cookie.name === "remade_login_hint",
 		),
 	).toBe(false);
+});
+
+test("request pagination works without JavaScript and uses distinct canonical URLs", async ({
+	browser,
+}) => {
+	const context = await browser.newContext({ javaScriptEnabled: false });
+	try {
+		const page = await context.newPage();
+		await page.goto("http://127.0.0.1:4377/requests/");
+		const first = await page
+			.locator("#directory-results article h3")
+			.first()
+			.textContent();
+		await expect(page.locator("#directory-results article")).toHaveCount(24);
+		await page
+			.getByRole("navigation", { name: "Pagination" })
+			.getByRole("link", { name: "2", exact: true })
+			.click();
+		await expect(page).toHaveURL(/\/requests\/page\/2\/$/);
+		await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+			"href",
+			"https://remade.wiki/requests/page/2/",
+		);
+		await expect(page.locator("#directory-results article")).toHaveCount(24);
+		expect(
+			await page.locator("#directory-results article h3").first().textContent(),
+		).not.toBe(first);
+	} finally {
+		await context.close();
+	}
+});
+
+test("production request intake offers the real GitHub fallback and excludes local simulations", async ({
+	page,
+}) => {
+	await page.goto("/requests/new/");
+	await expect(
+		page.getByRole("link", { name: "Open the GitHub request form" }),
+	).toHaveAttribute("href", /template=project-request.yml/);
+	await expect(
+		page.getByText("Local preview controls", { exact: true }),
+	).toHaveCount(0);
+	await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+		"content",
+		"noindex, follow",
+	);
 });

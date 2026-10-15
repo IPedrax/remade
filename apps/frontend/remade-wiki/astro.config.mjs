@@ -5,6 +5,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
 	site: "https://remade.wiki",
 	output: "static",
+	devToolbar: { enabled: false },
 	redirects: {
 		"/projects/animationcraft": {
 			destination: "/projects/flare-animate/",
@@ -15,6 +16,9 @@ export default defineConfig({
 			status: 302,
 		},
 	},
-	integrations: [react(), sitemap()],
+	integrations: [
+		react(),
+		sitemap({ filter: (page) => !page.endsWith("/requests/new/") }),
+	],
 	vite: { plugins: [tailwindcss()] },
 });

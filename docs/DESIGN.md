@@ -132,3 +132,7 @@ Tool cards and tool pages show a clickable suite name, such as ArtCraft Suite, i
 ## Discord community links
 
 Project and request cards show optional Discord server/thread links with the Discord logo and visible text labels. Project detail pages and request sections on software pages expose the same links. Use the existing lime link styling, keep icon shapes decorative for screen readers, and keep links above stretched card targets so pointer and keyboard navigation reach the intended destination. Omitted links render no controls. These are static links, with no Discord embeds or scripts.
+
+## Refined Directory candidate
+
+The draft Refined Directory implementation prioritizes Request a project, compact previews and static paginated browsing. Project/request classification, full detail content, suite/community links, badges and existing support semantics remain intact. See [the candidate report](experiments/refined-directory/README.md) for route changes, local form simulation, verification and production limitations. The on-site submission flow is development-only until a shared verified submission service is ready; production links to the existing GitHub Project Request form.
