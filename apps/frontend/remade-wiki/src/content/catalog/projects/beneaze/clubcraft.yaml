@@ -1,0 +1,15 @@
+# Compatibility and model licensing are maintainer-reported in the upstream README.
+slug: clubcraft
+name: ClubCraft
+authors: [beneaze]
+repository: https://github.com/beneaze/ClubCraft
+originals: [dj-studio, virtualdj]
+category: creative
+languages: [Rust]
+platforms: [macOS, Windows]
+status: alpha
+compatibility: partial
+description: A DJ.Studio-style mix-planning studio and VirtualDJ-style live deck application with beat grids, key analysis, automatic cues, stem separation and beat-matched transitions. Imports DJ.Studio projects, exchanges VirtualDJ database entries and exports WAV mixes with cue sheets. Includes MIDI learning and headless MCP automation.
+license: MIT OR Apache-2.0
+docs: https://github.com/beneaze/ClubCraft#readme
+limitations: Early alpha; DJ.Studio project import is read-only, and full parity with either target is not claimed. Source builds require separate stem-model preparation. macOS releases are ad-hoc signed. Keep VirtualDJ closed during database writes. Model terms are separate; the COCOLA checkpoint was trained on datasets including noncommercial-research material.

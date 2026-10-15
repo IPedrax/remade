@@ -1206,3 +1206,13 @@
   name: GoodSync
   url: https://www.goodsync.com/
   category: productivity
+
+- slug: dj-studio
+  name: DJ.Studio
+  url: https://dj.studio/
+  category: creative
+
+- slug: virtualdj
+  name: VirtualDJ
+  url: https://virtualdj.com/
+  category: creative
