@@ -33,17 +33,19 @@ export default function RequestCard({ request, original, actions }: Props) {
 				text={request.reason}
 			/>
 
-			{request.suggested_names && (
-				<p className="mt-auto mb-0 shrink-0 pt-2">
-					Suggested name:{" "}
-					<span className="text-lime">
-						{request.suggested_names.join(", ")}
-					</span>
-				</p>
-			)}
-			<DiscordLinks {...request} />
+			<div className="mt-auto shrink-0">
+				{request.suggested_names && (
+					<p className="mb-0 pt-2">
+						Suggested name:{" "}
+						<span className="text-lime">
+							{request.suggested_names.join(", ")}
+						</span>
+					</p>
+				)}
+				<DiscordLinks {...request} />
 
-			{actions}
+				{actions}
+			</div>
 		</article>
 	);
 }
