@@ -1221,3 +1221,8 @@
   name: Obsidian
   url: https://obsidian.md/
   category: productivity
+
+- slug: capture-one
+  name: Capture One
+  url: https://www.captureone.com/en
+  category: creative
