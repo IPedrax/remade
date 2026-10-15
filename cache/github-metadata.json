@@ -459,6 +459,24 @@
       "pushedAt": "2026-10-15T11:05:28Z",
       "stars": 11
     },
+    "mateusrdp/oxiguitar": {
+      "fetchedAt": "2026-10-15T13:42:36Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-15T12:15:05Z",
+      "stars": 1
+    },
+    "minnowo/itamiiru": {
+      "fetchedAt": "2026-10-15T13:42:36Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-15T00:39:46Z",
+      "stars": 1
+    },
     "mirvoxtm/minnamate": {
       "fetchedAt": "2026-10-15T12:51:49Z",
       "forks": 0,
