@@ -1196,3 +1196,13 @@
   url: https://www.chaos.com/corona
   category: creative
   aliases: [Corona Renderer]
+
+- slug: rcloneview
+  name: RcloneView
+  url: https://rcloneview.com/
+  category: productivity
+
+- slug: goodsync
+  name: GoodSync
+  url: https://www.goodsync.com/
+  category: productivity
