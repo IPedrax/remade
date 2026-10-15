@@ -583,6 +583,12 @@
   name: Nomad Sculpt
   url: https://nomadsculpt.com/
   category: creative
+- slug: windows-file-explorer
+  name: Windows File Explorer
+  url: https://support.microsoft.com/en-us/windows/experience/fileexplorer/file-explorer-in-windows
+  category: productivity
+  aliases: [Windows Explorer, File Explorer]
+
 - slug: internet-explorer
   name: Internet Explorer
   url: https://support.microsoft.com/en-us/internet-explorer/internet-explorer-help
