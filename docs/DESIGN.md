@@ -52,7 +52,7 @@ Authentication sits at the far right of the header: a compact **Login** link whe
 
 1. Header: logo, Explore, GitHub, Submit.
 2. Hero: `Everything can be remade.` and one supporting sentence.
-3. Compact dark search field with a magnifying glass and bordered keyboard shortcut badge.
+3. Compact dark search field with a magnifying glass and bordered keyboard shortcut badge. On the homepage, show **Hit enter to search** in a dropdown beneath the field only when it contains text and the search form has focus. Style the hint like a search-result row, associate it with the input for screen readers, and allow clicking it or pressing Enter to open Explore with the query. The dropdown overlays the page without moving the content below it.
 4. **Featured**: one large editorial highlight plus smaller selected cards on desktop. On mobile, show equal-size cards stacked in featured order, with the first entry on top. If fewer entries exist, adapt gracefully instead of duplicating content. Supporting tools may be featured with a visible **Tool** label and remain separate from reimplementation counts.
 5. Browse by category: clear icon labels, counts when known.
 6. Recently added: reviewed latest additions; no invented dates.
