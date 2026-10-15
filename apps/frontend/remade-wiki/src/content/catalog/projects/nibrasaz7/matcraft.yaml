@@ -1,0 +1,14 @@
+# Scope and gaps are maintainer-reported in the README and compatibility corpus.
+slug: matcraft
+name: MatCraft
+authors: [nibrasaz7]
+repository: https://github.com/NibrasAz7/matcraft
+originals: [matlab]
+category: engineering
+languages: [Rust]
+status: alpha
+compatibility: partial
+description: Independent MATLAB-style numerical environment with a .m interpreter, dense, complex and sparse matrices, linear algebra, signal processing and 2D/3D plotting. Includes a desktop Studio, CLI, MCP and control channel, with MAT v5 data files and SVG, PNG and PDF figure export.
+license: MIT OR Apache-2.0
+docs: https://github.com/NibrasAz7/matcraft/blob/main/docs/gaps.md
+limitations: Alpha; parsing .m files does not establish execution compatibility. Anonymous functions and function handles, classdef objects, N-dimensional indexing, image I/O and most toolbox functions are missing. Simulink-style modeling is planned separately and is not implemented here.
