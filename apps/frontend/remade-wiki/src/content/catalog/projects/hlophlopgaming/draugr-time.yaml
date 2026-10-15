@@ -1,0 +1,15 @@
+# Scope and limitations are maintainer-reported in the repository documentation.
+slug: draugr-time
+name: Draugr Time
+authors: [hlophlopgaming]
+repository: https://github.com/hlophlopgaming/DraugrTime
+originals: [manictime]
+category: productivity
+languages: [Rust]
+platforms: [Windows, macOS, Linux]
+status: experimental
+compatibility: targeting
+description: A local desktop activity tracker following ManicTime's workflow. Records the active application, window title and active/away time, and shows them on a day timeline with application, document and tag tracks. Includes hierarchical tags, rule-based auto-tagging, week and month reports, timesheets, CSV/JSON export, ActivityWatch import and a headless CLI. Built as a single native Rust (Iced) executable with local SQLite storage.
+license: GPL-3.0-only
+docs: https://github.com/hlophlopgaming/DraugrTime#readme
+limitations: Early development; installers are not yet available and it must be built from source. Browser URL tracking is planned but not implemented. GNOME and KDE on Wayland require a local compositor bridge. It does not read or write ManicTime databases or synchronize with ManicTime Server.

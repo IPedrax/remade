@@ -1255,3 +1255,8 @@
   url: https://www.plaud.ai/pages/plaud-desktop
   category: productivity
   aliases: [Plaud]
+
+- slug: manictime
+  name: ManicTime
+  url: https://www.manictime.com/
+  category: productivity
