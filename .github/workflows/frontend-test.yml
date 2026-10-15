@@ -68,3 +68,13 @@ jobs:
           path: lychee/internal-report.md
           if-no-files-found: ignore
           retention-days: 7
+      - name: Verify default Launcher gate and public feed
+        if: steps.changes.outputs.frontend == 'true'
+        run: pnpm --filter ./apps/frontend/remade-wiki exec node tests/build/launcher.mjs
+      - name: Build explicitly enabled Launcher preview
+        if: steps.changes.outputs.frontend == 'true'
+        env:
+          REMADE_LAUNCHER_ENABLED: 'true'
+        run: |
+          pnpm build
+          pnpm --filter ./apps/frontend/remade-wiki exec node tests/build/launcher.mjs

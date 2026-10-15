@@ -12,6 +12,24 @@ test("launcher feed matches the source allowlist even with the page disabled", a
 	expect(await response.json()).toEqual(parseYaml(source));
 });
 
+test("the Launcher page and its discovery entries follow the explicit build flag", async ({
+	page,
+	request,
+}) => {
+	const enabled = process.env.REMADE_LAUNCHER_ENABLED === "true";
+
+	await page.goto("/");
+	await expect(
+		page.getByRole("link", { name: "Launcher", exact: true }),
+	).toHaveCount(enabled ? 1 : 0);
+
+	const response = await request.get("/launcher/");
+	const sitemap = await (await request.get("/sitemap-0.xml")).text();
+
+	expect(response.status()).toBe(enabled ? 200 : 404);
+	expect(sitemap.includes("https://remade.wiki/launcher")).toBe(enabled);
+});
+
 test("the previous SolveCraft URL redirects to SolidCraft", async ({
 	page,
 }) => {
