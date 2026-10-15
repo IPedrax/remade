@@ -1184,3 +1184,9 @@
   url: https://www.internetdownloadmanager.com/
   category: productivity
   aliases: [IDM]
+
+- slug: unix-v7
+  name: UNIX Seventh Edition
+  url: https://www.tuhs.org/Archive/Documentation/Books/Life_with_Unix.pdf
+  category: operating-systems
+  aliases: [Version 7 Unix, UNIX V7, Research Unix V7]
