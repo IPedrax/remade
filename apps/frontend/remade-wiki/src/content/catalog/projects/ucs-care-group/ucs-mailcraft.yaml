@@ -1,0 +1,15 @@
+# Features and compatibility are maintainer-reported in the repository README and ROADMAP.
+slug: ucs-mailcraft
+name: MailCraft
+authors: [billsecond, benandez]
+repository: https://github.com/UCS-Care-Group/mailcraft
+originals: [microsoft-outlook]
+category: productivity
+languages: [Rust]
+platforms: [Windows, macOS, Linux, FreeBSD, Web]
+status: alpha
+compatibility: partial
+description: MailCraft reimplements classic Outlook's mail, calendar, contacts and tasks as a native Rust application with Outlook's ribbon, folder pane and reading pane. It signs in to Microsoft 365 and Outlook.com with OAuth, also works with IMAP/SMTP accounts, shows HTML mail without a web engine, and exposes every command to a CLI and an MCP server.
+license: MIT OR Apache-2.0
+docs: https://github.com/UCS-Care-Group/mailcraft#readme
+limitations: Early alpha; compatibility is maintainer-reported, measured against a catalog of Outlook ribbon features (about 59%). Builds are unsigned. Mail sync through Microsoft Graph, shared mailboxes, PST and .msg import, S/MIME and printing are not yet available.
