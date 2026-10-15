@@ -1,38 +1,74 @@
+import type { ReactNode } from "react";
 import type { DirectoryRecord } from "../../lib/directory";
-import { badgeLanguages, formatStars, label } from "../../lib/presentation";
-import DiscordLinks from "./DiscordLinks";
+import {
+	badgeLanguages,
+	formatStars,
+	label,
+	relativeDate,
+	shortDate,
+} from "../../lib/presentation";
+import Authors from "./Authors";
+import CardDescription from "./CardDescription";
 
-export default function DirectoryCard({ record }: { record: DirectoryRecord }) {
+export default function DirectoryCard({
+	record,
+	actions,
+}: {
+	record: DirectoryRecord;
+	actions?: ReactNode;
+}) {
 	return (
 		<article className="directory-card">
-			<div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
-				<span>
+			<div className="flex flex-wrap gap-2 text-xs text-muted">
+				<span className="rounded border border-line bg-panel px-2 py-0.5">
 					{record.kind === "request"
 						? "Project Request"
 						: record.kind === "tool"
-							? "Supporting tool"
-							: "Reimplementation"}
+							? "Tool"
+							: label(record.status)}
 				</span>
-				<span>
-					{record.kind === "request"
-						? label(record.category)
-						: record.status
-							? label(record.status)
-							: "Status not documented"}
-				</span>
+				{record.kind === "tool" && record.status && (
+					<span className="rounded border border-line bg-panel px-2 py-0.5">
+						{label(record.status)}
+					</span>
+				)}
+				{record.languages.length > 0 && (
+					<span className="rounded border border-line bg-panel px-2 py-0.5">
+						{badgeLanguages(record.languages).join(" · ")}
+					</span>
+				)}
+				{record.stars !== null && (
+					<a
+						className="rounded border border-line bg-panel px-2 py-0.5"
+						href={record.href}
+						title={`${record.stars.toLocaleString("en")} GitHub stars${record.fetchedAt ? ` · Last successful update: ${relativeDate(record.fetchedAt)} (${shortDate(record.fetchedAt)})` : ""}`}
+					>
+						★ {formatStars(record.stars)}
+					</a>
+				)}
 			</div>
 			<h3>
-				<a href={record.href}>{record.name}</a>
+				<a
+					className="card-main-link after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-lime"
+					href={record.href}
+				>
+					{record.name}
+				</a>
 			</h3>
 			{record.kind === "project" && (
-				<p className="!mb-3 text-xs">Reimplements {record.target}</p>
-			)}
-			{record.languages.length > 0 && (
 				<p className="!mb-3 text-xs">
-					{badgeLanguages(record.languages).join(" · ")}
+					Reimplements{" "}
+					{record.originals?.map((original, index) => (
+						<span key={original.href}>
+							{index > 0 && ", "}
+							<a className="text-lime hover:underline" href={original.href}>
+								{original.name}
+							</a>
+						</span>
+					)) ?? record.target}
 				</p>
 			)}
-			<p className="directory-summary">{record.summary}</p>
+
 			{record.suites.length > 0 && (
 				<p className="!mb-3 text-xs">
 					{record.kind === "tool" ? "Tool for" : "Part of"}{" "}
@@ -55,29 +91,21 @@ export default function DirectoryCard({ record }: { record: DirectoryRecord }) {
 					))}
 				</p>
 			)}
-			<DiscordLinks
-				discord_server={record.discord_server}
-				discord_thread={record.discord_thread}
+			<CardDescription
+				fillSpace={false}
+				href={record.href}
+				label={`Read more about ${record.name}`}
+				text={record.summary}
 			/>
-			<div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-xs text-muted">
-				<a className="font-semibold text-ink" href={record.href}>
-					{record.kind === "request"
-						? "View request"
-						: record.kind === "tool"
-							? "View tool"
-							: "View project"}{" "}
-					→
-				</a>
-				<span>
-					{record.kind === "request"
-						? "Community wish"
-						: record.stars !== null
-							? `★ ${formatStars(record.stars)}`
-							: record.authors.length
-								? `@${record.authors[0]}`
-								: "Public source"}
-				</span>
-			</div>
+
+			{record.suggestedNames?.length ? (
+				<p className="mb-3 shrink-0 pt-2">
+					Suggested name:{" "}
+					<span className="text-lime">{record.suggestedNames.join(", ")}</span>
+				</p>
+			) : null}
+			<Authors authors={record.authors} inline />
+			{actions && <div className="mt-auto">{actions}</div>}
 		</article>
 	);
 }

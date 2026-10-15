@@ -155,3 +155,34 @@ it("surfaces blocked storage instead of pretending the draft was saved", () => {
 		),
 	).toThrow("blocked");
 });
+
+it("keeps complete card information and matches suggested request names", async () => {
+	const catalog = await loadCatalog();
+	const earthcraft = records.find((record) => record.id === "earthcraft");
+	expect(earthcraft?.authors).toEqual([
+		"therichronicles",
+		"pixelsoftwarestudios",
+	]);
+	expect(earthcraft?.summary).toBe(
+		catalog.projects.find((project) => project.slug === "earthcraft")
+			?.description,
+	);
+	expect(
+		records.find((record) => record.id === "photocraft")?.originals,
+	).toContainEqual({
+		name: "Adobe Photoshop",
+		href: "/software/adobe-photoshop/",
+	});
+	const request = records.find(
+		(record) => record.kind === "request" && record.suggestedNames?.length,
+	);
+	if (!request?.suggestedNames)
+		throw new Error("Expected a request with suggested names");
+	expect(
+		directoryResults(
+			records,
+			{ q: request.suggestedNames[0], sort: "name" },
+			"request",
+		).map((record) => record.id),
+	).toContain(request.id);
+});

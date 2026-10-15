@@ -23,11 +23,10 @@ export interface DirectoryRecord extends BrowseEntry {
 	targets: { name: string; href: string }[];
 	discord_server?: string;
 	discord_thread?: string;
+	originals?: { name: string; href: string }[];
+	suggestedNames?: string[];
+	fetchedAt?: string;
 }
-const previewText = (value: string) =>
-	value.length <= 220
-		? value
-		: `${Array.from(value).slice(0, 217).join("").trimEnd()}...`;
 
 export type SearchRecord = Pick<
 	DirectoryRecord,
@@ -68,7 +67,12 @@ export function directoryRecords(
 				id: entry.slug,
 				kind: entry.kind,
 				href: entryUrl(entry),
-				summary: previewText(entry.description),
+				summary: entry.description,
+				originals: targets.map((original) => ({
+					name: original.name,
+					href: `/software/${original.slug}/`,
+				})),
+				fetchedAt: metadataFor(entry, metadata)?.fetchedAt,
 				target:
 					entry.kind === "project"
 						? targets.map((original) => original.name).join(", ")
@@ -119,7 +123,8 @@ export function directoryRecords(
 				kind: "request",
 				href: `/software/${original.slug}/`,
 				name: original.name,
-				summary: previewText(request.reason),
+				summary: request.reason,
+				suggestedNames: request.suggested_names,
 				search: [
 					original.name,
 					...(original.aliases ?? []),
@@ -191,6 +196,7 @@ export function directoryResults(
 							addedAt: record.addedAt,
 							aliases: record.aliases,
 							reason: record.summary,
+							suggestedNames: record.suggestedNames,
 						},
 						{ ...defaultRequestFilters, ...filters },
 						new Date(),

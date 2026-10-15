@@ -108,7 +108,7 @@
 		@apply grid grid-cols-1 gap-4 min-[640px]:grid-cols-2 min-[1000px]:grid-cols-3;
 	}
 	.directory-card {
-		@apply flex min-w-0 flex-col rounded-xl border border-line bg-surface p-5 sm:p-6;
+		@apply relative isolate flex min-h-[360px] min-w-0 flex-col rounded-xl border border-line bg-surface p-5 text-sm hover:border-lime/50 focus-within:border-lime sm:p-6;
 		overflow-wrap: anywhere;
 	}
 	.directory-card h3 {
@@ -117,8 +117,25 @@
 	.directory-summary {
 		@apply mb-5 line-clamp-3 text-sm leading-6;
 	}
+	.directory-card a:not(.card-main-link) {
+		@apply relative z-10;
+	}
 	.directory-card a {
 		@apply hover:text-lime;
+	}
+	@media (min-width: 1000px) {
+		.featured-grid {
+			grid-template-columns: 2.2fr 1fr 1fr;
+		}
+		.featured-grid > .directory-card:first-child {
+			@apply row-span-2 p-9;
+		}
+		.featured-grid > .directory-card:first-child h3 {
+			@apply text-[2rem];
+		}
+		.featured-grid > .directory-card:first-child [data-card-description] {
+			@apply text-base;
+		}
 	}
 	.section-note {
 		@apply mt-6 flex flex-wrap items-center justify-between gap-3 text-sm;

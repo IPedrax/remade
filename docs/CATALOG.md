@@ -45,7 +45,7 @@ Organize attributed files as `projects/<github-user>/<slug>.yaml` and `tools/<gi
 
 `entries_by_author` derives groups directly from validated project and tool YAML, sorts them deterministically, and keeps separate project/tool lists. Grouping includes every attributed indexed entry independently of Featured. The static `/authors/[github-user]` route uses the handle directly: ArtCraft entries with `authors: [storytold]` appear at `/authors/storytold`. This does not automatically import or publish other repositories.
 
-Entry cards, detail pages and featured cards show a white **Author:** label for one author or **Authors:** for multiple authors, followed on the next line by lime GitHub handles linked to their author routes. Separate multiple handles with middle dots and allow the links to wrap. Omit the entire author block when no author is recorded. Author pages include every explicitly attributed entry, with separate reimplementation and supporting-tool sections.
+Entry cards, detail pages and featured cards show a white **Author:** label for one author or **Authors:** for multiple authors, followed by lime GitHub handles linked to their author routes. Cards keep the label and handles inline where space permits; detail pages place handles on the next line. Allow handles to wrap with spacing between them and no separator dots. Omit the entire author block when no author is recorded. Author pages include every explicitly attributed entry, with separate reimplementation and supporting-tool sections.
 
 ## Project record
 
@@ -143,7 +143,7 @@ Project and Project Request records accept optional `discord_server` and `discor
 - `discord_server`: a canonical HTTPS invite using `https://discord.gg/<code>` or `https://discord.com/invite/<code>`.
 - `discord_thread`: a canonical `https://discord.com/channels/<server-id>/<thread-id>` link, optionally followed by `/<message-id>`; IDs must be numeric. A trailing slash is accepted. Query strings, fragments, alternate hosts, credentials and non-HTTPS URLs are rejected.
 
-These fields link to discussion, without implying affiliation or endorsement. Review that the destination is appropriate for the project or request. Discord may require membership or sign-in; invitations may expire. Links appear with the Discord logo and explicit server/thread labels on project cards and detail pages, request cards and the software page’s request section. They open in a new tab, use no embeds or Discord visitor API calls, and are included in the corresponding public JSON exports and catalog link checks. Records without either field show no Discord controls. Supporting tools and suites do not accept these fields.
+These fields link to discussion, without implying affiliation or endorsement. Review that the destination is appropriate for the project or request. Discord may require membership or sign-in; invitations may expire. Links appear with the Discord logo and explicit server/thread labels on project detail pages and the software page’s request section. Cards link through to those pages rather than displaying Discord links directly. They open in a new tab, use no embeds or Discord visitor API calls, and are included in the corresponding public JSON exports and catalog link checks. Records without either field show no Discord controls. Supporting tools and suites do not accept these fields.
 
 ## Public machine-readable exports
 

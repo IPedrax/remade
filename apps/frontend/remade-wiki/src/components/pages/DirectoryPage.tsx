@@ -9,12 +9,16 @@ import {
 } from "../../lib/directory";
 import { label, repositoryUrl } from "../../lib/presentation";
 import type { RequestActivity } from "../../lib/request-activity";
+import { defaultFilters as exploreDefaults } from "../../stores/explore-store";
 import { useRequestActivity } from "../../stores/request-activity-store";
 import DirectoryCard from "../catalog/DirectoryCard";
+import RequestActions from "../requests/RequestActions";
 import RequestActivityProvider from "../requests/RequestActivityProvider";
-import DirectoryFilters, {
-	type FilterOption,
-} from "../search/DirectoryFilters";
+import RequestPreview from "../requests/RequestPreview";
+import type { FilterOption } from "../search/DirectoryFilters";
+import ExploreFiltersPanel from "../search/ExploreFilters";
+import ExploreResultsToolbar from "../search/ExploreResultsToolbar";
+import RequestFilters from "../search/RequestFilters";
 
 type Props = {
 	records: DirectoryRecord[];
@@ -192,9 +196,6 @@ function DirectoryContent({
 				)
 				.slice(0, 3)
 		: [];
-	const active = Object.entries(filters).filter(
-		([key, value]) => value && key !== "sort",
-	);
 	const title = kind === "request" ? "Project Requests" : "Explore projects";
 	return (
 		<>
@@ -214,85 +215,40 @@ function DirectoryContent({
 					Request a project →
 				</a>
 			</div>
-			<div className="my-8 border-b border-line pb-6" data-client-controls>
-				<label htmlFor="site-search">
-					{kind === "request"
-						? "Search Project Requests"
-						: "Search software and projects"}
-				</label>
-				<input
-					className="mt-2 w-full"
-					id="site-search"
-					name="q"
-					onChange={(event) => change({ ...filters, q: event.target.value })}
-					placeholder={
-						kind === "request"
-							? "Search software you would like remade"
-							: "Search a project, original software, or alias"
-					}
-					type="search"
-					value={filters.q}
-				/>
-				<div className="mt-4 flex flex-wrap items-end gap-3">
-					<div className="hidden gap-3 sm:flex">
-						<label>
-							Category
-							<select
-								onChange={(event) =>
-									change({ ...filters, category: event.target.value })
-								}
-								value={filters.category ?? ""}
-							>
-								<option value="">All categories</option>
-								{options[0].values.map((option) => (
-									<option key={option.value} value={option.value}>
-										{option.name}
-									</option>
-								))}
-							</select>
-						</label>
-						<label>
-							Sort
-							<select
-								onChange={(event) =>
-									change({ ...filters, sort: event.target.value })
-								}
-								value={filters.sort}
-							>
-								{options.at(-1)?.values.map((option) => (
-									<option key={option.value} value={option.value}>
-										{option.name}
-									</option>
-								))}
-							</select>
-						</label>
-					</div>
-					<DirectoryFilters
+			{kind === "project" ? (
+				<div data-client-controls>
+					<ExploreFiltersPanel
+						filters={{ ...exploreDefaults, ...filters }}
+						languages={
+							options
+								.find((option) => option.key === "language")
+								?.values.map((option) => option.value) ?? []
+						}
+						onChange={(key, value) => change({ ...filters, [key]: value })}
+						onClear={() => change(defaults)}
+						platforms={
+							options
+								.find((option) => option.key === "platform")
+								?.values.map((option) => option.value) ?? []
+						}
+					/>
+					<ExploreResultsToolbar
+						count={results.length}
+						onChange={(sort) => change({ ...filters, sort })}
+						sort={filters.sort}
+					/>
+				</div>
+			) : (
+				<div data-client-controls>
+					<RequestFilters
+						count={results.length}
 						filters={filters}
-						onApply={change}
-						onReset={() => change(defaults)}
+						onChange={(key, value) => change({ ...filters, [key]: value })}
+						onClear={() => change(defaults)}
 						options={options}
 					/>
-					<p aria-live="polite" className="!mb-0 ml-auto py-3 text-sm">
-						{results.length}{" "}
-						{kind === "request" ? "requests" : "projects and tools"}
-					</p>
 				</div>
-				{active.length > 0 && (
-					<div className="mt-4 flex flex-wrap gap-2">
-						{active.map(([key, value]) => (
-							<button
-								className="rounded-full border border-line px-3 py-2 text-xs"
-								key={key}
-								onClick={() => change({ ...filters, [key]: "" })}
-								type="button"
-							>
-								Remove {key}: {value} ×
-							</button>
-						))}
-					</div>
-				)}
-			</div>
+			)}
 			<noscript>
 				<p className="my-6 rounded-lg border border-line p-4">
 					Browse this page and use the page links below. Enable JavaScript for
@@ -302,7 +258,15 @@ function DirectoryContent({
 			</noscript>
 			<div className="directory-grid" id="directory-results">
 				{visible.map((record) => (
-					<DirectoryCard key={`${record.kind}-${record.id}`} record={record} />
+					<DirectoryCard
+						actions={
+							record.kind === "request" ? (
+								<RequestActions original={record.id} />
+							) : undefined
+						}
+						key={`${record.kind}-${record.id}`}
+						record={record}
+					/>
 				))}
 			</div>
 			{visible.length === 0 && (
@@ -335,11 +299,15 @@ function DirectoryContent({
 					<h2>
 						Related {kind === "request" ? "projects" : "Project Requests"}
 					</h2>
-					<div className="directory-grid">
-						{alternatives.map((record) => (
-							<DirectoryCard key={record.id} record={record} />
-						))}
-					</div>
+					{kind === "project" ? (
+						<RequestPreview records={alternatives} />
+					) : (
+						<div className="directory-grid">
+							{alternatives.map((record) => (
+								<DirectoryCard key={record.id} record={record} />
+							))}
+						</div>
+					)}
 				</section>
 			)}
 			<nav

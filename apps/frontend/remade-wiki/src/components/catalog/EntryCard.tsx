@@ -11,7 +11,6 @@ import {
 import type { Original, Project, Suite } from "../../lib/schemas";
 import Authors from "./Authors";
 import CardDescription from "./CardDescription";
-import DiscordLinks from "./DiscordLinks";
 import OriginalLinks from "./OriginalLinks";
 import ToolTargets from "./ToolTargets";
 
@@ -61,7 +60,10 @@ export default function EntryCard({
 			</div>
 
 			<h3 className="shrink-0">
-				<a className="hover:underline" href={entryUrl(entry)}>
+				<a
+					className="after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-lime"
+					href={entryUrl(entry)}
+				>
 					{entry.name}
 				</a>
 			</h3>
@@ -105,9 +107,7 @@ export default function EntryCard({
 				text={entry.description}
 			/>
 
-			{entry.kind === "project" && <DiscordLinks {...entry} />}
-
-			<Authors authors={entry.authors} />
+			<Authors authors={entry.authors} inline />
 		</article>
 	);
 }

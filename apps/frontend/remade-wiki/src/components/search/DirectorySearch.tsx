@@ -23,7 +23,7 @@ export default function DirectorySearch({
 						id="site-search"
 						name="q"
 						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Photoshop, Microsoft Access, or a project name"
+						placeholder="Original software or reimplementation project name"
 						type="search"
 						value={query}
 					/>

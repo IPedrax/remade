@@ -64,13 +64,9 @@ test("JavaScript filters still find tools whose badges only show TypeScript", as
 }) => {
 	await page.goto("/explore/?q=lazymaplayers&language=JavaScript");
 
-	await page.getByRole("button", { name: "Filters (1)", exact: true }).click();
 	await expect(
-		page
-			.getByRole("dialog")
-			.getByRole("combobox", { name: "Languages", exact: true }),
+		page.getByRole("combobox", { name: "Language", exact: true }),
 	).toHaveValue("JavaScript");
-	await page.getByRole("button", { name: "Cancel", exact: true }).click();
 
 	const card = page.getByRole("article").filter({
 		has: page.getByRole("heading", {

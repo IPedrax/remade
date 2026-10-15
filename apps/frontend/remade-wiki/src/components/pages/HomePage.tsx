@@ -8,10 +8,12 @@ export default function HomePage({
 	catalog,
 	metadata,
 	children,
+	requestPreview,
 }: {
 	catalog: CatalogData;
 	metadata: Record<string, Metadata>;
 	children?: ReactNode;
+	requestPreview?: ReactNode;
 }) {
 	const records = directoryRecords(catalog, metadata);
 	const featured = catalog.featured
@@ -51,17 +53,17 @@ export default function HomePage({
 			<section aria-labelledby="featured-heading">
 				<div className="section-heading">
 					<div>
-						<p className="eyebrow">Existing work</p>
 						<h2 id="featured-heading">Featured</h2>
 					</div>
-					<a href="/explore/?featured=1">View all featured →</a>
 				</div>
-				<p className="section-intro">
-					Selected by Remade. Check each project's status to see what is
-					available.
-				</p>
-				<div className="directory-grid">
-					{featured.slice(0, 3).map((record) => (
+				<div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 text-sm text-muted">
+					<p className="mb-0">
+						Check each project's status to see what is available.
+					</p>
+					<span>Selected by Remade</span>
+				</div>
+				<div className="directory-grid featured-grid">
+					{featured.slice(0, 5).map((record) => (
 						<DirectoryCard key={record.id} record={record} />
 					))}
 				</div>
@@ -78,11 +80,13 @@ export default function HomePage({
 					Software the community wants to see remade. A request is a wish, not a
 					promise that it will be built.
 				</p>
-				<div className="directory-grid">
-					{requests.map((record) => (
-						<DirectoryCard key={record.id} record={record} />
-					))}
-				</div>
+				{requestPreview ?? (
+					<div className="directory-grid">
+						{requests.map((record) => (
+							<DirectoryCard key={record.id} record={record} />
+						))}
+					</div>
+				)}
 				<div className="section-note">
 					<p>
 						Search first. Support an existing request or tell us what is
