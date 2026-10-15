@@ -11,7 +11,7 @@ platforms:
 status: alpha
 compatibility: partial
 description: >-
-  Clean-room numerical computing environment implementing the MATLAB
+  Independent numerical computing environment targeting the MATLAB
   language: a native Rust interpreter for .m files with a column-major
   matrix core, ~280 builtins, complex and sparse matrices, 2D/3D plotting
   with SVG/PNG/PDF export, a MATLAB-style desktop Studio, .mat v5 file
@@ -21,5 +21,6 @@ docs: https://github.com/NibrasAz7/matcraft/blob/master/docs/language.md
 limitations: >-
   Alpha. No anonymous function handles (@), classdef OOP, N-D indexing,
   image I/O, or Simulink-style block modeling yet. In a sweep of 638
-  real-world pre-2022 .m files across 8 domains, ~87% parse cleanly;
-  methodology and ranked gaps in docs/wild-corpus.md.
+  real-world pre-2022 .m files across 8 domains, the maintainer reports ~87%
+  parse cleanly; parsing does not establish execution compatibility.
+  Methodology and ranked gaps are in docs/wild-corpus.md.
