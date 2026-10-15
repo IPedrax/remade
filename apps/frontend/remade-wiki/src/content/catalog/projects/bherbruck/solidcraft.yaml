@@ -4,6 +4,8 @@ name: SolidCraft
 authors: [bherbruck]
 repository: https://github.com/bherbruck/solidcraft
 website: https://bherbruck.github.io/solidcraft/
+discord_server: https://discord.gg/artcraft
+discord_thread: https://discord.com/channels/1359579021108842617/1557894693281468457
 originals: [autodesk-fusion]
 category: engineering
 languages: [Rust]

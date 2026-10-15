@@ -69,7 +69,7 @@ export default function ProjectPage({
 							rel="noopener noreferrer"
 							target="_blank"
 						>
-							Official website ↗
+							Website ↗
 						</a>
 					)}
 
