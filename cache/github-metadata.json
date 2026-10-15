@@ -243,6 +243,15 @@
       "pushedAt": "2026-10-15T11:46:34Z",
       "stars": 105
     },
+    "fluxerapp/fluxer": {
+      "fetchedAt": "2026-10-15T14:02:29Z",
+      "forks": 813,
+      "isArchived": false,
+      "licenseSpdx": "AGPL-3.0",
+      "primaryLanguage": "TypeScript",
+      "pushedAt": "2026-10-15T05:35:45Z",
+      "stars": 10592
+    },
     "fressmeigasu/inventcraft": {
       "fetchedAt": "2026-10-15T12:51:49Z",
       "forks": 0,
@@ -683,6 +692,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-15T11:42:58Z",
       "stars": 30
+    },
+    "stoatchat/stoatchat": {
+      "fetchedAt": "2026-10-15T14:02:29Z",
+      "forks": 397,
+      "isArchived": false,
+      "licenseSpdx": "NOASSERTION",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-15T13:04:25Z",
+      "stars": 3395
     },
     "storytold/cadcraft": {
       "fetchedAt": "2026-10-15T12:51:49Z",
