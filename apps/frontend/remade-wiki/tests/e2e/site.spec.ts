@@ -1,4 +1,16 @@
+import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
+import { parseYaml } from "../../src/lib/schemas";
+
+test("launcher feed matches the source allowlist even with the page disabled", async ({
+	request,
+}) => {
+	const response = await request.get("/data/launcher.json");
+	const source = await readFile("../../../launcher.yaml", "utf8");
+
+	expect(response.ok()).toBe(true);
+	expect(await response.json()).toEqual(parseYaml(source));
+});
 
 test("the previous SolveCraft URL redirects to SolidCraft", async ({
 	page,

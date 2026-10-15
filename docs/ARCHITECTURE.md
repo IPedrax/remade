@@ -37,6 +37,7 @@ Git-tracked project YAML + original records + featured selections
            ├── /about                 story, mission and community
            ├── /data/catalog.json     public machine-readable catalog
            ├── /data/requests.json    public machine-readable requests
+           ├── /data/launcher.json    explicit Launcher eligibility allowlist
            ├── /disclaimer            approved text
            └── Pagefind index         no hosted search service
 

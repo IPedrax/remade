@@ -27,7 +27,7 @@ jobs:
         run: |
           if [ "$EVENT_NAME" = 'workflow_dispatch' ] || ! git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null; then
             echo 'frontend=true' >> "$GITHUB_OUTPUT"
-          elif [ -n "$(git diff --name-only "$BASE_SHA" HEAD -- apps/frontend/remade-wiki package.json pnpm-lock.yaml pnpm-workspace.yaml cache/github-metadata.json biome.jsonc .github/workflows/frontend-test.yml)" ]; then
+          elif [ -n "$(git diff --name-only "$BASE_SHA" HEAD -- launcher.yaml apps/frontend/remade-wiki package.json pnpm-lock.yaml pnpm-workspace.yaml cache/github-metadata.json biome.jsonc .github/workflows/frontend-test.yml)" ]; then
             echo 'frontend=true' >> "$GITHUB_OUTPUT"
           else
             echo 'frontend=false' >> "$GITHUB_OUTPUT"
