@@ -828,6 +828,15 @@
       "pushedAt": "2026-10-15T11:10:47Z",
       "stars": 10
     },
+    "ucs-care-group/mailcraft": {
+      "fetchedAt": "2026-10-15T13:46:49Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-15T13:36:20Z",
+      "stars": 8
+    },
     "vbasky/craft-icons": {
       "fetchedAt": "2026-10-15T12:51:49Z",
       "forks": 1,
