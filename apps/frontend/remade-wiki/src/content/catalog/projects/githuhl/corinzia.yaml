@@ -1,0 +1,15 @@
+# The author identifies Dorico, Sibelius and Finale in https://github.com/replicraft/remade/issues/48.
+slug: corinzia
+name: Corinzia
+authors: [githuhl]
+repository: https://github.com/GitHuhl/Corinzia
+originals: [steinberg-dorico, avid-sibelius, finale]
+category: creative
+languages: [Rust]
+platforms: [Linux, Windows]
+status: experimental
+compatibility: partial
+description: A broader Dorico, Sibelius and Finale alternative combining a music-notation editor and DAW. Uses its own engraver for scores and parts, with note entry, lyrics, chord symbols and CLAP instrument playback. Imports MusicXML and exports PDF, MIDI and MusicXML, with an arrange view and mixer.
+license: MIT
+docs: https://github.com/GitHuhl/Corinzia/blob/main/docs/ARCHITECTURE.md
+limitations: Preview; project saving is disabled while the format changes. Bus routing, plug-in delay compensation, automation playback and plug-in GUIs are unfinished. Native Dorico, Sibelius and Finale file compatibility is not documented. Linux audio needs PipeWire. MIT is declared in the Rust workspace manifests; no standalone project license text is provided.
