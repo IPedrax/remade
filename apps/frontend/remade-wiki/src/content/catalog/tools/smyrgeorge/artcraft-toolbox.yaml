@@ -1,0 +1,13 @@
+slug: artcraft-toolbox
+name: ArtCraft Toolbox
+authors: [smyrgeorge]
+repository: https://github.com/smyrgeorge/artcraft-toolbox
+url: https://github.com/smyrgeorge/artcraft-toolbox
+languages: [Rust]
+platforms: [macOS, Windows, Linux]
+status: experimental
+license: MIT OR Apache-2.0
+description: A native suite manager that installs, updates, launches and rolls back ArtCraft apps. Reads release feeds, verifies downloads and manages per-app channels and versions, with a desktop interface and headless CLI.
+docs: https://github.com/smyrgeorge/artcraft-toolbox#readme
+limitations: Pre-alpha; toolbox releases are not signed. Available app packages vary by platform, and installation depends on upstream release assets and their naming or feed metadata. Platform package-manager installations use their respective update mechanisms.
+projects: [photocraft, vectorcraft, filmcraft, lightcraft, pdfcraft, effectcraft, designcraft, cadcraft, deckcraft, gridcraft, soundcraft, wordcraft, figcraft]
