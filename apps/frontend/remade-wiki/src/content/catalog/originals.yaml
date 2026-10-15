@@ -1178,3 +1178,9 @@
   name: ElevenLabs
   url: https://elevenlabs.io/
   category: creative
+
+- slug: internet-download-manager
+  name: Internet Download Manager
+  url: https://www.internetdownloadmanager.com/
+  category: productivity
+  aliases: [IDM]
