@@ -1,0 +1,15 @@
+# The upstream README describes a scaffold with no usable application yet.
+slug: beamcraft
+name: BeamCraft
+authors: [apibim-com]
+repository: https://github.com/Apibim-com/BeamCraft
+originals: [tekla-structures]
+category: engineering
+languages: [Rust]
+status: planned
+compatibility: targeting
+description: A planned structural steel detailing workbench targeting Tekla-style modeling and documentation workflows. Proposes an original Rust engineering core, OpenUSD project storage, IFC and DSTV export, a native interface and headless scripting. The repository currently provides scaffolding, project rules and CI.
+license: MPL-2.0
+website: https://beamcraft.cl/
+docs: https://github.com/Apibim-com/BeamCraft/blob/master/ROADMAP.md
+limitations: Planned; no usable detailing application yet. Model and geometry contracts, plate creation, project saving and industry-format export remain milestones. Windows and Linux are initial build targets; macOS and browser delivery are goals. Native Tekla project or behavioral compatibility is not demonstrated.
