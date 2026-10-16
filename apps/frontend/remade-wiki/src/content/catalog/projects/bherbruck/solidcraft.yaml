@@ -6,7 +6,6 @@ repository: https://github.com/tangency-labs/solidcraft
 website: https://solidcraft.io
 docs: https://docs.solidcraft.io
 discord_server: https://solidcraft.io/discord
-discord_thread: https://discord.com/channels/1359579021108842617/1557894693281468457
 originals: [autodesk-fusion]
 category: engineering
 languages: [Rust]
