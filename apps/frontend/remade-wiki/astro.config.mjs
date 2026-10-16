@@ -7,6 +7,14 @@ export default defineConfig({
 	output: "static",
 	devToolbar: { enabled: false },
 	redirects: {
+		"/projects/pounce": {
+			destination: "/projects/filecraft/",
+			status: 302,
+		},
+		"/authors/bherbruck": {
+			destination: "/authors/tangency-labs/",
+			status: 302,
+		},
 		"/projects/animationcraft": {
 			destination: "/projects/flare-animate/",
 			status: 302,

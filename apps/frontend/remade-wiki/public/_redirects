@@ -1,5 +1,9 @@
-# Temporary redirects for renamed project slugs. Point every old URL to the current slug.
+# Temporary redirects for renamed projects and transferred author listings.
 /projects/animationcraft/ /projects/flare-animate/ 302
 /projects/animationcraft /projects/flare-animate/ 302
 /projects/solvecraft/ /projects/solidcraft/ 302
 /projects/solvecraft /projects/solidcraft/ 302
+/projects/pounce/ /projects/filecraft/ 302
+/projects/pounce /projects/filecraft/ 302
+/authors/bherbruck/ /authors/tangency-labs/ 302
+/authors/bherbruck /authors/tangency-labs/ 302

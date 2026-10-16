@@ -41,10 +41,23 @@ const https = v.pipe(
 );
 const discordServer = v.pipe(
 	https,
-	v.regex(
-		/^https:\/\/(?:discord\.gg\/[A-Za-z0-9-]+|discord\.com\/invite\/[A-Za-z0-9-]+)\/?$/,
-		"Expected a Discord server invite.",
-	),
+	v.check((value) => {
+		if (
+			/^https:\/\/(?:discord\.gg\/[A-Za-z0-9-]+|discord\.com\/invite\/[A-Za-z0-9-]+)\/?$/.test(
+				value,
+			)
+		)
+			return true;
+
+		const url = new URL(value);
+
+		return (
+			!["discord.gg", "discord.com"].includes(url.hostname) &&
+			/^\/discord\/?$/.test(url.pathname) &&
+			!url.search &&
+			!url.hash
+		);
+	}, "Expected a Discord invite or project-owned /discord link."),
 );
 const discordThread = v.pipe(
 	https,

@@ -1,5 +1,17 @@
 import { expect, test } from "@playwright/test";
 
+for (const [previous, current, heading] of [
+	["/projects/pounce/", "/projects/filecraft/", "FileCraft"],
+	["/authors/bherbruck/", "/authors/tangency-labs/", "@tangency-labs"],
+]) {
+	test(`${previous} redirects to ${current}`, async ({ page }) => {
+		await page.goto(previous);
+
+		await expect(page).toHaveURL(new RegExp(`${current}$`));
+		await expect(page.getByRole("heading", { level: 1 })).toHaveText(heading);
+	});
+}
+
 test("the previous SolveCraft URL redirects to SolidCraft", async ({
 	page,
 }) => {

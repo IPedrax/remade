@@ -24,7 +24,26 @@ it.each(schemas)("accepts optional Discord links independently", (schema) => {
 	).toEqual({ discord_thread: "https://discord.com/channels/123/456/" });
 });
 
+it.each(schemas)(
+	"accepts reviewed project-owned Discord redirects",
+	(schema) => {
+		for (const url of [
+			"https://solidcraft.io/discord",
+			"https://solidcraft.io/discord/",
+		]) {
+			expect(v.parse(schema, { discord_server: url })).toEqual({
+				discord_server: url,
+			});
+		}
+	},
+);
+
 it.each([
+	["discord_server", "http://solidcraft.io/discord"],
+	["discord_server", "https://solidcraft.io/discord?redirect=evil"],
+	["discord_server", "https://solidcraft.io/discord#fragment"],
+	["discord_server", "https://user@solidcraft.io/discord"],
+	["discord_server", "https://solidcraft.io/community"],
 	["discord_server", "http://discord.gg/example"],
 	["discord_server", "https://discord.gg.evil.com/example"],
 	["discord_server", "https://discord.com/channels/123/456"],

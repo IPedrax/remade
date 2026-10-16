@@ -561,5 +561,18 @@ def validate_discord(record: dict, loc: str, errors: list[str]) -> None:
     for field, pattern in patterns.items():
         if field in record:
             value = record[field]
-            if not is_https(value) or re.fullmatch(pattern, value) is None:
-                errors.append(f"{loc}: {field} must be a canonical Discord HTTPS link")
+            if not is_https(value):
+                errors.append(f"{loc}: {field} must be a public HTTPS link")
+                continue
+            url = urlsplit(value)
+            project_invite = (
+                field == "discord_server"
+                and url.hostname not in {"discord.gg", "discord.com"}
+                and url.path in {"/discord", "/discord/"}
+                and not url.query
+                and not url.fragment
+            )
+            if re.fullmatch(pattern, value) is None and not project_invite:
+                errors.append(
+                    f"{loc}: {field} must be a Discord link or project-owned /discord invite"
+                )

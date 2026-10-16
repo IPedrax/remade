@@ -1,0 +1,15 @@
+# Features and current interchange limits are documented in the upstream README.
+slug: pcbcraft
+name: PCBCraft
+authors: [tangency-labs]
+repository: https://github.com/tangency-labs/pcbcraft
+originals: [altium-designer]
+category: engineering
+languages: [Rust]
+platforms: [Linux, Windows]
+status: experimental
+compatibility: targeting
+description: A broader Altium Designer alternative for schematic capture and PCB layout, implemented in Rust. Its current foundation follows KiCad workflows, with symbol and footprint libraries, schematic-to-board synchronization, basic routing, design checks and KiCad board export. Provides a native tabbed editor, CLI and MCP automation.
+license: GPL-3.0-or-later
+docs: https://github.com/tangency-labs/pcbcraft#readme
+limitations: Upstream currently documents KiCad workflows and interchange, not Altium file, interface or API compatibility. General KiCad project import, vias, zone fills, hierarchical designs and comprehensive electrical rules remain planned. Browser code compiles to WebAssembly, but browser file operations are not implemented.

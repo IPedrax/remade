@@ -1260,3 +1260,35 @@
   name: ManicTime
   url: https://www.manictime.com/
   category: productivity
+- slug: viscosity
+  name: Viscosity
+  url: https://www.sparklabs.com/viscosity/
+  category: other
+- slug: proteus-design-suite
+  name: Proteus Design Suite
+  url: https://www.labcenter.com/
+  category: engineering
+  aliases: [Proteus, Labcenter Proteus, Proteus VSM]
+- slug: cabinet-vision
+  name: CABINET VISION
+  url: https://hexagon.com/products/cabinet-vision
+  category: engineering
+- slug: adobe-encore
+  name: Adobe Encore
+  url: https://helpx.adobe.com/pdf/cs6/encore_reference.pdf
+  category: creative
+  aliases: [Encore CS6]
+- slug: touchdesigner
+  name: TouchDesigner
+  url: https://derivative.ca/
+  category: creative
+- slug: apple-finder
+  name: Finder
+  url: https://support.apple.com/guide/mac-help/organize-your-files-in-the-finder-mchlp2605/mac
+  category: productivity
+  aliases: [Apple Finder, macOS Finder, Mac Finder]
+- slug: essay
+  name: Essay
+  url: https://essay.app/
+  category: productivity
+  aliases: [essay.app]
