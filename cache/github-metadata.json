@@ -936,6 +936,15 @@
       "pushedAt": "2026-10-16T12:40:58Z",
       "stars": 16
     },
+    "ucs-care-group/projectcraft": {
+      "fetchedAt": "2026-10-16T23:57:55Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-16T23:51:25Z",
+      "stars": 0
+    },
     "vbasky/craft-icons": {
       "fetchedAt": "2026-10-16T12:43:46Z",
       "forks": 1,
