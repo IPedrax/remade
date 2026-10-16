@@ -873,6 +873,15 @@
       "pushedAt": "2026-10-16T12:08:25Z",
       "stars": 17
     },
+    "tangency-labs/solidcraft": {
+      "fetchedAt": "2026-10-16T17:45:48Z",
+      "forks": 324,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-16T17:26:23Z",
+      "stars": 3015
+    },
     "therichronicles/earthcraft": {
       "fetchedAt": "2026-10-16T12:43:46Z",
       "forks": 2,
