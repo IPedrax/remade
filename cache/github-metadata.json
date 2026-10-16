@@ -971,6 +971,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-15T19:36:04Z",
       "stars": 4
+    },
+    "zlotny/fluidity-vpn": {
+      "fetchedAt": "2026-10-16T23:57:07Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "0BSD",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-16T08:33:51Z",
+      "stars": 0
     }
   }
 }
