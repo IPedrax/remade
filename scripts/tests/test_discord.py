@@ -17,6 +17,8 @@ LINKS = {
     [
         {},
         LINKS,
+        {"discord_server": "https://solidcraft.io/discord"},
+        {"discord_server": "https://solidcraft.io/discord/"},
         {"discord_server": "https://discord.com/invite/example/"},
         {"discord_thread": "https://discord.com/channels/123/456/"},
     ],
@@ -30,6 +32,11 @@ def test_valid_discord_links(record: dict) -> None:
 @pytest.mark.parametrize(
     "field,value",
     [
+        ("discord_server", "http://solidcraft.io/discord"),
+        ("discord_server", "https://solidcraft.io/discord?redirect=evil"),
+        ("discord_server", "https://solidcraft.io/discord#fragment"),
+        ("discord_server", "https://user@solidcraft.io/discord"),
+        ("discord_server", "https://solidcraft.io/community"),
         ("discord_server", "http://discord.gg/example"),
         ("discord_server", "https://discord.gg.evil.com/example"),
         ("discord_server", "https://discord.gg/example?redirect=evil"),

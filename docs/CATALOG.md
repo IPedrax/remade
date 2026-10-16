@@ -140,7 +140,7 @@ suggested_names: [ExampleCraft] # optional
 
 Project and Project Request records accept optional `discord_server` and `discord_thread` fields independently. Omit them when no reviewed link is available; do not insert placeholder links into real records.
 
-- `discord_server`: a canonical HTTPS invite using `https://discord.gg/<code>` or `https://discord.com/invite/<code>`.
+- `discord_server`: a canonical HTTPS invite using `https://discord.gg/<code>` or `https://discord.com/invite/<code>`, or a reviewed public HTTPS `/discord` redirect on the project’s own website (for example, `https://solidcraft.io/discord`). A trailing slash is allowed; query strings and fragments are rejected. Review the redirect destination before accepting a project-owned invite.
 - `discord_thread`: a canonical `https://discord.com/channels/<server-id>/<thread-id>` link, optionally followed by `/<message-id>`; IDs must be numeric. A trailing slash is accepted. Query strings, fragments, alternate hosts, credentials and non-HTTPS URLs are rejected.
 
 These fields link to discussion, without implying affiliation or endorsement. Review that the destination is appropriate for the project or request. Discord may require membership or sign-in; invitations may expire. Links appear with the Discord logo and explicit server/thread labels on project cards and detail pages, request cards and the software page’s request section. They open in a new tab, use no embeds or Discord visitor API calls, and are included in the corresponding public JSON exports and catalog link checks. Records without either field show no Discord controls. Supporting tools and suites do not accept these fields.

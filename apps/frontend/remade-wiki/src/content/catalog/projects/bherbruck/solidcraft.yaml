@@ -2,9 +2,10 @@
 slug: solidcraft
 name: SolidCraft
 authors: [bherbruck]
-repository: https://github.com/bherbruck/solidcraft
-website: https://bherbruck.github.io/solidcraft/
-discord_server: https://discord.gg/artcraft
+repository: https://github.com/tangency-labs/solidcraft
+website: https://solidcraft.io
+docs: https://docs.solidcraft.io
+discord_server: https://solidcraft.io/discord
 discord_thread: https://discord.com/channels/1359579021108842617/1557894693281468457
 originals: [autodesk-fusion]
 category: engineering

@@ -23,4 +23,5 @@ license: MIT
 limitations: Many features are not yet implemented.
 # Optional community links; use reviewed real URLs or omit these fields.
 # discord_server: https://discord.gg/example
+# A reviewed project-owned HTTPS /discord redirect is also accepted.
 # discord_thread: https://discord.com/channels/123456789/987654321
