@@ -1,5 +1,0 @@
-original: microsoft-project
-reason: 'Reproduce Project Desktop scheduling: Gantt charts, dependencies, milestones, critical paths, baselines, calendars, resource allocation and leveling, earned-value metrics and cost variance. Support MPP/XML/XER import/export, PDF/CSV export and CLI/MCP automation; aim for responsive large schedules and background Monte Carlo risk simulations.'
-suggested_names:
-- ProjectCraft
-- GanttCraft
