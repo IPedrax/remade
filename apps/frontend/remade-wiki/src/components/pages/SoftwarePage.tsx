@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { CatalogData, Metadata } from "../../lib/catalog";
 import { contributeUrl, label, metadataFor } from "../../lib/presentation";
 import type { Original } from "../../lib/schemas";
+import DiscordLinks from "../catalog/DiscordLinks";
 import EntryCard from "../catalog/EntryCard";
 import ProjectComparison from "../catalog/ProjectComparison";
 
@@ -73,6 +74,7 @@ export default function SoftwarePage({
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 					</div>
@@ -86,6 +88,8 @@ export default function SoftwarePage({
 			{request && (
 				<section className="max-w-[780px]">
 					<h2>Project Request</h2>
+
+					<DiscordLinks {...request} />
 
 					<p>{request.reason}</p>
 

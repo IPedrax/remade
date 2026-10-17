@@ -1,0 +1,5 @@
+# Documentation example only; use existing canonical project slugs.
+slug: example-suite
+name: Example Suite
+description: A related collection of independently developed software projects.
+projects: [example-implementation]

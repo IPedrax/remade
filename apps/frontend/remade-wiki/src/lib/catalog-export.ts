@@ -3,8 +3,10 @@ import {
 	originalSchema,
 	projectSchema,
 	requestSchema,
+	suiteSchema,
 	toolSchema,
 } from "./schemas";
+import { supportedProjectSlugs } from "./suites";
 
 // Explicit public allowlists: future source fields are not automatically exported.
 const publicOriginal = v.object({
@@ -16,6 +18,8 @@ const publicOriginal = v.object({
 });
 const addedAt = v.optional(v.pipe(v.string(), v.isoTimestamp()));
 const publicProject = v.object({
+	discord_server: projectSchema.entries.discord_server,
+	discord_thread: projectSchema.entries.discord_thread,
 	slug: projectSchema.entries.slug,
 	name: projectSchema.entries.name,
 	originals: projectSchema.entries.originals,
@@ -50,9 +54,18 @@ const publicTool = v.object({
 	authors: toolSchema.entries.authors,
 	platforms: toolSchema.entries.platforms,
 	projects: toolSchema.entries.projects,
+	suites: toolSchema.entries.suites,
 	addedAt,
 });
+const publicSuite = v.object({
+	slug: suiteSchema.entries.slug,
+	name: suiteSchema.entries.name,
+	description: suiteSchema.entries.description,
+	projects: suiteSchema.entries.projects,
+});
 const publicRequest = v.object({
+	discord_server: requestSchema.entries.discord_server,
+	discord_thread: requestSchema.entries.discord_thread,
 	original: requestSchema.entries.original,
 	reason: requestSchema.entries.reason,
 	suggested_names: requestSchema.entries.suggested_names,
@@ -76,9 +89,16 @@ export function catalogExport(
 		projects: unknown[];
 		tools: unknown[];
 		featured: string[];
+		suites?: unknown[];
 	},
 	site: string,
 ) {
+	const suites = v.parse(v.array(publicSuite), input.suites ?? []);
+	const tools = v.parse(v.array(publicTool), input.tools).map((tool) => ({
+		...tool,
+		projects: supportedProjectSlugs(tool, suites),
+	}));
+
 	return {
 		schemaVersion: 1,
 		site,
@@ -90,14 +110,19 @@ export function catalogExport(
 				...project,
 				pageUrl: new URL(`/projects/${project.slug}/`, site).href,
 			})),
-		tools: v
-			.parse(v.array(publicTool), input.tools)
+		tools: tools
 			.sort((a, b) => a.slug.localeCompare(b.slug))
 			.map((tool) => ({
 				...tool,
 				pageUrl: new URL(`/tools/${tool.slug}/`, site).href,
 			})),
 		featured: input.featured.slice(),
+		suites: suites
+			.sort((a, b) => a.slug.localeCompare(b.slug))
+			.map((suite) => ({
+				...suite,
+				pageUrl: new URL(`/suites/${suite.slug}/`, site).href,
+			})),
 	};
 }
 

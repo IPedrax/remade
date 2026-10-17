@@ -26,6 +26,7 @@ export const GET: APIRoute = async ({ site }) => {
 				})),
 				tools: tools.map((t) => ({ ...t.data, addedAt: dates.get(t.id) })),
 				featured: catalog.featured,
+				suites: catalog.suites,
 			},
 			site.href,
 		),

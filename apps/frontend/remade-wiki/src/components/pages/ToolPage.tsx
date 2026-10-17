@@ -7,11 +7,13 @@ import {
 	metadataFor,
 } from "../../lib/presentation";
 import type { Tool } from "../../lib/schemas";
+import { toolTargets } from "../../lib/suites";
 import BadgeShareSection from "../badges/BadgeShareSection";
 import Authors from "../catalog/Authors";
 import EntryCard from "../catalog/EntryCard";
 import RepositoryMirrors from "../catalog/RepositoryMirrors";
 import Stats from "../catalog/Stats";
+import ToolTargets from "../catalog/ToolTargets";
 
 interface Props {
 	tool: Tool;
@@ -22,6 +24,7 @@ interface Props {
 
 export default function ToolPage({ tool, catalog, metadata, children }: Props) {
 	const entry = findBySlug(catalog.entries, tool.slug);
+	const targets = toolTargets(tool, catalog.suites);
 
 	return (
 		<>
@@ -87,10 +90,22 @@ export default function ToolPage({ tool, catalog, metadata, children }: Props) {
 					reimplementations or fulfill requests.
 				</p>
 
+				{targets.suites.length > 0 && (
+					<p>
+						Works with{" "}
+						<ToolTargets
+							projects={catalog.projects}
+							suites={catalog.suites}
+							tool={{ ...tool, projects: [] }}
+						/>
+						. Open a suite to browse its products.
+					</p>
+				)}
+
 				<div className="grid auto-rows-fr grid-cols-1 gap-[18px] min-[600px]:grid-cols-2 min-[900px]:grid-cols-3">
 					{catalog.entries
 						.filter(
-							(e) => e.kind === "project" && tool.projects.includes(e.slug),
+							(e) => e.kind === "project" && targets.projects.includes(e.slug),
 						)
 						.map((entry) => (
 							<EntryCard
@@ -99,6 +114,7 @@ export default function ToolPage({ tool, catalog, metadata, children }: Props) {
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 				</div>

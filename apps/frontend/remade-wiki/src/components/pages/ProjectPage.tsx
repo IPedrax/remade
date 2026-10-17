@@ -4,6 +4,7 @@ import { findBySlug, label, metadataFor } from "../../lib/presentation";
 import type { Project } from "../../lib/schemas";
 import BadgeShareSection from "../badges/BadgeShareSection";
 import Authors from "../catalog/Authors";
+import DiscordLinks from "../catalog/DiscordLinks";
 import EntryCard from "../catalog/EntryCard";
 import OriginalLinks from "../catalog/OriginalLinks";
 import RepositoryMirrors from "../catalog/RepositoryMirrors";
@@ -68,7 +69,7 @@ export default function ProjectPage({
 							rel="noopener noreferrer"
 							target="_blank"
 						>
-							Official website ↗
+							Website ↗
 						</a>
 					)}
 
@@ -81,6 +82,12 @@ export default function ProjectPage({
 						</a>
 					)}
 				</div>
+
+				{(project.discord_server || project.discord_thread) && (
+					<div className="mt-6">
+						<DiscordLinks {...project} />
+					</div>
+				)}
 
 				<div className="mt-6">
 					<RepositoryMirrors mirrors={project.mirrors} />
@@ -153,6 +160,7 @@ export default function ProjectPage({
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 					</div>
@@ -163,8 +171,8 @@ export default function ProjectPage({
 				<section>
 					<h2>
 						{project.originals.length > 1
-							? "More implementations of these targets"
-							: `More implementations of ${catalog.originals
+							? "More re-implementations of these targets"
+							: `More re-implementations of ${catalog.originals
 									.filter((o) => project.originals.includes(o.slug))
 									.map((o) => o.name)
 									.join(", ")}`}
@@ -178,6 +186,7 @@ export default function ProjectPage({
 								metadata={metadataFor(entry, metadata)}
 								originals={catalog.originals}
 								projects={catalog.projects}
+								suites={catalog.suites}
 							/>
 						))}
 					</div>

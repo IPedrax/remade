@@ -5,3 +5,7 @@ original: example-software
 reason: A faithful, independently written implementation of the program's public behavior would support compatibility and historical preservation.
 # Optional naming ideas; not reserved names or existing implementations.
 suggested_names: [ExampleCraft]
+# Optional community links; use reviewed real URLs or omit these fields.
+# discord_server: https://discord.gg/example
+# A reviewed project-owned HTTPS /discord redirect is also accepted.
+# discord_thread: https://discord.com/channels/123456789/987654321

@@ -52,7 +52,7 @@ Authentication sits at the far right of the header: a compact **Login** link whe
 
 1. Header: logo, Explore, GitHub, Submit.
 2. Hero: `Everything can be remade.` and one supporting sentence.
-3. Compact dark search field with a magnifying glass and bordered keyboard shortcut badge.
+3. Compact dark search field with a magnifying glass and bordered keyboard shortcut badge. On the homepage, show **Hit enter to search** in a dropdown beneath the field only when it contains text and the search form has focus. Style the hint like a search-result row, associate it with the input for screen readers, and allow clicking it or pressing Enter to open Explore with the query. The dropdown overlays the page without moving the content below it.
 4. **Featured**: one large editorial highlight plus smaller selected cards on desktop. On mobile, show equal-size cards stacked in featured order, with the first entry on top. If fewer entries exist, adapt gracefully instead of duplicating content. Supporting tools may be featured with a visible **Tool** label and remain separate from reimplementation counts.
 5. Browse by category: clear icon labels, counts when known.
 6. Recently added: reviewed latest additions; no invented dates.
@@ -132,3 +132,11 @@ The build flag and publishing rules are documented in [Architecture](ARCHITECTUR
 - Decorative branding icon may be empty-alt alongside explicit wordmark.
 - Keep each author handle and arrow together on one line; move the complete handle to the next line when needed.
 - Disclaimer citations use numbered references and a Sources section; external source links open in a new tab.
+
+## Suite browsing
+
+Tool cards and tool pages show a clickable suite name, such as ArtCraft Suite, instead of listing every member. Additional supported projects remain visible individually. `/suites/<slug>/` renders a static page with the suite name, description, responsive member project cards in curated order, and supporting tools that reference the suite. Use the existing card styles and grid breakpoints; suite links must remain keyboard accessible and work without JavaScript. Project cards show “Part of” followed by a link to each suite they belong to, using its recorded display name. Suite pages are included in Pagefind and the sitemap.
+
+## Discord community links
+
+Project and request cards show optional Discord server/thread links with the Discord logo and visible text labels. Project detail pages and request sections on software pages expose the same links. Use the existing lime link styling, keep icon shapes decorative for screen readers, and keep links above stretched card targets so pointer and keyboard navigation reach the intended destination. Omitted links render no controls. These are static links, with no Discord embeds or scripts.

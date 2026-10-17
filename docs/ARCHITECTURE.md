@@ -32,6 +32,7 @@ Git-tracked project YAML + original records + featured selections
            ├── /explore                filters/sort + search
            ├── /software/[slug]        one original → many projects
            ├── /projects/[slug]        individual project
+           ├── /suites/[slug]          suite member cards and supporting tools
            ├── /authors/[github-user] attributed indexed projects and tools
            ├── /requests              unfulfilled community requests
            ├── /about                 story, mission and community
@@ -47,6 +48,8 @@ GitHub GraphQL: batched repository aliases
     ↓
 Update cache snapshot → next static build consumes it
 ```
+
+Suite YAML is validated alongside projects and tools. The loader expands suite references into each tool’s resolved `projects` for category inheritance and backlinks while retaining `suites` for compact linked labels. Static suite pages and public JSON use the same validated membership; suites do not create repository statistics or request fulfillment.
 
 ## GitHub statistics and rate limits
 
@@ -94,6 +97,10 @@ REMADE_LAUNCHER_ENABLED=true pnpm dev
 For a static preview use `REMADE_LAUNCHER_ENABLED=true pnpm build`, then `pnpm preview`. Cloudflare Pages can set this build environment variable for its Preview environment only; leave it unset in Production until an explicit launch decision. Set it in the build process environment, not a public browser setting. Changing the flag requires rebuilding; it is not runtime authorization. A previously enabled deployment must be rebuilt with the flag unset to remove the page and generated discovery entries.
 
 `LauncherDownloads` is the only hydrated Launcher island. OS suggestion and manual platform/architecture selection run locally. The default release model is unavailable, with no fake assets or repository links. A future trusted build-time GitHub Releases adapter can supply the typed release/asset view model without changing the layout or adding visitor API calls. The allowlist does not imply downloadable builds or provenance certification.
+
+## LLM discovery
+
+`apps/frontend/remade-wiki/public/llms.txt` is a maintained Markdown guide published unchanged at `/llms.txt`, following the [llms.txt proposal](https://llmstxt.org/). It summarizes the directory's scope and listing caveats, then links to the existing public JSON feeds, browsing pages, policy, catalog schema and contribution documentation. Keep it concise; catalog records remain in the generated feeds rather than a second manually maintained project list. Do not advertise unpublished features. The shared document layout links to it using `rel="describedby"`, and Cloudflare Pages serves it as UTF-8 plain text with one-hour public caching through `_headers`. It complements the sitemap and does not change `robots.txt` crawling rules.
 
 ## CI security
 

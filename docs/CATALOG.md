@@ -43,7 +43,7 @@ Credit authors explicitly rather than inferring authorship from repository owner
 
 Organize attributed files as `projects/<github-user>/<slug>.yaml` and `tools/<github-user>/<slug>.yaml`, using the first credited author for the folder. For example, PhotoCraft lives at `projects/storytold/photocraft.yaml`. Keep one file per entry even with multiple authors. The `authors` field remains authoritative for attribution and grouping; folders are organizational. Entries without established attribution may remain at the collection root. Load both collections recursively, enforcing slug and repository uniqueness across all author folders. Original and request records remain shared and keyed by original slug; featured selections and public project URLs continue to use global entry slugs.
 
-`entries_by_author` derives groups directly from validated project and tool YAML, sorts them deterministically, and keeps separate project/tool lists. Grouping includes every attributed indexed entry independently of Featured. The static `/authors/[github-user]` route uses the handle directly: ArtCraft entries with `authors: [storytold]` appear at `/authors/storytold`. This does not automatically import or publish other repositories.
+`entries_by_author` derives groups directly from validated project and tool YAML, sorts them deterministically, and keeps separate project/tool lists. Grouping includes every attributed indexed entry independently of Featured. The static `/authors/[github-user]` route uses the handle directly: ArtCraft entries with `authors: [storytold]` appear at `/authors/storytold`. This does not automatically import or publish other repositories. When a credited author changes, move its entry into the new author folder and preserve the old author route through the Astro redirect configuration and `public/_redirects`. SolidCraft’s former `/authors/bherbruck/` route redirects to `/authors/tangency-labs/`.
 
 Entry cards, detail pages and featured cards show a white **Author:** label for one author or **Authors:** for multiple authors, followed on the next line by lime GitHub handles linked to their author routes. Separate multiple handles with middle dots and allow the links to wrap. Omit the entire author block when no author is recorded. Author pages include every explicitly attributed entry, with separate reimplementation and supporting-tool sections.
 
@@ -82,7 +82,7 @@ license: MIT
 | `platforms` | No | Optional list of platforms |
 | `status` | Yes | `planned`, `experimental`, `alpha`, `beta`, `stable`, `archived` (self-reported except GitHub archive flag) |
 | `compatibility` | Yes | `targeting`, `partial`, `high`, `claimed-complete` (self-reported) |
-| `description` | Yes | Plain text, factual, no user-supplied HTML |
+| `description` | Yes | 20–500 plain-text characters, factual, no user-supplied HTML |
 | `license` | Yes | SPDX-style identifier, e.g. `LicenseRef-custom` for review, or `Unlicensed` for a maintainer-approved project with no license grant. `Unlicensed` is not the SPDX `Unlicense` dedication. |
 | `docs` | No | HTTPS URL |
 | `website` | No | Public HTTPS URL for the implementation's official website. Displays an Official website button on its implementation page, opening in a new tab. Omit when no official website is documented. |
@@ -136,6 +136,15 @@ suggested_names: [ExampleCraft] # optional
 - Request vendor filters derive their grouping from the first folder below `requests/`; root-level files are Unassigned. Vendor and Git addition dates are computed browsing metadata, not editable YAML fields, and do not affect public routes.
 - Request targets do not prescribe application boundaries: one implementation may cover related targets such as the Substance 3D apps, or separate applications may share an engine. Capture these possibilities in the request reason without claiming that an implementation already covers them.
 
+## Discord community links
+
+Project and Project Request records accept optional `discord_server` and `discord_thread` fields independently. Omit them when no reviewed link is available; do not insert placeholder links into real records.
+
+- `discord_server`: a canonical HTTPS invite using `https://discord.gg/<code>` or `https://discord.com/invite/<code>`, or a reviewed public HTTPS `/discord` redirect on the project’s own website (for example, `https://solidcraft.io/discord`). A trailing slash is allowed; query strings and fragments are rejected. Review the redirect destination before accepting a project-owned invite.
+- `discord_thread`: a canonical `https://discord.com/channels/<server-id>/<thread-id>` link, optionally followed by `/<message-id>`; IDs must be numeric. A trailing slash is accepted. Query strings, fragments, alternate hosts, credentials and non-HTTPS URLs are rejected.
+
+These fields link to discussion, without implying affiliation or endorsement. Review that the destination is appropriate for the project or request. Discord may require membership or sign-in; invitations may expire. Links appear with the Discord logo and explicit server/thread labels on project cards and detail pages, request cards and the software page’s request section. They open in a new tab, use no embeds or Discord visitor API calls, and are included in the corresponding public JSON exports and catalog link checks. Records without either field show no Discord controls. Supporting tools and suites do not accept these fields.
+
 ## Public machine-readable exports
 
 Root-level `launcher.yaml` is a separate, explicit Launcher eligibility allowlist:
@@ -148,7 +157,8 @@ Only the `projects` array is accepted. Each item must be a distinct canonical pr
 
 `https://remade.wiki/data/launcher.json` publishes exactly `{ "projects": [...] }`, preserving YAML order with no metadata enrichment. It remains available independently of the Launcher page gate. The future standalone launcher obtains metadata from `/data/catalog.json` and eligibility from this allowlist. Both inputs are generated by the existing static Astro build; do not edit generated files.
 
-- `https://remade.wiki/data/catalog.json`: `{ schemaVersion, site, originals, projects, tools, featured }`. Originals include `slug`, `name`, reference `url`, `category`, optional `aliases` and absolute `pageUrl`. Catalog exports use `schemaVersion: 1`. Projects expose the required `originals` array and the other documented public project fields plus optional Git-derived `addedAt` and absolute `pageUrl`. Tools expose their public fields, optional `addedAt` and absolute `pageUrl`. `featured` preserves the curated list of entry slugs. Cached GitHub statistics are not part of this contract.
+- `https://remade.wiki/data/catalog.json`: `{ schemaVersion, site, originals, projects, tools, suites, featured }`. Originals include `slug`, `name`, reference `url`, `category`, optional `aliases` and absolute `pageUrl`. Catalog exports use `schemaVersion: 1`. Projects expose the required `originals` array and the other documented public project fields plus optional Git-derived `addedAt` and absolute `pageUrl`. Tools expose their public fields, optional `addedAt` and absolute `pageUrl`. `featured` preserves the curated list of entry slugs. The additive `suites` array exposes `slug`, `name`, `description`, member `projects` and an absolute `pageUrl`. Tools include optional `suites` references; their exported `projects` always expands and deduplicates all suite members alongside explicit projects, preserving compatibility for existing consumers. Cached GitHub statistics are not part of this contract.
+
 - `https://remade.wiki/data/requests.json`: `{ schemaVersion, site, requests }`. Request exports retain `schemaVersion: 1`. Each open request includes `original`, `reason`, optional `suggested_names`, derived `vendor`, optional `addedAt` and a `software` object containing the original's public fields and absolute software `pageUrl`.
 
 Both files use ISO timestamps when addition dates are available and slug order independent of UI sorting. Optional fields are omitted when unavailable. Fields are explicitly allowlisted; source comments and internal editorial fields are not exported. Generate these files through Astro builds, not by editing or committing generated JSON. Anyone can read them cross-origin; see [Architecture](ARCHITECTURE.md#public-json-exports) for caching and serving headers.
@@ -171,13 +181,30 @@ description: A browser launcher that adds access to the indexed implementation.
 projects: [example-implementation]
 ```
 
-All seven fields are required; unknown fields are rejected. `slug` must match the filename and share a unique namespace with project slugs. `name` is 2–100 plain-text characters and `description` is 20–400. `repository` follows the project repository URL rules and must be unique across projects and tools; `url` must be public HTTPS. `projects` is a nonempty, duplicate-free list of existing project slugs. This relationship identifies what a tool extends, without inventing an original or compatibility claim. A repository link does not imply an open-source license; tool licensing must be reviewed from its sources.
+`slug`, `name`, `languages`, `repository`, `url` and `description` are required, along with at least one of `projects` or `suites`; unknown fields are rejected. `slug` must match the filename and share a unique namespace with project slugs. `name` is 2–100 plain-text characters and `description` is 20–500. `repository` follows the project repository URL rules and must be unique across projects and tools; `url` must be public HTTPS. When supplied, `projects` is a nonempty, duplicate-free list of existing project slugs; `suites` follows the suite reference rules below. This relationship identifies what a tool extends, without inventing an original or compatibility claim. A repository link does not imply an open-source license; tool licensing must be reviewed from its sources.
 
 Tools require `languages` (a nonempty list of 1–40 character names). They also accept optional `mirrors` (a nonempty list of unique canonical repository URLs, following the project mirror rules), `status` (the project maturity enum, maintainer-reported), `docs` and `website` (public HTTPS URLs), and `limitations` (2–400 plain-text characters). Tools inherit categories from the indexed projects they support, using every distinct category when they extend multiple projects. These derived categories appear on detail pages and match Explore category filters; the Supporting tools filter remains available. Tool card badges follow this order: Tool, documented Status, Language, and Stars when metadata is available. Categories are not card badges. No separate tool category field is needed.
 
 Tool pages share the project details layout and Repository Mirrors accordion, including “No mirrors found” when absent, and retain their “Works with” listings. These fields use the project validation rules, appear on tool pages and are included in public JSON exports. Record known dependencies and scope limits in `limitations`; supply documented languages and do not invent development status. Tools retain their project references rather than original targets or a reimplementation compatibility rating.
 
 Tools accept optional `license`, a 2–80 character plain-text license identifier, included in public JSON exports and shown on tool pages. Omit it when unknown; the page displays “Not documented”. Do not infer a license from public source availability. Tools also accept optional `platforms`, a list of 1–40 character plain-text platform names under the same rules as projects. Use `Web` for browser-based tools and list only documented platforms. Optional `authors` follows the same GitHub-handle rules as projects. Load tools separately using `collect_tools`; `collect` validates their project references and author handles while preserving its existing return shape. Tools never count as implementations or fulfill requests. Future pages must label them **Tool** and keep their collection separate from original-target listings.
+
+## Suites
+
+`apps/frontend/remade-wiki/src/content/catalog/suites/<slug>.yaml` groups existing indexed projects:
+
+```yaml
+slug: example-suite
+name: Example Suite
+description: A related collection of independently developed software projects.
+projects: [example-implementation]
+```
+
+Records accept only these four fields. The slug must match the filename and be unique among suites; display names must be unique ignoring case and surrounding whitespace. Names are 2–100 characters and descriptions are 20–500 characters of plain text. `projects` is a nonempty, duplicate-free list of existing canonical project slugs, in display order. Suites cannot contain tools or other suites. Membership is curated explicitly; new projects are never enrolled automatically.
+
+Tools may reference `suites: [example-suite]`, `projects: [example-implementation]`, or both. At least one must be supplied; each supplied list must be nonempty and contain distinct canonical references. A suite reference means the tool supports every listed member, so only use it when that scope is documented. Additional supported projects outside a suite remain explicit `projects` references. Category inheritance and project-to-tool links resolve the union of direct and suite member projects.
+
+Tool cards and “Works with” sections link each suite by name to `/suites/<slug>/` instead of enumerating its members. Explicit projects outside the suite retain their own links and cards. Project cards show “Part of” followed by the linked suite name for each membership. Suite pages show member project cards and supporting tools referencing that suite. Suites are groupings, not additional reimplementations, featured entries or fulfilled requests; project eligibility and target fulfillment still belong to individual project records.
 
 ## Featured manifest
 

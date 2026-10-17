@@ -39,6 +39,38 @@ const https = v.pipe(
 	v.string(),
 	v.check(publicHttps, "Expected a public HTTPS URL."),
 );
+const discordServer = v.pipe(
+	https,
+	v.check((value) => {
+		if (
+			/^https:\/\/(?:discord\.gg\/[A-Za-z0-9-]+|discord\.com\/invite\/[A-Za-z0-9-]+)\/?$/.test(
+				value,
+			)
+		)
+			return true;
+
+		const url = new URL(value);
+
+		return (
+			!["discord.gg", "discord.com"].includes(url.hostname) &&
+			/^\/discord\/?$/.test(url.pathname) &&
+			!url.search &&
+			!url.hash
+		);
+	}, "Expected a Discord invite or project-owned /discord link."),
+);
+const discordThread = v.pipe(
+	https,
+	v.regex(
+		/^https:\/\/discord\.com\/channels\/[0-9]+\/[0-9]+(?:\/[0-9]+)?\/?$/,
+		"Expected a Discord thread or message link.",
+	),
+);
+const discordFields = {
+	discord_server: v.optional(discordServer),
+	discord_thread: v.optional(discordThread),
+};
+
 const repository = v.pipe(
 	https,
 	v.check((value) => {
@@ -73,6 +105,7 @@ export const originalSchema = v.strictObject({
 	aliases: v.optional(v.array(text(1, 100))),
 });
 export const projectSchema = v.strictObject({
+	...discordFields,
 	slug,
 	name: text(2, 100),
 	repository,
@@ -102,12 +135,28 @@ export const projectSchema = v.strictObject({
 	authors,
 	status: v.picklist(statuses),
 	compatibility: v.picklist(compatibility),
-	description: text(20, 400),
+	description: text(20, 500),
 	license: text(2, 80),
 	docs: v.optional(https),
 	website: v.optional(https),
 	limitations: v.optional(text(2, 400)),
 });
+const references = v.pipe(
+	v.array(slug),
+	v.minLength(1),
+	v.check(
+		(values) => new Set(values).size === values.length,
+		"References must be unique.",
+	),
+);
+
+export const suiteSchema = v.strictObject({
+	slug,
+	name: text(2, 100),
+	description: text(20, 500),
+	projects: references,
+});
+
 export const toolSchema = v.strictObject({
 	mirrors: projectSchema.entries.mirrors,
 	license: v.optional(text(2, 80)),
@@ -120,16 +169,14 @@ export const toolSchema = v.strictObject({
 	name: text(2, 100),
 	repository,
 	url: https,
-	description: text(20, 400),
+	description: projectSchema.entries.description,
 	authors,
 	platforms,
-	projects: v.pipe(
-		v.array(slug),
-		v.minLength(1),
-		v.check((a) => new Set(a).size === a.length),
-	),
+	projects: v.optional(references),
+	suites: v.optional(references),
 });
 export const requestSchema = v.strictObject({
+	...discordFields,
 	original: slug,
 	reason: text(20, 400),
 	suggested_names: v.optional(
@@ -160,16 +207,21 @@ export type Original = v.InferOutput<typeof originalSchema>;
 
 export type Project = v.InferOutput<typeof projectSchema>;
 
-export type Tool = v.InferOutput<typeof toolSchema>;
+export type ToolSource = v.InferOutput<typeof toolSchema>;
+
+export type Tool = ToolSource & { projects: string[] };
+
+export type Suite = v.InferOutput<typeof suiteSchema>;
 
 export type Request = v.InferOutput<typeof requestSchema>;
 
 export type Catalog = {
 	originals: Original[];
 	projects: Project[];
-	tools: Tool[];
+	tools: ToolSource[];
 	requests: Request[];
 	featured: string[];
+	suites?: Suite[];
 };
 
 export function parseYaml(source: string): unknown {
@@ -203,6 +255,21 @@ export function validateRelationships(catalog: Catalog): void {
 	);
 
 	const entries = [...catalog.projects, ...catalog.tools];
+	const suites = catalog.suites ?? [];
+
+	unique(
+		suites.map((suite) => suite.slug),
+		"suite slug",
+	);
+	unique(
+		suites.map((suite) => suite.name.trim().toLowerCase()),
+		"suite name",
+	);
+
+	for (const suite of suites)
+		for (const project of suite.projects)
+			if (!catalog.projects.some((entry) => entry.slug === project))
+				throw new Error(`Unknown suite project: ${project} in ${suite.slug}`);
 
 	unique(
 		entries.map((p) => p.slug),
@@ -228,10 +295,20 @@ export function validateRelationships(catalog: Catalog): void {
 				throw new Error(`Unknown original: ${target}`);
 	}
 
-	for (const t of catalog.tools)
-		for (const p of t.projects)
+	for (const t of catalog.tools) {
+		if (!t.projects?.length && !t.suites?.length)
+			throw new Error(
+				`Tool must reference at least one project or suite: ${t.slug}`,
+			);
+
+		for (const p of t.projects ?? [])
 			if (!catalog.projects.some((e) => e.slug === p))
 				throw new Error(`Unknown tool project: ${p}`);
+
+		for (const suite of t.suites ?? [])
+			if (!suites.some((entry) => entry.slug === suite))
+				throw new Error(`Unknown tool suite: ${suite}`);
+	}
 
 	for (const r of catalog.requests) {
 		if (!catalog.originals.some((o) => o.slug === r.original))

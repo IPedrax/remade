@@ -1,3 +1,0 @@
-original: abaqus
-reason: Reproduce Abaqus' finite-element simulation workflows, including geometry preparation, meshing, material models, nonlinear contact, static and dynamic analyses, explicit and implicit solvers, coupled physics and result visualization.
-suggested_names: [FiniteCraft]

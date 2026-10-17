@@ -1,0 +1,4 @@
+slug: cadcraft-studio
+name: CadCraft Studio
+description: A suite of eight CAD, BIM and construction applications by getcadcraft, covering drafting, building modeling, design modeling, drawing review, quantity takeoff, civil engineering, structural detailing and parametric parts.
+projects: [getcadcraft-cadcraft, bimcraft, modelcraft, getcadcraft-markupcraft, takeoffcraft, civilcraft, detailcraft, partcraft]

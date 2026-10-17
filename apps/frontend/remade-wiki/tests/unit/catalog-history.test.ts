@@ -39,6 +39,17 @@ describe("catalog addition history", () => {
 		expect(catalogAddedAt(dates, "projects", "uncommitted")).toBeUndefined();
 	});
 
+	it("preserves FileCraft's addition date after its Pounce rename", () => {
+		const dates = new Map([
+			["projects/pounce", "2026-10-01T10:00:00Z"],
+			["projects/filecraft", "2026-10-16T10:00:00Z"],
+		]);
+
+		expect(catalogAddedAt(dates, "projects", "filecraft", ["pounce"])).toBe(
+			"2026-10-01T10:00:00Z",
+		);
+	});
+
 	it("handles empty or unavailable history", () => {
 		expect(parseAdditionDates("").size).toBe(0);
 	});

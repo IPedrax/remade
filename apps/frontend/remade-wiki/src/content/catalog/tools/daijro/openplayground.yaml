@@ -6,21 +6,6 @@ url: https://playground.daijro.dev
 languages: [JavaScript]
 platforms: [Web]
 description: OpenPlayground by Daijro runs ArtCraft implementations in the browser, adding optimized WebAssembly builds, compression, themes and clipboard workarounds.
-# Supported apps are listed in the upstream tools.yaml manifest.
-projects:
-  - photocraft
-  - vectorcraft
-  - designcraft
-  - lightcraft
-  - lightcraft-classic
-  - filmcraft
-  - effectcraft
-  - pdfcraft
-  - wordcraft
-  - gridcraft
-  - deckcraft
-  - cadcraft
-  - solidcraft
-  - soundcraft
-  - mailcraft
-  - figcraft
+suites: [artcraft]
+# Additional supported apps from the upstream tools.yaml manifest.
+projects: [lightcraft-classic, solidcraft, mailcraft]

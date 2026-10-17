@@ -22,7 +22,8 @@ import RequestActions from "../requests/RequestActions";
 import RequestActivityProvider from "../requests/RequestActivityProvider";
 
 interface Props {
-	catalog: Pick<CatalogData, "originals" | "requests" | "entries">;
+	catalog: Pick<CatalogData, "originals" | "requests" | "entries"> &
+		Partial<Pick<CatalogData, "suites">>;
 	metadata: Record<string, Metadata>;
 }
 
@@ -318,6 +319,7 @@ function RequestList({ catalog, metadata }: Props) {
 									projects={catalog.entries.filter(
 										(entry) => entry.kind === "project",
 									)}
+									suites={catalog.suites}
 								/>
 							))}
 						</div>

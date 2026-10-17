@@ -2,12 +2,14 @@ interface SearchFieldProps {
 	value?: string;
 	onChange?: (value: string) => void;
 	placeholder?: string;
+	describedBy?: string;
 }
 
 export function SearchField({
 	value,
 	onChange,
 	placeholder = "Search",
+	describedBy,
 }: SearchFieldProps) {
 	return (
 		<div className="flex min-w-0 items-center gap-3 rounded-xl bg-[#111116] px-4 py-3 text-muted focus-within:ring-2 focus-within:ring-lime">
@@ -29,6 +31,7 @@ export function SearchField({
 			</svg>
 
 			<input
+				aria-describedby={describedBy}
 				className="min-w-0 flex-1 rounded-none border-0 bg-transparent p-0 text-base placeholder:text-muted focus-visible:outline-none"
 				id="site-search"
 				name="q"
@@ -50,8 +53,23 @@ export function SearchField({
 export default function Search() {
 	return (
 		<search className="max-w-[440px]">
-			<form action="/explore/">
-				<SearchField placeholder="Search reimplemented projects" />
+			<form action="/explore/" className="group relative">
+				<SearchField
+					describedBy="home-search-hint"
+					placeholder="Search reimplemented projects"
+				/>
+
+				<div className="absolute inset-x-0 top-full z-20 mt-2 hidden rounded-xl border border-line bg-panel p-1.5 shadow-lg group-focus-within:group-has-[input:not(:placeholder-shown)]:block">
+					<button
+						className="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-3 text-left text-sm text-muted hover:bg-surface hover:text-ink"
+						id="home-search-hint"
+						type="submit"
+					>
+						<span>Hit enter to search</span>
+
+						<kbd className="font-sans">↵</kbd>
+					</button>
+				</div>
 			</form>
 		</search>
 	);

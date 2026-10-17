@@ -170,7 +170,16 @@ def collect(root=ROOT):
             "description",
             "license",
         }
-        optional = {"platforms", "docs", "website", "mirrors", "limitations", "authors"}
+        optional = {
+            "platforms",
+            "docs",
+            "website",
+            "mirrors",
+            "limitations",
+            "authors",
+            "discord_server",
+            "discord_thread",
+        }
         if not fields(project, required, optional, loc, errors):
             continue
         slug = project["slug"]
@@ -239,8 +248,8 @@ def collect(root=ROOT):
             or project["compatibility"] not in COMPATIBILITY
         ):
             errors.append(f"{loc}: invalid compatibility")
-        if not is_text(project["description"], 20, 400):
-            errors.append(f"{loc}: description must be 20–400 plain-text characters")
+        if not is_text(project["description"], 20, 500):
+            errors.append(f"{loc}: description must be 20–500 plain-text characters")
         if not is_text(project["license"], 2, 80):
             errors.append(f"{loc}: license must be a short license identifier")
         if "limitations" in project and not is_text(project["limitations"], 2, 400):
@@ -249,6 +258,7 @@ def collect(root=ROOT):
             errors.append(f"{loc}: docs must be a public HTTPS URL")
         if "website" in project and not is_https(project["website"]):
             errors.append(f"{loc}: website must be a public HTTPS URL")
+        validate_discord(project, loc, errors)
         validate_authors(project, loc, errors)
         validate_mirrors(project, loc, errors)
 
@@ -258,8 +268,15 @@ def collect(root=ROOT):
     ):
         loc = str(path.relative_to(root))
         req = checked_load(path, errors)
-        if not fields(req, {"original", "reason"}, {"suggested_names"}, loc, errors):
+        if not fields(
+            req,
+            {"original", "reason"},
+            {"suggested_names", "discord_server", "discord_thread"},
+            loc,
+            errors,
+        ):
             continue
+        validate_discord(req, loc, errors)
         original_slug = req["original"]
         if not is_slug(original_slug) or original_slug != path.stem:
             errors.append(f"{loc}: filename must match original slug")
@@ -288,6 +305,19 @@ def collect(root=ROOT):
             ):
                 errors.append(f"{loc}: duplicate suggested name")
 
+    suites, suite_errors = collect_suites(root)
+    errors.extend(suite_errors)
+    suite_by_slug = {suite["slug"]: suite for suite in suites}
+    suite_names: set[str] = set()
+    for suite in suites:
+        name = suite["name"].strip().casefold()
+        if name in suite_names:
+            errors.append(f"suites/{suite['slug']}: duplicate suite name")
+        suite_names.add(name)
+        for project_slug in suite["projects"]:
+            if project_slug not in project_by_slug:
+                errors.append(f"suites/{suite['slug']}: unknown project {project_slug}")
+
     tools, tool_errors = collect_tools(root)
     errors.extend(tool_errors)
     tool_slugs = set()
@@ -305,6 +335,9 @@ def collect(root=ROOT):
         for project_slug in tool["projects"]:
             if project_slug not in project_by_slug:
                 errors.append(f"tools/{slug}: unknown project {project_slug}")
+        for suite_slug in tool.get("suites", []):
+            if suite_slug not in suite_by_slug:
+                errors.append(f"tools/{slug}: unknown suite {suite_slug}")
 
     featured_slugs = set()
     for i, slug in enumerate(featured):
@@ -386,6 +419,43 @@ def validate_mirrors(record: dict, loc: str, errors: list[str]) -> None:
                 seen_mirrors.add(normalized)
 
 
+def validate_references(record: dict, field: str, loc: str, errors: list[str]) -> None:
+    values = record[field]
+    if not isinstance(values, list) or not values or any(not is_slug(value) for value in values):
+        errors.append(f"{loc}: {field} must be a nonempty list of canonical slugs")
+    elif len(set(values)) != len(values):
+        errors.append(f"{loc}: duplicate {field} reference")
+
+
+def collect_suites(root: Path = ROOT) -> tuple[list[dict], list[str]]:
+    suites: list[dict] = []
+    errors: list[str] = []
+    seen: set[str] = set()
+    for path in sorted(
+        (root / "apps/frontend/remade-wiki/src/content/catalog/suites").rglob("*.yaml")
+    ):
+        loc = str(path.relative_to(root))
+        suite = checked_load(path, errors)
+        if not fields(suite, {"slug", "name", "description", "projects"}, set(), loc, errors):
+            continue
+        before = len(errors)
+        slug = suite["slug"]
+        if not is_slug(slug) or slug != path.stem:
+            errors.append(f"{loc}: slug must match filename and be lowercase-kebab-case")
+        elif slug in seen:
+            errors.append(f"{loc}: duplicate suite slug {slug}")
+        else:
+            seen.add(slug)
+        if not is_text(suite["name"], 2, 100):
+            errors.append(f"{loc}: name must be 2–100 plain-text characters")
+        if not is_text(suite["description"], 20, 500):
+            errors.append(f"{loc}: description must be 20–500 plain-text characters")
+        validate_references(suite, "projects", loc, errors)
+        if len(errors) == before:
+            suites.append(suite)
+    return suites, errors
+
+
 def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
     tools: list[dict] = []
     errors: list[str] = []
@@ -397,7 +467,7 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
         tool = checked_load(path, errors)
         if not fields(
             tool,
-            {"slug", "name", "repository", "url", "description", "projects", "languages"},
+            {"slug", "name", "repository", "url", "description", "languages"},
             {
                 "authors",
                 "platforms",
@@ -407,6 +477,8 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
                 "website",
                 "limitations",
                 "mirrors",
+                "projects",
+                "suites",
             },
             loc,
             errors,
@@ -439,8 +511,8 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
             errors.append(f"{loc}: slug must match filename and be lowercase-kebab-case")
         if not is_text(tool["name"], 2, 100):
             errors.append(f"{loc}: invalid name")
-        if not is_text(tool["description"], 20, 400):
-            errors.append(f"{loc}: description must be 20–400 plain-text characters")
+        if not is_text(tool["description"], 20, 500):
+            errors.append(f"{loc}: description must be 20–500 plain-text characters")
         if not is_https(tool["url"]):
             errors.append(f"{loc}: url must be a public HTTPS URL")
         repo = tool["repository"]
@@ -464,16 +536,13 @@ def collect_tools(root: Path = ROOT) -> tuple[list[dict], list[str]]:
             if normalized in seen_repositories:
                 errors.append(f"{loc}: duplicate repository {normalized}")
             seen_repositories.add(normalized)
-        projects = tool["projects"]
-        if (
-            not isinstance(projects, list)
-            or not projects
-            or any(not is_slug(slug) for slug in projects)
-        ):
-            errors.append(f"{loc}: projects must be a nonempty list of project slugs")
-        elif len(set(projects)) != len(projects):
-            errors.append(f"{loc}: duplicate project reference")
+        if "projects" not in tool and "suites" not in tool:
+            errors.append(f"{loc}: supply at least one project or suite reference")
+        for field in ("projects", "suites"):
+            if field in tool:
+                validate_references(tool, field, loc, errors)
         if len(errors) == before:
+            tool.setdefault("projects", [])
             tools.append(tool)
     return tools, errors
 
@@ -508,3 +577,28 @@ def entries_by_author(projects: list[dict], tools: list[dict]) -> dict[str, dict
                     }
                 groups[slug][kind].append(entry)
     return dict(sorted(groups.items()))
+
+
+def validate_discord(record: dict, loc: str, errors: list[str]) -> None:
+    patterns = {
+        "discord_server": r"https://(?:discord\.gg/[A-Za-z0-9-]+|discord\.com/invite/[A-Za-z0-9-]+)/?",
+        "discord_thread": r"https://discord\.com/channels/[0-9]+/[0-9]+(?:/[0-9]+)?/?",
+    }
+    for field, pattern in patterns.items():
+        if field in record:
+            value = record[field]
+            if not is_https(value):
+                errors.append(f"{loc}: {field} must be a public HTTPS link")
+                continue
+            url = urlsplit(value)
+            project_invite = (
+                field == "discord_server"
+                and url.hostname not in {"discord.gg", "discord.com"}
+                and url.path in {"/discord", "/discord/"}
+                and not url.query
+                and not url.fragment
+            )
+            if re.fullmatch(pattern, value) is None and not project_invite:
+                errors.append(
+                    f"{loc}: {field} must be a Discord link or project-owned /discord invite"
+                )
