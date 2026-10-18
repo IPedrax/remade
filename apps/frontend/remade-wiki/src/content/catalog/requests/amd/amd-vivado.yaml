@@ -1,0 +1,3 @@
+original: amd-vivado
+reason: HDL project editing, simulation, synthesis, constraints and FPGA implementation workflows,
+  with documented design interchange and reproducible build automation.

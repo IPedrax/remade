@@ -1666,3 +1666,127 @@
   name: INSYDIUM Nexus
   url: https://insydium.ltd/products/nexus/
   category: creative
+- slug: 3cad
+  name: 3CAD
+  url: https://www.cyncly.com/products/3cad
+  category: engineering
+- slug: amd-vivado
+  name: AMD Vivado
+  url: https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vivado.html
+  category: engineering
+- slug: autodesk-recap
+  name: Autodesk ReCap
+  url: https://www.autodesk.com/products/recap/overview
+  category: engineering
+- slug: autodesk-robot-structural-analysis
+  name: Autodesk Robot Structural Analysis Professional
+  url: https://www.autodesk.com/products/robot-structural-analysis/overview
+  category: engineering
+- slug: chem3d
+  name: Chem3D
+  url: https://revvitysignals.com/products/research/chemdraw
+  category: engineering
+- slug: mnova
+  name: Mnova
+  url: https://mestrelab.com/software/mnova/
+  category: engineering
+- slug: chief-architect
+  name: Chief Architect
+  url: https://www.chiefarchitect.com/
+  category: engineering
+- slug: lychee-slicer
+  name: Lychee Slicer
+  url: https://lychee.co/
+  category: engineering
+- slug: ansys-spaceclaim
+  name: Ansys SpaceClaim
+  url: https://www.ansys.com/products/3d-design/ansys-spaceclaim
+  category: engineering
+- slug: cisco-packet-tracer
+  name: Cisco Packet Tracer
+  url: https://www.netacad.com/cisco-packet-tracer
+  category: engineering
+- slug: siser-leonardo-design-studio
+  name: Siser Leonardo Design Studio
+  url: https://www.siser.com/leonardo-design-studio/
+  category: engineering
+- slug: csi-etabs
+  name: ETABS
+  url: https://www.csiamerica.com/products/etabs
+  category: engineering
+- slug: csi-sap2000
+  name: SAP2000
+  url: https://www.csiamerica.com/products/sap2000
+  category: engineering
+- slug: sai-enroute
+  name: SAi EnRoute
+  url: https://www.thinksai.com/products/enroute
+  category: engineering
+- slug: autodesk-cfd
+  name: Autodesk CFD
+  url: https://www.autodesk.com/products/cfd/overview
+  category: engineering
+- slug: artioscad
+  name: ArtiosCAD
+  url: https://www.esko.com/en/products/artioscad
+  category: engineering
+- slug: originlab-origin
+  name: Origin
+  url: https://www.originlab.com/
+  category: engineering
+- slug: mozaik
+  name: Mozaik
+  url: https://www.mozaiksoftware.com/
+  category: engineering
+- slug: optitex-pds
+  name: Optitex PDS
+  url: https://optitex.com/
+  category: engineering
+- slug: lectra-modaris
+  name: Lectra Modaris
+  url: https://www.lectra.com/en/fashion/products/modaris
+  category: engineering
+- slug: progecad
+  name: progeCAD Professional
+  url: https://www.progesoft.com/products/progecad-professional
+  category: engineering
+- slug: sigmanest
+  name: SigmaNEST
+  url: https://www.sigmanest.com/
+  category: engineering
+- slug: pronest
+  name: ProNest
+  url: https://www.hypertherm.com/hypertherm/pronest/pronest-cadcam-nesting-software/
+  category: engineering
+- slug: snapgene
+  name: SnapGene
+  url: https://www.snapgene.com/
+  category: engineering
+- slug: autodesk-vault
+  name: Autodesk Vault
+  url: https://www.autodesk.com/products/vault/overview
+  category: engineering
+- slug: siemens-step-7
+  name: SIMATIC STEP 7
+  url: https://www.siemens.com/global/en/products/automation/industry-software/automation-software/tia-portal/software/step7-tia-portal.html
+  category: engineering
+- slug: siemens-wincc-unified
+  name: SIMATIC WinCC Unified
+  url: https://www.siemens.com/en-us/products/simatic-wincc/unified/
+  category: engineering
+- slug: vcarve-pro
+  name: VCarve Pro
+  url: https://www.vectric.com/products/vcarve-pro
+  category: engineering
+- slug: vectric-aspire
+  name: Vectric Aspire
+  url: https://www.vectric.com/products/aspire
+  category: engineering
+- slug: nanocad
+  name: nanoCAD
+  url: https://nanocad.com/
+  category: engineering
+- slug: ansys-ls-dyna
+  name: Ansys LS-DYNA
+  url: https://www.ansys.com/products/structures/ansys-ls-dyna
+  category: engineering
