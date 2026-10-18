@@ -45,6 +45,15 @@
       "pushedAt": "2026-10-16T01:51:33Z",
       "stars": 2
     },
+    "alientechsoftware/notecraft": {
+      "fetchedAt": "2026-10-18T19:41:49Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-18T19:11:41Z",
+      "stars": 2
+    },
     "alyssaxuu/motionity": {
       "fetchedAt": "2026-10-18T12:11:26Z",
       "forks": 366,
@@ -125,6 +134,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-16T12:26:51Z",
       "stars": 2930
+    },
+    "by183/cliprecorder": {
+      "fetchedAt": "2026-10-18T19:41:49Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": null,
+      "primaryLanguage": "C++",
+      "pushedAt": "2026-09-05T18:01:10Z",
+      "stars": 2
     },
     "calla-ji/materialcreator": {
       "fetchedAt": "2026-10-18T12:11:26Z",
@@ -486,6 +504,15 @@
       "pushedAt": "2026-10-18T10:42:14Z",
       "stars": 27634
     },
+    "hasanmajid/open-note": {
+      "fetchedAt": "2026-10-18T19:41:49Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": null,
+      "primaryLanguage": "Dart",
+      "pushedAt": "2026-10-18T02:13:04Z",
+      "stars": 0
+    },
     "hlophlopgaming/draugrtime": {
       "fetchedAt": "2026-10-18T12:11:26Z",
       "forks": 0,
@@ -773,6 +800,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-18T12:07:21Z",
       "stars": 1533
+    },
+    "pascaldisse/hexe": {
+      "fetchedAt": "2026-10-18T19:41:49Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": null,
+      "primaryLanguage": "GLSL",
+      "pushedAt": "2026-10-18T15:26:51Z",
+      "stars": 1
     },
     "pierruno-labs/filecraft": {
       "fetchedAt": "2026-10-18T12:11:26Z",
@@ -1142,6 +1178,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-18T12:10:03Z",
       "stars": 4772
+    },
+    "tecno14/shelled": {
+      "fetchedAt": "2026-10-18T19:41:49Z",
+      "forks": 7,
+      "isArchived": false,
+      "licenseSpdx": null,
+      "primaryLanguage": "C#",
+      "pushedAt": "2025-11-19T17:28:55Z",
+      "stars": 17
     },
     "therichronicles/earthcraft": {
       "fetchedAt": "2026-10-18T12:11:26Z",
