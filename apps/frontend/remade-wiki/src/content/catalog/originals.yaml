@@ -2183,3 +2183,8 @@
   url: https://www.nvidia.com/en-us/geforce/geforce-experience/shadowplay/
   category: creative
   aliases: [ShadowPlay]
+- slug: auth0
+  name: Auth0
+  url: https://auth0.com/
+  category: developer-tools
+  aliases: [Auth0 by Okta, Okta Customer Identity Cloud]
