@@ -576,6 +576,15 @@
       "pushedAt": "2026-10-15T15:02:50Z",
       "stars": 7
     },
+    "misterdiagram/misterdiagram": {
+      "fetchedAt": "2026-10-18T14:32:17Z",
+      "forks": 2,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-18T14:09:48Z",
+      "stars": 9
+    },
     "mmuminovic/craftcrew": {
       "fetchedAt": "2026-10-17T11:44:53Z",
       "forks": 1,
@@ -837,6 +846,33 @@
       "pushedAt": "2026-10-18T11:22:23Z",
       "stars": 35
     },
+    "splitshotz/vice": {
+      "fetchedAt": "2026-10-18T14:32:17Z",
+      "forks": 30,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Python",
+      "pushedAt": "2026-10-14T21:21:27Z",
+      "stars": 327
+    },
+    "stitchwright/lightfoundry": {
+      "fetchedAt": "2026-10-18T14:32:17Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-18T12:20:57Z",
+      "stars": 3
+    },
+    "stitchwright/stitchfoundry": {
+      "fetchedAt": "2026-10-18T14:32:17Z",
+      "forks": 2,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-18T08:43:16Z",
+      "stars": 3
+    },
     "stoatchat/stoatchat": {
       "fetchedAt": "2026-10-18T12:11:26Z",
       "forks": 398,
@@ -1088,6 +1124,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-16T08:33:51Z",
       "stars": 1
+    },
+    "zoltanf/extrudo": {
+      "fetchedAt": "2026-10-18T14:32:17Z",
+      "forks": 7,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "TypeScript",
+      "pushedAt": "2026-10-18T11:42:21Z",
+      "stars": 38
     }
   }
 }
