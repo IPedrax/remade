@@ -1,0 +1,3 @@
+original: virtualhere
+reason: Sharing locally attached USB devices across a network so remote applications can use their
+  normal drivers, with explicit device access and session controls.

@@ -2158,3 +2158,11 @@
   name: Intel Arc Control
   url: https://www.intel.com/content/www/us/en/products/docs/discrete-gpus/arc/software/arc-control.html
   category: other
+- slug: microsoft-exchange
+  name: Microsoft Exchange Server
+  url: https://www.microsoft.com/en-us/microsoft-365/exchange/email
+  category: protocols
+- slug: virtualhere
+  name: VirtualHere
+  url: https://www.virtualhere.com/
+  category: protocols
