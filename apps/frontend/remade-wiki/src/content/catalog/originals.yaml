@@ -2122,3 +2122,39 @@
   name: Synology DiskStation Manager
   url: https://www.synology.com/en-global/dsm
   category: operating-systems
+- slug: exitlag
+  name: ExitLag
+  url: https://www.exitlag.com/
+  category: other
+- slug: lagofast
+  name: LagoFast
+  url: https://www.lagofast.com/
+  category: other
+- slug: razer-synapse
+  name: Razer Synapse
+  url: https://www.razer.com/synapse-4
+  category: other
+- slug: asus-armoury-crate
+  name: ASUS Armoury Crate
+  url: https://www.asus.com/supportonly/armoury%20crate/helpdesk_download/
+  category: other
+- slug: xbox-accessories
+  name: Xbox Accessories
+  url: https://apps.microsoft.com/detail/9nblggh30xj3
+  category: other
+- slug: corsair-icue
+  name: CORSAIR iCUE
+  url: https://www.corsair.com/us/en/s/icue
+  category: other
+- slug: nvidia-app
+  name: NVIDIA App
+  url: https://www.nvidia.com/en-us/software/nvidia-app/
+  category: other
+- slug: intel-graphics-command-center
+  name: Intel Graphics Command Center
+  url: https://www.intel.com/content/www/us/en/products/docs/graphics/graphics-command-center.html
+  category: other
+- slug: intel-arc-control
+  name: Intel Arc Control
+  url: https://www.intel.com/content/www/us/en/products/docs/discrete-gpus/arc/software/arc-control.html
+  category: other
