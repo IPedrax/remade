@@ -1310,3 +1310,31 @@
   name: WinEdt
   url: https://www.winedt.com/
   category: productivity
+- slug: coreldraw
+  name: CorelDRAW
+  url: https://www.coreldraw.com/
+  category: creative
+- slug: datagrip
+  name: DataGrip
+  url: https://www.jetbrains.com/datagrip/
+  category: developer-tools
+- slug: paper
+  name: Paper
+  url: https://paper.design/
+  category: creative
+- slug: logitech-options-plus
+  name: Logi Options+
+  url: https://www.logitech.com/software/logi-options-plus.html
+  category: other
+- slug: macos
+  name: macOS application interfaces
+  url: https://developer.apple.com/macos/
+  category: operating-systems
+- slug: microsoft-journal
+  name: Microsoft Journal
+  url: https://www.microsoft.com/en-us/garage/profiles/journal/
+  category: productivity
+- slug: uvi-falcon
+  name: UVI Falcon
+  url: https://www.uvi.net/falcon.html
+  category: creative
