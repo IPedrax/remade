@@ -1,0 +1,3 @@
+original: rive
+reason: Visual vector animation, state machines and interactive asset authoring compatible with documented
+  Rive runtime formats; the existing open-source runtimes are not the requested rewrite.

@@ -1338,3 +1338,331 @@
   name: UVI Falcon
   url: https://www.uvi.net/falcon.html
   category: creative
+- slug: akeytsu
+  name: Akeytsu
+  url: https://www.nukeygara.com/
+  category: creative
+- slug: adobe-photoshop-elements
+  name: Adobe Photoshop Elements
+  url: https://www.adobe.com/products/photoshop-elements.html
+  category: creative
+- slug: adobe-premiere-elements
+  name: Adobe Premiere Elements
+  url: https://www.adobe.com/products/premiere-elements.html
+  category: creative
+- slug: adobe-podcast
+  name: Adobe Podcast
+  url: https://podcast.adobe.com/
+  category: creative
+- slug: accentize-dxrevive
+  name: Accentize dxRevive
+  url: https://www.accentize.com/dxrevive/
+  category: creative
+- slug: affinity
+  name: Affinity
+  url: https://www.affinity.studio/
+  category: creative
+- slug: imagen
+  name: Imagen
+  url: https://imagen-ai.com/
+  category: creative
+- slug: arturia-v-collection
+  name: Arturia V Collection
+  url: https://www.arturia.com/products/software-instruments/v-collection/overview
+  category: creative
+- slug: arturia-fx-collection
+  name: Arturia FX Collection
+  url: https://www.arturia.com/products/software-effects/fx-collection/overview
+  category: creative
+- slug: arturia-pigments
+  name: Arturia Pigments
+  url: https://www.arturia.com/products/software-instruments/pigments/overview
+  category: creative
+- slug: aseprite
+  name: Aseprite
+  url: https://www.aseprite.org/
+  category: creative
+- slug: on1-resize-ai
+  name: ON1 Resize AI
+  url: https://www.on1.com/products/resize-ai/
+  category: creative
+- slug: aiarty-image-enhancer
+  name: Aiarty Image Enhancer
+  url: https://www.aiarty.com/ai-image-enhancer/
+  category: creative
+- slug: autodesk-flame
+  name: Autodesk Flame
+  url: https://www.autodesk.com/products/flame/overview
+  category: creative
+- slug: remove-bg
+  name: remove.bg
+  url: https://www.remove.bg/
+  category: creative
+- slug: adobe-firefly
+  name: Adobe Firefly
+  url: https://www.adobe.com/products/firefly.html
+  category: creative
+- slug: camo-studio
+  name: Camo Studio
+  url: https://camo.com/studio
+  category: creative
+- slug: celaction-2d
+  name: CelAction2D
+  url: https://answers.celaction.com/
+  category: creative
+- slug: reaper
+  name: REAPER
+  url: https://www.reaper.fm/
+  category: creative
+- slug: corel-photo-paint
+  name: Corel PHOTO-PAINT
+  url: https://www.coreldraw.com/en/product/coreldraw/
+  category: creative
+- slug: microsoft-creative-writer
+  name: Microsoft Creative Writer
+  url: https://ftp.zx.net.nz/pub/archive/ftp.microsoft.com/MISC/KB/en-us/147/850.HTM
+  category: creative
+- slug: microsoft-fine-artist
+  name: Microsoft Fine Artist
+  url: https://ftp.zx.net.nz/pub/archive/ftp.microsoft.com/MISC/KB/en-us/147/850.HTM
+  category: creative
+- slug: sure-cuts-a-lot
+  name: Sure Cuts A Lot
+  url: https://www.craftedge.com/products/products_scal.html
+  category: creative
+- slug: antares-auto-tune
+  name: Auto-Tune
+  url: https://www.antarestech.com/
+  category: creative
+- slug: feather
+  name: Feather
+  url: https://www.feather.art/
+  category: creative
+- slug: evoto
+  name: Evoto
+  url: https://www.evoto.ai/
+  category: creative
+- slug: filter-forge
+  name: Filter Forge
+  url: https://www.filterforge.com/
+  category: creative
+- slug: sai-flexi
+  name: SAi Flexi
+  url: https://www.thinksai.com/products/flexi
+  category: creative
+- slug: fontlab
+  name: FontLab
+  url: https://www.fontlab.com/
+  category: creative
+- slug: fontcreator
+  name: FontCreator
+  url: https://www.high-logic.com/font-editor/fontcreator
+  category: creative
+- slug: glyphs
+  name: Glyphs
+  url: https://glyphsapp.com/
+  category: creative
+- slug: fontself-maker
+  name: Fontself Maker
+  url: https://www.fontself.com/
+  category: creative
+- slug: ifontmaker
+  name: iFontMaker
+  url: https://2ttf.com/
+  category: creative
+- slug: connect-fonts
+  name: Connect Fonts
+  url: https://www.extensis.com/connect/fonts
+  category: creative
+- slug: fontexplorer-x
+  name: FontExplorer X Pro
+  url: https://www.fontexplorerx.com/
+  category: creative
+- slug: garageband
+  name: GarageBand
+  url: https://www.apple.com/mac/garageband/
+  category: creative
+- slug: heavym
+  name: HeavyM
+  url: https://www.heavym.net/
+  category: creative
+- slug: serum-2
+  name: Serum 2
+  url: https://xferrecords.com/products/serum-2
+  category: creative
+- slug: jangafx-geogen
+  name: GeoGen
+  url: https://jangafx.com/software/geogen
+  category: creative
+- slug: jangafx-liquigen
+  name: LiquiGen
+  url: https://jangafx.com/software/liquigen
+  category: creative
+- slug: jangafx-embergen
+  name: EmberGen
+  url: https://jangafx.com/software/embergen
+  category: creative
+- slug: kodak-preps
+  name: KODAK PREPS
+  url: https://www.kodak.com/content/pdfs/print/KODAK-PRINERGY-PREPS-Imposition-Software-datasheet-EN.pdf
+  category: creative
+- slug: komplete-ultimate
+  name: Komplete Ultimate
+  url: https://support.native-instruments.com/support/solutions/articles/69000879171-which-products-are-included-in-komplete-15-
+  category: creative
+- slug: lexicon-dj
+  name: Lexicon DJ
+  url: https://www.lexicondj.com/
+  category: creative
+- slug: lexicon-pcm-total-bundle
+  name: Lexicon PCM Total Bundle
+  url: https://lexiconpro.com/en/products/pcm-total-bundle
+  category: creative
+- slug: live2d-cubism
+  name: Live2D Cubism
+  url: https://www.live2d.com/en/
+  category: creative
+- slug: madmapper
+  name: MadMapper
+  url: https://madmapper.com/
+  category: creative
+- slug: makemkv
+  name: MakeMKV
+  url: https://www.makemkv.com/
+  category: creative
+- slug: mixed-in-key
+  name: Mixed In Key
+  url: https://mixedinkey.com/
+  category: creative
+- slug: mixed-in-key-wingman
+  name: Wingman
+  url: https://mixedinkey.com/wingman/
+  category: creative
+- slug: musicbee
+  name: MusicBee
+  url: https://www.getmusicbee.com/
+  category: creative
+- slug: painttool-sai
+  name: PaintTool SAI
+  url: https://www.systemax.jp/en/sai/
+  category: creative
+- slug: magicpath
+  name: MagicPath
+  url: https://www.magicpath.ai/
+  category: creative
+- slug: framer
+  name: Framer
+  url: https://www.framer.com/
+  category: creative
+- slug: photo-mechanic
+  name: Photo Mechanic
+  url: https://home.camerabits.com/
+  category: creative
+- slug: enfocus-pitstop
+  name: Enfocus PitStop Pro
+  url: https://www.enfocus.com/en/products/pitstop-pro
+  category: creative
+- slug: propresenter
+  name: ProPresenter
+  url: https://www.renewedvision.com/propresenter
+  category: creative
+- slug: protopie
+  name: ProtoPie
+  url: https://www.protopie.io/
+  category: creative
+- slug: reason
+  name: Reason
+  url: https://www.reasonstudios.com/
+  category: creative
+- slug: rive
+  name: Rive Editor
+  url: https://rive.app/editor
+  category: creative
+- slug: swam-orchestra
+  name: SWAM Orchestra Bundle
+  url: https://www.audiomodeling.com/products?kind=bundle
+  category: creative
+- slug: microsoft-photos
+  name: Microsoft Photos
+  url: https://apps.microsoft.com/detail/9wzdncrfjbh4
+  category: creative
+- slug: studiobinder
+  name: StudioBinder
+  url: https://www.studiobinder.com/
+  category: creative
+- slug: apple-mainstage
+  name: MainStage
+  url: https://apps.apple.com/us/app/mainstage/id634159523
+  category: creative
+- slug: steinberg-absolute
+  name: Steinberg Absolute
+  url: https://www.steinberg.net/vst-instruments/absolute/
+  category: creative
+- slug: submagic
+  name: Submagic
+  url: https://www.submagic.co/
+  category: creative
+- slug: svgator
+  name: SVGator
+  url: https://www.svgator.com/
+  category: creative
+- slug: synthesia
+  name: Synthesia
+  url: https://www.synthesia.io/
+  category: creative
+- slug: texturepacker
+  name: TexturePacker
+  url: https://www.codeandweb.com/texturepacker
+  category: creative
+- slug: vectorizer-ai
+  name: Vectorizer.AI
+  url: https://vectorizer.ai/
+  category: creative
+- slug: vocaloid
+  name: VOCALOID
+  url: https://www.vocaloid.com/en/
+  category: creative
+- slug: melodyne
+  name: Melodyne
+  url: https://www.celemony.com/en/melodyne/what-is-melodyne
+  category: creative
+- slug: chaos-vantage
+  name: Chaos Vantage
+  url: https://www.chaos.com/vantage
+  category: creative
+- slug: wallpaper-engine
+  name: Wallpaper Engine
+  url: https://www.wallpaperengine.io/
+  category: creative
+- slug: steinberg-wavelab
+  name: WaveLab
+  url: https://www.steinberg.net/wavelab/
+  category: creative
+- slug: wondershare-filmora
+  name: Wondershare Filmora
+  url: https://filmora.wondershare.com/
+  category: creative
+- slug: izotope-rx
+  name: iZotope RX
+  url: https://docs.izotope.com/rx11/en/index.html
+  category: creative
+- slug: mecabricks
+  name: Mecabricks
+  url: https://www.mecabricks.com/
+  category: creative
+- slug: camtasia
+  name: Camtasia
+  url: https://www.techsmith.com/camtasia/
+  category: creative
+- slug: sonible-plugins
+  name: sonible audio plug-ins
+  url: https://www.sonible.com/
+  category: creative
+- slug: insydium-x-particles
+  name: INSYDIUM X-Particles
+  url: https://insydium.ltd/products/x-particles/
+  category: creative
+- slug: insydium-nexus
+  name: INSYDIUM Nexus
+  url: https://insydium.ltd/products/nexus/
+  category: creative
