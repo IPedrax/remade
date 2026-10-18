@@ -63,6 +63,33 @@
       "pushedAt": "2026-10-17T02:26:39Z",
       "stars": 3
     },
+    "artcraft-android/filmcraft-android": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 3,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-15T21:53:28Z",
+      "stars": 23
+    },
+    "artcraft-android/lightcraft-android": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 3,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-14T14:26:39Z",
+      "stars": 56
+    },
+    "artcraft-android/pdfcraft-android": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 2,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-16T14:17:21Z",
+      "stars": 68
+    },
     "automattic/harper": {
       "fetchedAt": "2026-10-17T11:44:53Z",
       "forks": 785,
@@ -432,6 +459,15 @@
       "pushedAt": "2026-10-16T19:27:00Z",
       "stars": 1
     },
+    "ifpintac/tequila": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-17T17:55:18Z",
+      "stars": 2
+    },
     "ingelibre/ingetrazo": {
       "fetchedAt": "2026-10-17T11:44:53Z",
       "forks": 167,
@@ -549,6 +585,33 @@
       "pushedAt": "2026-10-11T06:26:41Z",
       "stars": 34
     },
+    "morte2437/photocraft-android": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-17T22:31:44Z",
+      "stars": 27
+    },
+    "mostafaxs1/artcraft-android": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 8,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Shell",
+      "pushedAt": "2026-10-17T21:59:25Z",
+      "stars": 103
+    },
+    "mypenc/wordcraft": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-15T11:38:14Z",
+      "stars": 4
+    },
     "n-delic/kadar": {
       "fetchedAt": "2026-10-17T11:44:53Z",
       "forks": 0,
@@ -665,6 +728,15 @@
       "primaryLanguage": "JavaScript",
       "pushedAt": "2026-10-12T11:02:10Z",
       "stars": 4
+    },
+    "rational-boxes/nodesk_reviera": {
+      "fetchedAt": "2026-10-18T00:31:50Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-17T05:45:49Z",
+      "stars": 1
     },
     "rbr48/sotto": {
       "fetchedAt": "2026-10-17T11:44:53Z",
