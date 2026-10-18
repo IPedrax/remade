@@ -2174,3 +2174,12 @@
   name: StarCraft
   url: https://starcraft.com/
   category: games
+- slug: windows-desktop-shell
+  name: Windows desktop shell
+  url: https://learn.microsoft.com/en-us/windows/win32/shell/shell-entry
+  category: operating-systems
+- slug: nvidia-shadowplay
+  name: NVIDIA ShadowPlay
+  url: https://www.nvidia.com/en-us/geforce/geforce-experience/shadowplay/
+  category: creative
+  aliases: [ShadowPlay]
