@@ -2098,3 +2098,27 @@
   name: Navicat Premium
   url: https://www.navicat.com/en/products/navicat-premium
   category: developer-tools
+- slug: bluestacks
+  name: BlueStacks
+  url: https://www.bluestacks.com/
+  category: operating-systems
+- slug: vmware-esxi
+  name: VMware ESXi
+  url: https://www.vmware.com/products/cloud-infrastructure/vsphere
+  category: operating-systems
+- slug: unraid
+  name: Unraid
+  url: https://unraid.net/
+  category: operating-systems
+- slug: zimaos
+  name: ZimaOS
+  url: https://www.zimaspace.com/zimaos
+  category: operating-systems
+- slug: ugos-pro
+  name: UGOS Pro
+  url: https://ai.ugreen.com/pages/operating-system
+  category: operating-systems
+- slug: synology-dsm
+  name: Synology DiskStation Manager
+  url: https://www.synology.com/en-global/dsm
+  category: operating-systems
