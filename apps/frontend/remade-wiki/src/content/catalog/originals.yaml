@@ -1301,3 +1301,12 @@
   name: Calibre
   url: https://calibre-ebook.com/
   category: productivity
+- slug: texpad
+  name: Texifier
+  url: https://www.texifier.com/
+  category: productivity
+  aliases: [Texpad, Texpad TeX editor]
+- slug: winedt
+  name: WinEdt
+  url: https://www.winedt.com/
+  category: productivity
