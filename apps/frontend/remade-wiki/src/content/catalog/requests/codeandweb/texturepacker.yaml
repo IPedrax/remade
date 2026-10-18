@@ -1,0 +1,3 @@
+original: texturepacker
+reason: Sprite-atlas packing, trimming, animation-sheet preparation and engine metadata export with
+  reproducible command-line output.
