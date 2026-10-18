@@ -83,7 +83,7 @@ license: MIT
 | `status` | Yes | `planned`, `experimental`, `alpha`, `beta`, `stable`, `archived` (self-reported except GitHub archive flag) |
 | `compatibility` | Yes | `targeting`, `partial`, `high`, `claimed-complete` (self-reported) |
 | `description` | Yes | 20–500 plain-text characters, factual, no user-supplied HTML |
-| `license` | Yes | SPDX-style identifier, e.g. `LicenseRef-custom` for review, or `Unlicensed` for a maintainer-approved project with no license grant. `Unlicensed` is not the SPDX `Unlicense` dedication. |
+| `license` | Yes | SPDX-style identifier, e.g. `LicenseRef-custom` for review, or `Unlicensed` for a maintainer-approved project with no license grant. `Unlicensed` is not the SPDX `Unlicense` dedication. Follow the license-source precedence in `POLICY.md`. |
 | `docs` | No | HTTPS URL |
 | `website` | No | Public HTTPS URL for the implementation's official website. Displays an Official website button on its implementation page, opening in a new tab. Omit when no official website is documented. |
 | `mirrors` | No | Nonempty list of distinct public HTTPS repository root URLs, following the `repository` URL rules. Supply documented mirrors of the same implementation, not forks or competing projects. Shown on the implementation page as Repository mirrors, opening in new tabs. |

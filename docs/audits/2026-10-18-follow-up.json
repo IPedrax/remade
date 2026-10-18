@@ -35,8 +35,8 @@
 		},
 		{
 			"slug": "corinzia",
-			"result": "still_conflicting_no_change",
-			"evidence": "Current rust/Cargo.toml still declares MIT while LICENSE contains AGPL version 3. README still both documents Save/autosave and says saving is disabled. Retained the existing explicit caveats; no resolution inferred.",
+			"result": "license_resolved_saving_still_conflicting",
+			"evidence": "LICENSE contains AGPL version 3 while rust/Cargo.toml declares MIT. Per the maintainer-approved policy, the repository license file controls the catalog license; set AGPL-3.0-only and remove the obsolete license-clarification warning. README still both documents Save/autosave and says saving is disabled; retain that separate caveat.",
 			"sources": [
 				"https://github.com/GitHuhl/Corinzia/blob/8c4c231947b6de18d5e47b07e36cc7040b03f291/rust/Cargo.toml",
 				"https://github.com/GitHuhl/Corinzia/blob/8c4c231947b6de18d5e47b07e36cc7040b03f291/LICENSE",

@@ -79,9 +79,11 @@ failure is a finding, not proof that a domain was abandoned or transferred.
 - Update maturity and factual scope only as far as evidence supports. Remove stale
   negative claims when functionality now exists; retain remaining limits. Do not
   turn a test count, command coverage or imported file into full compatibility.
-- Keep `Unlicensed` distinct from `Unlicense`. Report eligibility or license
-  conflicts for maintainer review rather than inventing approval or deleting
-  records automatically. Tools never fulfill Project Requests.
+- Keep `Unlicensed` distinct from `Unlicense`. Apply the license-source precedence
+  in `POLICY.md` when package metadata conflicts with a repository license file.
+  Report unresolved license applicability or eligibility issues for maintainer
+  review rather than inventing approval or deleting records automatically. Tools
+  never fulfill Project Requests.
 - Keep optional audit facts out of strict catalog YAML schemas. Put evidence and
   outstanding checks in the audit ledger instead. Respect local documentation
   and formatting conventions.
