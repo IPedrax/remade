@@ -252,6 +252,15 @@
       "pushedAt": "2026-10-12T22:04:07Z",
       "stars": 6
     },
+    "epell-development/radiomaster": {
+      "fetchedAt": "2026-10-18T00:37:20Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-18T00:24:25Z",
+      "stars": 2
+    },
     "erkinalp/anticensor": {
       "fetchedAt": "2026-10-17T11:44:53Z",
       "forks": 0,
