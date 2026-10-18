@@ -1,0 +1,3 @@
+original: dotnet-reflector
+reason: Assembly browsing, C# reconstruction, dependency analysis and debugging workflows with reusable
+  project export and command-line access.

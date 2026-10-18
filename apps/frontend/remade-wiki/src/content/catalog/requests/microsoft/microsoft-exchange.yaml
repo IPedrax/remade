@@ -1,0 +1,3 @@
+original: microsoft-exchange
+reason: Self-hosted mailbox, calendar, contacts and synchronization behavior using documented Exchange
+  protocols and compatible client-facing interfaces.
