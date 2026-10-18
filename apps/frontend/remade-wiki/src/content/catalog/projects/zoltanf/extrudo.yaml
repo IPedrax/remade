@@ -1,0 +1,17 @@
+# Accepted as a broader Fusion alternative based on the documented parametric CAD workflow.
+# Features and release maturity are maintainer-reported in the upstream README.
+slug: extrudo
+name: Extrudo
+authors: [zoltanf]
+repository: https://github.com/zoltanf/extrudo
+originals: [autodesk-fusion]
+category: engineering
+languages: [TypeScript, C++]
+platforms: [Web, Linux, macOS, Windows]
+status: beta
+compatibility: targeting
+description: A broader Fusion alternative for parametric CAD and 3D printing. Provides constrained sketches, solid modeling, an editable feature timeline, named parameters, components and joints, and STEP, STL and 3MF interchange. Runs locally in a browser or Electron desktop app, using OpenCascade geometry and FreeCAD's sketch solver.
+license: GPL-3.0-or-later
+website: https://extrudo.org
+docs: https://github.com/zoltanf/extrudo#readme
+limitations: Pre-1.0; upstream notes rough edges. Uses its own Extrudo document format; native Fusion files, extensions and full behavioral compatibility are not claimed. CAM, FEA and real-time cloud collaboration are outside the documented scope. Desktop installers are unsigned or ad-hoc signed; macOS is not notarized.
