@@ -32,6 +32,8 @@ Use React components for the UI and Tailwind utility classes for layout, spacing
 
 Authentication sits at the far right of the header: a compact **Login** link when signed out, or an initial-based dropdown with the account name and **Logout** when signed in. Hydrate only this small island; anonymous browsing makes no auth API calls. Keep the account dropdown in `UserDropdown`: an uppercase account initial in a circle and a chevron trigger, a separated identity section with display name and GitHub handle, and a Logout button with a Lucide icon. Use `react-dropdown` for open state, outside-click dismissal, Escape and keyboard navigation; customize its trigger, group heading and Logout option. Preserve keyboard focus and mobile wrapping. See `AUTH.md` for the authentication boundary.
 
+The header GitHub link includes Remade's own star count from the daily metadata cache. Render it statically, omit the count when metadata is unavailable, and keep the full count accessible to screen readers.
+
 ### Source readability
 
 - Separate logical blocks with a blank line: imports and declarations, setup and assertions, independent test cases, control-flow blocks and returns. Keep related statements together rather than compressing an entire component or test into uninterrupted lines.

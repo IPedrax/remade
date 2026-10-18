@@ -1,13 +1,18 @@
 import type { ReactNode } from "react";
 import remadeMark from "../../assets/logos/remade-mark.svg?url";
-import { contributeUrl, repositoryUrl } from "../../lib/presentation";
+import {
+	contributeUrl,
+	formatStars,
+	repositoryUrl,
+} from "../../lib/presentation";
 
 interface Props {
 	pathname: string;
+	stars?: number;
 	children?: ReactNode;
 }
 
-export default function Header({ pathname, children }: Props) {
+export default function Header({ pathname, stars, children }: Props) {
 	return (
 		<header className="border-b border-line" data-pagefind-ignore>
 			<div className="mx-auto flex min-h-[88px] max-w-[1180px] flex-wrap items-center justify-between gap-5 px-[18px] py-[18px] sm:px-6 sm:py-0">
@@ -49,7 +54,17 @@ export default function Header({ pathname, children }: Props) {
 						Requests
 					</a>
 
-					<a href={repositoryUrl}>GitHub ↗</a>
+					<a className="inline-flex items-center gap-2" href={repositoryUrl}>
+						GitHub ↗
+						{stars !== undefined && (
+							<span className="whitespace-nowrap rounded border border-line px-2 py-1 text-xs">
+								<span aria-hidden="true">★ {formatStars(stars)}</span>
+								<span className="sr-only">
+									{stars.toLocaleString("en")} GitHub stars
+								</span>
+							</span>
+						)}
+					</a>
 
 					<a
 						className="inline-flex rounded-lg border border-line px-4 py-3 font-semibold hover:border-lime"

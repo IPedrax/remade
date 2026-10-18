@@ -3,6 +3,7 @@ import "../styles/global.css";
 import AuthMenu from "../components/auth/AuthMenu";
 import Footer from "../components/navigation/Footer";
 import Header from "../components/navigation/Header";
+import { loadMetadata } from "../lib/catalog";
 
 interface Props {
 	title: string;
@@ -16,6 +17,7 @@ const {
 	index = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const remadeMetadata = (await loadMetadata())["replicraft/remade"];
 ---
 
 <!doctype html>
@@ -51,7 +53,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		>
 			Skip to content
 		</a>
-		<Header pathname={Astro.url.pathname}>
+		<Header pathname={Astro.url.pathname} stars={remadeMetadata?.stars}>
 			<div class="h-[46px] w-[104px] shrink-0" data-auth-host>
 				<AuthMenu client:load />
 			</div>
