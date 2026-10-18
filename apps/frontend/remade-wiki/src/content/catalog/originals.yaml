@@ -1297,3 +1297,7 @@
   url: https://www.keyshot.com/
   category: creative
   aliases: [KeyShot Studio]
+- slug: calibre
+  name: Calibre
+  url: https://calibre-ebook.com/
+  category: productivity
