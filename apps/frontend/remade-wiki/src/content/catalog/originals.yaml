@@ -1292,3 +1292,8 @@
   url: https://essay.app/
   category: productivity
   aliases: [essay.app]
+- slug: keyshot
+  name: KeyShot
+  url: https://www.keyshot.com/
+  category: creative
+  aliases: [KeyShot Studio]
