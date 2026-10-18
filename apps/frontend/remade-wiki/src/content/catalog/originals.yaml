@@ -2166,3 +2166,11 @@
   name: VirtualHere
   url: https://www.virtualhere.com/
   category: protocols
+- slug: rules-of-survival
+  name: Rules of Survival
+  url: https://steamcommunity.com/app/788260/allnews/
+  category: games
+- slug: starcraft
+  name: StarCraft
+  url: https://starcraft.com/
+  category: games
