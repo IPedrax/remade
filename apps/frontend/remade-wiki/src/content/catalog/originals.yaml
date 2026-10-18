@@ -2042,3 +2042,59 @@
   name: priPrinter
   url: https://www.priprinter.com/
   category: productivity
+- slug: unity
+  name: Unity
+  url: https://unity.com/products/unity-engine
+  category: developer-tools
+- slug: xcode
+  name: Xcode
+  url: https://developer.apple.com/xcode/
+  category: developer-tools
+- slug: astah-professional
+  name: Astah Professional
+  url: https://astah.net/products/astah-professional/
+  category: developer-tools
+- slug: gitkraken
+  name: GitKraken Desktop
+  url: https://www.gitkraken.com/git-client
+  category: developer-tools
+- slug: intellij-idea-ultimate
+  name: IntelliJ IDEA Ultimate
+  url: https://www.jetbrains.com/idea/
+  category: developer-tools
+- slug: mobaxterm
+  name: MobaXterm
+  url: https://mobaxterm.mobatek.net/
+  category: developer-tools
+- slug: postman
+  name: Postman
+  url: https://www.postman.com/
+  category: developer-tools
+- slug: dotnet-reflector
+  name: .NET Reflector
+  url: https://www.red-gate.com/products/reflector/
+  category: developer-tools
+- slug: royal-ts
+  name: Royal TS
+  url: https://www.royalapps.com/ts/
+  category: developer-tools
+- slug: screaming-frog-seo-spider
+  name: Screaming Frog SEO Spider
+  url: https://www.screamingfrog.co.uk/seo-spider/
+  category: developer-tools
+- slug: ibm-rational-rose
+  name: IBM Rational Rose
+  url: https://www.ibm.com/products/rational-rose
+  category: developer-tools
+- slug: ibm-rational-application-developer
+  name: IBM Rational Application Developer
+  url: https://www.ibm.com/products/rational-application-developer
+  category: developer-tools
+- slug: visual-paradigm
+  name: Visual Paradigm
+  url: https://www.visual-paradigm.com/
+  category: developer-tools
+- slug: navicat-premium
+  name: Navicat Premium
+  url: https://www.navicat.com/en/products/navicat-premium
+  category: developer-tools
