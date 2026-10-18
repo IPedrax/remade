@@ -69,6 +69,8 @@ Each submission must include:
 - Stated compatibility scope and known limitations, where documented.
 - Open-source license identifier or a link to the project's license file; for a maintainer-approved project with no license grant, use `Unlicensed`. This is distinct from `Unlicense`, which is a permissive public-domain dedication.
 
+Use the repository's applicable license file (`LICENSE`, `COPYING`, or equivalent) as the authority for the catalog license when it disagrees with package metadata or automated license detection. Preserve documented dual licenses and component-specific terms.
+
 The project URL must link to the actual implementation, not merely a marketing page. Links must be relevant and functional. Avoid unsubstantiated superlatives and promotional claims.
 
 **Do not add `featured` to your own project entry.** Featured selections are maintained separately by Remade's maintainers.
