@@ -1790,3 +1790,255 @@
   name: Ansys LS-DYNA
   url: https://www.ansys.com/products/structures/ansys-ls-dyna
   category: engineering
+- slug: duolingo
+  name: Duolingo
+  url: https://www.duolingo.com/
+  category: productivity
+- slug: gizmo
+  name: Gizmo
+  url: https://gizmo.ai/
+  category: productivity
+- slug: anydesk
+  name: AnyDesk
+  url: https://anydesk.com/
+  category: productivity
+- slug: teamviewer
+  name: TeamViewer Remote
+  url: https://www.teamviewer.com/en/products/remote/
+  category: productivity
+- slug: adobe-captivate
+  name: Adobe Captivate
+  url: https://www.adobe.com/products/captivate.html
+  category: productivity
+- slug: adobe-framemaker
+  name: Adobe FrameMaker
+  url: https://www.adobe.com/products/framemaker.html
+  category: productivity
+- slug: adobe-livecycle-designer
+  name: Adobe LiveCycle Designer
+  url: https://helpx.adobe.com/livecycle/topics/livecycle-designer.html
+  category: productivity
+- slug: buffer
+  name: Buffer
+  url: https://buffer.com/
+  category: productivity
+- slug: hootsuite
+  name: Hootsuite
+  url: https://www.hootsuite.com/
+  category: productivity
+- slug: sprout-social
+  name: Sprout Social
+  url: https://sproutsocial.com/
+  category: productivity
+- slug: loomly
+  name: Loomly
+  url: https://www.loomly.com/
+  category: productivity
+- slug: bloomberg-terminal
+  name: Bloomberg Terminal
+  url: https://www.bloomberg.com/professional/products/bloomberg-terminal/
+  category: productivity
+- slug: tradingview
+  name: TradingView
+  url: https://www.tradingview.com/
+  category: productivity
+- slug: cobrowse
+  name: Cobrowse.io
+  url: https://cobrowse.io/
+  category: productivity
+- slug: collectorz-movie-collector
+  name: Movie Collector
+  url: https://clz.com/movies/desktop
+  category: productivity
+- slug: think-cell
+  name: think-cell
+  url: https://www.think-cell.com/
+  category: productivity
+- slug: efficient-elements
+  name: Efficient Elements for presentations
+  url: https://www.efficient-elements.com/
+  category: productivity
+- slug: uber
+  name: Uber
+  url: https://play.google.com/store/apps/details?id=com.ubercab
+  category: productivity
+- slug: ola
+  name: Ola
+  url: https://www.olacabs.com/
+  category: productivity
+- slug: elgato-stream-deck
+  name: Elgato Stream Deck
+  url: https://www.elgato.com/stream-deck
+  category: productivity
+- slug: miro
+  name: Miro
+  url: https://miro.com/
+  category: productivity
+- slug: lucidchart
+  name: Lucidchart
+  url: https://www.lucidchart.com/
+  category: productivity
+- slug: dragon-professional
+  name: Dragon Professional
+  url: https://dragon.nuance.com/en-us/dragon-professional
+  category: productivity
+- slug: talon-voice
+  name: Talon Voice
+  url: https://talonvoice.com/
+  category: productivity
+- slug: noteshelf
+  name: Noteshelf
+  url: https://www.noteshelf.net/
+  category: productivity
+- slug: samsung-notes
+  name: Samsung Notes
+  url: https://play.google.com/store/apps/details?id=com.samsung.android.app.notes
+  category: productivity
+- slug: jw-library
+  name: JW Library
+  url: https://www.jw.org/en/online-help/jw-library/
+  category: productivity
+- slug: launchbox
+  name: LaunchBox
+  url: https://www.launchbox-app.com/
+  category: productivity
+- slug: lotus-improv
+  name: Lotus Improv
+  url: https://archive.computerhistory.org/resources/access/text/2024/03/102805753-05-01-acc.pdf
+  category: productivity
+- slug: quantrix
+  name: Quantrix Modeler
+  url: https://quantrix.com/
+  category: productivity
+- slug: tableau
+  name: Tableau
+  url: https://www.tableau.com/
+  category: productivity
+- slug: microsoft-teams
+  name: Microsoft Teams
+  url: https://www.microsoft.com/en-us/microsoft-teams/group-chat-software
+  category: productivity
+- slug: microsoft-whiteboard
+  name: Microsoft Whiteboard
+  url: https://www.microsoft.com/en-us/microsoft-365/microsoft-whiteboard/digital-whiteboard-app
+  category: productivity
+- slug: mindmanager
+  name: MindManager
+  url: https://www.mindmanager.com/
+  category: productivity
+- slug: figjam
+  name: FigJam
+  url: https://www.figma.com/figjam/
+  category: productivity
+- slug: scrivener
+  name: Scrivener
+  url: https://www.literatureandlatte.com/scrivener/overview
+  category: productivity
+- slug: vellum
+  name: Vellum
+  url: https://vellum.pub/
+  category: productivity
+- slug: pdf-annotator
+  name: PDF Annotator
+  url: https://www.pdfannotator.com/
+  category: productivity
+- slug: quicken
+  name: Quicken
+  url: https://www.quicken.com/
+  category: productivity
+- slug: banktivity
+  name: Banktivity
+  url: https://www.banktivity.com/
+  category: productivity
+- slug: ynab
+  name: YNAB
+  url: https://www.ynab.com/
+  category: productivity
+- slug: sap-businessobjects-bi
+  name: SAP BusinessObjects BI
+  url: https://www.sap.com/products/technology-platform/bi-platform.html
+  category: productivity
+- slug: quickbase
+  name: Quickbase
+  url: https://www.quickbase.com/
+  category: productivity
+- slug: airtable
+  name: Airtable
+  url: https://www.airtable.com/
+  category: productivity
+- slug: ragtime
+  name: RagTime
+  url: https://www.ragtime.de/
+  category: productivity
+- slug: liquidtext
+  name: LiquidText
+  url: https://www.liquidtext.net/
+  category: productivity
+- slug: sage-50
+  name: Sage 50
+  url: https://www.sage.com/en-us/products/sage-50/
+  category: productivity
+- slug: salesforce-sales-cloud
+  name: Salesforce Sales Cloud
+  url: https://www.salesforce.com/sales/cloud/
+  category: productivity
+- slug: serveboard
+  name: ServeBoard
+  url: https://serveboard.app/
+  category: productivity
+- slug: tallyprime
+  name: TallyPrime
+  url: https://tallysolutions.com/tally-prime/
+  category: productivity
+- slug: teamwire
+  name: Teamwire
+  url: https://teamwire.eu/
+  category: productivity
+- slug: tenorshare-icarefone
+  name: Tenorshare iCareFone
+  url: https://www.tenorshare.com/products/icarefone.html
+  category: productivity
+- slug: ticktick
+  name: TickTick
+  url: https://ticktick.com/
+  category: productivity
+- slug: lunatask
+  name: Lunatask
+  url: https://lunatask.app/
+  category: productivity
+- slug: trados-studio
+  name: Trados Studio
+  url: https://www.trados.com/products/trados-studio/
+  category: productivity
+- slug: wondershare-recoverit
+  name: Wondershare Recoverit
+  url: https://recoverit.wondershare.com/
+  category: productivity
+- slug: xmind
+  name: Xmind
+  url: https://xmind.com/
+  category: productivity
+- slug: youversion-bible
+  name: YouVersion Bible App
+  url: https://www.youversion.com/bible-app/
+  category: productivity
+- slug: bible-gateway
+  name: Bible Gateway
+  url: https://www.biblegateway.com/
+  category: productivity
+- slug: olive-tree-bible
+  name: Olive Tree Bible App
+  url: https://www.olivetree.com/
+  category: productivity
+- slug: myq-x
+  name: MyQ X
+  url: https://www.myq-solution.com/myq-x
+  category: productivity
+- slug: ysoft-safeq
+  name: YSoft SAFEQ
+  url: https://www.ysoft.com/safeq
+  category: productivity
+- slug: priprinter
+  name: priPrinter
+  url: https://www.priprinter.com/
+  category: productivity
