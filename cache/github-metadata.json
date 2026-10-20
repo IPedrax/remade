@@ -1,34 +1,34 @@
 {
   "repositories": {
     "aalzard/subcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 5,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 8,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T21:34:58Z",
-      "stars": 35
+      "pushedAt": "2026-10-19T21:25:02Z",
+      "stars": 39
     },
     "adriaanboshoff/openmailclient": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T12:48:49Z",
+      "pushedAt": "2026-10-20T10:07:41Z",
       "stars": 4
     },
     "agalwood/motrix": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 5103,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 5105,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "TypeScript",
-      "pushedAt": "2026-10-18T16:18:45Z",
-      "stars": 57078
+      "pushedAt": "2026-10-20T10:31:58Z",
+      "stars": 57116
     },
     "agechaos/ageskeleton": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
@@ -37,94 +37,94 @@
       "stars": 3
     },
     "aliasfoxkde/firecraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T07:34:06Z",
+      "pushedAt": "2026-10-19T20:35:23Z",
       "stars": 2
     },
     "alientechsoftware/notecraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 3,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T09:51:22Z",
-      "stars": 15
+      "pushedAt": "2026-10-20T06:58:18Z",
+      "stars": 25
     },
     "alyssaxuu/motionity": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 366,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 365,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "JavaScript",
       "pushedAt": "2022-09-12T02:06:50Z",
-      "stars": 4124
+      "stars": 4126
     },
     "apibim-com/beamcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "MPL-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T13:28:09Z",
-      "stars": 4
+      "pushedAt": "2026-10-20T12:31:31Z",
+      "stars": 5
     },
     "aprilnea/openlogi": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 820,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 828,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T18:12:46Z",
-      "stars": 23780
+      "pushedAt": "2026-10-20T09:33:53Z",
+      "stars": 23835
     },
     "artcraft-android/filmcraft-android": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 4,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-15T21:53:28Z",
-      "stars": 46
+      "stars": 53
     },
     "artcraft-android/lightcraft-android": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 6,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 7,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-14T14:26:39Z",
-      "stars": 78
+      "stars": 89
     },
     "artcraft-android/pdfcraft-android": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 4,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 6,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T12:46:49Z",
-      "stars": 92
+      "pushedAt": "2026-10-19T18:31:58Z",
+      "stars": 102
     },
     "automattic/harper": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 840,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 877,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T05:56:19Z",
-      "stars": 16743
+      "pushedAt": "2026-10-20T07:49:24Z",
+      "stars": 16867
     },
     "beneaze/clubcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-17T15:51:49Z",
-      "stars": 5
+      "stars": 6
     },
     "bherbruck/solidcraft": {
       "fetchedAt": "2026-10-16T12:43:46Z",
@@ -136,21 +136,21 @@
       "stars": 2930
     },
     "by183/cliprecorder": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": null,
       "primaryLanguage": "C++",
       "pushedAt": "2026-09-05T18:01:10Z",
-      "stars": 3
+      "stars": 4
     },
     "calla-ji/materialcreator": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T13:18:33Z",
+      "pushedAt": "2026-10-20T02:20:33Z",
       "stars": 14
     },
     "charles-hood/diagramcraft": {
@@ -163,16 +163,16 @@
       "stars": 9
     },
     "cmspeedau/assetcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-18T09:09:50Z",
-      "stars": 1
+      "stars": 3
     },
     "cmspeedau/icraftmusic": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "MIT",
@@ -181,61 +181,61 @@
       "stars": 2
     },
     "cmspeedau/notecraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 0,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 1,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-18T01:50:16Z",
-      "stars": 3
+      "stars": 4
     },
     "contributionrich/narwhal3d": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 3,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Python",
-      "pushedAt": "2026-10-18T20:47:48Z",
-      "stars": 13
+      "pushedAt": "2026-10-20T06:31:02Z",
+      "stars": 14
     },
     "cristim/azteccraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 3,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 4,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:15:34Z",
-      "stars": 9
+      "pushedAt": "2026-10-20T10:57:22Z",
+      "stars": 10
     },
     "cutwire-studios/drift": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 183,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 185,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "C++",
       "pushedAt": "2026-10-19T13:46:28Z",
-      "stars": 2017
+      "stars": 2041
     },
     "daijro/honeydew": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T13:17:22Z",
+      "pushedAt": "2026-10-20T05:52:26Z",
       "stars": 19
     },
     "daijro/openplayground": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": null,
       "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T14:29:36Z",
-      "stars": 17
+      "pushedAt": "2026-10-20T12:46:49Z",
+      "stars": 18
     },
     "danemadsen/nerthus": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "MIT",
@@ -244,25 +244,25 @@
       "stars": 60
     },
     "debpalash/voicestudio": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 8414,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 8588,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
       "primaryLanguage": "Python",
-      "pushedAt": "2026-10-19T14:56:16Z",
-      "stars": 76911
+      "pushedAt": "2026-10-20T12:58:10Z",
+      "stars": 78303
     },
     "derpcatmusic/kontra": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:41:50Z",
-      "stars": 26
+      "pushedAt": "2026-10-20T11:54:05Z",
+      "stars": 28
     },
     "egsk4/craftpulse": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "MIT",
@@ -271,12 +271,12 @@
       "stars": 7
     },
     "ekarinlb/e-journal": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T13:37:36Z",
+      "pushedAt": "2026-10-20T11:58:32Z",
       "stars": 2
     },
     "eklonofficial/vice": {
@@ -289,13 +289,13 @@
       "stars": 327
     },
     "emmertex/lightcraft-classic": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:11:44Z",
-      "stars": 54
+      "pushedAt": "2026-10-20T12:48:39Z",
+      "stars": 66
     },
     "engr-software/markupcraft": {
       "fetchedAt": "2026-10-13T15:16:18Z",
@@ -307,16 +307,16 @@
       "stars": 6
     },
     "epell-development/radiomaster": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T00:24:25Z",
+      "pushedAt": "2026-10-20T02:14:46Z",
       "stars": 4
     },
     "erkinalp/anticensor": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
@@ -325,7 +325,7 @@
       "stars": 0
     },
     "erkinalp/precall": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "GPL-2.0",
@@ -334,16 +334,16 @@
       "stars": 0
     },
     "erythrofr/clothcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 6,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-16T14:35:44Z",
-      "stars": 25
+      "stars": 27
     },
     "fdos/kernel": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 180,
       "isArchived": false,
       "licenseSpdx": "GPL-2.0",
@@ -352,22 +352,22 @@
       "stars": 1059
     },
     "flare-animate/flare": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 21,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 22,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "C++",
-      "pushedAt": "2026-10-19T14:04:28Z",
-      "stars": 133
+      "pushedAt": "2026-10-20T12:08:00Z",
+      "stars": 139
     },
     "fluxerapp/fluxer": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 815,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
       "primaryLanguage": "TypeScript",
-      "pushedAt": "2026-10-19T10:34:24Z",
-      "stars": 10618
+      "pushedAt": "2026-10-20T12:47:06Z",
+      "stars": 10624
     },
     "fressmeigasu/inventcraft": {
       "fetchedAt": "2026-10-16T12:43:46Z",
@@ -379,16 +379,16 @@
       "stars": 0
     },
     "gavindi/lookout": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T05:27:27Z",
-      "stars": 53
+      "pushedAt": "2026-10-20T04:05:33Z",
+      "stars": 54
     },
     "gavindi/mtsync": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "GPL-2.0",
@@ -406,88 +406,88 @@
       "stars": 0
     },
     "getcadcraft/bimcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 4,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:34Z",
-      "stars": 17
+      "pushedAt": "2026-10-20T00:46:38Z",
+      "stars": 24
     },
     "getcadcraft/cadcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 3,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 4,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:32Z",
-      "stars": 16
+      "pushedAt": "2026-10-20T00:46:39Z",
+      "stars": 18
     },
     "getcadcraft/civilcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1,
-      "isArchived": false,
-      "licenseSpdx": "Apache-2.0",
-      "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:41Z",
-      "stars": 7
-    },
-    "getcadcraft/detailcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1,
-      "isArchived": false,
-      "licenseSpdx": "Apache-2.0",
-      "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:43Z",
-      "stars": 5
-    },
-    "getcadcraft/markupcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1,
-      "isArchived": false,
-      "licenseSpdx": "Apache-2.0",
-      "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:37Z",
-      "stars": 6
-    },
-    "getcadcraft/modelcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 3,
-      "isArchived": false,
-      "licenseSpdx": "Apache-2.0",
-      "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:35Z",
-      "stars": 14
-    },
-    "getcadcraft/partcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:45Z",
+      "pushedAt": "2026-10-20T00:46:41Z",
       "stars": 9
     },
-    "getcadcraft/takeoffcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1,
+    "getcadcraft/detailcraft": {
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 3,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "JavaScript",
-      "pushedAt": "2026-10-19T01:43:39Z",
-      "stars": 3
+      "pushedAt": "2026-10-20T00:46:42Z",
+      "stars": 6
+    },
+    "getcadcraft/markupcraft": {
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "JavaScript",
+      "pushedAt": "2026-10-20T00:46:44Z",
+      "stars": 7
+    },
+    "getcadcraft/modelcraft": {
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 4,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "JavaScript",
+      "pushedAt": "2026-10-20T00:46:46Z",
+      "stars": 16
+    },
+    "getcadcraft/partcraft": {
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 3,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "JavaScript",
+      "pushedAt": "2026-10-20T00:46:47Z",
+      "stars": 12
+    },
+    "getcadcraft/takeoffcraft": {
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "JavaScript",
+      "pushedAt": "2026-10-20T00:46:48Z",
+      "stars": 4
     },
     "githuhl/corinzia": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T03:15:25Z",
+      "pushedAt": "2026-10-19T19:42:27Z",
       "stars": 2
     },
     "grahamsz/rolltop": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 4,
       "isArchived": false,
       "licenseSpdx": null,
@@ -496,25 +496,25 @@
       "stars": 38
     },
     "graphiteeditor/graphite": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1294,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 1295,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T01:27:07Z",
-      "stars": 27644
+      "pushedAt": "2026-10-20T11:04:46Z",
+      "stars": 27656
     },
     "hasanmajid/open-note": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Dart",
-      "pushedAt": "2026-10-19T14:27:50Z",
-      "stars": 2
+      "pushedAt": "2026-10-20T05:51:52Z",
+      "stars": 3
     },
     "hlophlopgaming/draugrtime": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
@@ -523,67 +523,67 @@
       "stars": 3
     },
     "hungry-detective/downloadcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T20:14:47Z",
-      "stars": 9
+      "pushedAt": "2026-10-20T00:35:48Z",
+      "stars": 14
     },
     "ifpintac/tequila": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:19:05Z",
+      "pushedAt": "2026-10-20T12:04:54Z",
       "stars": 5
     },
     "igtoth/tracedraw": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 8,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 9,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T11:39:46Z",
-      "stars": 60
+      "pushedAt": "2026-10-20T00:12:33Z",
+      "stars": 72
     },
     "ingelibre/ingetrazo": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 175,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 181,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Python",
-      "pushedAt": "2026-10-19T01:41:15Z",
-      "stars": 1121
+      "pushedAt": "2026-10-19T22:53:35Z",
+      "stars": 1143
     },
     "itsalphaneon/lemon-studio": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 13,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 15,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T13:04:04Z",
-      "stars": 110
+      "pushedAt": "2026-10-20T09:14:17Z",
+      "stars": 129
     },
     "javy-fernandez/datacraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-19T08:54:35Z",
-      "stars": 2
+      "stars": 4
     },
     "jub0t/concat": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1111,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 1169,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T02:10:41Z",
-      "stars": 9352
+      "pushedAt": "2026-10-20T11:27:23Z",
+      "stars": 9676
     },
     "kmsdax/animationcraft": {
       "fetchedAt": "2026-10-12T17:00:05Z",
@@ -595,61 +595,61 @@
       "stars": 7
     },
     "lork-fork/roidery": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-15T22:57:16Z",
+      "pushedAt": "2026-10-20T09:12:05Z",
       "stars": 2
     },
     "lxistired/ledger-reborn": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 5,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Python",
       "pushedAt": "2026-10-13T03:27:09Z",
-      "stars": 29
+      "stars": 31
     },
     "lyraedan/substancecraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-15T02:33:42Z",
-      "stars": 12
+      "stars": 13
     },
     "makeplane/plane": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 6130,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 6139,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
       "primaryLanguage": "TypeScript",
       "pushedAt": "2026-10-19T09:15:32Z",
-      "stars": 61133
+      "stars": 61163
     },
     "marshallnickolauson/screencraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 5,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-17T15:26:29Z",
-      "stars": 25
+      "stars": 27
     },
     "mateusrdp/oxiguitar": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T11:53:35Z",
-      "stars": 4
+      "pushedAt": "2026-10-20T10:06:09Z",
+      "stars": 5
     },
     "minnowo/itamiiru": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
@@ -658,7 +658,7 @@
       "stars": 3
     },
     "mirvoxtm/minnamate": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": null,
@@ -667,22 +667,22 @@
       "stars": 11
     },
     "misterdiagram/misterdiagram": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 3,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T12:50:15Z",
-      "stars": 10
+      "pushedAt": "2026-10-20T12:45:36Z",
+      "stars": 12
     },
     "mitcad/mitcad": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T23:19:16Z",
-      "stars": 9
+      "pushedAt": "2026-10-19T21:24:48Z",
+      "stars": 11
     },
     "mmuminovic/craftcrew": {
       "fetchedAt": "2026-10-17T11:44:53Z",
@@ -694,7 +694,7 @@
       "stars": 1
     },
     "monkeysaint/mailcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 8,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
@@ -703,25 +703,25 @@
       "stars": 40
     },
     "morte2437/photocraft-android": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 3,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T03:43:11Z",
-      "stars": 38
+      "pushedAt": "2026-10-19T18:58:03Z",
+      "stars": 40
     },
     "mostafaxs1/artcraft-android": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 25,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 28,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Shell",
-      "pushedAt": "2026-10-18T18:16:16Z",
-      "stars": 251
+      "pushedAt": "2026-10-20T03:48:18Z",
+      "stars": 306
     },
     "mypenc/wordcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
@@ -730,16 +730,16 @@
       "stars": 6
     },
     "n-delic/kadar": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Kotlin",
       "pushedAt": "2026-10-15T22:52:58Z",
-      "stars": 4
+      "stars": 5
     },
     "next2d/tool.next2d.app": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 11,
       "isArchived": false,
       "licenseSpdx": "MIT",
@@ -748,16 +748,16 @@
       "stars": 41
     },
     "nibrasaz7/matcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:20:34Z",
-      "stars": 6
+      "pushedAt": "2026-10-20T07:03:09Z",
+      "stars": 9
     },
     "nibrasaz7/reportcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
@@ -766,16 +766,16 @@
       "stars": 1
     },
     "nibrasaz7/warraqcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-17T22:14:01Z",
+      "pushedAt": "2026-10-20T06:29:46Z",
       "stars": 1
     },
     "nojuannobody/scriptcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
@@ -784,35 +784,35 @@
       "stars": 15
     },
     "occupysaas/zeroauthy": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Go",
-      "pushedAt": "2026-10-19T01:39:12Z",
-      "stars": 0
+      "pushedAt": "2026-10-20T02:25:35Z",
+      "stars": 2
     },
     "opencut-app/opencut": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 9398,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 9417,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "TypeScript",
       "pushedAt": "2026-09-24T09:24:44Z",
-      "stars": 95338
+      "stars": 95444
     },
     "opengeos/rustgis": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 232,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 247,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:55:02Z",
-      "stars": 1642
+      "pushedAt": "2026-10-20T12:55:55Z",
+      "stars": 1713
     },
     "pascaldisse/hexe": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 0,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 1,
       "isArchived": false,
       "licenseSpdx": null,
       "primaryLanguage": "GLSL",
@@ -820,13 +820,13 @@
       "stars": 4
     },
     "pierruno-labs/filecraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-19T12:12:35Z",
-      "stars": 8
+      "stars": 13
     },
     "pierruno-labs/pounce": {
       "fetchedAt": "2026-10-16T12:43:46Z",
@@ -838,7 +838,7 @@
       "stars": 3
     },
     "pijellypin/materialcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 5,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
@@ -847,25 +847,25 @@
       "stars": 28
     },
     "pireel/pireel": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 113,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
       "primaryLanguage": "TypeScript",
       "pushedAt": "2026-09-18T18:34:52Z",
-      "stars": 1305
+      "stars": 1309
     },
     "psychronic-games/rpgreactor": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 10,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "JavaScript",
       "pushedAt": "2026-10-12T00:52:56Z",
-      "stars": 39
+      "stars": 40
     },
     "raisulsohan/lazymaplayers-effectcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "MIT",
@@ -874,25 +874,25 @@
       "stars": 4
     },
     "rallegretti/plancraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "CC0-1.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-16T16:48:14Z",
-      "stars": 7
+      "stars": 9
     },
     "rational-boxes/nodesk_reviera": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T03:15:25Z",
-      "stars": 2
+      "pushedAt": "2026-10-20T04:13:55Z",
+      "stars": 4
     },
     "rbr48/sotto": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
@@ -901,16 +901,16 @@
       "stars": 5
     },
     "reactos/reactos": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2271,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2274,
       "isArchived": false,
       "licenseSpdx": "GPL-2.0",
       "primaryLanguage": "C",
-      "pushedAt": "2026-10-18T18:40:20Z",
-      "stars": 18261
+      "pushedAt": "2026-10-19T23:46:14Z",
+      "stars": 18281
     },
     "realhartlmax/open-stop-motion-studio": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
@@ -919,31 +919,31 @@
       "stars": 4
     },
     "replicraft/remade": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 14,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 19,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "TypeScript",
-      "pushedAt": "2026-10-19T06:57:50Z",
-      "stars": 73
+      "pushedAt": "2026-10-19T14:58:08Z",
+      "stars": 103
     },
     "shaongitbd/doory": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 123,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 126,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "TypeScript",
-      "pushedAt": "2026-10-19T10:28:43Z",
-      "stars": 1634
+      "pushedAt": "2026-10-20T00:21:45Z",
+      "stars": 1662
     },
     "sirmmo/craft-vba": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-15T05:31:46Z",
-      "stars": 0
+      "stars": 2
     },
     "sitesentrix/lightfoundry": {
       "fetchedAt": "2026-10-18T12:11:26Z",
@@ -964,232 +964,232 @@
       "stars": 3
     },
     "slyim/papercraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-19T10:52:47Z",
-      "stars": 4
+      "stars": 5
     },
     "smyrgeorge/artcraft-toolbox": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T07:55:22Z",
-      "stars": 36
+      "pushedAt": "2026-10-20T11:50:25Z",
+      "stars": 37
     },
     "splitshotz/vice": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 31,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Python",
-      "pushedAt": "2026-10-18T16:50:22Z",
-      "stars": 330
+      "pushedAt": "2026-10-19T20:07:38Z",
+      "stars": 332
     },
     "stitchwright/lightfoundry": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:49:15Z",
+      "pushedAt": "2026-10-20T11:05:37Z",
       "stars": 5
     },
     "stitchwright/stitchfoundry": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:05:01Z",
+      "pushedAt": "2026-10-20T12:38:29Z",
       "stars": 4
     },
     "stoatchat/stoatchat": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 399,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 400,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T13:07:23Z",
+      "pushedAt": "2026-10-20T11:35:12Z",
       "stars": 3406
     },
     "storytold/cadcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2628,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2683,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:18:57Z",
-      "stars": 5925
+      "pushedAt": "2026-10-20T12:28:52Z",
+      "stars": 6086
     },
     "storytold/craft-launcher": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1135,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 1163,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:15:45Z",
-      "stars": 3439
+      "pushedAt": "2026-10-20T12:29:31Z",
+      "stars": 3571
     },
     "storytold/deckcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2181,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2228,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T18:35:18Z",
-      "stars": 3853
+      "pushedAt": "2026-10-20T12:29:49Z",
+      "stars": 3942
     },
     "storytold/designcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 3078,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 3115,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:14:38Z",
-      "stars": 4449
+      "pushedAt": "2026-10-20T12:25:41Z",
+      "stars": 4511
     },
     "storytold/effectcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 3929,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 3977,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T18:36:11Z",
-      "stars": 7385
+      "pushedAt": "2026-10-20T12:32:34Z",
+      "stars": 7480
     },
     "storytold/figcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 1049,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 1122,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:18:39Z",
-      "stars": 2760
+      "pushedAt": "2026-10-20T12:25:46Z",
+      "stars": 2890
     },
     "storytold/filmcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 6267,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 6361,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T03:50:10Z",
-      "stars": 15004
+      "pushedAt": "2026-10-20T12:32:31Z",
+      "stars": 15212
     },
     "storytold/gridcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2711,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2772,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:20:34Z",
-      "stars": 5845
+      "pushedAt": "2026-10-20T12:28:15Z",
+      "stars": 5981
     },
     "storytold/lightcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 5260,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 5329,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:22:17Z",
-      "stars": 13819
+      "pushedAt": "2026-10-20T12:32:34Z",
+      "stars": 13976
     },
     "storytold/pdfcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 6244,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 6358,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T06:59:27Z",
-      "stars": 16149
+      "pushedAt": "2026-10-20T12:35:17Z",
+      "stars": 16479
     },
     "storytold/photocraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 12008,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 12178,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:25:12Z",
-      "stars": 68216
+      "pushedAt": "2026-10-20T12:47:57Z",
+      "stars": 69118
     },
     "storytold/soundcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 2093,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 2143,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:16:47Z",
-      "stars": 3331
+      "pushedAt": "2026-10-20T12:27:52Z",
+      "stars": 3391
     },
     "storytold/vectorcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 4858,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 4937,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-18T18:39:23Z",
-      "stars": 9947
+      "pushedAt": "2026-10-20T12:34:25Z",
+      "stars": 10119
     },
     "storytold/wordcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 3906,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 4004,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:20:53Z",
-      "stars": 14618
+      "pushedAt": "2026-10-20T12:31:08Z",
+      "stars": 14928
     },
     "suhina-daw/suhina-daw": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 7,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 9,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:46:50Z",
-      "stars": 29
+      "pushedAt": "2026-10-20T12:44:21Z",
+      "stars": 32
     },
     "surfrpt1/procraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 2,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T12:39:31Z",
-      "stars": 25
+      "pushedAt": "2026-10-20T10:26:01Z",
+      "stars": 27
     },
     "tangency-labs/fieldcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 13,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 14,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:49:58Z",
-      "stars": 84
+      "pushedAt": "2026-10-20T12:44:31Z",
+      "stars": 112
     },
     "tangency-labs/pcbcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 6,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-12T04:21:56Z",
-      "stars": 54
+      "stars": 63
     },
     "tangency-labs/solidcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 743,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 903,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:38:48Z",
-      "stars": 6664
+      "pushedAt": "2026-10-20T12:54:56Z",
+      "stars": 7886
     },
     "tecno14/shelled": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 8,
       "isArchived": false,
       "licenseSpdx": null,
@@ -1198,25 +1198,25 @@
       "stars": 19
     },
     "therichronicles/earthcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 3,
       "isArchived": false,
       "licenseSpdx": "MIT",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-18T16:57:01Z",
-      "stars": 24
+      "stars": 29
     },
     "ucs-care-group/mailcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 10,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 13,
       "isArchived": false,
-      "licenseSpdx": "Apache-2.0",
+      "licenseSpdx": "NOASSERTION",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T14:40:42Z",
-      "stars": 48
+      "pushedAt": "2026-10-20T12:19:44Z",
+      "stars": 55
     },
     "ucs-care-group/metriccraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
@@ -1225,16 +1225,16 @@
       "stars": 3
     },
     "ucs-care-group/projectcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 3,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 4,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-18T00:13:05Z",
-      "stars": 5
+      "stars": 7
     },
     "vbasky/craft-icons": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 1,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
@@ -1243,25 +1243,25 @@
       "stars": 0
     },
     "vibedarling/darling": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 5,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 6,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "Objective-C",
-      "pushedAt": "2026-10-19T14:41:12Z",
-      "stars": 15
+      "pushedAt": "2026-10-19T18:10:36Z",
+      "stars": 17
     },
     "vineetpadia/openrevu": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "AGPL-3.0",
       "primaryLanguage": "Python",
       "pushedAt": "2026-10-06T04:25:28Z",
-      "stars": 3
+      "stars": 4
     },
     "wr3nch98dev/ledgercraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "NOASSERTION",
@@ -1270,7 +1270,7 @@
       "stars": 6
     },
     "ysnx64523/ribbon-file-manager": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
@@ -1279,16 +1279,16 @@
       "stars": 2
     },
     "zidan44/mailcraft": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 4,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 5,
       "isArchived": false,
       "licenseSpdx": "Apache-2.0",
       "primaryLanguage": "Rust",
-      "pushedAt": "2026-10-19T10:58:10Z",
-      "stars": 8
+      "pushedAt": "2026-10-20T12:29:34Z",
+      "stars": 12
     },
     "zlotny/fluidity-vpn": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
+      "fetchedAt": "2026-10-20T12:58:13Z",
       "forks": 0,
       "isArchived": false,
       "licenseSpdx": "0BSD",
@@ -1297,13 +1297,13 @@
       "stars": 3
     },
     "zoltanf/extrudo": {
-      "fetchedAt": "2026-10-19T14:58:01Z",
-      "forks": 8,
+      "fetchedAt": "2026-10-20T12:58:13Z",
+      "forks": 9,
       "isArchived": false,
       "licenseSpdx": "GPL-3.0",
       "primaryLanguage": "TypeScript",
-      "pushedAt": "2026-10-19T11:57:49Z",
-      "stars": 62
+      "pushedAt": "2026-10-20T06:31:59Z",
+      "stars": 72
     }
   }
 }
