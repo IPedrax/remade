@@ -8,7 +8,7 @@ languages: [Rust, JavaScript]
 platforms: [Windows]
 status: experimental
 compatibility: partial
-description: An independently authored Modbus Poll-style Modbus master for Windows, written in Rust with a Tauri 2 UI. Polls Modbus TCP, RTU (serial), RTU-over-TCP and Modbus ASCII devices into live value tables with per-poll scan rates, display formats and word orders, threshold alarms (hi/hi-hi/lo/lo-lo), per-row styling rules and a SCADA mimic-diagram mode. Imports Modbus Poll .mbp/.mbw project files and reconstructs their polls and connections.
+description: An independently authored Modbus Poll-style master for Windows, written in Rust with a Tauri 2 UI. Polls Modbus TCP, RTU (serial), RTU-over-TCP and Modbus ASCII devices into live value tables with scan rates, display formats, alarms, per-row styling rules and a SCADA mimic-diagram mode; imports Modbus Poll .mbp/.mbw project files and reconstructs their polls and connections.
 license: MIT
 docs: https://github.com/kostyk348/mbscada-rs#readme
-limitations: Experimental. Reads .mbp/.mbw files but does not write them back yet. The .mbp round-trip layer was developed against a private corpus of files produced by Modbus Poll 10.5; the public test suite runs the round-trip check on a committed synthetic corpus (details in the README). Modbus ASCII transports are implemented and unit-tested but not yet exercised against real serial hardware. Windows-only builds at the moment.
+limitations: Experimental. Reads .mbp/.mbw files but cannot write them back yet. The .mbp round-trip layer was developed against a private corpus of real Modbus Poll 10.5 files; the public test suite runs the same check on a synthetic corpus. ASCII transports are unit-tested but not yet tried on real hardware. Windows-only builds.
