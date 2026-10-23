@@ -2192,3 +2192,8 @@
   name: FlipaClip
   url: https://www.flipaclip.com/
   category: creative
+- slug: wand
+  name: Wand
+  url: https://wand.com/
+  category: games
+  aliases: [WeMod]
