@@ -2188,3 +2188,7 @@
   url: https://auth0.com/
   category: developer-tools
   aliases: [Auth0 by Okta, Okta Customer Identity Cloud]
+- slug: flipaclip
+  name: FlipaClip
+  url: https://www.flipaclip.com/
+  category: creative
