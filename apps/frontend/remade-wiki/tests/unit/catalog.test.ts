@@ -247,6 +247,15 @@ describe("language badges", () => {
 			["JavaScript", "Rust"],
 			["JavaScript", "Rust"],
 		],
+		[
+			["C++", "Rust", "Python"],
+			["C++", "Rust"],
+		],
+		[
+			["JavaScript", "TypeScript", "Rust", "Python"],
+			["TypeScript", "Rust"],
+		],
+		[[], []],
 		[["JS", "TS"], ["TS"]],
 		[["typescript", "javascript"], ["typescript"]],
 	])(
