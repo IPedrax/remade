@@ -28,9 +28,11 @@ const remadeMetadata = (await loadMetadata())["replicraft/remade"];
 		<meta charset="utf-8">
 		<meta content="width=device-width" name="viewport">
 		<title>
-			{title === "Remade"
-				? "Remade — Everything can be remade."
-				: `${title} · Remade`}
+			{Astro.url.pathname === "/"
+				? title
+				: title === "Remade"
+					? "Remade — Everything can be remade."
+					: `${title} · Remade`}
 		</title>
 		<meta content={description} name="description">
 		{noindex && <meta content="noindex, follow" name="robots" />}
