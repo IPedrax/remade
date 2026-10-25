@@ -2210,3 +2210,7 @@
   name: YouTube Music
   url: https://music.youtube.com/
   category: creative
+- slug: youtube
+  name: YouTube
+  url: https://www.youtube.com/
+  category: creative
