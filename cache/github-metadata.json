@@ -378,6 +378,15 @@
       "pushedAt": "2026-10-23T23:47:34Z",
       "stars": 36
     },
+    "exonerv-pec/exomyth": {
+      "fetchedAt": "2026-10-25T21:34:36Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "AGPL-3.0",
+      "primaryLanguage": "TypeScript",
+      "pushedAt": "2026-10-25T17:17:03Z",
+      "stars": 1
+    },
     "fdos/kernel": {
       "fetchedAt": "2026-10-25T12:45:48Z",
       "forks": 180,
