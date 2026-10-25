@@ -2206,3 +2206,7 @@
   name: Dropbox
   url: https://www.dropbox.com/
   category: productivity
+- slug: youtube-music
+  name: YouTube Music
+  url: https://music.youtube.com/
+  category: creative
