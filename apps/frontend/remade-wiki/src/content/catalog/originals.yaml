@@ -2219,3 +2219,17 @@
   url: https://www.jetbrains.com/rider/
   category: developer-tools
   aliases: [Rider]
+- slug: world-anvil
+  name: World Anvil
+  url: https://www.worldanvil.com/
+  category: creative
+  aliases: [WorldAnvil]
+- slug: campfire
+  name: Campfire
+  url: https://www.campfirewriting.com/
+  category: creative
+- slug: legendkeeper
+  name: LegendKeeper
+  url: https://www.legendkeeper.com/
+  category: creative
+  aliases: [Legend Keeper]
