@@ -449,6 +449,11 @@
   name: Paint.NET
   url: https://www.getpaint.net/
   category: creative
+- slug: microsoft-paint
+  name: Microsoft Paint
+  url: https://www.microsoft.com/en-us/windows/paint
+  category: creative
+  aliases: [MS Paint, Windows Paint, MSPaint]
 - slug: logic-pro
   name: Logic Pro
   url: https://www.apple.com/logic-pro/
