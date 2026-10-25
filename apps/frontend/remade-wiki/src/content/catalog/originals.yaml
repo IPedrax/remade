@@ -2197,3 +2197,25 @@
   name: FlipaClip
   url: https://www.flipaclip.com/
   category: creative
+- slug: gemini-notebook
+  name: Gemini Notebook
+  url: https://notebook.google/
+  category: productivity
+  aliases: [NotebookLM, Notebook LM, Google NotebookLM, Google Gemini Notebook]
+- slug: dropbox
+  name: Dropbox
+  url: https://www.dropbox.com/
+  category: productivity
+- slug: youtube-music
+  name: YouTube Music
+  url: https://music.youtube.com/
+  category: creative
+- slug: youtube
+  name: YouTube
+  url: https://www.youtube.com/
+  category: creative
+- slug: jetbrains-rider
+  name: JetBrains Rider
+  url: https://www.jetbrains.com/rider/
+  category: developer-tools
+  aliases: [Rider]
