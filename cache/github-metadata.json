@@ -180,6 +180,15 @@
       "pushedAt": "2026-10-18T07:09:30Z",
       "stars": 9
     },
+    "chisomobanzi/serpentine3d": {
+      "fetchedAt": "2026-10-25T22:29:07Z",
+      "forks": 16,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Python",
+      "pushedAt": "2026-10-25T18:49:52Z",
+      "stars": 101
+    },
     "cmspeedau/assetcraft": {
       "fetchedAt": "2026-10-25T12:45:48Z",
       "forks": 1,
