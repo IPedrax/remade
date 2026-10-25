@@ -927,6 +927,15 @@
       "pushedAt": "2026-10-15T18:25:13Z",
       "stars": 4
     },
+    "replicraft/paintcraft": {
+      "fetchedAt": "2026-10-25T17:59:14Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-25T17:38:35Z",
+      "stars": 3
+    },
     "replicraft/remade": {
       "fetchedAt": "2026-10-25T12:45:48Z",
       "forks": 22,
