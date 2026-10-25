@@ -108,6 +108,15 @@
       "pushedAt": "2026-10-22T21:41:31Z",
       "stars": 158
     },
+    "artis-98/inventcraft": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 4,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Python",
+      "pushedAt": "2026-10-25T16:29:32Z",
+      "stars": 21
+    },
     "automattic/harper": {
       "fetchedAt": "2026-10-25T12:45:48Z",
       "forks": 769,
@@ -116,6 +125,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-25T12:44:37Z",
       "stars": 17106
+    },
+    "babisque/photonforge": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-25T14:51:42Z",
+      "stars": 0
     },
     "beneaze/clubcraft": {
       "fetchedAt": "2026-10-25T12:45:48Z",
@@ -188,6 +206,15 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-18T01:50:16Z",
       "stars": 5
+    },
+    "cmspeedau/syncbox": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-25T00:57:24Z",
+      "stars": 0
     },
     "contributionrich/narwhal3d": {
       "fetchedAt": "2026-10-25T12:45:48Z",
@@ -368,6 +395,15 @@
       "primaryLanguage": "C++",
       "pushedAt": "2026-10-25T09:14:02Z",
       "stars": 158
+    },
+    "flawlesscode254/tubeglass": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-23T16:34:08Z",
+      "stars": 9
     },
     "fluxerapp/fluxer": {
       "fetchedAt": "2026-10-22T13:11:33Z",
@@ -594,6 +630,24 @@
       "pushedAt": "2026-10-25T08:52:45Z",
       "stars": 10
     },
+    "javy-fernandez/dotcraft": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "Apache-2.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-25T16:14:18Z",
+      "stars": 1
+    },
+    "jennraeross/prosecraft": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": null,
+      "primaryLanguage": "Svelte",
+      "pushedAt": "2026-10-25T20:24:33Z",
+      "stars": 0
+    },
     "jub0t/concat": {
       "fetchedAt": "2026-10-25T12:45:48Z",
       "forks": 1406,
@@ -603,6 +657,15 @@
       "pushedAt": "2026-10-24T09:47:18Z",
       "stars": 11433
     },
+    "jxck-s/dashcraft": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-25T14:48:03Z",
+      "stars": 6
+    },
     "kmsdax/animationcraft": {
       "fetchedAt": "2026-10-12T17:00:05Z",
       "forks": 0,
@@ -611,6 +674,24 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-11T07:51:23Z",
       "stars": 7
+    },
+    "kostyk348/capsulecraft": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 1,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-25T09:18:53Z",
+      "stars": 5
+    },
+    "lfnovo/open-notebook": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 4663,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "TypeScript",
+      "pushedAt": "2026-10-20T10:52:09Z",
+      "stars": 40577
     },
     "lork-fork/roidery": {
       "fetchedAt": "2026-10-25T12:45:48Z",
@@ -665,6 +746,24 @@
       "primaryLanguage": "Rust",
       "pushedAt": "2026-10-25T12:38:36Z",
       "stars": 9
+    },
+    "maxrave-dev/simpmusic": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 693,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Kotlin",
+      "pushedAt": "2026-10-25T13:11:16Z",
+      "stars": 12375
+    },
+    "mikeverx/breezecad": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MPL-2.0",
+      "primaryLanguage": "C++",
+      "pushedAt": "2026-10-25T21:14:23Z",
+      "stars": 10
     },
     "minnowo/itamiiru": {
       "fetchedAt": "2026-10-25T12:45:48Z",
@@ -873,6 +972,15 @@
       "pushedAt": "2026-09-18T18:34:52Z",
       "stars": 1324
     },
+    "pranavo72bex/easy-download-manager": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-25T18:15:33Z",
+      "stars": 7
+    },
     "psychronic-games/rpgreactor": {
       "fetchedAt": "2026-10-25T12:45:48Z",
       "forks": 12,
@@ -953,6 +1061,15 @@
       "primaryLanguage": "TypeScript",
       "pushedAt": "2026-10-24T21:34:51Z",
       "stars": 159
+    },
+    "rmellis/open-publisher": {
+      "fetchedAt": "2026-10-25T21:24:28Z",
+      "forks": 4,
+      "isArchived": false,
+      "licenseSpdx": "GPL-2.0",
+      "primaryLanguage": "JavaScript",
+      "pushedAt": "2026-10-25T20:07:57Z",
+      "stars": 29
     },
     "shaongitbd/doory": {
       "fetchedAt": "2026-10-25T12:45:48Z",
