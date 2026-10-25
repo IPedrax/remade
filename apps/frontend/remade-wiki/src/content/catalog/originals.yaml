@@ -2202,3 +2202,7 @@
   url: https://notebook.google/
   category: productivity
   aliases: [NotebookLM, Notebook LM, Google NotebookLM, Google Gemini Notebook]
+- slug: dropbox
+  name: Dropbox
+  url: https://www.dropbox.com/
+  category: productivity
