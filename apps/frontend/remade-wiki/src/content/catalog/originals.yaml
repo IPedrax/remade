@@ -2197,3 +2197,8 @@
   name: FlipaClip
   url: https://www.flipaclip.com/
   category: creative
+- slug: gemini-notebook
+  name: Gemini Notebook
+  url: https://notebook.google/
+  category: productivity
+  aliases: [NotebookLM, Notebook LM, Google NotebookLM, Google Gemini Notebook]
