@@ -2214,3 +2214,8 @@
   name: YouTube
   url: https://www.youtube.com/
   category: creative
+- slug: jetbrains-rider
+  name: JetBrains Rider
+  url: https://www.jetbrains.com/rider/
+  category: developer-tools
+  aliases: [Rider]
