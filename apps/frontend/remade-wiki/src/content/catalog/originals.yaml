@@ -2233,3 +2233,9 @@
   url: https://www.legendkeeper.com/
   category: creative
   aliases: [Legend Keeper]
+- slug: wand
+  name: Wand
+  url: https://wand.com/
+  category: games
+  aliases:
+    - WeMod
