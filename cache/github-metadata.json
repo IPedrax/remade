@@ -666,6 +666,15 @@
       "pushedAt": "2026-10-26T14:12:38Z",
       "stars": 5
     },
+    "jpzk/opensidian": {
+      "fetchedAt": "2026-10-26T18:42:41Z",
+      "forks": 24,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "JavaScript",
+      "pushedAt": "2026-10-26T18:29:03Z",
+      "stars": 299
+    },
     "jub0t/concat": {
       "fetchedAt": "2026-10-26T14:33:50Z",
       "forks": 1434,
