@@ -963,6 +963,15 @@
       "pushedAt": "2026-10-23T09:05:45Z",
       "stars": 7
     },
+    "petru101/ferret": {
+      "fetchedAt": "2026-10-26T18:45:34Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-26T05:32:50Z",
+      "stars": 2
+    },
     "pierruno-labs/filecraft": {
       "fetchedAt": "2026-10-26T14:33:50Z",
       "forks": 1,
