@@ -396,6 +396,15 @@
       "pushedAt": "2026-10-25T17:17:03Z",
       "stars": 2
     },
+    "fabox-os/pro-wave": {
+      "fetchedAt": "2026-10-26T18:46:55Z",
+      "forks": 2,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-24T20:41:28Z",
+      "stars": 16
+    },
     "fdos/kernel": {
       "fetchedAt": "2026-10-26T14:33:50Z",
       "forks": 180,
