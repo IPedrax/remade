@@ -449,6 +449,11 @@
   name: Paint.NET
   url: https://www.getpaint.net/
   category: creative
+- slug: microsoft-paint
+  name: Microsoft Paint
+  url: https://www.microsoft.com/en-us/windows/paint
+  category: creative
+  aliases: [MS Paint, Windows Paint, MSPaint]
 - slug: logic-pro
   name: Logic Pro
   url: https://www.apple.com/logic-pro/
@@ -2192,8 +2197,45 @@
   name: FlipaClip
   url: https://www.flipaclip.com/
   category: creative
+- slug: gemini-notebook
+  name: Gemini Notebook
+  url: https://notebook.google/
+  category: productivity
+  aliases: [NotebookLM, Notebook LM, Google NotebookLM, Google Gemini Notebook]
+- slug: dropbox
+  name: Dropbox
+  url: https://www.dropbox.com/
+  category: productivity
+- slug: youtube-music
+  name: YouTube Music
+  url: https://music.youtube.com/
+  category: creative
+- slug: youtube
+  name: YouTube
+  url: https://www.youtube.com/
+  category: creative
+- slug: jetbrains-rider
+  name: JetBrains Rider
+  url: https://www.jetbrains.com/rider/
+  category: developer-tools
+  aliases: [Rider]
+- slug: world-anvil
+  name: World Anvil
+  url: https://www.worldanvil.com/
+  category: creative
+  aliases: [WorldAnvil]
+- slug: campfire
+  name: Campfire
+  url: https://www.campfirewriting.com/
+  category: creative
+- slug: legendkeeper
+  name: LegendKeeper
+  url: https://www.legendkeeper.com/
+  category: creative
+  aliases: [Legend Keeper]
 - slug: wand
   name: Wand
   url: https://wand.com/
   category: games
-  aliases: [WeMod]
+  aliases:
+    - WeMod
