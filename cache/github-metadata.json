@@ -720,6 +720,15 @@
       "pushedAt": "2026-10-26T04:02:16Z",
       "stars": 6
     },
+    "kostyk348/mbscada-rs": {
+      "fetchedAt": "2026-10-26T18:48:32Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "MIT",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-22T07:33:00Z",
+      "stars": 1
+    },
     "lfnovo/open-notebook": {
       "fetchedAt": "2026-10-26T14:33:50Z",
       "forks": 4665,
