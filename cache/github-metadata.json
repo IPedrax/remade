@@ -603,6 +603,15 @@
       "pushedAt": "2026-10-23T15:41:29Z",
       "stars": 4
     },
+    "hlophlopgaming/mothref": {
+      "fetchedAt": "2026-10-26T18:49:50Z",
+      "forks": 0,
+      "isArchived": false,
+      "licenseSpdx": "GPL-3.0",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-26T15:14:44Z",
+      "stars": 1
+    },
     "hungry-detective/downloadcraft": {
       "fetchedAt": "2026-10-26T14:33:50Z",
       "forks": 4,
