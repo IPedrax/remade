@@ -1152,6 +1152,15 @@
       "pushedAt": "2026-10-26T14:23:43Z",
       "stars": 40
     },
+    "soof-golan/anicraft": {
+      "fetchedAt": "2026-10-26T18:44:09Z",
+      "forks": 2,
+      "isArchived": false,
+      "licenseSpdx": "BSD-3-Clause",
+      "primaryLanguage": "Rust",
+      "pushedAt": "2026-10-17T10:55:20Z",
+      "stars": 4
+    },
     "splitshotz/vice": {
       "fetchedAt": "2026-10-26T14:33:50Z",
       "forks": 33,
