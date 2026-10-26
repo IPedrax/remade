@@ -2239,3 +2239,7 @@
   category: games
   aliases:
     - WeMod
+- slug: modbus-poll
+  name: Modbus Poll
+  url: https://modbuspoll.com/
+  category: engineering
